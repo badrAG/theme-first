@@ -126,9 +126,6 @@
     data() {
       return {
         menus: this.$settings.sections.footer.menus,
-        menu1: this.$settings.sections.footer.menus.menu1,
-        menu2: this.$settings.sections.footer.menus.menu2,
-        menu3: this.$settings.sections.footer.menus.menu3,
         footer: this.$settings.sections.footer,
         year: new Date().getFullYear(),
         title: this.$settings.sections.footer.copyright.store_name,
