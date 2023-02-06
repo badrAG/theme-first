@@ -38,7 +38,7 @@
           </div> 
           <!-- ِAbout section -->
 
-          <!-- menu1 --> 
+          <!-- menu1
           <div v-if="menus.menu1_active" class="categoty_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu1_title }}</h4>
             <div v-if="menu1">
@@ -50,12 +50,12 @@
                     </div>
                 </div>
             </div>
-          </div>
+          </div>  -->
           <!-- menu1  -->
   
   
           <!-- menu2 -->
-          <div v-if="menus.menu2_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
+          <!-- <div v-if="menus.menu2_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu2_title }}</h4>
               <div v-if="menu2">
                 <div v-for="(item,i) in menu2.items" :key="i">
@@ -66,12 +66,12 @@
                     </div>
                 </div>
               </div>
-            </div>
+            </div>  -->
           <!-- menu2 -->
 
 
           <!-- menu3 -->
-          <div v-if="menus.menu3_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
+          <!-- <div v-if="menus.menu3_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu3_title }}</h4>
               <div v-if="menu3">
                 <div v-for="(item,i) in menu3.items" :key="i">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
               </div>
-            </div>
+            </div>  -->
           <!-- menu3 -->
 
           <!-- payment_methods  -->
@@ -98,7 +98,7 @@
             </div>
           </div>
           <!-- payment_methods -->
-        </div>
+        </div> 
 
 
          <!--  Social Media -->
