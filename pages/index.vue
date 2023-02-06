@@ -7,8 +7,8 @@
       <sections-products :key="i+1" :data-key="i+1" v-if="$settings.sections[`products_${i+1}`].active" :section="$settings.sections[`products_${i+1}`]"></sections-products>
     </template>
     <!-- <sections-sub-collections ></sections-sub-collections> -->
-    <sections-collections03 v-if="$settings.sections.collections2.active"></sections-collections03>
-    <sections-testimonial v-if="$settings.sections.testimonial.active" ></sections-testimonial>
+    <!-- <sections-collections03 v-if="$settings.sections.collections2.active"></sections-collections03> -->
+    <!--<sections-testimonial v-if="$settings.sections.testimonial.active" ></sections-testimonial> -->
   </div>
 </template>
 <script>
