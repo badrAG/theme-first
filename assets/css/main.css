@@ -152,7 +152,7 @@ body {
 
 
 .box-shadow-xs{
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
 }
 
 .box-shadow-xs-hover{
@@ -160,7 +160,19 @@ body {
 }
 
 .box-shadow-xs-hover:hover{
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
+}
+
+.text-md {
+  font-size: 13px;
+}
+.scale {
+  transition: .1s ease;
+}
+
+.scale:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 
@@ -180,13 +192,19 @@ margin-right: auto;
   padding-bottom: 60%;
 }
 
+
 .pb-4\/7{
   padding-bottom: 70%;
 }
 
 .pb-4\/5{
+  padding-bottom: 80%;
+}
+
+.pb-5\/6  {
   padding-bottom: 85%;
 }
+
 .pb-full{
     padding-bottom: 100%;
 }

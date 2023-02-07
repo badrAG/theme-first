@@ -2,7 +2,7 @@
     <div class="footer-bg footer-text-bg">
       <si-app-loader placement="BEFORE_FOOTER"/>
       <!-- Start footer Section -->
-      <footer class="footer container text-sm text-center md:text-left px-4">
+      <footer class="footer container text-md text-center md:text-left px-4">
         <div class="flex flex-wrap justify-center md:justify-between pt-16">
 
           <!-- About section  -->
@@ -14,7 +14,7 @@
               <!-- Store title -->
   
               <!-- Footer About -->
-                  <div class="mb-4 text-sm font-normal">{{ footer.about }}</div>
+                  <div class="mb-4 text-md font-normal">{{ footer.about }}</div>
               <!-- Footer About -->
   
               <!-- Contacts  -->
@@ -38,51 +38,51 @@
           </div> 
           <!-- ِAbout section -->
 
-          <!-- menu1
+          <!-- menu1 --> 
           <div v-if="menus.menu1_active" class="categoty_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu1_title }}</h4>
             <div v-if="menu1">
               <div  v-for="(item,i) in menu1.items" :key="i">
                     <div>
-                        <h4 class="mb-4 text-sm font-normal hover:underline">
+                        <h4 class="mb-4 text-md font-normal hover:underline">
                             <router-link :to="item.url">{{item.text}}</router-link>
                         </h4>
                     </div>
                 </div>
             </div>
-          </div>  -->
+          </div>
           <!-- menu1  -->
   
   
           <!-- menu2 -->
-          <!-- <div v-if="menus.menu2_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
+          <div v-if="menus.menu2_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu2_title }}</h4>
               <div v-if="menu2">
                 <div v-for="(item,i) in menu2.items" :key="i">
                     <div>
-                        <h4 class="mb-4 text-sm font-normal hover:underline">
+                        <h4 class="mb-4 text-md font-normal hover:underline">
                             <router-link :to="item.url">{{item.text}}</router-link>
                         </h4>
                     </div>
                 </div>
               </div>
-            </div>  -->
+            </div>
           <!-- menu2 -->
 
 
           <!-- menu3 -->
-          <!-- <div v-if="menus.menu3_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
+          <div v-if="menus.menu3_active" class="Infomation_menu p-2 mt-6 md:mt-0 w-full md:w-1/5">
             <h4 class="text-base font-bold mb-6">{{ menus.menu3_title }}</h4>
               <div v-if="menu3">
                 <div v-for="(item,i) in menu3.items" :key="i">
                     <div>
-                        <h4 class="mb-4 text-sm font-normal hover:underline">
+                        <h4 class="mb-4 text-md font-normal hover:underline">
                             <router-link :to="item.url">{{item.text}}</router-link>
                         </h4>
                     </div>
                 </div>
               </div>
-            </div>  -->
+            </div>
           <!-- menu3 -->
 
           <!-- payment_methods  -->
@@ -98,16 +98,16 @@
             </div>
           </div>
           <!-- payment_methods -->
-        </div> 
+        </div>
 
 
          <!--  Social Media -->
           <div class="Social_Media pb-14 mt-6">
             <h3 class="text-base font-bold mb-6 text-center">{{ footer.social_media.title }}</h3>
             <div class="flex items-center justify-center flex-wrap">
-              <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2 ">
+              <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
                   <a class="h-full flex" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
-                      <fa class="text-2xl mx-2" :icon="['fab', item.name]"></fa>
+                      <fa class="text-2xl mx-2  scale hover:opacity-90" :icon="['fab', item.name]"></fa>
                   </a>
               </div>
             </div>
@@ -126,6 +126,9 @@
     data() {
       return {
         menus: this.$settings.sections.footer.menus,
+        menu1: this.$settings.sections.footer.menus.menu1,
+        menu2: this.$settings.sections.footer.menus.menu2,
+        menu3: this.$settings.sections.footer.menus.menu3,
         footer: this.$settings.sections.footer,
         year: new Date().getFullYear(),
         title: this.$settings.sections.footer.copyright.store_name,
@@ -164,57 +167,7 @@
   </script>
   
   
-  <style scoped> 
-  /* footer {
-    color: var(--text-color);
-  } */
+<style scoped> 
 
-  /* .footer-contact,.categoty_menu,.Infomation_menu,
-  .Useful_links, .payment_methods {
-    flex: 0 0 auto;
-  }
-
-  .footer-contact,.payment_methods  {
-    width: 25%;
-  }
-
-  .categoty_menu,.Infomation_menu,
-  .Useful_links {
-    width: 16.66666667%;
-  }
-
-  @media screen and (max-width: 1025px){
-    .footer-contact,.categoty_menu,.Infomation_menu,
-    .Useful_links, .payment_methods {
-      width: 50%;
-    }
-
-    .Infomation_menu, .Useful_links, 
-    .payment_methods, .Social_Media {
-      margin-top: 2rem;
-    }
-     
-  }
-
-  @media screen and (max-width: 767px){
-    .footer_container {
-      text-align: center;
-    }
-
-    .footer-contact,.categoty_menu,.Infomation_menu,
-    .Useful_links, .payment_methods {
-      width: 100%;
-    }
-
-    .categoty_menu, .Infomation_menu, .Useful_links, 
-    .payment_methods, .Social_Media {
-      margin-top: 2rem;
-    }
-
-    .Contacts,
-    .payment_images {
-      justify-content: center;
-    }  
-  } */
 </style>
   

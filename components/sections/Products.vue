@@ -11,7 +11,7 @@
   
         <div v-if="section.show_more_text">
           <nuxt-link  :to="section.show_more_url">
-            <span class="text-sm font-normal text-gr underline hover:text-black">{{ section.show_more_text }}</span>
+            <span class="text-md font-normal text-gr underline hover:text-black">{{ section.show_more_text }}</span>
           </nuxt-link>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <!-- Loader -->
   
       <!-- Products -->
-      <div class="flex flex-wrap px-2">
+      <div class="flex flex-wrap px-2 ">
         <div v-for="(item, i) in items" :key="i" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
           <si-product-home :item="item"></si-product-home>
         </div>

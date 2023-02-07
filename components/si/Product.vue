@@ -12,7 +12,7 @@
         <!-- wishlist icon -->
 
         <!-- Product discount -->
-        <div v-if="discount" class="text-sm m-1 p-1 h-8 rounded-tl-lg rounded-br-lg flex items-center justify-center bg-green-600 text-white absolute top-0 left-0 z-10">
+        <div v-if="discount" class="text-sm m-2 p-1 h-8 rounded-tl-lg rounded-br-lg flex items-center justify-center bg-primary text-white absolute top-0 left-0 z-10">
             <b>-{{discount.value}} {{ discount.type == 'percentage' ? '%' : this.$store.state.currency.symbol }}</b>
         </div>
         <!-- Product discount -->

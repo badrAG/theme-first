@@ -1,14 +1,13 @@
 <template>
   <div class="container my-5" v-if="items.length > 0">
     <!-- title  -->
-    <div class="m-2 flex justify-between items-center">
-      <div class="mb-4">
-        <h2 class="text-2xl md:text-3xl">{{ this.$settings.sections.product.related.title}}</h2>
+    <div class="flex items-center justify-between mb-2 mx-4">
+      <div class="">
+        <h2 class="font-medium text-xl px-2">{{ this.$settings.sections.product.related.title}}</h2>
       </div>
-
-      <div class="flex justify-center items-center border-2 border-black rounded-full p-1 px-2 box-shadow-xs-hover transition ease-linear duration-150" v-if="$settings.sections.products_1.show_more_text">
-        <nuxt-link class="text-xs md:text-sm font-semibold" to="/shop">
-          {{ $settings.sections.products_1.show_more_text }}
+      <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full " v-if="$settings.sections.posts.show_more_text">
+        <nuxt-link class="text-sm md:text-base font-medium text-center" to="/blog">
+          <span class="">{{ $settings.sections.products_1.show_more_text }}</span>
         </nuxt-link>
       </div>
     </div>

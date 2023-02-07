@@ -1,68 +1,75 @@
 <template>
     <div class="bg-white">
       <div class="container md:mt-6 mb-6">
-        <!--  -->
-          <div v-if="loading" class="flex justify-center items-center ">
-              <si-loader></si-loader>
-          </div>
+        <!-- Loader -->
+        <div v-if="loading" class="flex justify-center items-center ">
+            <si-loader></si-loader>
+        </div>
+        <!-- Loader -->
+        
           <!--  -->
-          <div class="flex flex-wrap justify-between " v-if="item">
+          <div class="flex flex-wrap justify-between" v-if="item">
 
             <!-- Product id -->
             <meta itemprop="productID" :content="item._id" />
             <!-- Product id -->
 
-             <!-- Product images  -->
-                <div class="image-part relative block md:inline-block w-3/5 overflow-hidden md:p-2" >
+                <!--  -->
+                <div style="height: fit-content;"   class="w-full lg:w-3/5 lg:sticky lg:top-6">
 
-                  <!--  -->
-                   <!-- product image collection -->
-                    <div class="height-fix scroll hidden md:flex flex-col absolute overflow-y-auto" >
-                        <div class="w-14 h-14 lg:w-16 lg:h-16"> 
-                            <si-image  class="w-full h-full cursor-pointer object-cover rounded-md mb-2  " :class="visibleSlide == index ? 'opacity-100 border-2 border-black' : 'opacity-60'" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
-                        </div>
-                    </div>
-                  <!-- product image collection -->
+                    <div class="flex flex-wrap">
+                        
+                        <div class="w-full slider md:mx-4">
+                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
+                                <si-image width="400" height="400" class="h-full w-full absolute inset-0  object-cover md:rounded-xl cursor-pointer" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                               
+                                <button class="mx-2 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3.5 bg-white shadow transition-all ease-linear delay-150 hover:shadow-lg rounded-full hover:bg-gray-200" @click="prev">
+                                    <svg class="w-5 h-5 translate" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                        <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
+                                    </svg>
+                                </button>
+                                <button class="mx-2 absolute top-1/2 -right-0 transform -translate-y-1/2 p-3.5 bg-white shadow transition-all ease-linear delay-150 hover:shadow-lg rounded-full hover:bg-gray-200" @click="next">
+                                    <svg class="w-5 h-5 translate" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                        <path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path>
+                                    </svg>
+                                </button>
 
-                  <!-- Slider -->
-                    <div class="w-full">
-                        <div class="flex relative justify-center items-center md:ml-16 lg:ml-20">
-
-                            <div  class="height-fix" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index">   
-                                <img class="w-full h-full object-cover md:rounded-xl" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name">
-                            </div>
-                            
-                            <button class="bg-white m-2 h-12 w-12 rounded-full absolute left-0 top-2/4 box-shadow-xs hover:bg-gray-100" @click="prev" >
-                                <fa class="text-xl align-middle "  :icon="['fa', 'chevron-left']"></fa>
-                            </button>
-                            <button class="bg-white m-2 h-12 w-12 rounded-full absolute right-0 top-2/4 box-shadow-xs hover:bg-gray-100" @click="next" >
-                                <fa class="text-xl align-middle"  :icon="['fa', 'chevron-right']"></fa>
-                            </button>
-
-                            <!-- wishlist icon -->
-                            <div v-if="$settings.sections.products.add_to_wishlist.active">
-                                <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 box-shadow-xs hover:bg-gray-100">
+                                <div v-if="$settings.sections.products.add_to_wishlist.active">
+                                    <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 box-shadow-xs hover:bg-gray-100">
                                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red-500 align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                     </button>
                                     <button v-else @click="addToWishlist" title="Wishlist" class="bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 box-shadow-xs hover:bg-gray-100">
                                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
                                     </button>
                                 </div>
-                                <!-- wishlist icon -->
                             </div>
                         </div>
-                    <!-- Slider -->
 
-                </div>
-            <!-- Product images -->
+                        <div class="galery relative md:w-14 lg:w-16 ml-4 overflow-hidden order-first">
+                            <div class="absolute inset-0  scroll overflow-y-scroll">
+                                <si-image  class="w-14 h-14 lg:w-16 lg:h-16 cursor-pointer object-cover rounded-md mb-2" :class="visibleSlide == index ? 'opacity-100 border-2 border-black' : 'opacity-60'" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block md:hidden">
+                        <div class="flex items-center  justify-center mx-3 mt-3 ">
+                            <div class="mx-1" v-for="(image, index) in item.images" :key="index" >
+                                <div class="h-2.5 w-2.5 rounded-full cursor-pointer" :class="visibleSlide == index ? 'bg-primary' : 'bg-gray-300'" @click="setImage(index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    </div>
+                    <!--  -->
 
               <!-- Product content -->
-              <div class="content-part w-2/5 p-2 md:pl-5 lg:pl-10">
+              <div class="content-part w-full lg:w-2/5 px-2">
                   <div class="">
                       <div class="bg-white ">
 
                         <!--  Product Name -->
-                        <h4 class="text-lg md:text-xl lg:text-2xl guardian-font font-light">{{ item.name }}</h4>
+                        <h4 class="text-lg md:text-xl lg:text-2xl guardian-font font-light mb-4 mx-2 mt-4 lg:mt-0">{{ item.name }}</h4>
                         <!--  Product Name -->
 
                         <!--  product name hidden-->
@@ -70,9 +77,9 @@
                         <!--  product name hidden-->
 
                         <!-- Price  -->
-                        <div class="flex justify-between items-center mt-1">
+                        <div class="flex justify-between items-center mb-4 mx-2">
                             <!-- Price -->
-                            <si-price class="flex items-center text-9xl" :type="'simple'" :price="price" :variants="[]"></si-price>
+                            <si-price class="flex items-center" :type="'simple'" :price="price" :variants="[]"></si-price>
                             <!-- Price -->
 
                             <!-- Price -->
@@ -80,7 +87,7 @@
                             <!-- Price -->
 
                             <!-- reviews -->
-                            <div class="flex items-center justify-start mb-2" v-if="$settings.sections.product.reviews.active">
+                            <div class="flex items-center justify-start" v-if="$settings.sections.product.reviews.active">
                                 <div class="mb-1 flex">
                                     <span v-for="(star,i) in 5" :class="star <= item.review.rating ? 'text-yellow-500 ': 'text-black'" :key="i">
                                         <fa class="text-sm"  :icon="['fa', 'star']"></fa>
@@ -93,48 +100,52 @@
                         <!-- Price -->
                         
                         <!-- short description -->
-                        <p class="text-base font-normal mt-1">{{ item.description }}</p>
+                        <p class="text-sm text-gr font-normal mb-4 mx-2">{{ item.description }}</p>
                         <!-- short description -->
 
                         <!-- variant -->
-                        <si-product-variants class="flex mt-3" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
+                        <si-product-variants class="flex mb-4 mx-2" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                         <!-- variant -->
 
                         
                         <!-- product cart -->
+
+                        <div class="flex justify-between items-center mb-4">
                             <!-- product quantity -->
-                            <div class="flex justify-center mt-3">
+                            <div class="flex justify-center mx-2">
                                 <si-product-quantity @selected="quantitySelected" :quantity="quantity"></si-product-quantity>
                             </div>
                             <!-- product quantity -->
+
                             
                             <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                             <!-- add to cart -->
-                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="rounded-full my-5 text-lg w-full p-2.5 px-5 addtocart-bg addtocart-text-bg  click-effect hover:opacity-80">
+                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="mx-2 rounded-full text-base font-bold w-full p-2.5 px-5 addtocart-bg addtocart-text-bg  click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                             <!-- add to cart -->
-
-                            <!-- buy now -->
-                            <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full text-lg p-2.5 px-5 click-effect hover:opacity-80">
-                                <!-- <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6 translate"><path fill="currentColor" d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"></path></svg> -->
-                                <span>&ensp;</span>
-                                <span class="w-full">{{ $settings.sections.product.buy_now.text }}</span>
-                            </button>
-                            <!-- buy now -->
-                            <si-app-loader placement="REPLACE_BUYNOW"/>
                             <si-app-loader placement="AFTER_ADD_TO_CART"/>
-                        <!-- product cart -->
+                        </div>
+                            
+
+                        <si-app-loader placement="REPLACE_BUYNOW"/>
+                        <!-- buy now -->
+                        <div class="mx-2 my-4 ">
+                            <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-2.5 px-5 click-effect scale hover:opacity-90">
+                                <span>{{ $settings.sections.product.buy_now.text }}</span>
+                            </button>
+                        </div>
+                        <!-- buy now -->
 
                       </div>
 
                         <!-- share products icons -->
-                        <div class="bg-white mt-4" v-if="$settings.sections.product.share_buttons">
+                        <div class="bg-white mx-2" v-if="$settings.sections.product.share_buttons">
                           <div class="flex items-center justify-center">
                               <h3 class="whitespace-nowrap text-lg font-bold px-4">{{ $settings.sections.product.share_buttons.title }}</h3>
                           </div>
                           <div class="flex justify-center">
-                              <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="m-2 flex items-center justify-center">
+                              <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="m-2  flex items-center justify-center">
                                   <a class="h-full flex hover:opacity-80" :href="item.url" target="_blank" rel="noopener noreferrer">
                                     <fa class="text-3xl mx-2" :icon="['fab', item.name]"></fa>
                                   </a>
@@ -148,19 +159,19 @@
           <!--  -->
 
             <!-- Desciption and Reviews -->
-            <div class="my-4">
-                <div class="flex justify-center items-center mb-4">
-                    <div  class="text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-gray-100': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div  class="text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-gray-100': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+            <div class="my-6">
+                <div class="flex justify-center items-center mb-4 mx-4">
+                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
+                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
-                <div class="flex justify-center">
-                    <div  v-if="item && Description" class=" bg-white description font-normal leading-7 text-base w-full md:w-4/5 p-2" id="description" v-html="item.html"></div>
+                <div class="flex justify-center mx-4">
+                    <div  v-if="item && Description" class=" bg-white description font-normal leading-7 text-base w-full" id="description" v-html="item.html"></div>
                 </div>
                 <!-- Description -->            
                 <si-app-loader placement="AFTER_DESCRIPTION"/>
                 <!-- reviews -->
-                <div v-if="item && $settings.sections.product.reviews.active && Reviews" class="reviews">
+                <div v-if="item && $settings.sections.product.reviews.active && Reviews" class="reviews mx-2">
                     <sections-reviews :item="item"></sections-reviews>
                 </div>
                 <!-- reviews -->
@@ -424,38 +435,15 @@
   .scroll::-webkit-scrollbar {
     display: none;
   }
-  .height-auto {
-    max-height: 600px;
-    height: auto;
-  }
+  @media (min-width: 768px) { 
+      .slider {
+        flex: 1 0 0%;
+      }
+    
+      .galery {
+        flex: 0 0 auto;
+      }
+}
 
-  .height-fix {
-    height: 600px;
-  }
-
-
-@media (min-width:1200px) and (max-width:1250px) { .height-fix {height: 580px;}}
-@media (min-width:1150px) and (max-width:1200px) { .height-fix {height: 560px;}}
-@media (min-width:1100px) and (max-width:1150px) { .height-fix {height: 540px;}}
-@media (min-width:1050px) and (max-width:1100px) { .height-fix {height: 520px;}}
-@media (min-width:1000px) and (max-width:1050px) { .height-fix {height: 500px;}}
-@media (min-width:950px) and (max-width:1000px) { .height-fix {height: 480px;}}
-@media (min-width:900px) and (max-width:950px) { .height-fix {height: 460px;}}
-@media only screen and (max-width: 900px) {.image-part {width: 100%;}.content-part {width: 100%;}}
-@media (min-width:850px) and (max-width:900px) { .height-fix {height: 580px;}}
-@media (min-width:800px) and (max-width:850px) { .height-fix {height: 560px;}}
-@media (min-width:750px) and (max-width:800px) { .height-fix {height: 540px;}}
-@media (min-width:700px) and (max-width:750px) { .height-fix {height: 520px;}}
-@media (min-width:650px) and (max-width:700px) { .height-fix {height: 500px;}}
-@media (min-width:600px) and (max-width:650px) { .height-fix {height: 480px;}}
-@media (min-width:550px) and (max-width:600px) { .height-fix {height: 460px;}}
-@media (min-width:500px) and (max-width:550px) { .height-fix {height: 440px;}}
-@media (min-width:450px) and (max-width:500px) { .height-fix {height: 420px;}}
-@media (min-width:400px) and (max-width:450px) { .height-fix {height: 400px;}}
-@media (min-width:350px) and (max-width:400px) { .height-fix {height: 380px;}}
-@media (min-width:300px) and (max-width:350px) { .height-fix {height: 360px;}}
-@media (min-width:250px) and (max-width:300px) { .height-fix {height: 340px;}}
-@media (min-width:200px) and (max-width:250px) { .height-fix {height: 320px;}}
-@media only screen and (max-width: 200px) {.height-fix {height: 300px;}}
   </style>
   

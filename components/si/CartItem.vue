@@ -5,7 +5,7 @@
             <div class="flex flex-wrap justify-between px-4">
                 <!-- image -->
                 <div class="w-2/6 md:w-1/5">
-                    <div class="pb-4/5 relative zoom overflow-hidden rounded-lg">
+                    <div class="pb-2/3 relative zoom overflow-hidden rounded-lg">
                         <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                             <si-image  width="400" height="400" class=" rounded-lg h-full w-full absolute inset-0 object-cover"  :src="item.image" :alt="item.name"/>
                         </nuxt-link>
@@ -27,7 +27,7 @@
                         <!-- procuct title -->
         
                         <!-- products quantity -->
-                        <div class="flex flex-col justify-start items-start md:items-end w-1/2 md:w-1/4 px-4 mt-2 md:mt-0">
+                        <div class="flex flex-col justify-start items-start md:items-end w-1/2 md:w-1/4 px-4 my-2 md:mt-0">
                             <si-ProductQuantity @selected="quantitySelected" :quantity="item.quantity"/>
                         </div>
                         <!-- products quantity  -->
@@ -35,10 +35,10 @@
                         <!--  Price -->
                         <div class="flex flex-col justify-start items-end w-1/2 md:w-1/4 mt-2 md:mt-0">
                             <div class="">
-                                <b class="text-xs md:text-base font-bold">{{ item.quantity.value }} x</b>
-                                <b class="text-sm md:text-base font-bold">{{ $store.state.currency.symbol }} {{ item.price.toFixed(2) }}</b>
+                                <b class="text-xs md:text-sm font-bold products-price-text-bg ">{{ item.quantity.value }} x</b>
+                                <b class="text-sm md:text-base font-bold products-price-text-bg ">{{ $store.state.currency.symbol }} {{ item.price.toFixed(2) }}</b>
                             </div>
-                            <del class="text-base">{{ $store.state.currency.symbol }} {{ item.total.toFixed(2) }}</del>
+                            <del class="text-xs md:text-sm products-delprice-text-bg">{{ $store.state.currency.symbol }} {{ item.total.toFixed(2) }}</del>
                             <div v-if="item.upsell">
                                 <b class="text-base font-normal text-green-700 inline-block mt-2">-{{ item.upsell.value }} {{ item.upsell.type == 'percentage' ? '%' : $store.state.currency.symbol }}</b>
                             </div>
@@ -48,7 +48,7 @@
     
                     <!--  Remove products -->
                     <div class="mx-2">
-                        <button style="font-size: 13px;" class="font-bold px-2 rounded-full transition ease-in delay-150 hover:bg-gray-200" @click="remove">{{this.$settings.sections.cart.buttons.remove_button_text }}</button>
+                        <button style="font-size: 13px;" class="font-bold px-2 py-1 rounded-full transition-all ease-linear delay-200 hover:bg-gray-200" @click="remove">{{this.$settings.sections.cart.buttons.remove_button_text }}</button>
                      </div>
                     <!-- Remove products -->
 

@@ -20,7 +20,7 @@
             <meta itemprop="price" :content="minPrice" />
             <span class="products-price-text-bg text-2xl font-bold">{{ $store.state.currency.symbol }} {{ minPrice.toFixed(2) }}</span>
             <span class="flex items-center">~</span>
-            <span class="products-comprice-text-bg text-2xl font-normal ">{{ $store.state.currency.symbol }} {{ maxPrice.toFixed(2) }}</span>
+            <span class="products-price-text-bg text-2xl font-normal ">{{ $store.state.currency.symbol }} {{ maxPrice.toFixed(2) }}</span>
         </div>
         <!-- v-else-if="minPrice != maxPrice" -->
 

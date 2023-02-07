@@ -1,10 +1,45 @@
 <template>
     <div class="transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
         <component :is="'style'">
-            :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
+            :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); 
+                   --header-rgb: {{ header_rgb.r }},{{ header_rgb.g  }}, {{ header_rgb.b }} ; --header-color-bg: rgb(var(--header-rgb)); 
+                   --header-text-rgb: {{ header_text_rgb.r }},{{ header_text_rgb.g  }}, {{ header_text_rgb.b }} ; --header-text-col: rgb(var(--header-text-rgb));          
+                   --collection-rgb: {{ collection_rgb.r }},{{ collection_rgb.g  }}, {{ collection_rgb.b }} ; --collection-color-bg: rgb(var(--collection-rgb));          
+                   --collection-text-rgb: {{ collection_text_rgb.r }},{{ collection_text_rgb.g  }}, {{ collection_text_rgb.b }} ; --collection-text-col: rgb(var(--collection-text-rgb));          
+                  
+                   --products-price-rgb: {{ products_price_rgb.r }},{{ products_price_rgb.g  }}, {{ products_price_rgb.b }} ; --products-price-col: rgb(var(--products-price-rgb));          
+                   --products-delprice-rgb: {{ products_delprice_rgb.r }},{{ products_delprice_rgb.g  }}, {{ products_delprice_rgb.b }} ; --products-delprice-col: rgb(var(--products-delprice-rgb));          
+                   --testimonial-rgb: {{ testimonial_rgb.r }},{{ testimonial_rgb.g  }}, {{ testimonial_rgb.b }} ; --testimonial-color-bg: rgb(var(--testimonial-rgb));          
+                   --testimonial-text-rgb: {{ testimonial_text_rgb.r }},{{ testimonial_text_rgb.g  }}, {{ testimonial_text_rgb.b }} ; --testimonial-text-col: rgb(var(--testimonial-text-rgb));          
+                   --footer-color-rgb: {{ footer_color_rgb.r }},{{ footer_color_rgb.g  }}, {{ footer_color_rgb.b }} ; --footer-color-bg: rgb(var(--footer-color-rgb));          
+                   --footer-text-rgb: {{ footer_text_rgb.r }},{{ footer_text_rgb.g  }}, {{ footer_text_rgb.b }} ; --footer-text-col: rgb(var(--footer-text-rgb));          
+                   --copyright-color-rgb: {{ copyright_color_rgb.r }},{{ copyright_color_rgb.g  }}, {{ copyright_color_rgb.b }} ; --copyright-color-bg: rgb(var(--copyright-color-rgb));          
+                   --copyright-text-rgb: {{ copyright_text_rgb.r }},{{ copyright_text_rgb.g  }}, {{ copyright_text_rgb.b }} ; --copyright-text-col: rgb(var(--copyright-text-rgb));          
+                   --addtocart-rgb: {{ addtocart_rgb.r }},{{ addtocart_rgb.g  }}, {{ addtocart_rgb.b }} ; --addtocart-color-bg: rgb(var(--addtocart-rgb)); 
+                   --addtocart-text-rgb: {{ addtocart_text_rgb.r }},{{ addtocart_text_rgb.g  }}, {{ addtocart_text_rgb.b }} ; --addtocart-text-col: rgb(var(--addtocart-text-rgb));          
+                   --buynow-rgb: {{ buynow_rgb.r }},{{ buynow_rgb.g  }}, {{ buynow_rgb.b }} ; --buynow-color-bg: rgb(var(--buynow-rgb));          
+                   --buynow-text-rgb: {{ buynow_text_rgb.r }},{{ buynow_text_rgb.g  }}, {{ buynow_text_rgb.b }} ; --buynow-text-col: rgb(var(--buynow-text-rgb));          
+                }
             .bg-primary{ background-color: var(--primary-color); }
+            .bg-primary-border { border-color: var(--primary-color); }
             .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
             .text-primary{ color: var(--primary-color); }
+            .header-bg {background-color: var(--header-color-bg);}
+            .header-text-color {color: var(--header-text-col);}
+            .collection-bg {background-color: var(--collection-color-bg);}
+            .collection-text-bg {color: var(--collection-text-col);}
+            .testimonial-bg {background-color: var(--testimonial-color-bg);}
+            .testimonial-text-bg {color: var(--testimonial-text-col);}
+            .products-price-text-bg {color: var(--products-price-col);}
+            .products-delprice-text-bg {color: var(--products-delprice-col);}
+            .footer-bg {background-color: var(--footer-color-bg);}
+            .footer-text-bg {color: var(--footer-text-col);}
+            .copyright-bg {background-color: var(--copyright-color-bg);}
+            .copyright-text-bg {color: var(--copyright-text-col);}
+            .addtocart-bg {background-color: var(--addtocart-color-bg);}
+            .addtocart-text-bg {color: var(--addtocart-text-col);}
+            .buynow-bg {background-color: var(--buynow-color-bg);}
+            .buynow-text-bg {color: var(--buynow-text-col);}
         </component>
         <sections-scroll-top></sections-scroll-top>
         <sections-header></sections-header>
@@ -54,6 +89,22 @@ export default {
     data() {
         return {
             rgb: { r: 0, g: 130, b: 70 },
+            header_rgb: { r: 0, g: 130, b: 70 },
+            header_text_rgb: { r: 0, g: 130, b: 70 },
+            collection_rgb: { r: 0, g: 130, b: 70 },
+            collection_text_rgb: { r: 0, g: 130, b: 70 },
+            products_price_rgb: { r: 0, g: 130, b: 70 },
+            products_delprice_rgb: { r: 0, g: 130, b: 70 },
+            testimonial_rgb: { r: 0, g: 130, b: 70 },
+            testimonial_text_rgb: { r: 0, g: 130, b: 70 },
+            footer_color_rgb: { r: 0, g: 130, b: 70 },
+            footer_text_rgb: { r: 0, g: 130, b: 70 },
+            copyright_color_rgb: { r: 0, g: 130, b: 70 },
+            copyright_text_rgb: { r: 0, g: 130, b: 70 },
+            addtocart_rgb: { r: 0, g: 130, b: 70 },
+            addtocart_text_rgb: { r: 0, g: 130, b: 70 },
+            buynow_rgb: { r: 0, g: 130, b: 70 },
+            buynow_text_rgb: { r: 0, g: 130, b: 70 },
             otherLinks: [
                 ]
         }
@@ -65,6 +116,22 @@ export default {
         if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
         if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
         this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
+        this.header_rgb = this.$tools.hexToRgb(this.$settings.style.header_color);
+        this.header_text_rgb = this.$tools.hexToRgb(this.$settings.style.header_text_color);
+        this.collection_rgb = this.$tools.hexToRgb(this.$settings.style.collection_color);
+        this.collection_text_rgb = this.$tools.hexToRgb(this.$settings.style.collection_text_color);
+        this.products_price_rgb = this.$tools.hexToRgb(this.$settings.style.products_price_color);
+        this.products_delprice_rgb = this.$tools.hexToRgb(this.$settings.style.products_delprice_color);
+        this.testimonial_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial_color);
+        this.testimonial_text_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial_text_color);
+        this.footer_color_rgb = this.$tools.hexToRgb(this.$settings.style.footer_color);
+        this.footer_text_rgb = this.$tools.hexToRgb(this.$settings.style.footer_text_color);
+        this.copyright_color_rgb = this.$tools.hexToRgb(this.$settings.style.copyright_color);
+        this.copyright_text_rgb = this.$tools.hexToRgb(this.$settings.style.copyright_text_color);
+        this.addtocart_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart_color);
+        this.addtocart_text_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart_text_color);
+        this.buynow_rgb = this.$tools.hexToRgb(this.$settings.style.buynow_color);
+        this.buynow_text_rgb = this.$tools.hexToRgb(this.$settings.style.buynow_text_color);
         if(this.$store.state.language.code == 'AR'){
             this.otherLinks = [
                 { rel: "preconnect", href: 'https://fonts.googleapis.com' },

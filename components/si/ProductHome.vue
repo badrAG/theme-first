@@ -22,11 +22,6 @@
                             <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                                 <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover box-shadow-hover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                             </nuxt-link>
-                            
-                           
-                            <!-- <nuxt-link :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
-                                <si-image  width="400" height="400" class="image_zoom h-full w-full absolute inset-0 object-cover" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
-                            </nuxt-link> -->
                         </div>
                         <!--  products image -->
                     </div>

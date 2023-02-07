@@ -6,7 +6,7 @@
 
         <!--  -->
         <div class="price flex items-center flex-wrap" v-if="type=='simple'">
-            <span class="products-price-text-bg text-base font-bold">{{ $store.state.currency.symbol }} {{ price.salePrice.toFixed(2) }}</span>
+            <span class="products-price-text-bg text-sm font-bold">{{ $store.state.currency.symbol }} {{ price.salePrice.toFixed(2) }}</span>
             <span class="flex w-2"></span>
             <span class="relative" v-if="price.comparePrice > 0">
                 <del class="products-delprice-text-bg text-sm font-normal">{{ $store.state.currency.symbol }} {{ price.comparePrice.toFixed(2) }}</del>
@@ -18,16 +18,16 @@
         <!-- v-else-if="minPrice != maxPrice" -->
         <div class="price flex items-center flex-wrap" v-else-if="minPrice != maxPrice" > 
             <meta itemprop="price" :content="minPrice" />
-            <span class="products-price-text-bg text-base font-bold">{{ $store.state.currency.symbol }} {{ minPrice.toFixed(2) }}</span>
+            <span class="products-price-text-bg text-sm font-bold">{{ $store.state.currency.symbol }} {{ minPrice.toFixed(2) }}</span>
             <span class="flex items-center">~</span>
-            <span class="products-comprice-text-bg text-base font-medium">{{ $store.state.currency.symbol }} {{ maxPrice.toFixed(2) }}</span>
+            <span class="products-price-text-bg text-sm font-medium">{{ $store.state.currency.symbol }} {{ maxPrice.toFixed(2) }}</span>
         </div>
         <!-- v-else-if="minPrice != maxPrice" -->
 
         <!--  -->
         <div class="price flex items-center flex-wrap" v-else-if="variants.length > 0">
             <meta itemprop="price" :content="variants[0].price.salePrice" />
-            <span class="products-price-text-bg text-base font-bold">{{ $store.state.currency.symbol }} {{ variants[0].price.salePrice.toFixed(2) }}</span>
+            <span class="products-price-text-bg text-sm font-bold">{{ $store.state.currency.symbol }} {{ variants[0].price.salePrice.toFixed(2) }}</span>
             <span class="flex w-2"></span>
             <span class="relative" v-if="variants[0].price.comparePrice > 0">
                 <del class="products-delprice-text-bg text-sm font-normal">{{ $store.state.currency.symbol }} {{ variants[0].price.comparePrice.toFixed(2) }}</del>

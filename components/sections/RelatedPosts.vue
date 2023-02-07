@@ -4,8 +4,8 @@
       <div class="">
         <h2 class="font-medium text-xl px-2">{{ $settings.sections.post.related.title }}</h2>
       </div>
-      <div v-if="$settings.sections.posts.show_more_text">
-        <nuxt-link class="text-sm md:text-base font-medium py-2 px-4 mx-2 text-center transition-all ease-linear delay-150 shadow hover:shadow-lg hover:opacity-80 border-2 border-black rounded-full" to="/blog">
+      <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full " v-if="$settings.sections.posts.show_more_text">
+        <nuxt-link class="text-sm md:text-base font-medium text-center" to="/blog">
           <span class="">{{ $settings.sections.posts.show_more_text }}</span>
         </nuxt-link>
       </div>

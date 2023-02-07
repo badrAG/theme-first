@@ -1,7 +1,7 @@
 <template>
 <div class="mx-1 px-2 mt-1">
     <div class="flex items-center px-6 h-1 bg-gray-200 rounded-md relative range mx-2">
-        <div class="absolute top-0 range-width h-1" :style="`left:${minVal*100/max}%;width:${(maxVal-minVal)*100/max}%`"></div>
+        <div class="absolute top-0 range-width h-0.5" :style="`left:${minVal*100/max}%;width:${(maxVal-minVal)*100/max}%`"></div>
         <input class="min w-full h-1 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="minVal" :min="min" :max="max" @change="setParams($event, 'price.salePrice-from')">
         <input class="max w-full h-1 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="maxVal" :min="min" :max="max" @change="setParams($event, 'price.salePrice-to')">
     </div>
@@ -47,12 +47,12 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     position: relative;
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     z-index: 3;
     cursor: pointer;
-    background: black;
+    background: var(--primary-color);
     box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.2);
 }
 .range input.min::-webkit-slider-thumb{
@@ -62,7 +62,7 @@ export default {
     left: 5px;
 }
 .range .range-width{
-    background-color: black;
+    background-color:var(--primary-color);
     opacity: 0.7;
 }
 </style>

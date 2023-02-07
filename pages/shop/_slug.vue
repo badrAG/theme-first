@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="mx-3 capitalize" :for="item.slug">{{ item.name }}</div>
                                 </label>
-                            </div>
+                            </div   >
                         </div>
                         <!-- Collections type -->
 
@@ -61,7 +61,7 @@
                             <si-loader></si-loader>
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.sizes.active && filters" class="flex flex-wrap mx-4 mb-2">
-                            <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md shadow hover:shadow-lg" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-black text-white' : 'bg-white' ">
+                            <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md shadow hover:shadow-lg" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-primary text-white' : 'bg-white' ">
                                 <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
                             </div>
@@ -76,7 +76,7 @@
                             <si-loader></si-loader>
                         </div>
                         <div v-if="$settings.sections.shop.sidebar.colors.active && filters" class="flex flex-wrap mx-4 mb-2">
-                            <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option " :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
+                            <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
                                 <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer rounded-full shadow hover:shadow-lg" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
                             </div>
@@ -140,24 +140,26 @@
             <!-- Slider left -->
 
 
+
+            <!--  -->
             <div class="w-full">  
-                <div class="bg-white">
+                <div v-if="items.length > 0" class="bg-white">
                     <!-- icons -->
                     <div class="mb-4">
                         <div class="flex items-center px-4" :class="$settings.sections.blog.sidebar.active? 'justify-between': 'justify-end'">
-                            <div v-if="$settings.sections.blog.sidebar.active" class="rounded-full border-2 border-black transition ease-linear delay-150 shadow hover:shadow-lg p-2" @click="showSideBar = true">
+                            <div v-if="$settings.sections.blog.sidebar.active" class="rounded-full border-2 transition ease-linear delay-150 box-shadow scale p-2 bg-primary-border" @click="showSideBar = true">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6">
                                     <path d="M324.4 64C339.6 64 352 76.37 352 91.63C352 98.32 349.6 104.8 345.2 109.8L240 230V423.6C240 437.1 229.1 448 215.6 448C210.3 448 205.2 446.3 200.9 443.1L124.7 385.6C116.7 379.5 112 370.1 112 360V230L6.836 109.8C2.429 104.8 0 98.32 0 91.63C0 76.37 12.37 64 27.63 64H324.4zM144 224V360L208 408.3V223.1C208 220.1 209.4 216.4 211.1 213.5L314.7 95.1H37.26L140 213.5C142.6 216.4 143.1 220.1 143.1 223.1L144 224zM496 400C504.8 400 512 407.2 512 416C512 424.8 504.8 432 496 432H336C327.2 432 320 424.8 320 416C320 407.2 327.2 400 336 400H496zM320 256C320 247.2 327.2 240 336 240H496C504.8 240 512 247.2 512 256C512 264.8 504.8 272 496 272H336C327.2 272 320 264.8 320 256zM496 80C504.8 80 512 87.16 512 96C512 104.8 504.8 112 496 112H400C391.2 112 384 104.8 384 96C384 87.16 391.2 80 400 80H496z"></path>
                                 </svg>
                             </div>
                             <!--  -->
                             <div class="hidden md:flex">
-                                <button v-for="(grid,i) in girds" :key="i" @click="gridClass=grid.class" class="flex items-center justify-center flex-wrap mx-1.5 shadow hover:shadow-md" :style="`width:${grid.width}px`">
-                                    <span v-for="i in grid.number" :key="i" class="flex" :class="grid.class == gridClass ? 'bg-black':'bg-gray-400'" style="margin:2px;width:8px;height:20px" ></span>
+                                <button v-for="(grid,i) in girds" :key="i" @click="gridClass=grid.class" class="flex items-center justify-center flex-wrap mx-1.5 box-shadow scale" :style="`width:${grid.width}px`">
+                                    <span v-for="i in grid.number" :key="i" class="flex" :class="grid.class == gridClass ? 'bg-primary':'bg-gray-400'" style="margin:2px;width:8px;height:20px" ></span>
                                 </button>
                             </div>
                             <!--  -->
-                            <select class=" bg-white w-48 p-1 py-2 rounded-full transition ease-linear delay-150 shadow hover:shadow-lg outline-none border-2 border-black" v-model="params.sort">
+                            <select class=" bg-white w-48 p-1 py-2 rounded-full transition ease-linear delay-150 box-shadow scale outline-none border-2 bg-primary-border" v-model="params.sort">
                                 <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>
                             </select>
                         </div>
@@ -168,15 +170,10 @@
                     </div>
                     <!--  -->
 
-                    <!-- empty_text -->
-                    <div v-if="!loading.products && items.length == 0" class="flex justify-center items-center my-5">
-                        <h1 class="py-3">{{ $settings.sections.shop.empty_text }}</h1>
-                    </div>
-                    <!-- empty_text -->
 
                     <!-- Products  -->
                     <div class="flex flex-wrap">
-                        <div v-for="(item, i) in items" :key="i" class="p-1" :class="gridClass">
+                        <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">
                             <si-product :item="item"></si-product>
                         </div>
                     </div>
@@ -184,7 +181,7 @@
                     <!-- Pagination -->
                     <div v-if="items.length>0" class="p-2 mb-5 bg-white items-center flex justify-center w-full">
 
-                        <div class="p-3 rounded-full transition-all ease-linear delay-200 bg-gray-100 hover:bg-gray-200">
+                        <div class="border-2 bg-primary-border p-3 rounded-full transition-all ease-linear delay-200 box-shadow scale">
                             <button class="flex flex-col justify-center" @click="getItems(paginate.current_page-1)">
                                 <svg class="w-4 h-4 translate text-black" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path></svg>
                                 <!-- <span>{{ $settings.sections.shop.pagination.next_text }}</span> -->
@@ -193,10 +190,10 @@
                         </div>
                        
                         <span>&ensp;</span>
-                        <span class="text-base font-bold">{{paginate.current_page}}/{{paginate.last_page}}</span>
+                        <span class="text-base font-bold mx-4">{{paginate.current_page}}/{{paginate.last_page}}</span>
                         <span>&ensp;</span>
 
-                        <div class="p-3 rounded-full transition-all ease-linear delay-200 bg-gray-100 hover:bg-gray-200">
+                        <div class="border-2 bg-primary-border p-3 rounded-full transition-all ease-linear delay-200 box-shadow scale">
                             <button class="flex flex-col justify-center" @click="getItems(paginate.current_page+1)">
                                 <!-- <span>{{ $settings.sections.shop.pagination.next_text }}</span> -->
                                 <!-- <span>&ensp;</span> -->
@@ -206,6 +203,12 @@
                     </div>
                     <!-- Pagination -->
                 </div>
+
+                <!-- empty_text -->
+                <div v-if="!loading.products && items.length == 0" class="flex justify-center items-center">
+                    <h1 class="py-3">{{ $settings.sections.shop.empty_text }}</h1>
+                </div>
+                <!-- empty_text -->
             </div>
         </div>
     </div>
@@ -379,8 +382,8 @@ export default {
 </script>
 <style>
 input[type="checkbox"]:checked + div {
-background-color: black;
-border-color: black;
+background-color: var(--primary-color);
+border-color: var(--primary-color);
 }
 
 input[type="checkbox"]:checked + div svg {
@@ -396,7 +399,7 @@ display: block;
 }
 .color-option.active label{
     color: transparent;
-    box-shadow: 0 0 0px 2px white, 0 0 0px 4px black;
+    box-shadow: 0 0 0px 2px white, 0 0 0px 4px var(--primary-color);
     margin-left: 6px;
     margin-right: 6px;
     width: 20px;

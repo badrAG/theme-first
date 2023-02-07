@@ -25,10 +25,10 @@
                 </div>
                 <!-- show menu botton  -->
                 <div class="w-full mr-4">
-                    <form @submit.prevent="search" class="flex items-center bg-gray-100 rounded-full border-2 border-black" action="/shop?">
+                    <form @submit.prevent="search" class="flex items-center bg-gray-100 rounded-full border-2 bg-primary-border" action="/shop?">
                         <input  v-model="q" class="flex items-center rounded-l-full bg-transparent outline-none w-full py-2 px-4 text-base focus:bg-white" :placeholder="'Search for products'" type="search" name="q">
                         <button class="ease-linear delay-200 flex items-center py-3 px-4 rounded-r-full hover:bg-gray-200" aria-label="Search button">
-                            <fa class="text-lg"  :icon="['fa', 'magnifying-glass']"></fa>
+                            <fa class="text-lg text-primary"  :icon="['fa', 'magnifying-glass']"></fa>
                         </button>
                     </form>
                 </div>
@@ -45,7 +45,7 @@
                     <ul v-for="(item, i) in otherMenu" :key="i" class="flex flex-col">
                         <li class="transition-all ease-linear delay-200 hover:bg-gray-200 rounded-full flex items-center justify-between">
                             <a class="p-2 flex items-center" :href="item.url">
-                                <div class="text-sm font-semibold mx-1">{{ item.text.split("")[0].toUpperCase() + item.text.slice(1).toLowerCase() }}</div>
+                                <div class="text-sm font-semibold mx-1">{{ item.text }}</div>
                                 <button @click="activeId = activeId != item._id ? item._id : null">
                                     <fa class="text-xs mx-1 transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180' : ''] "></fa>
                                 </button>

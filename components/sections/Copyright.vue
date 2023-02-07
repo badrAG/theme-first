@@ -13,7 +13,7 @@
               <div class="inline-block" v-for="(item,i) in copyright_menu.items" :key="i">
                   <div class="flex flex-row items-center">
                       <h4>
-                          <router-link class="mx-3 text-sm font-normal underline" :to="item.url">{{item.text}}</router-link>
+                          <router-link class="mx-3 text-md font-normal underline hover:no-underline" :to="item.url">{{item.text}}</router-link>
                       </h4>
                   </div>
               </div>

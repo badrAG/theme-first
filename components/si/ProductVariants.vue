@@ -1,7 +1,7 @@
 <template>
     <div class="options">
-        <div v-for="(option, i) in options" :key="i" :class="option.key" class="p-1 mb-1">
-            <b class="capitalize option-name mb-1 flex text-lg">{{ option.name }}</b>
+        <div v-for="(option, i) in options" :key="i" :class="option.key" class="mb-1">
+            <b class="capitalize option-name mb-2 flex text-base">{{ option.name }}</b>
             <div class="options-list">
                 <div v-for="(val, ii) in option.values" :key="ii" class="option mx-1">
                     <button :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == val._id ? 'active': ''" @click="setVariant(i+1, val._id)" :id="val._id" :style="`${option.key == 'color' ? `background-color:${val.value2}` : ''}`"><small>{{ val.value1 }}</small></button>
@@ -76,10 +76,10 @@ export default {
 }
 .options .color .option button.active{
     color: transparent;
-    box-shadow: 0 0 0px 2px white, 0 0 0px 4px black
+    box-shadow: 0 0 0px 2px white, 0 0 0px 4px var(--primary-color);
 }
 .options .option button.active {
     color: white;
-    background-color: black;
+    background-color: var(--primary-color);
 }
 </style>
