@@ -1,12 +1,12 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MjU0M2I0MzVhZjc4ZjAwNDRiNTdjODMiLCJuYW1lIjoiU291OWlubyIsInN1YmRvbWFpbiI6InNvdTlpbm8uc3RvcmVpbm8ud29ybGQifSwidXNlciI6eyJfaWQiOiI2MjU0M2I0MzVhZjc4ZjAwNDRiNTdjN2UiLCJmaXJzdG5hbWUiOiJhYmRlbGFsaSIsImxhc3RuYW1lIjoicmFmaWsiLCJlbWFpbCI6ImFiZGVsYWxpLnJhZmlrMTFAZ21haWwuY29tIn0sImNvbXBhbnkiOnsic3RhdHVzIjoiVU5DT01QTEVURUQiLCJfaWQiOiI2MjU0M2I0MzVhZjc4ZjAwNDRiNTdjN2MiLCJuYW1lIjoic291OWlubyJ9LCJ0b2tlbklkIjoiNDA0NDA1RklJQ05JNDU0MDY0WE9ZSFZYIiwiaWF0IjoxNjczOTQ4ODg3LCJleHAiOjE2NzQ4MTI4ODd9.XOVtwwRqOmVgbJNX4bBGf0rKREyjGlWsc_KoxwpOODc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzZTI4NDczOWRlOTM1MWJjNzNkMWZhYiIsImZpcnN0bmFtZSI6ImFiZGVsYWxpIiwibGFzdG5hbWUiOiJyYWZpazExIiwicG9zaXRpb24iOiJDTElFTlQiLCJlbWFpbCI6ImFiZGVsYWxpLnJhZmlrLjExQGdtYWlsLmNvbSIsImFkZHJlc3MiOm51bGx9LCJjb21wYW55Ijp7Il9pZCI6IjYwNDBhY2U4NGU4NzI0MDk1MGE3ZDhjOSIsIm5hbWUiOiJzdG9yZWlubyIsInN0YXR1cyI6IlVOQ09NUExFVEVEIn0sInN0b3JlIjp7Il9pZCI6IjYxOGYwMWVmNmZhZjNjMDE5ZTVkYTJlMSIsIm5hbWUiOiJsYW5kaW5nIiwic3ViZG9tYWluIjoibGFuZGluZy5zdG9yZWluby53b3JsZCJ9LCJ0b2tlbklkIjoiNjUzNjcxWVFaQlZQNjEzNTc3UUJTVEZLIiwiaWF0IjoxNjc1ODQ1MTc5LCJleHAiOjE2NzY3MDkxNzl9.lRdvQwbNBbAkYmsh1TpnWt2RDWV_AMnefbn8SlXAekM
 
 
 ###
-GET https://admin.storeino.world/stores/api/themes/search?team._id=5f21374a175b5e8e309be827
+GET https://admin.storeino.world/stores/api/themes/search?team._id=618f01ef6faf3c019e5da2e1
 X-Auth-Token: {{token}}
 
 ###
-GET https://admin.storeino.world/stores/api/themes/update?team._id=5f21374a175b5e8e309be827
+GET https://admin.storeino.world/stores/api/themes/update?team._id=618f01ef6faf3c019e5da2e1
 Content-Type: application/json
 X-Auth-Token: {{token}}
 
@@ -15,6 +15,7 @@ X-Auth-Token: {{token}}
     "name": "DEVELOPMENT",
     "url": "https://market.storeino.com/storeino/",
     "_id": "5f21374a175b5e8e309be827"
+
   }
 }
 

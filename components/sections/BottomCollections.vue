@@ -1,5 +1,5 @@
 <template>
-    <div class="container pb-6 pt-4">
+    <div class="container pb-6 pt-4 ">
         <div class="p-2 px-4 mb-4">
             <h3 class="font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-center md:text-left">{{ $settings.sections.collections2.title }}</h3>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div>
     <sections-top-collections v-if="$settings.sections.collections.active"></sections-top-collections>
     <sections-products :key="1" :data-key="1" v-if="$settings.sections[`products_${1}`].active" :section="$settings.sections[`products_${1}`]"></sections-products>
     <sections-center-collections v-if="$settings.sections.collections1.active"></sections-center-collections>
@@ -8,6 +8,7 @@
     </template>
     <sections-collections-products v-if="$settings.sections.collections_products.active" ></sections-collections-products>
     <sections-bottom-collections v-if="$settings.sections.collections2.active"></sections-bottom-collections>
+    <sections-services v-if="$settings.sections.services.active"></sections-services>
     <sections-testimonial v-if="$settings.sections.testimonial.active" ></sections-testimonial>
   </div>
 </template>
