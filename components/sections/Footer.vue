@@ -1,12 +1,13 @@
-<template>
+  <template>
     <div class="footer-bg footer-text-bg">
       <si-app-loader placement="BEFORE_FOOTER"/>
       <!-- Start footer Section -->
-      <footer class="footer container text-md text-center md:text-left px-4">
+      <footer class="footer container text-md align-center px-4">
+
         <div class="flex flex-wrap justify-center md:justify-between pt-16">
 
           <!-- About section  -->
-          <div class="footer-contact p-2 w-full md:w-1/5">
+          <div class="p-2 w-full md:w-1/5">
               <!-- Store title -->
               <nuxt-link to="/">
                   <h4 class="text-3xl font-bold mb-4">{{ title }}</h4>
@@ -21,16 +22,16 @@
               <div class="Contacts flex justify-center md:justify-start ">
                 <div>
                   <p class="mb-5 flex items-center">
-                    <fa class="text-xl font-normal mr-3" :icon="['fa', 'location-dot']"></fa>
-                    <span>{{ footer.location }}</span>
+                    <fa class="text-xl font-normal" :icon="['fa', 'location-dot']"></fa>
+                    <span class="mx-3">{{ footer.location }}</span>
                   </p>
                   <p class="mb-5 flex items-center">
-                    <fa class="text-lg font-normal mr-2" :icon="['fa', 'envelope']"></fa>
-                    <a :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
+                    <fa class="text-lg font-normal" :icon="['fa', 'envelope']"></fa>
+                    <a class="mx-3" :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
                   </p>
                   <p class="flex items-center"> 
-                    <fa class="text-lg font-normal mr-2" :icon="['fa', 'phone']"></fa>
-                    <a :href="'tel:'+footer.number">{{ footer.number }}</a>
+                    <fa class="text-lg font-normal" :icon="['fa', 'phone']"></fa>
+                    <a class="mx-3" :href="'tel:'+footer.number">{{ footer.number }}</a>
                   </p>
               </div>
               </div>

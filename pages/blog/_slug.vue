@@ -83,13 +83,14 @@
                             <!-- Pagination -->
                         </div>
                   </div>
-                    <!-- Empty (No blogs)-->
-                    <div v-if="!loading.pages && items.length == 0" class="flex justify-center items-center">
-                        <h1 class="py-3">{{ $settings.sections.blog.empty_text }}</h1>
-                    </div>
-                    <!-- Empty (No blogs)-->
-              </div>
-          </div>
+              </div>  
+              <!-- blogs -->  
+            </div>
+            <!-- Empty (No blogs)-->
+            <div v-if="!loading.pages && items.length == 0" class="flex justify-center items-center">
+                <h1 class="py-3">{{ $settings.sections.blog.empty_text }}</h1>
+            </div>
+            <!-- Empty (No blogs)-->
       </div>
   </template>
   <script>
