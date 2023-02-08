@@ -41,7 +41,7 @@
             .buynow-bg {background-color: var(--buynow-color-bg);}
             .buynow-text-bg {color: var(--buynow-text-col);}
         </component>
-        <sections-scroll-top></sections-scroll-top>
+        <sections-scroll-top v-if="$settings.sections.scrolltotop.active"></sections-scroll-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
         <Nuxt />

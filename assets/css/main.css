@@ -104,13 +104,23 @@ body {
   color: #222
 }
 
-.text-sl {
-  font-size: 13px; line-height: 18px;
+.text-md {
+  font-size: 13px;
 }
+
+@media (min-width:0px) and (max-width:768px) {
+  .align-center {
+    text-align: center;
+  }
+}​
+
+
+
 
 [dir='rtl'] svg.translate{
   transform: rotateY(180deg);
 }
+
 .container{
   max-width: 1340px;
   margin-left: auto;

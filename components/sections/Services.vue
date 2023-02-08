@@ -4,10 +4,10 @@
       <div class="services flex" v-for="(item, i) in items" :key="i">
         <div class="p-2">
             <nuxt-link :to="item.url" class="flex items-center">
-                <si-image width="80" height="80" class="w-16 h-16 p-2 object-cover opacity-70" :src="item.image ? item.image.src : null" :alt="item.text"/>
+                <si-image width="80" height="80" class="w-20 h-20 p-2 object-cover opacity-90" :src="item.image ? item.image.src : null" :alt="item.text"/>
                 <div>
-                    <b class="p-2 text-sm">{{ item.text }}</b>
-                    <p class="p-2 text-sm">{{ item.description }}</p>
+                    <b class="p-2 text-base font-bold">{{ item.text }}</b>
+                    <p class="p-2 text-sm font-normal">{{ item.description }}</p>
                 </div>
             </nuxt-link>
         </div>

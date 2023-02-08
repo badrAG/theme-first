@@ -24,10 +24,10 @@
                     </button>
                 </div>
                 <!-- show menu botton  -->
-                <div class="w-full mr-4">
-                    <form @submit.prevent="search" class="flex items-center bg-gray-100 rounded-full border-2 bg-primary-border" action="/shop?">
-                        <input  v-model="q" class="flex items-center rounded-l-full bg-transparent outline-none w-full py-2 px-4 text-base focus:bg-white" :placeholder="'Search for products'" type="search" name="q">
-                        <button class="ease-linear delay-200 flex items-center py-3 px-4 rounded-r-full hover:bg-gray-200" aria-label="Search button">
+                <div class="search w-full mr-4">
+                    <form @submit.prevent="search" class="flex items-center bg-gray-100 focus:bg-white rounded-full border-2 bg-primary-border" action="/shop?">
+                        <input  v-model="q" class="b1 flex items-center rounded-l-full bg-transparent outline-none w-full py-2 px-4 text-base focus:bg-white" :placeholder="'Search for products'" type="search" name="q">
+                        <button class="b2 ease-linear delay-200 flex items-center py-3 px-4 rounded-r-full hover:bg-gray-200" aria-label="Search button">
                             <fa class="text-lg text-primary"  :icon="['fa', 'magnifying-glass']"></fa>
                         </button>
                     </form>
@@ -54,7 +54,7 @@
 
                         <transition name="slide">
                             <div class="relative" >
-                                <div v-if="item._id == activeId" class="top-11 absolute header-bg shadow-lg z-20 border p-4 hover:underline" >
+                                <div v-if="item._id == activeId" class="absolute header-bg shadow-lg z-20 border p-4 hover:underline" :class="menu? 'top-11' : 'top-4'" >
                                     <div class="py-1" v-for="(item,i) in item.childrens" :key="i" >
                                         <a class="flex text-sm" :href="item.url">{{item.text}}</a>
                                         <ul v-if="item.childrens && item.childrens.length > 0">
@@ -190,10 +190,28 @@ export default {
 </script>
 
 <style scoped>
+[dir='rtl'] .b1 {
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 0px;
+}
+[dir='rtl'] .b2 {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+[dir='rtl'] .search{
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+
+
 svg {
     fill: var(--header-text-col);
 }
-
 
 @media only screen and (min-width: 0) and (max-width: 899px){
     .headermenu-button {

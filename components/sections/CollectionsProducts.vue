@@ -2,7 +2,7 @@
   <div class="">
     <div class="container pb-6 pt-4">
       <div class="p-2 px-4 mb-6">
-          <h3 class="font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-center md:text-left">{{ $settings.sections.collections_products.title}}</h3>
+          <h3 class="align-center font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">{{ $settings.sections.collections_products.title}}</h3>
       </div>
 
       <div v-if="loading" class="flex justify-center items-center my-5">
@@ -12,7 +12,7 @@
       <div class="flex flex-wrap justify-between mx-2">
         <!--  -->
         <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-          <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.$settings.sections.collections.items.length > 0">
+          <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 0">
 
             <nuxt-link :to="`/shop/${collections[0].slug}`" :title="collections[0].name" :aria-label="collections[0].name">
               <div class="icon-box flex items-center justify-between px-4 py-3">
@@ -40,7 +40,7 @@
           
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.$settings.sections.collections.items.length > 1">
+            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 1">
 
               <nuxt-link :to="`/shop/${collections[1].slug}`" :title="collections[1].name" :aria-label="collections[1].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3 ">
@@ -62,14 +62,13 @@
                     </div>
                 </div>
               </div>
-
             </div>
         </div>
           <!--  -->
 
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.$settings.sections.collections.items.length > 2">
+            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 2">
 
               <nuxt-link :to="`/shop/${collections[2].slug}`" :title="collections[2].name" :aria-label="collections[2].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3">
@@ -97,7 +96,7 @@
 
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0 block md:hidden lg:block">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.$settings.sections.collections.items.length > 3">
+            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 3">
               <nuxt-link :to="`/shop/${collections[3].slug}`" :title="collections[3].name" :aria-label="collections[3].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3">
                   <div class="flex items-center" >
@@ -164,9 +163,6 @@ export default {
       await this.getProducts_3(params_3); 
     }
     
-
-
-
   },
   methods: {
 
@@ -254,18 +250,6 @@ padding-left:2px;
 .image-box .image:nth-child(4n-0) {
 padding-top:2px;
 }
-
-
-/* .image-box .image:nth-child(1),
-.image-box .image:nth-child(2) {
-padding-right:4px;
-}
-.image-box .image:nth-child(2),
-.image-box .image:nth-child(4) {
-padding-left:4px;
-} */
-
-
 
  .icon {
  transition: margin-left .5s;
