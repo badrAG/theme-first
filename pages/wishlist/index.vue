@@ -14,7 +14,6 @@
         </div>
     </div>
 
-    <!-- Empty Wishlist -->
     <div class="flex justify-center p-2">
         <div v-if="!loading.wishlist && items.length == 0" class="flex flex-col items-center">
             <h2 class="w-full text-center mb-3">{{ $settings.sections.wishlist.empty_text }}</h2>
@@ -25,7 +24,6 @@
             </nuxt-link>
         </div>
     </div>
-    <!-- Empty Wishlist -->
     </div>
 </template>
 <script>

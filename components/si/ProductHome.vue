@@ -27,7 +27,7 @@
                     </div>
     
                     <!-- product-price -->
-                    <div class="bg-white absolute bottom-0 left-0 m-2 px-2 py-1.5 text-sm rounded-full text-center">
+                    <div class="price bg-white absolute bottom-0 left-0 m-2 px-2 py-1.5 text-sm rounded-full text-center">
                         <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice>
                     </div>
                     <!-- product-price -->
@@ -141,6 +141,11 @@
     }
     .wishlist-box:hover .wishlist {
         display: block;
+    }
+
+    [dir='rtl'] .price {
+        right: 0;
+        left: auto;
     }
 
     </style>

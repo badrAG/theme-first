@@ -6,8 +6,8 @@
     <!--  -->
     <div class="rounded-md reviews" id="reviews">
         <div class="flex flex-wrap">
-            <div v-for="(review,index) in reviews.results" :key="index" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2  ">
-                <div class="flex justify-between flex-col p-2 h-full border border-gray-300 rounded-lg box-shadow-xs-hover">
+            <div v-for="(review,index) in reviews.results" :key="index" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 ">
+                <div class="flex justify-between flex-col p-2 h-full border border-gray-300 rounded-lg">
                     <div class="flex flex-col">
                         <div class="flex">
                             <div class="flex">

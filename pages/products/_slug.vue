@@ -8,7 +8,7 @@
         <!-- Loader -->
         
           <!--  -->
-          <div class="flex flex-wrap justify-between" v-if="item">
+          <div v-if="!loading && item" class="flex flex-wrap justify-between">
 
             <!-- Product id -->
             <meta itemprop="productID" :content="item._id" />
@@ -110,28 +110,28 @@
                         
                         <!-- product cart -->
 
-                        <div class="flex justify-between items-center mb-4">
-                            <!-- product quantity -->
-                            <div class="flex justify-center mx-2">
-                                <si-product-quantity @selected="quantitySelected" :quantity="quantity"></si-product-quantity>
-                            </div>
-                            <!-- product quantity -->
+                        <!-- product quantity -->
+                        <div class="mx-2">
+                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" :type="product"></si-product-quantity>
+                        </div>
+                        <!-- product quantity -->
 
-                            
-                            <si-app-loader placement="BEFORE_ADD_TO_CART"/>
-                            <!-- add to cart -->
-                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="mx-2 rounded-full text-base font-bold w-full p-2.5 px-5 addtocart-bg addtocart-text-bg  click-effect scale hover:opacity-90">
+                        
+                        <si-app-loader placement="BEFORE_ADD_TO_CART"/>
+                        <!-- add to cart -->
+                        <div class="mx-2 mt-4">
+                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="text-base font-bold w-full flex ai-c justify-center addtocart-bg addtocart-text-bg   rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
-                            <!-- add to cart -->
-                            <si-app-loader placement="AFTER_ADD_TO_CART"/>
                         </div>
+                        <!-- add to cart -->
+                        <si-app-loader placement="AFTER_ADD_TO_CART"/>
                             
 
                         <si-app-loader placement="REPLACE_BUYNOW"/>
                         <!-- buy now -->
                         <div class="mx-2 my-4 ">
-                            <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-2.5 px-5 click-effect scale hover:opacity-90">
+                            <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
                         </div>
@@ -159,7 +159,7 @@
           <!--  -->
 
             <!-- Desciption and Reviews -->
-            <div class="my-6">
+            <div v-if="!loading && item" class="my-6">
                 <div class="flex justify-center items-center mb-4 mx-4">
                     <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
                     <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
@@ -180,7 +180,7 @@
 
 
           <!--  -->
-          <div class="flex flex-col mt-3">
+          <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->
             <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
                 <sections-upsell :item="item.upsell"/>
@@ -435,6 +435,12 @@
   .scroll::-webkit-scrollbar {
     display: none;
   }
+
+  [dir = 'rtl'] .galery {
+    margin-right: 1rem;
+    margin-left: 0;
+  }
+ 
   @media (min-width: 768px) { 
       .slider {
         flex: 1 0 0%;

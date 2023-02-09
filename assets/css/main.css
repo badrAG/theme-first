@@ -120,6 +120,9 @@ body {
 [dir='rtl'] svg.translate{
   transform: rotateY(180deg);
 }
+[dir='rtl'] .icon.translate{
+  transform: rotateY(180deg);
+}
 
 .container{
   max-width: 1340px;
