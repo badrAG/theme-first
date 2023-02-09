@@ -11,9 +11,9 @@
 
             <div class="flex">
                 <!--  -->
-                <button @click="inc(-1)" class="text-black py-1 md:py-2 px-2 md:px-4 hover:opacity-90"  :class="value > quantity.min ? 'bg-primary text-white' : ''" >-</button>
+                <button @click="inc(-1)" class="munus-button text-black py-1 md:py-2 px-2 md:px-4 hover:opacity-90"  :class="value > quantity.min ? 'bg-primary text-white' : ''" >-</button>
                 <!--  -->
-                <button @click="inc(1)" class="text-black py-1 md:py-2 px-2 md:px-4 rounded-r-lg hover:opacity-90" :class="value < quantity.instock ? 'bg-primary text-white' : ''">+</button>
+                <button @click="inc(1)" class="plus-button text-black py-1 md:py-2 px-2 md:px-4 rounded-r-lg hover:opacity-90" :class="value < quantity.instock ? 'bg-primary text-white' : ''">+</button>
                 <!--  -->
             </div>
         </div>
@@ -51,3 +51,14 @@ export default {
     },
 }
 </script>
+
+<style>
+[dir="rtl"] .plus-button {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+</style>

@@ -115,8 +115,6 @@ body {
 }​
 
 
-
-
 [dir='rtl'] svg.translate{
   transform: rotateY(180deg);
 }
@@ -148,8 +146,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-
-
 .box-shadow-x{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -161,8 +157,6 @@ body {
 .box-shadow-x-hover:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-
-
 
 .box-shadow-xs{
   box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
@@ -184,11 +178,9 @@ body {
 }
 
 .scale:hover {
-  transform: scale(1.03);
+  transform: scale(1.01);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
-
-
 
 .max_container {
 max-width: 100%;

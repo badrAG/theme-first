@@ -1,6 +1,6 @@
 <template>
     <div class="container my-5" v-if="item">
-        <div class="mb-4 ">
+        <div class="mb-3">
             <h2 class="font-medium text-xl px-4">{{ $settings.sections.product.upsell.title }}</h2>
         </div>
 
