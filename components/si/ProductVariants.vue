@@ -1,9 +1,9 @@
 <template>
     <div class="options">
-        <div v-for="(option, i) in options" :key="i" :class="option.key" class="mb-1">
-            <b class="capitalize option-name mb-2 flex text-base">{{ option.name }}</b>
+        <div v-for="(option, i) in options" :key="i" :class="option.key" class="mt-4">
+            <h2 class="capitalize option-name mb-2 flex text-md font-normal">{{ option.name }}</h2>
             <div class="options-list">
-                <div v-for="(val, ii) in option.values" :key="ii" class="option mx-1">
+                <div v-for="(val, ii) in option.values" :key="ii" class="option mr-2">
                     <button :class="selected[`option${i+1}`] && selected[`option${i+1}`].value == val._id ? 'active': ''" @click="setVariant(i+1, val._id)" :id="val._id" :style="`${option.key == 'color' ? `background-color:${val.value2}` : ''}`"><small>{{ val.value1 }}</small></button>
                 </div>
             </div>
@@ -66,6 +66,11 @@ export default {
     cursor: pointer;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
+.options .option button:hover {
+    box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
+}
+
 .options .color .option button {
     border-radius: 50%;
     width: 25px;

@@ -21,7 +21,7 @@
                         
                         <div class="w-full slider md:mx-4">
                             <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
-                                <si-image width="400" height="400" class="h-full w-full absolute inset-0  object-cover md:rounded-xl cursor-pointer" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                                <si-image width="400" height="400" class="product-image h-full w-full absolute inset-0  object-cover md:rounded-xl" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                                
                                 <button class="mx-2 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3.5 bg-white shadow transition-all ease-linear delay-150 hover:shadow-lg rounded-full hover:bg-gray-200" @click="prev">
                                     <svg class="w-5 h-5 translate" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -93,33 +93,36 @@
                                         <fa class="text-sm"  :icon="['fa', 'star']"></fa>
                                     </span>
                                 </div>
-                                <span class="text-sm" key="count">({{ item.review.reviews.length }})</span>
+                                <span class="text-md font-normal" key="count">({{ item.review.reviews.length }})</span>
                             </div>
                             <!-- reviews -->
                         </div>
                         <!-- Price -->
                         
                         <!-- short description -->
-                        <p class="text-sm text-gr font-normal mb-4 mx-2">{{ item.description }}</p>
+                        <p class="text-sm text-gr font-normal mb-2 mx-2">{{ item.description }}</p>
                         <!-- short description -->
 
                         <!-- variant -->
-                        <si-product-variants class="flex mb-4 mx-2" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
+                        <si-product-variants class="flex mx-2" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                         <!-- variant -->
 
                         
                         <!-- product cart -->
 
                         <!-- product quantity -->
-                        <div class="mx-2">
-                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" :type="product"></si-product-quantity>
+                        <div class="mx-2 mt-4">
+                            <div>
+                                <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
+                            </div>
+                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                         </div>
                         <!-- product quantity -->
 
                         
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                         <!-- add to cart -->
-                        <div class="mx-2 mt-4">
+                        <div class="mx-2 mt-6">
                             <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="text-base font-bold w-full flex ai-c justify-center addtocart-bg addtocart-text-bg   rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
@@ -161,18 +164,24 @@
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="my-6">
                 <div class="flex justify-center items-center mb-4 mx-4">
-                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+                    <div   class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 p-2 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
                 <div class="flex justify-center mx-4">
-                    <div  v-if="item && Description" class=" bg-white description font-normal leading-7 text-base w-full" id="description" v-html="item.html"></div>
+                    <div v-if="Description">
+                        <div class=" bg-white description font-normal leading-7 text-base w-full" id="description" v-html="item.html"></div>
+                        <h2 v-if="item.html.length == 0" class="text-base font-normal" >{{ $settings.sections.product.description.title_empty }}</h2>
+                    </div>
                 </div>
                 <!-- Description -->            
                 <si-app-loader placement="AFTER_DESCRIPTION"/>
                 <!-- reviews -->
-                <div v-if="item && $settings.sections.product.reviews.active && Reviews" class="reviews mx-2">
-                    <sections-reviews :item="item"></sections-reviews>
+                <div v-if="Reviews" class="reviews mx-2">
+                    <div v-if="$settings.sections.product.reviews.active">
+                        <sections-reviews :item="item"></sections-reviews>
+                    </div>
+                    <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
             </div>  
@@ -416,6 +425,9 @@
   }
   </script>
   <style>
+  .product-image {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><circle cx='15' cy='15' r='10' fill='white' stroke='black' stroke-width='2'/><line x1='15' y1='10' x2='15' y2='20' stroke='black' stroke-width='2'/><line x1='10' y1='15' x2='20' y2='15' stroke='black' stroke-width='2'/></svg>"), auto;
+  }
   .video-wrapper {
     position: relative;
     overflow: hidden;
