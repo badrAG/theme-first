@@ -8,7 +8,7 @@
 
     <div class="container py-20 px-4">
         <div class="container flex justify-center p-2 ">
-            <h1 class="text-4xl md:text-5xl guardian-font font-light">{{ testimonial.title }}</h1>
+            <h1 class="text-4xl md:text-5xl guard-cairo-font font-light">{{ testimonial.title }}</h1>
         </div>
 
         <div class="align-center flex flex-wrap md:justify-between mt-8">

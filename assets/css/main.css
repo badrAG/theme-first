@@ -92,8 +92,12 @@ body {
   font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
 }
 
-.guardian-font {
+.guard-cairo-font {
   font-family:"Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+}
+
+[dir="rtl"] .guard-cairo-font {
+    font-family: 'Cairo', sans-serif;
 }
 
 .text-gr {
@@ -118,6 +122,7 @@ body {
 [dir='rtl'] svg.translate{
   transform: rotateY(180deg);
 }
+
 [dir='rtl'] .icon.translate{
   transform: rotateY(180deg);
 }

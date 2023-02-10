@@ -8,12 +8,12 @@
                 <!-- title -->
                 <div class="px-4">
                     <div class="flex justify-center">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl guardian-font font-light text-center max-w-4xl">{{ item.title }}</h1>
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl guard-cairo-font font-light text-center max-w-4xl">{{ item.title }}</h1>
                     </div>
 
                     <div class="flex justify-center m-4 ">
                         <div v-for="(category, i) in item.categories"  :key="i" >
-                            <span class="capitalize font-normal text-sl py-1 px-4 mx-1 rounded-full bg-gray-100 max-w-4xl">{{ category.name}} </span>
+                            <span class="capitalize font-normal text-md py-1 px-4 mx-1 rounded-full bg-gray-100 max-w-4xl">{{ category.name}} </span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,6 @@
 
                 <div class="flex justify-center ">
                     <div class="max-w-4xl ">
-
                         <!-- created post  -->
                         <div v-if="$settings.sections.post.creator.active" class="px-4 mb-2">
                             <p class="font-bold text-base leading-5">{{ $settings.sections.post.creator.title }} {{ item.publisher.firstname }} {{ item.publisher.lastname }}</p>
@@ -55,7 +54,7 @@
                         <!-- share products icons -->
                         <div class="bg-white mt-4" v-if="$settings.sections.post.share_buttons.active">
                           <div class="flex items-center justify-center">
-                              <h3 class="whitespace-nowrap text-lg font-bold px-4">{{ $settings.sections.post.share_buttons.title }}</h3>
+                              <h3 class="whitespace-nowrap text-lg font-bold px-4 mb-3">{{ $settings.sections.post.share_buttons.title }}</h3>
                           </div>
                           <div class="flex justify-center">
                               <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="m-2 flex items-center justify-center">

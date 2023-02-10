@@ -22,7 +22,8 @@
                 }
             .bg-primary{ background-color: var(--primary-color); }
             .bg-primary-border { border-color: var(--primary-color); }
-            .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
+            <!-- .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); } -->
+            .bg-primary-hover:hover{ background-color: rgb(var(--primary-rgb)); }
             .text-primary{ color: var(--primary-color); }
             .header-bg {background-color: var(--header-color-bg);}
             .header-text-color {color: var(--header-text-col);}

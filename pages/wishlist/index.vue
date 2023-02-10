@@ -2,7 +2,7 @@
     <div class="container my-6">
         <div v-if="items.length > 0">
             <div class="bg-white">
-            <h2 class="text-4xl guardian-font px-4 mb-4">{{ $settings.sections.wishlist.title }}</h2>
+            <h2 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-4">{{ $settings.sections.wishlist.title }}</h2>
             <div v-if="loading.wishlist" class="flex justify-center items-center my-5">
                 <si-loader></si-loader>
             </div>

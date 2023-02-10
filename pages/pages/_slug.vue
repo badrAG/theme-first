@@ -4,7 +4,7 @@
             <si-loader></si-loader>
         </div>
         <div v-if="item" class="">
-            <h1 class="text-4xl guardian-font px-4 mb-1 ">{{ item.title }}</h1>
+            <h1 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-1 ">{{ item.title }}</h1>
 
             <p class="px-4 text-lg"><small>{{ item.excerpt }}</small></p>
 
@@ -17,7 +17,7 @@
             <!-- share products icons -->
             <div class="bg-white mt-4">
                 <div class="flex items-center justify-center">
-                    <h3 class="whitespace-nowrap text-lg font-bold px-4">{{ $settings.sections.post.share_buttons.title }}</h3>
+                    <h3 class="whitespace-nowrap text-lg font-bold px-4 mb-3">{{ $settings.sections.post.share_buttons.title }}</h3>
                 </div>
                 <div class="flex justify-center">
                     <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="m-2 flex items-center justify-center">

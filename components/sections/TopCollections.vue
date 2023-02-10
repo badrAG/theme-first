@@ -2,7 +2,7 @@
     <div class="">
         <div class="collection-bg">
             <div class="mx-auto">
-                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl  guardian-font font-light p-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.collections.title }}</h1>
+                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl guard-cairo-font font-light p-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.collections.title }}</h1>
             </div>
         </div>
         
@@ -67,7 +67,6 @@ export default {
 </script>
 
 <style scoped>
-
 ul li:nth-child(-n+3) {
     margin-bottom: 1.25rem;
 }

@@ -1,6 +1,6 @@
 <template>
-    <div class="container pb-6 pt-4">
-      <div class="p-2 px-4 mb-4">
+    <div class="container py-6">
+      <div class="p-2 px-4 mb-6">
           <h3 class="align-center font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">{{ $settings.sections.collections_products.title}}</h3>
       </div>
 
