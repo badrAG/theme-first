@@ -1652,292 +1652,77 @@
         },
         "current": {
             "style": {
-                "primary_color": "#484a63"
+                "primary_color": "#000000",
+                "header_color": "#ffffff",
+                "header_text_color": "#000000",
+                "collection_color": "#a398fb",
+                "collection_text_color": "#000000",
+                "products_price_color": "#c50d44",
+                "products_delprice_color": "#5704f1",
+                "testimonial_color": "#f5c684",
+                "testimonial_text_color": "#000000",
+                "footer_color": "#2f466c",
+                "footer_text_color": "#ffffff",
+                "copyright_color": "#232347",
+                "copyright_text_color": "#ffffff",
+                "addtocart_color": "#000000",
+                "addtocart_text_color": "#ffffff",
+                "buynow_color": "#def2f2",
+                "buynow_text_color": "#000000"
             },
             "sections": {
-                "alerts": {
-                    "added_to_cart": "Added to cart",
-                    "added_to_wishlist": "Added to wishlist",
-                    "removed_from_cart": "Removed from cart",
-                    "removed_from_wishlist": "Removed from wishlist"
-                },
-                "header": {
-                    "logo": null,
-                    "menu": null,
-                    "icons": {
-                        "cart": true,
-                        "wishlist": true,
-                        "account": false,
-                        "search": true,
-                        "language": true,
-                        "currency": true
-                    }
-                },
-                "banner": {
-                    "active": true,
-                    "items": {
-                        "item_0": {
-                            "image": null,
-                            "title": "Renal & Urology Nutrition News, Diet Tips",
-                            "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
-                            "button": {
-                                "active": true,
-                                "url": "/shop",
-                                "text": "Order now"
-                            }
-                        }
-                    },
-                    "right": {
-                        "active": true,
-                        "image": null,
-                        "url": "/shop"
-                    }
-                },
-                "collections": {
-                    "active": true,
-                    "title": "Top collections",
-                    "items": []
-                },
                 "products": {
                     "add_to_cart": {
                         "active": true,
-                        "text": "Add to cart"
+                        "text": "أضف الى السلة"
                     },
+                    "show_reviews": true,
+                    "add_to_cart_to_checkout": true,
                     "add_to_wishlist": {
                         "active": true
                     },
-                    "added_text": "Added",
-                    "confirm_text": "Confirm",
-                    "show_reviews": true,
-                    "add_to_cart_to_checkout": false
+                    "added_text": "تمت الإضافة",
+                    "confirm_text": "تأكيد"
                 },
-                "products_1": {
-                    "active": true,
-                    "title": "Featured Products",
-                    "collections": [],
-                    "tags": "",
-                    "show_more_text": "Discover more",
-                    "show_more_url": "/shop"
+                "alerts": {
+                    "added_to_cart": "تمت الإضافة الى السلة",
+                    "added_to_wishlist": "تمت الإضافة الى قائمة المفضلة",
+                    "removed_from_cart": "تم الحذف من السلة",
+                    "removed_from_wishlist": "تم الحذف من قائمة المفضلة"
                 },
-                "products_2": {
-                    "active": true,
-                    "title": "Clothes only",
-                    "collections": [],
-                    "tags": "",
-                    "show_more_text": "Show more clothes",
-                    "show_more_url": "/shop"
-                },
-                "products_3": {
-                    "active": false,
-                    "title": "Toys",
-                    "collections": [],
-                    "tags": "",
-                    "show_more_text": "Show more toys",
-                    "show_more_url": "/shop"
-                },
-                "products_4": {
-                    "active": false,
-                    "title": "Phone & Computers",
-                    "collections": [],
-                    "tags": "",
-                    "show_more_text": "More tech products",
-                    "show_more_url": "/shop"
-                },
-                "products_5": {
-                    "active": false,
-                    "title": "Last Products",
-                    "collections": [],
-                    "tags": "",
-                    "show_more_text": "Show more products",
-                    "show_more_url": "/shop"
-                },
-                "product": {
-                    "add_to_cart": {
-                        "active": true,
-                        "text": "Add to cart"
+                "header": {
+                    "logo": "63e3ae8416c8a50e7854441f",
+                    "icons": {
+                        "cart": true,
+                        "wishlist": true,
+                        "account": true,
+                        "search": true,
+                        "language": true,
+                        "currency": true
                     },
-                    "buy_now": {
-                        "active": true,
-                        "text": "Buy now"
+                    "search": {
+                        "text": "ابحث عن المنتجات"
                     },
-                    "related": {
-                        "active": true,
-                        "title": "Related products"
-                    },
-                    "share_buttons": {
-                        "active": true,
-                        "title": "Share this product",
-                        "whatsapp": true,
-                        "facebook": true,
-                        "twitter": true,
-                        "linkedin": true
-                    },
-                    "reviews": {
-                        "active": true,
-                        "title": "Our customers reviews"
-                    },
-                    "upsell": {
-                        "active": true,
-                        "title": "Special offer for you"
-                    }
-                },
-                "posts": {
-                    "active": true,
-                    "title": "Latest News",
-                    "items": [],
-                    "button": {
-                        "text": "More Details"
-                    },
-                    "show_more_text": "Show more blog posts"
-                },
-                "post": {
-                    "share_buttons": {
-                        "active": true,
-                        "title": "Share this post",
-                        "whatsapp": true,
-                        "facebook": true,
-                        "twitter": true,
-                        "linkedin": true
-                    },
-                    "related": {
-                        "active": true,
-                        "title": "Related posts"
-                    }
-                },
-                "services": {
-                    "active": true,
-                    "title": "Our services",
-                    "items": {
-                        "delivery": {
-                            "text": "Fast delivery",
-                            "url": "#"
-                        },
-                        "satisfaction": {
-                            "text": "Satisfaction",
-                            "url": "#"
-                        },
-                        "quality": {
-                            "text": "Quality",
-                            "url": "#"
-                        }
-                    }
-                },
-                "blog": {
-                    "title": "Blog",
-                    "description": "Our latest posts",
-                    "sidebar": {
-                        "active": true,
-                        "categories": {
-                            "active": true,
-                            "title": "Categories"
-                        },
-                        "products": {
-                            "active": true,
-                            "title": "From shop"
-                        }
-                    },
-                    "sorts": {
-                        "newest": "Newest",
-                        "oldest": "Oldest",
-                        "name_asc": "Name (A-Z)",
-                        "name_desc": "Name (Z-A)"
-                    },
-                    "pagination": {
-                        "limit": 12,
-                        "next_text": "Next",
-                        "prev_text": "Prev"
-                    },
-                    "empty_text": "No posts found"
-                },
-                "shop": {
-                    "title": "Shop",
-                    "description": "Find best selling products",
-                    "sidebar": {
-                        "active": true,
-                        "collections": {
-                            "active": true,
-                            "title": "Collections"
-                        },
-                        "prices": {
-                            "active": true,
-                            "title": "Prices"
-                        },
-                        "sizes": {
-                            "active": true,
-                            "title": "Sizes"
-                        },
-                        "colors": {
-                            "active": true,
-                            "title": "Colors"
-                        },
-                        "tags": {
-                            "active": true,
-                            "title": "Tags"
-                        },
-                        "brands": {
-                            "active": true,
-                            "title": "Brands"
-                        }
-                    },
-                    "empty_text": "No products found",
-                    "sorts": {
-                        "newest": "Newest",
-                        "oldest": "Oldest",
-                        "name_asc": "Name (A-Z)",
-                        "name_desc": "Name (Z-A)",
-                        "price_asc": "Price (lowest first)",
-                        "price_desc": "Price (highest first)",
-                        "rating_desc": "Rating (highest first)",
-                        "rating_asc": "Rating (lowest first)"
-                    },
-                    "pagination": {
-                        "limit": 12,
-                        "next_text": "Next",
-                        "prev_text": "Prev"
-                    }
-                },
-                "cart": {
-                    "title": "Shopping cart",
-                    "empty_text": "Your cart is empty",
-                    "total_text": "Total",
-                    "buttons": {
-                        "checkout_text": "Place Order",
-                        "show_back_to_shop": true,
-                        "back_to_shop_text": "Back to shop"
-                    }
-                },
-                "wishlist": {
-                    "title": "Your wishlist",
-                    "empty_text": "Your wishlist is empty",
-                    "buttons": {
-                        "back_to_shop_text": "Back to shop"
-                    }
-                },
-                "thanks": {
-                    "title": "Thanks",
-                    "description": "Thank you for your order",
-                    "buttons": {
-                        "back_to_shop_text": "Back to shop"
-                    }
-                },
-                "_404": {
-                    "title": "Page not found",
-                    "description": "We are sorry, but the page you requested was not found",
-                    "buttons": {
-                        "back_to_shop_text": "Back to shop"
-                    }
+                    "menu": "62d1d1175a1f1c0986594427"
                 },
                 "footer": {
-                    "about": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
+                    "about": "متجر إلكتروني نص الإسفل الفوتر",
+                    "location": "الموقع",
+                    "gmail": "بريد إلكتروني",
+                    "number": "رقم الهاتف",
                     "methods": {
-                        "title": "Our payment methods",
+                        "title": "طرق الدفع المتوفرة",
                         "visa": true,
                         "mastercard": true,
                         "transfer": true,
-                        "cash": true
+                        "cash": true,
+                        "paypal": true,
+                        "cashplus": true,
+                        "tasshilat": "your value",
+                        "amanty": true
                     },
                     "social_media": {
-                        "title": "Follow us",
+                        "title": "تابعونا",
                         "facebook": "https://www.facebook.com/",
                         "twitter": "https://twitter.com/",
                         "instagram": "https://www.instagram.com/",
@@ -1947,681 +1732,320 @@
                         "snapchat": "https://www.snapchat.com/",
                         "tiktok": "https://www.tiktok.com/"
                     },
-                    "menu": null,
+                    "menus": {
+                        "menu1_active": false,
+                        "menu1_title": "القائمة 1",
+                        "menu1": "631b9e83d0fab405519b6822",
+                        "menu2_active": true,
+                        "menu2_title": "القائمة 2",
+                        "menu2": "631b9e83d0fab405519b6822",
+                        "menu3_active": true,
+                        "menu3_title": "القائمة 3",
+                        "menu3": "631b9e83d0fab405519b6822"
+                    },
                     "copyright": {
-                        "store_name": "Online store",
-                        "text": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>"
+                        "store_name": " ثيم بازار",
+                        "text": "Copyright © __YEAR__. جميع الحقوق محفوظة <a href='//storeino.com'>storeino.com</a>",
+                        "menu": "631b9e83d0fab405519b6822"
+                    }
+                },
+                "scrolltotop": {
+                    "active": true
+                },
+                "collections": {
+                    "active": true,
+                    "title": "الفئات",
+                    "items": null
+                },
+                "collections1": {
+                    "active": true,
+                    "items": null
+                },
+                "collections2": {
+                    "active": true,
+                    "title": "تسوق فئات الهدايا الشعبية لدينا",
+                    "items": null
+                },
+                "collections_products": {
+                    "active": true,
+                    "title": "تصفح المجموعات لمزيد من الإلهام",
+                    "items_title": "عناصر",
+                    "items": null
+                },
+                "products_1": {
+                    "active": true,
+                    "title": "منتجات مميزة",
+                    "collections": [
+                        "63e4b1d016c8a50e78544548",
+                        "63e4b1b516c8a50e78544544",
+                        "63e4b19c16c8a50e78544540",
+                        "63e4b18e16c8a50e7854453c"
+                    ],
+                    "tags": "",
+                    "show_more_text": "اكتشف المزيد",
+                    "show_more_url": "/shop"
+                },
+                "products_2": {
+                    "active": true,
+                    "title": "منتجات مميزة",
+                    "collections": [
+                        "63e4b20416c8a50e78544550",
+                        "63e4b1e816c8a50e7854454c",
+                        "63e4b1d016c8a50e78544548",
+                        "63e4b1b516c8a50e78544544",
+                        "63e4b19c16c8a50e78544540"
+                    ],
+                    "tags": "",
+                    "show_more_text": "ملابس",
+                    "show_more_url": "/shop"
+                },
+                "products_3": {
+                    "active": false,
+                    "title": "ألعاب",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "المزيد من المنتجات",
+                    "show_more_url": "/shop"
+                },
+                "products_4": {
+                    "active": false,
+                    "title": "هواتف و تكنولوجيا",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "آخر المنتجات",
+                    "show_more_url": "/shop"
+                },
+                "products_5": {
+                    "active": false,
+                    "title": "منتجات مميزة",
+                    "collections": [],
+                    "tags": "",
+                    "show_more_text": "آخر المنتجات",
+                    "show_more_url": "/shop"
+                },
+                "posts": {
+                    "active": true,
+                    "title": "آخر الاخبار ",
+                    "items": [],
+                    "button": {
+                        "text": "المزيد من التفاصيل"
+                    },
+                    "show_more_text": "اكتشف المزيد"
+                },
+                "services": {
+                    "active": true,
+                    "title": "خدماتنا",
+                    "items": {
+                        "delivery": {
+                            "text": "التوصيل السريع",
+                            "url": "#",
+                            "description": "إضافة وصف التسليم"
+                        },
+                        "satisfaction": {
+                            "text": "ارضاء الزبناء",
+                            "url": "#",
+                            "description": "إضافة وصف الرضا"
+                        },
+                        "quality": {
+                            "text": "جودة عالية",
+                            "url": "#",
+                            "description": "أضف وصفًا للجودة"
+                        },
+                        "support": {
+                            "text": "دعم 24/7",
+                            "url": "#",
+                            "description": "إضافة وصف الدعم"
+                        }
+                    }
+                },
+                "testimonial": {
+                    "active": true,
+                    "title": "ما هو بازار",
+                    "left": {
+                        "title": "العنوان الأيسر",
+                        "description": "أضف وصفًا حول العنوان في الأعلى"
+                    },
+                    "center": {
+                        "title": "العنوان المركزي",
+                        "description": "أضف وصفًا حول العنوان في الأعلى"
+                    },
+                    "right": {
+                        "title": "العنوان الأيمن",
+                        "description": "أضف وصفًا حول العنوان في الأعلى"
+                    }
+                },
+                "product": {
+                    "add_to_cart": {
+                        "active": true,
+                        "text": "اضف الى السلة"
+                    },
+                    "buy_now": {
+                        "active": true,
+                        "text": "اشتري الآن"
+                    },
+                    "related": {
+                        "active": true,
+                        "title": "منتجات ذات صلة"
+                    },
+                    "upsell": {
+                        "active": true,
+                        "title": "عروض خاصة"
+                    },
+                    "reviews": {
+                        "active": true,
+                        "title": "المراجعات",
+                        "empty_title": "لم يتم تقديم تعليقات"
+                    },
+                    "share_buttons": {
+                        "active": true,
+                        "title": "شارك",
+                        "whatsapp": true,
+                        "facebook": true,
+                        "twitter": true,
+                        "linkedin": true
+                    },
+                    "description": {
+                        "title": "الوصف",
+                        "title_empty": "بدون وصف"
+                    },
+                    "quantity": {
+                        "text": "الكمية"
+                    }
+                },
+                "post": {
+                    "share_buttons": {
+                        "active": true,
+                        "title": "شارك مع اصدقائك",
+                        "whatsapp": true,
+                        "facebook": true,
+                        "twitter": true,
+                        "linkedin": true
+                    },
+                    "related": {
+                        "active": true,
+                        "title": "مقالات ذات صلة"
+                    },
+                    "creator": {
+                        "title": "by",
+                        "active": true
+                    },
+                    "createdat": {
+                        "active": true
+                    }
+                },
+                "shop": {
+                    "sidebar": {
+                        "active": true,
+                        "collections": {
+                            "active": true,
+                            "title": "الفئات"
+                        },
+                        "prices": {
+                            "active": true,
+                            "title": "الأثمنة"
+                        },
+                        "sizes": {
+                            "active": true,
+                            "title": "المقاسات"
+                        },
+                        "colors": {
+                            "active": true,
+                            "title": "الألوان"
+                        },
+                        "tags": {
+                            "active": true,
+                            "title": "العلامات"
+                        },
+                        "brands": {
+                            "active": true,
+                            "title": "العلامات التجارية"
+                        }
+                    },
+                    "title": "المتجر",
+                    "description": "اكتشف آخر منتجاتنا",
+                    "sorts": {
+                        "newest": "الحديثة",
+                        "oldest": "الاقدم",
+                        "name_asc": "ترتيب الاسماء أ-ي",
+                        "name_desc": "ترتيب الاسماء ي-أ",
+                        "price_asc": "الأقل ثمنا",
+                        "price_desc": "الأعلى ثمنا",
+                        "rating_asc": "آراء اقل",
+                        "rating_desc": "آراء أكثر"
+                    },
+                    "pagination": {
+                        "limit": 12,
+                        "next_text": "التالي",
+                        "prev_text": "السابق"
+                    },
+                    "empty_text": "لا توجد منتجات",
+                    "filter_text": "كل الأقسام"
+                },
+                "blog": {
+                    "sidebar": {
+                        "active": true,
+                        "categories": {
+                            "active": true,
+                            "title": "الفئات"
+                        },
+                        "products": {
+                            "active": true,
+                            "title": "المتجر"
+                        }
+                    },
+                    "title": "",
+                    "description": "",
+                    "sorts": {
+                        "newest": "الاحدث",
+                        "oldest": "الأقدم",
+                        "name_asc": "ترتيب الاسماء أ-ي",
+                        "name_desc": "ترتيب الاسماء ي-أ"
+                    },
+                    "pagination": {
+                        "limit": "12",
+                        "next_text": "التالي",
+                        "prev_text": "السابق"
+                    },
+                    "empty_text": "لا توجد مدونات",
+                    "filter_text": "كل الأقسام"
+                },
+                "cart": {
+                    "title": "سلة ",
+                    "empty_text": "سلتكم فارغة",
+                    "total_text": "المجموع",
+                    "upsell": {
+                        "active": true,
+                        "title": "عروض خاصة"
+                    },
+                    "buttons": {
+                        "checkout_text": "اكمل الطلبية",
+                        "back_to_shop_text": "الرجوع الى المتجر",
+                        "remove_button_text": "Remove",
+                        "show_back_to_shop": true
+                    }
+                },
+                "wishlist": {
+                    "title": "قائمة المفصلة",
+                    "empty_text": "قائمة المفصلة فارغة",
+                    "buttons": {
+                        "back_to_shop_text": "الرجوع الى المتجر"
+                    }
+                },
+                "thanks": {
+                    "title": "شكرا",
+                    "description": "شكرا على طلبيتكم",
+                    "buttons": {
+                        "back_to_shop_text": "الرجوع الى المتجر"
+                    }
+                },
+                "_404": {
+                    "title": "الرجوع الى المتجر",
+                    "description": "نحن آسفون ، لكن الصفحة التي طلبتها لم يتم العثور عليها",
+                    "buttons": {
+                        "back_to_shop_text": "الرجوع الى المتجر"
                     }
                 }
-            },
-            "translates": [
-                {
-                    "language": "AR",
-                    "properties": [
-                        {
-                            "name": "sections.products.add_to_cart.text",
-                            "value": "أضف الى السلة"
-                        },
-                        {
-                            "name": "sections.products.added_text",
-                            "value": "تمت الإضافة"
-                        },
-                        {
-                            "name": "sections.products.confirm_text",
-                            "value": "تأكيد"
-                        },
-                        {
-                            "name": "sections.alerts.added_to_cart",
-                            "value": "تمت الإضافة الى السلة"
-                        },
-                        {
-                            "name": "sections.alerts.added_to_wishlist",
-                            "value": "تمت الإضافة الى قائمة المفضلة"
-                        },
-                        {
-                            "name": "sections.alerts.removed_from_cart",
-                            "value": "تم الحذف من السلة"
-                        },
-                        {
-                            "name": "sections.alerts.removed_from_wishlist",
-                            "value": "تم الحذف من قائمة المفضلة"
-                        },
-                        {
-                            "name": "sections.footer.about",
-                            "value": "<h3>منصة سطورانو</h3> <p> سطورإنو أول منصة للتجارة الإلكترونية للدفع عند الإستلام ، نتاج أكثر من 10 سنوات خبرة في الميدان. ذو واجهة سهلة، بسيطة يمكنك من انشاء متجر الكتروني عربي او اجنبي, انشاء سوق الكتروني والتحكم فيه بحرية تامة    </p>"
-                        },
-                        {
-                            "name": "sections.footer.methods.title",
-                            "value": "طرق الدفع المتوفرة"
-                        },
-                        {
-                            "name": "sections.footer.social_media.title",
-                            "value": "تابعونا"
-                        },
-                        {
-                            "name": "sections.footer.copyright.store_name",
-                            "value": "متجر الكتروني"
-                        },
-                        {
-                            "name": "sections.footer.copyright.text",
-                            "value": "Copyright © __YEAR__. جميع الحقوق محفوظة <a href='//storeino.com'>storeino.com</a>"
-                        },
-                        {
-                            "name": "sections.collections.title",
-                            "value": "الفئات"
-                        },
-                        {
-                            "name": "sections.products_1.title",
-                            "value": "منتجات مميزة"
-                        },
-                        {
-                            "name": "sections.products_1.show_more_text",
-                            "value": "اكتشف المزيد"
-                        },
-                        {
-                            "name": "sections.products_2.title",
-                            "value": "منتجات مميزة"
-                        },
-                        {
-                            "name": "sections.products_2.show_more_text",
-                            "value": "ملابس"
-                        },
-                        {
-                            "name": "sections.products_3.title",
-                            "value": "ألعاب"
-                        },
-                        {
-                            "name": "sections.products_3.show_more_text",
-                            "value": "المزيد من المنتجات"
-                        },
-                        {
-                            "name": "sections.products_4.title",
-                            "value": "هواتف و تكنولوجيا"
-                        },
-                        {
-                            "name": "sections.products_4.show_more_text",
-                            "value": "آخر المنتجات"
-                        },
-                        {
-                            "name": "sections.products_5.title",
-                            "value": "منتجات مميزة"
-                        },
-                        {
-                            "name": "sections.products_5.show_more_text",
-                            "value": "آخر المنتجات"
-                        },
-                        {
-                            "name": "sections.posts.title",
-                            "value": "آخر الاخبار "
-                        },
-                        {
-                            "name": "sections.posts.button.text",
-                            "value": "المزيد من التفاصيل"
-                        },
-                        {
-                            "name": "sections.posts.show_more_text",
-                            "value": "اكتشف المزيد"
-                        },
-                        {
-                            "name": "sections.services.title",
-                            "value": "خدماتنا"
-                        },
-                        {
-                            "name": "sections.services.items.delivery.text",
-                            "value": "التوصيل السريع"
-                        },
-                        {
-                            "name": "sections.services.items.satisfaction.text",
-                            "value": "ارضاء الزبناء"
-                        },
-                        {
-                            "name": "sections.services.items.quality.text",
-                            "value": "جودة عالية"
-                        },
-                        {
-                            "name": "sections.product.add_to_cart.text",
-                            "value": "اضف الى السلة"
-                        },
-                        {
-                            "name": "sections.product.buy_now.text",
-                            "value": "اشتري الآن"
-                        },
-                        {
-                            "name": "sections.product.related.title",
-                            "value": "منتجات ذات صلة"
-                        },
-                        {
-                            "name": "sections.product.upsell.title",
-                            "value": "عروض خاصة"
-                        },
-                        {
-                            "name": "sections.product.reviews.title",
-                            "value": "آراء زبنائنا"
-                        },
-                        {
-                            "name": "sections.product.share_buttons.title",
-                            "value": "شارك"
-                        },
-                        {
-                            "name": "sections.post.share_buttons.title",
-                            "value": "شارك مع اصدقائك"
-                        },
-                        {
-                            "name": "sections.post.related.title",
-                            "value": "مقالات ذات صلة"
-                        },
-                        {
-                            "name": "sections.shop.title",
-                            "value": "المتجر"
-                        },
-                        {
-                            "name": "sections.shop.description",
-                            "value": "اكتشف آخر منتجاتنا"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.collections.title",
-                            "value": "الفئات"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.prices.title",
-                            "value": "الأثمنة"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.sizes.title",
-                            "value": "المقاسات"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.colors.title",
-                            "value": "الألوان"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.tags.title",
-                            "value": "العلامات"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.brands.title",
-                            "value": "العلامات التجارية"
-                        },
-                        {
-                            "name": "sections.shop.sorts.newest",
-                            "value": "الحديثة"
-                        },
-                        {
-                            "name": "sections.shop.sorts.oldest",
-                            "value": "الاقدم"
-                        },
-                        {
-                            "name": "sections.shop.sorts.name_asc",
-                            "value": "ترتيب الاسماء أ-ي"
-                        },
-                        {
-                            "name": "sections.shop.sorts.name_desc",
-                            "value": "ترتيب الاسماء ي-أ"
-                        },
-                        {
-                            "name": "sections.shop.sorts.price_asc",
-                            "value": "الأقل ثمنا"
-                        },
-                        {
-                            "name": "sections.shop.sorts.price_desc",
-                            "value": "الأعلى ثمنا"
-                        },
-                        {
-                            "name": "sections.shop.sorts.rating_asc",
-                            "value": "آراء اقل"
-                        },
-                        {
-                            "name": "sections.shop.sorts.rating_desc",
-                            "value": "آراء أكثر"
-                        },
-                        {
-                            "name": "sections.shop.pagination.next_text",
-                            "value": "التالي"
-                        },
-                        {
-                            "name": "sections.shop.pagination.prev_text",
-                            "value": "السابق"
-                        },
-                        {
-                            "name": "sections.blog.sidebar.categories.title",
-                            "value": "الفئات"
-                        },
-                        {
-                            "name": "sections.blog.sidebar.products.title",
-                            "value": "المتجر"
-                        },
-                        {
-                            "name": "sections.blog.sorts.newest",
-                            "value": "الاحدث"
-                        },
-                        {
-                            "name": "sections.blog.sorts.oldest",
-                            "value": "الأقدم"
-                        },
-                        {
-                            "name": "sections.blog.sorts.name_asc",
-                            "value": "ترتيب الاسماء أ-ي"
-                        },
-                        {
-                            "name": "sections.blog.sorts.name_desc",
-                            "value": "ترتيب الاسماء ي-أ"
-                        },
-                        {
-                            "name": "sections.blog.sorts.price_asc",
-                            "value": "الأقل ثمنا"
-                        },
-                        {
-                            "name": "sections.blog.sorts.price_desc",
-                            "value": "الأعلى ثمنا"
-                        },
-                        {
-                            "name": "sections.blog.sorts.rating_asc",
-                            "value": "آراء اقل"
-                        },
-                        {
-                            "name": "sections.blog.sorts.rating_desc",
-                            "value": "آراء أكثر"
-                        },
-                        {
-                            "name": "sections.blog.pagination.next_text",
-                            "value": "التالي"
-                        },
-                        {
-                            "name": "sections.blog.pagination.prev_text",
-                            "value": "السابق"
-                        },
-                        {
-                            "name": "sections.cart.title",
-                            "value": "سلة "
-                        },
-                        {
-                            "name": "sections.cart.empty_text",
-                            "value": "سلتكم فارغة"
-                        },
-                        {
-                            "name": "sections.cart.total_text",
-                            "value": "المجموع"
-                        },
-                        {
-                            "name": "sections.cart.upsell.title",
-                            "value": "عروض خاصة"
-                        },
-                        {
-                            "name": "sections.cart.buttons.checkout_text",
-                            "value": "اكمل الطلبية"
-                        },
-                        {
-                            "name": "sections.wishlist.title",
-                            "value": "قائمة المفصلة"
-                        },
-                        {
-                            "name": "sections.wishlist.empty_text",
-                            "value": "قائمة المفصلة فارغة"
-                        },
-                        {
-                            "name": "sections.thanks.title",
-                            "value": "شكرا"
-                        },
-                        {
-                            "name": "sections.thanks.description",
-                            "value": "شكرا على طلبيتكم"
-                        },
-                        {
-                            "name": "sections.cart.buttons.back_to_shop_text",
-                            "value": "الرجوع الى المتجر"
-                        },
-                        {
-                            "name": "sections.wishlist.buttons.back_to_shop_text",
-                            "value": "الرجوع الى المتجر"
-                        },
-                        {
-                            "name": "sections.thanks.buttons.back_to_shop_text",
-                            "value": "الرجوع الى المتجر"
-                        },
-                        {
-                            "name": "sections._404.title",
-                            "value": "الرجوع الى المتجر"
-                        },
-                        {
-                            "name": "sections._404.description",
-                            "value": "نحن آسفون ، لكن الصفحة التي طلبتها لم يتم العثور عليها"
-                        },
-                        {
-                            "name": "sections._404.buttons.back_to_shop_text",
-                            "value": "الرجوع الى المتجر"
-                        }
-                    ]
-                },
-                {
-                    "language": "FR",
-                    "properties": [
-                        {
-                            "name": "sections.products.add_to_cart.text",
-                            "value": "Ajouter au panier"
-                        },
-                        {
-                            "name": "sections.products.added_text",
-                            "value": "Ajouté au panier"
-                        },
-                        {
-                            "name": "sections.products.confirm_text",
-                            "value": "Confirmer"
-                        },
-                        {
-                            "name": "sections.alerts.added_to_cart",
-                            "value": "Ajouté au panier"
-                        },
-                        {
-                            "name": "sections.alerts.added_to_wishlist",
-                            "value": "Ajouté au favoris"
-                        },
-                        {
-                            "name": "sections.alerts.removed_from_cart",
-                            "value": "Supprimé du panier"
-                        },
-                        {
-                            "name": "sections.alerts.removed_from_wishlist",
-                            "value": "Supprimé du panier"
-                        },
-                        {
-                            "name": "sections.footer.about",
-                            "value": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>"
-                        },
-                        {
-                            "name": "sections.footer.methods.title",
-                            "value": "Méthodes de paiement disponibles"
-                        },
-                        {
-                            "name": "sections.footer.social_media.title",
-                            "value": "Abonnez-vous"
-                        },
-                        {
-                            "name": "sections.footer.copyright.store_name",
-                            "value": "Boutique en ligne"
-                        },
-                        {
-                            "name": "sections.footer.copyright.text",
-                            "value": "Copyright © __YEAR__. Tous les droits réservés. <a href='//storeino.com'>storeino.com</a>"
-                        },
-                        {
-                            "name": "sections.collections.title",
-                            "value": "Collections"
-                        },
-                        {
-                            "name": "sections.products_1.title",
-                            "value": "Produits vedettes"
-                        },
-                        {
-                            "name": "sections.products_1.show_more_text",
-                            "value": "Discover more"
-                        },
-                        {
-                            "name": "sections.products_2.title",
-                            "value": "Produits vedettes"
-                        },
-                        {
-                            "name": "sections.products_2.show_more_text",
-                            "value": "Voir plus"
-                        },
-                        {
-                            "name": "sections.products_3.title",
-                            "value": "Jeux"
-                        },
-                        {
-                            "name": "sections.products_3.show_more_text",
-                            "value": "Plus de produits"
-                        },
-                        {
-                            "name": "sections.products_4.title",
-                            "value": "Téléphones & orinateurs"
-                        },
-                        {
-                            "name": "sections.products_4.show_more_text",
-                            "value": "Derniers produits"
-                        },
-                        {
-                            "name": "sections.products_5.title",
-                            "value": "Produits vedettes"
-                        },
-                        {
-                            "name": "sections.products_5.show_more_text",
-                            "value": "Derniers produits"
-                        },
-                        {
-                            "name": "sections.posts.title",
-                            "value": "Derniers articles"
-                        },
-                        {
-                            "name": "sections.posts.button.text",
-                            "value": "Plus de détails"
-                        },
-                        {
-                            "name": "sections.posts.buttons.show_more_text",
-                            "value": "Afficher plus d'articles"
-                        },
-                        {
-                            "name": "sections.services.title",
-                            "value": "Nos services"
-                        },
-                        {
-                            "name": "sections.services.items.delivery.text",
-                            "value": "Livraison rapide"
-                        },
-                        {
-                            "name": "sections.services.items.satisfaction.text",
-                            "value": "Satisfaction"
-                        },
-                        {
-                            "name": "sections.services.items.quality.text",
-                            "value": "Qualité"
-                        },
-                        {
-                            "name": "sections.product.add_to_cart.text",
-                            "value": "Ajouter au panier"
-                        },
-                        {
-                            "name": "sections.product.buy_now.text",
-                            "value": "Acheter maintenant"
-                        },
-                        {
-                            "name": "sections.product.related.title",
-                            "value": "Produits relatifs"
-                        },
-                        {
-                            "name": "sections.product.upsell.title",
-                            "value": "Offre spéciale"
-                        },
-                        {
-                            "name": "sections.product.reviews.title",
-                            "value": "Les avis de nos clients"
-                        },
-                        {
-                            "name": "sections.product.share_buttons.title",
-                            "value": "Partager"
-                        },
-                        {
-                            "name": "sections.post.share_buttons.title",
-                            "value": "Partager"
-                        },
-                        {
-                            "name": "sections.post.related.title",
-                            "value": "Articles relatifs"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.collections.title",
-                            "value": "Collections"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.prices.title",
-                            "value": "Prix"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.sizes.title",
-                            "value": "Tailles"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.colors.title",
-                            "value": "Couleurs"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.tags.title",
-                            "value": "Tags"
-                        },
-                        {
-                            "name": "sections.shop.sidebar.brands.title",
-                            "value": "Marques"
-                        },
-                        {
-                            "name": "sections.shop.sorts.newest",
-                            "value": "Le plus récents"
-                        },
-                        {
-                            "name": "sections.shop.sorts.oldest",
-                            "value": "Le plus anciens"
-                        },
-                        {
-                            "name": "sections.shop.sorts.name_asc",
-                            "value": "Nom (A-Z)"
-                        },
-                        {
-                            "name": "sections.shop.sorts.name_desc",
-                            "value": "Nom (Z-A)"
-                        },
-                        {
-                            "name": "sections.shop.sorts.price_asc",
-                            "value": "Prix (Moins cher)"
-                        },
-                        {
-                            "name": "sections.shop.sorts.price_desc",
-                            "value": "Prix (Plus cher)"
-                        },
-                        {
-                            "name": "sections.shop.sorts.rating_asc",
-                            "value": "Moins d'avis"
-                        },
-                        {
-                            "name": "sections.shop.sorts.rating_desc",
-                            "value": "Plus d'avis"
-                        },
-                        {
-                            "name": "sections.shop.pagination.next_text",
-                            "value": "Suivant"
-                        },
-                        {
-                            "name": "sections.shop.pagination.prev_text",
-                            "value": "Précedent"
-                        },
-                        {
-                            "name": "sections.blog.sidebar.categories.title",
-                            "value": "Catégories"
-                        },
-                        {
-                            "name": "sections.blog.sidebar.products.title",
-                            "value": "De la boutique"
-                        },
-                        {
-                            "name": "sections.blog.sorts.newest",
-                            "value": "Le plus récent"
-                        },
-                        {
-                            "name": "sections.blog.sorts.oldest",
-                            "value": "Le plus ancien"
-                        },
-                        {
-                            "name": "sections.blog.sorts.name_asc",
-                            "value": "Nom (A-Z)"
-                        },
-                        {
-                            "name": "sections.blog.sorts.name_desc",
-                            "value": "Nom (Z-A)"
-                        },
-                        {
-                            "name": "sections.blog.sorts.price_asc",
-                            "value": "Prix (Moins cher)"
-                        },
-                        {
-                            "name": "sections.blog.sorts.price_desc",
-                            "value": "Prix (high to low)"
-                        },
-                        {
-                            "name": "sections.blog.sorts.rating_asc",
-                            "value": "Moins d'avis"
-                        },
-                        {
-                            "name": "sections.blog.sorts.rating_desc",
-                            "value": "Plus d'avis"
-                        },
-                        {
-                            "name": "sections.blog.pagination.next_text",
-                            "value": "Suivant"
-                        },
-                        {
-                            "name": "sections.blog.pagination.prev_text",
-                            "value": "Précedent"
-                        },
-                        {
-                            "name": "sections.cart.title",
-                            "value": "Panier d'achat"
-                        },
-                        {
-                            "name": "sections.cart.empty_text",
-                            "value": "Votre panier est vide"
-                        },
-                        {
-                            "name": "sections.cart.total_text",
-                            "value": "Total"
-                        },
-                        {
-                            "name": "sections.cart.upsell.title",
-                            "value": "Offre spéciale"
-                        },
-                        {
-                            "name": "sections.cart.buttons.checkout_text",
-                            "value": "Passer une commande"
-                        },
-                        {
-                            "name": "sections.wishlist.title",
-                            "value": "Listes des favoris"
-                        },
-                        {
-                            "name": "sections.wishlist.empty_text",
-                            "value": "Votre liste de favoris"
-                        },
-                        {
-                            "name": "sections.thanks.title",
-                            "value": "Merci"
-                        },
-                        {
-                            "name": "sections.thanks.description",
-                            "value": "Merci pour votre commande"
-                        },
-                        {
-                            "name": "sections.cart.buttons.back_to_shop_text",
-                            "value": "Retour à la boutique"
-                        },
-                        {
-                            "name": "sections.wishlist.buttons.back_to_shop_text",
-                            "value": "Retour à la boutique"
-                        },
-                        {
-                            "name": "sections.thanks.buttons.back_to_shop_text",
-                            "value": "Retour à la boutique"
-                        },
-                        {
-                            "name": "sections._404.title",
-                            "value": "Retour à la boutique"
-                        },
-                        {
-                            "name": "sections._404.description",
-                            "value": "Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée"
-                        },
-                        {
-                            "name": "sections._404.buttons.back_to_shop_text",
-                            "value": "retour à la boutique"
-                        }
-                    ]
-                }
-            ]
+            }
         }
     },
     "images": [
