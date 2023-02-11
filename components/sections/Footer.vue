@@ -10,9 +10,7 @@
           <div class="w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
               <!-- Store title -->
               <div @click="showContent" class="mb-4 md:mb-2 py-2 rounded-full flex items-center justify-between transition-all delay-00 ease-linear hover:bg-gray-500 px-3 mx-1 md:hover:bg-transparent" >
-                <!-- <nuxt-link to="/"> -->
                   <h4 class="text-xl md:text-3xl font-bold">{{ title }}</h4>
-                <!-- </nuxt-link> -->
                 <div class="md:hidden">
                   <fa class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isContentVisible ? 'rotate-180' : ''] "></fa>
                 </div>
@@ -133,7 +131,7 @@
             </div> 
             <div class="md:block px-4" :class="isPaymentMethodsVisible? 'block':'hidden'">
               <div class="payment_images flex flex-wrap">
-                  <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="payement w-15 h-8 mr-2 mb-4 flex rounded-sm">
+                  <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="payement w-15 h-8 mr-2 mb-2 flex rounded-sm">
                       <si-image  width="60" height="20" :src="item.image" :alt="item.name" class="h-full object-contain"/>
                   </div>
               </div>
@@ -142,22 +140,18 @@
           <!-- payment_methods -->
         </div>
 
-
          <!--  Social Media -->
-          <div class="Social_Media pb-8 mt-6">
+          <div class="Social_Media pb-8 mt-4">
             <h3 class="text-base font-bold mb-4 text-center">{{ footer.social_media.title }}</h3>
             <div class="flex items-center justify-center flex-wrap">
               <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
-                  <a class="h-full flex" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
-                      <fa class="text-2xl mx-2  scale hover:opacity-90" :icon="['fab', item.name]"></fa>
+                  <a class="h-full flex hover:opacity-60" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
+                      <fa class="text-2xl mx-2" :icon="['fab', item.name]"></fa>
                   </a>
               </div>
             </div>
           </div>
         <!--  Social Media  -->
-
-
-
       </footer>
       <!-- End fotter Section -->
       <si-app-loader placement="AFTER_FOOTER"/>

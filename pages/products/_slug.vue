@@ -122,7 +122,7 @@
                         
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                         <!-- add to cart -->
-                        <div class="mx-2 mt-6">
+                        <div class="mx-2 mt-6 mb-4">
                             <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="text-base font-bold w-full flex ai-c justify-center addtocart-bg addtocart-text-bg   rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
@@ -133,7 +133,7 @@
 
                         <si-app-loader placement="REPLACE_BUYNOW"/>
                         <!-- buy now -->
-                        <div class="mx-2 mt-4 mb-6">
+                        <div class="mx-2">
                             <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
@@ -144,10 +144,10 @@
 
                         <!-- share products icons -->
                         <div class="mx-2" v-if="$settings.sections.product.share_buttons">
-                          <div class="flex">
-                              <h3 class="whitespace-nowrap text-lg font-bold px-4 mb-3">{{ $settings.sections.product.share_buttons.title }}</h3>
+                          <div>
+                              <h3 class="align-center whitespace-nowrap text-lg font-bold px-4 mb-3 mt-4">{{ $settings.sections.product.share_buttons.title }}</h3>
                           </div>
-                          <div class="flex">
+                          <div class="flex justify-center md:justify-start">
                               <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="m-2  flex items-center justify-center">
                                   <a class="h-full flex " :href="item.url" target="_blank" rel="noopener noreferrer">
                                     <fa class="text-3xl mx-2 hover:opacity-80" :icon="['fab', item.name]"></fa>

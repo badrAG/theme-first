@@ -1,13 +1,13 @@
 <template>
 <div class="container">
-    <div class="flex flex-wrap flex-row justify-between items-center py-6">
-      <div class="services flex" v-for="(item, i) in items" :key="i">
-        <div class="p-2">
+    <div class="flex flex-wrap flex-row justify-between py-6 px-2 md:px-0">
+      <div class="flex w-1/2 md:w-1/4" v-for="(item, i) in items" :key="i">
+        <div class="flex items-center py-4">
             <nuxt-link :to="item.url" class="flex items-center">
-                <si-image width="80" height="80" class="w-20 h-20 p-2 object-cover opacity-90" :src="item.image ? item.image.src : null" :alt="item.text"/>
+                <si-image width="80" height="80" class="service mx-2 md:mx-4 w-12 h-12 sm:h-14 sm:w-14 lg:w-16 lg:h-16 object-cover opacity-90" :src="item.image ? item.image.src : null" :alt="item.text"/>
                 <div>
-                    <b class="p-2 text-base font-bold">{{ item.text }}</b>
-                    <p class="p-2 text-sm font-normal">{{ item.description }}</p>
+                    <b class="pb-2 text-sm md:text-base font-bold">{{ item.text }}</b>
+                    <p class="pt-2 text-xs md:text-sm font-normal ">{{ item.description }}</p>
                 </div>
             </nuxt-link>
         </div>
@@ -51,33 +51,9 @@ export default {
 </script>
 
 <style scoped>
-.services {
-    width: 25%;
-}
+/* [dir="rtl"] .service {
+    margin-left: 1rem;
+    margin-right: 0;
 
-@media screen and (max-width: 1025px){
-    .services {
-        width: 50%;
-    }
-}
-
-@media screen and (max-width: 767px){
-    .services {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .services a {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .services img {
-        width: 5rem;
-        height: 5rem;
-    }
-    
-
-}
+} */
 </style>
