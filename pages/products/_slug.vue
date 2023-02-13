@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="block md:hidden">
-                        <div class="flex items-center  justify-center mx-3 mt-3 ">
+                        <div class="dots flex items-center  justify-center mx-3 mt-3 ">
                             <div class="mx-1" v-for="(image, index) in item.images" :key="index" >
                                 <div class="h-2.5 w-2.5 rounded-full cursor-pointer" :class="visibleSlide == index ? 'bg-primary' : 'bg-gray-300'" @click="setImage(index)"></div>
                             </div>
@@ -427,6 +427,9 @@
   <style>
   .product-image {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><circle cx='15' cy='15' r='10' fill='white' stroke='black' stroke-width='2'/><line x1='15' y1='10' x2='15' y2='20' stroke='black' stroke-width='2'/><line x1='10' y1='15' x2='20' y2='15' stroke='black' stroke-width='2'/></svg>"), auto;
+  }
+  [dir = "rtl"] .dots{
+    flex-direction: row-reverse;
   }
   .video-wrapper {
     position: relative;

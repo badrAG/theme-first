@@ -18,7 +18,6 @@
   
       <!-- product title -->
   
-  
       <!-- Loader -->
       <div v-if="loading" class="flex justify-center items-center  my-5">
         <si-loader></si-loader>

@@ -1,5 +1,5 @@
 <template>
-    <div class="transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
+    <div>
         <component :is="'style'">
             :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); 
                    --header-rgb: {{ header_rgb.r }},{{ header_rgb.g  }}, {{ header_rgb.b }} ; --header-color-bg: rgb(var(--header-rgb)); 
@@ -144,11 +144,3 @@ export default {
     }
 }
 </script>
-<style>
-    [dir='ltr'] .to-right{
-        transform: translateX(20rem);
-    }
-    [dir='rtl'] .to-right{
-        transform: translateX(-20rem) !important;
-    }
-</style>

@@ -141,7 +141,7 @@
         </div>
 
          <!--  Social Media -->
-          <div class="Social_Media pb-8 mt-4">
+          <div class="Social_Media pb-8 mt-2 md:mt-4">
             <h3 class="text-base font-bold mb-4 text-center">{{ footer.social_media.title }}</h3>
             <div class="flex items-center justify-center flex-wrap">
               <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
@@ -177,36 +177,24 @@
         methods: [
                   {
                       name: 'visa',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113606418.png'
+                      image: 'https://storeino.b-cdn.net/site/Bazartheme/Bazar-Visa.png'
                   },
                   {
                       name: 'mastercard',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113605894.png'
+                      image: 'https://storeino.b-cdn.net/site/Bazartheme/Bazar-MasterCard.png'
                   },
                   {
                       name: 'transfer',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113606123.png'
+                      image: 'https://storeino.b-cdn.net/site/Bazartheme/Bazar-BankTransfer.png'
                   },
                   {
                       name: 'cash',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113606556.png'
+                      image: 'https://storeino.b-cdn.net/site/Bazartheme/Bazar-CashOnDelivery.png'
                   },
                   {
                       name: 'paypal',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676114299159.png'
+                      image: 'https://storeino.b-cdn.net/site/Bazartheme/Bazar-PayPal.png'
                   },
-                  {
-                      name: 'cashplus',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113606066.png'
-                  },
-                  {
-                      name: 'tasshilat',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113606571.png'
-                  },
-                  {
-                      name: 'amanty',
-                      image: 'https://storeno.b-cdn.net/stores/2-2023/1676113605624.png'
-                  }
               ],
         socialMedia: [
                   {name: 'facebook',},

@@ -5,36 +5,32 @@
         <!-- priceCurrency  -->
 
         <!--  -->
-        <div v-if="type=='simple'">
-            <span class="products-price-text-bg text-md font-bold">{{ price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }} 
-                <span class="w-"></span>
-                <span v-if="price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">  {{ price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
-                </span>
+        <div class="truncate" v-if="type=='simple'">
+            <span class="products-price-text-bg text-md font-bold">{{ $store.state.currency.symbol }} {{ price.salePrice.toFixed(2) }}</span>
+            <!-- <span class="w-2"></span> -->
+            <span v-if="price.comparePrice > 0">
+                <del class="products-delprice-text-bg text-md font-normal truncate">{{ $store.state.currency.symbol }} {{ price.comparePrice.toFixed(2) }}</del>
             </span>
-
             <meta itemprop="price" :content="price.salePrice" />
         </div>
         <!--  -->
 
         <!-- v-else-if="minPrice != maxPrice" -->
-        <div v-else-if="minPrice != maxPrice" > 
+        <div class="price flex items-center flex-wrap" v-else-if="minPrice != maxPrice" > 
             <meta itemprop="price" :content="minPrice" />
-            <span class="products-price-text-bg text-md font-bold">{{ minPrice.toFixed(2) }} {{ $store.state.currency.symbol }} 
-                <span class="">~</span>
-                <span class="products-price-text-bg text-md font-normal ">{{ maxPrice.toFixed(2) }} {{ $store.state.currency.symbol }} </span>
-            </span>
+            <span class="products-price-text-bg text-sm font-bold">{{ $store.state.currency.symbol }} {{ minPrice.toFixed(2) }}</span>
+            <span class="flex items-center">~</span>
+            <span class="products-price-text-bg text-sm font-medium">{{ $store.state.currency.symbol }} {{ maxPrice.toFixed(2) }}</span>
         </div>
         <!-- v-else-if="minPrice != maxPrice" -->
 
         <!--  -->
-        <div  v-else-if="variants.length > 0">
+        <div class="price flex items-center flex-wrap" v-else-if="variants.length > 0">
             <meta itemprop="price" :content="variants[0].price.salePrice" />
-            <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }}
-                <span class="w-1"></span>
-                <span v-if="variants[0].price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
-                </span>
+            <span class="products-price-text-bg text-sm font-bold">{{ $store.state.currency.symbol }} {{ variants[0].price.salePrice.toFixed(2) }}</span>
+            <span class="flex w-2"></span>
+            <span class="relative" v-if="variants[0].price.comparePrice > 0">
+                <del class="products-delprice-text-bg text-sm font-normal">{{ $store.state.currency.symbol }} {{ variants[0].price.comparePrice.toFixed(2) }}</del>
             </span>
         </div>
         <!--  -->

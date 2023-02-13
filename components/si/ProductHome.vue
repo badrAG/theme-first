@@ -22,14 +22,20 @@
                             <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                                 <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover box-shadow-hover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                             </nuxt-link>
+
+                            
                         </div>
                         <!--  products image -->
                     </div>
     
                     <!-- product-price -->
-                    <div class="price bg-white absolute bottom-0 left-0 m-2 px-2 py-1.5 text-sm rounded-full text-center">
-                        <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice>
-                    </div>
+                    <p class="bg-red-500 rounded-full absolute bottom-0  px-8 truncate max-w-full min-w-0">
+
+                         <span class="w-ful truncate bg-white">
+                             1000.00 usd 5000.00 dr
+                         </span>
+                        <!-- <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice> -->
+                    </p>
                     <!-- product-price -->
                 </div>
             </div>
