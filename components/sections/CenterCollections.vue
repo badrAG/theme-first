@@ -43,8 +43,8 @@ export default {
   async fetch(){
       try{
           const filter = {};
-          if(this.$settings.sections.collections.items.length > 0){
-            this.items = this.$settings.sections.collections.items;
+          if(this.$settings.sections.center_collections.items.length > 0){
+            this.items = this.$settings.sections.center_collections.items;
           }else{
             const { data } = await this.$storeino.collections.search(filter)
             this.items = data.results;

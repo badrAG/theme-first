@@ -249,11 +249,17 @@ export default {
     async getCollections(){
           this.collections = [];
           this.loading.collections = true;
+
           try{
-              const { data } = await this.$storeino.collections.search({});
-              this.collections = data.results;
+          const filter = {};
+          if(this.$settings.sections.collections_products.items.length > 0){
+              this.collections = this.$settings.sections.collections_products.items;
+          }else{
+            const { data } = await this.$storeino.collections.search(filter)
+            this.collections = data.results;
+          }
           }catch(e){
-              console.log({e});
+            console.log({e});
           }
           this.loading.collections = false;
       },

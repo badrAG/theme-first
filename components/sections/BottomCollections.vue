@@ -1,7 +1,7 @@
 <template>
     <div class="container py-6 ">
         <div class="p-2 px-4 mb-4">
-            <h3 class="align-center font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">{{ $settings.sections.collections2.title }}</h3>
+            <h3 class="align-center font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">{{ $settings.sections.bottom_collections.title }}</h3>
         </div>
         <div class="px-2 ">
             <ul class="flex flex-wrap">
@@ -39,8 +39,8 @@ export default {
   async fetch(){
       try{
           const filter = {};
-          if(this.$settings.sections.collections.items.length > 0){
-            this.items = this.$settings.sections.collections.items;
+          if(this.$settings.sections.bottom_collections.items.length > 0){
+            this.items = this.$settings.sections.bottom_collections.items;
           }else{
             const { data } = await this.$storeino.collections.search(filter)
             this.items = data.results;

@@ -1,8 +1,8 @@
 <template>
-    <div class="rounded-lg">
-        <div class="wishlist-box flex flex-col relative  ">
-          <!-- wishlist icon -->
-          <div class="wishlist block md:hidden" v-if="$settings.sections.products.add_to_wishlist.active">
+    <div class="wishlist-box ">
+        <div  class="image_box pb-4/7 relative ">
+            <!-- wishlist icon -->
+            <div class="wishlist block md:hidden" v-if="$settings.sections.products.add_to_wishlist.active">
                 <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white  hover:bg-gray-100 rounded-full absolute z-10 top-0 right-0 m-2 p-2">
                     <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4 h-4 translate text-red-500"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                 </button>
@@ -11,35 +11,25 @@
                 </button>
             </div>
             <!-- wishlist icon -->
-    
-            <!-- product details  -->
-            <div class="h-1/2 flex overflow-hidden rounded-lg">
-                <div class="w-full h-1/2 flex flex-col">
-                  <!--  -->
-                    <div>
-                        <!--  products image -->
-                        <div class="image_box pb-4/7 relative zoom overflow-hidden rounded-lg">
-                            <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
-                                <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover box-shadow-hover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
-                            </nuxt-link>
+            
+            <!--  products image -->
+            <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
+                <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover rounded-lg" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
+                </nuxt-link>
+                <!--  products image -->
 
-                            
-                        </div>
-                        <!--  products image -->
-                    </div>
-    
-                    <!-- product-price -->
-                    <p class="bg-red-500 rounded-full absolute bottom-0  px-8 truncate max-w-full min-w-0">
+            <!-- product-price -->
+            
+            <div style="padding: 3.90px 0;" class="absolute bottom-0 left-0 right-0 m-2   truncate max-w-full min-w-0 rounded-full bg-red-300">
 
-                         <span class="w-ful truncate bg-white">
-                             1000.00 usd 5000.00 dr
-                         </span>
-                        <!-- <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice> -->
-                    </p>
-                    <!-- product-price -->
-                </div>
+                <span class="bg-white truncate min-w-0 w-full rounded-full py-1.5 px-2.5">
+                    dmsfsdm fdnskn  
+                    <!-- <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice> -->
+                </span>
+
             </div>
-            <!-- product details  -->
+
+            <!-- product-price -->
         </div>
     </div>
     </template>

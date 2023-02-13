@@ -2,7 +2,7 @@
     <div class="">
         <div class="collection-bg">
             <div class="mx-auto">
-                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl guard-cairo-font font-light px-4 pt-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.collections.title }}</h1>
+                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl guard-cairo-font font-light px-4 pt-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.top_collections.title }}</h1>
             </div>
         </div>
         
@@ -52,8 +52,8 @@ export default {
   async fetch(){
       try{
           const filter = {};
-          if(this.$settings.sections.collections.items.length > 0){
-            this.items = this.$settings.sections.collections.items;
+          if(this.$settings.sections.top_collections.items.length > 0){
+            this.items = this.$settings.sections.top_collections.items;
           }else{
             const { data } = await this.$storeino.collections.search(filter)
             this.items = data.results;

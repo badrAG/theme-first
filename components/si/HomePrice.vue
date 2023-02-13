@@ -5,11 +5,11 @@
         <!-- priceCurrency  -->
 
         <!--  -->
-        <div class="truncate" v-if="type=='simple'">
+        <div class="" v-if="type=='simple'">
             <span class="products-price-text-bg text-md font-bold">{{ $store.state.currency.symbol }} {{ price.salePrice.toFixed(2) }}</span>
             <!-- <span class="w-2"></span> -->
             <span v-if="price.comparePrice > 0">
-                <del class="products-delprice-text-bg text-md font-normal truncate">{{ $store.state.currency.symbol }} {{ price.comparePrice.toFixed(2) }}</del>
+                <del class="products-delprice-text-bg text-md font-normal">{{ $store.state.currency.symbol }} {{ price.comparePrice.toFixed(2) }}</del>
             </span>
             <meta itemprop="price" :content="price.salePrice" />
         </div>
