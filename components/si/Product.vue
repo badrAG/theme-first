@@ -46,6 +46,7 @@
     </template>
     <script>
     export default {
+    
         props: {
             upsell: { type: Object, default: null },
             item: Object
@@ -137,6 +138,10 @@
             removeFromWishlist(){
                 this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
                 this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
+                this.romveWishlist()
+            },
+            romveWishlist(){
+                this.$emit("romve_wishlist", this.item)
             }
         },
     }

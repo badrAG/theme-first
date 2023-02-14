@@ -6,12 +6,12 @@
       
       <div class="flex flex-col items-center md:justify-between md:flex-row mb-1 px-4">
         <div class="">
-          <h2 class="font-medium text-base ">{{ title }}</h2>
+          <h2 class="text-lg md:text-xl font-medium">{{ title }}</h2>
         </div>
   
         <div v-if="section.show_more_text">
           <nuxt-link  :to="section.show_more_url">
-            <span class="text-md font-normal text-gr underline hover:text-black">{{ section.show_more_text }}</span>
+            <span class="text-sm font-normal text-gr underline hover:text-black">{{ section.show_more_text }}</span>
           </nuxt-link>
         </div>
       </div>
@@ -19,7 +19,7 @@
       <!-- product title -->
   
       <!-- Loader -->
-      <div v-if="loading" class="flex justify-center items-center  my-5">
+      <div v-if="loading" class="flex justify-center items-center my-5">
         <si-loader></si-loader>
       </div>
       <!-- Loader -->

@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-10 relative">
       <div class="mb-4">
-        <h2 class="font-medium text-xl px-4">{{ title }}</h2>
+        <h2 class="text-lg md:text-xl font-medium px-4">{{ title }}</h2>
       </div>
       <!--  -->
       <div class="overflow-hidden carousel-container" dir="ltr">

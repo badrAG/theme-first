@@ -8,12 +8,13 @@
             </div>
             <div class="flex flex-wrap  px-2">
                 <div v-for="(item, i) in items" :key="i" class="w-1/2 md:w-1/4 lg:w-1/5">
-                    <si-product :item="item"></si-product>
+                    <si-product @romve_wishlist="romve_wishlist" :item="item" ></si-product>
                 </div>
             </div>
         </div>
     </div>
 
+<!--  -->
     <div class="flex justify-center p-2">
         <div v-if="!loading.wishlist && items.length == 0" class="flex flex-col items-center">
             <h2 class="w-full text-center mb-3">{{ $settings.sections.wishlist.empty_text }}</h2>
@@ -24,6 +25,7 @@
             </nuxt-link>
         </div>
     </div>
+    <!--  -->
     </div>
 </template>
 <script>
@@ -39,10 +41,28 @@ export default {
         this.$store.state.seo.description = this.$settings.sections.wishlist.description || this.$settings.store_description;
         await this.initWishlist();
     },
+    // watch: { 
+    //     "store.state.whishlist": { 
+    //         async handler() { 
+    //             await this.initWishlist(); 
+    //             console.log("mouhmed")
+    //         }, 
+    //         deep: true 
+    //         } 
+    //     },
+
     watch: {
-        async "$store.state.whishlist.length"(){ 
+        async "$store.state.whishlist"(val, oldVal){ 
             await this.initWishlist();
+
+
+            console.log(val)
+            console.log(this.$store.state.wishlist)
+            console.log(oldVal)
         }
+    },
+    mounted() { 
+        console.log(this.$store.state.wishlist)
     },
     methods: {
         async initWishlist(){
@@ -60,8 +80,11 @@ export default {
             }
             this.loading.wishlist = false;
         },
-        async remove(item){
-            this.$tools.call('REMOVE_FROM_WISHLIST', item);
+        async romve_wishlist(item){
+            console.log("jdfsk fhsjsfhsd jfsdjk")
+            console.log(item)            
+            // this.$tools.call('REMOVE_FROM_WISHLIST', item);
+            await this.initWishlist()
         }
     },
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="container py-6 ">
         <div class="p-2 px-4 mb-4">
-            <h3 class="align-center font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">{{ $settings.sections.bottom_collections.title }}</h3>
+            <h3 class="align-center font-semibold text-lg md:text-xl lg:text-2xl">{{ $settings.sections.bottom_collections.title }}</h3>
         </div>
         <div class="px-2 ">
             <ul class="flex flex-wrap">
