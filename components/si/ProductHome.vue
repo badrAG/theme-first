@@ -19,16 +19,7 @@
                 <!--  products image -->
 
             <!-- product-price -->
-            
-            <div style="padding: 3.90px 0;" class="absolute bottom-0 left-0 right-0 m-2   truncate max-w-full min-w-0 rounded-full bg-red-300">
-
-                <span class="bg-white truncate min-w-0 w-full rounded-full py-1.5 px-2.5">
-                    dmsfsdm fdnskn  
-                    <!-- <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice> -->
-                </span>
-
-            </div>
-
+            <si-HomePrice :type="item.type" :price="item.price" :variants="item.variants"></si-HomePrice>
             <!-- product-price -->
         </div>
     </div>
@@ -139,10 +130,12 @@
         display: block;
     }
 
-    [dir='rtl'] .price {
+
+
+    /* [dir='rtl'] .price {
         right: 0;
         left: auto;
-    }
+    } */
 
     </style>
     

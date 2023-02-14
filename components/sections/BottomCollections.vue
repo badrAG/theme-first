@@ -55,9 +55,9 @@ export default {
 
 <style scoped>
 
-@media (min-width: 1024px) { 
+/* @media (min-width: 1024px) { 
     ul li:last-child {
         display: none;
     }
-}
+} */
 </style>

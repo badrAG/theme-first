@@ -4,7 +4,7 @@
             <!-- slider left  -->
               <transition name="slideleft" v-if="$settings.sections.blog.sidebar.active">
                 <!-- show slider content -->
-                <div :class="showSideBar ? 'block':'hidden'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-10">
+                <div :class="showSideBar ? 'show':'hide'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-10">
                     <div class="bg-black bg-opacity-50 fixed block inset-0" @click="showSideBar=false"></div>
                     <div class="border-r bg-white h-full flex flex-col relative">
                         <!-- close -->
@@ -78,9 +78,9 @@
                         <!-- Posts (No blogs)-->
 
                         <!-- products  -->
-                        <div>
+                        <div class="px-2">
                             <div v-if="products.length > 0 && $settings.sections.blog.sidebar.products.active" class="w-full">
-                                <si-carousel :size="100" component="si-product" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
+                                <si-carousel :size="100" component="si-product-home" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
                             </div>
                         </div>
                         <!-- products -->
@@ -264,7 +264,8 @@ export default {
       width: 0%;
   }
 
-
-  
+  .show {
+    display: block !important;
+  }
   </style>
   

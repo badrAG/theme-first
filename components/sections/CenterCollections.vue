@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="relative">
-            <ul class="lg:w-4/5 mx-auto flex flex-wrap justify-center md:justify-between p-4">
+            <ul class="lg:w-4/5 mx-auto flex flex-wrap justify-center p-4">
                 <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
                     <nuxt-link class="my-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                     <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 lg:h-28 lg:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>

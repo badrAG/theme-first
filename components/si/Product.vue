@@ -29,7 +29,7 @@
                 <!--  -->
                 <div class="mt-3">
                     <nuxt-link :to="`/products/${item.slug}`">
-                        <h3 class="text-sm font-normal">{{ item.name.length > 30 ? item.name.slice(0, 30) + '...' : item.name}}</h3>
+                        <h3 class="text-sm font-normal truncate">{{item.name}}</h3>
                     </nuxt-link>
                 </div>
                 <!--  -->
