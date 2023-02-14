@@ -67,8 +67,6 @@
                         </div>
                         <!-- Loader -->
 
-
-
                         <!-- Posts (No blogs)-->
                         <div class="flex flex-wrap px-2">
                             <div v-for="(item, i) in items" :key="i" class="w-full sm:w-1/2 md:w-1/3 p-2">

@@ -26,8 +26,10 @@
                 <!-- Header Menu -->
                 <div class="" v-if="menu">
                     <ul v-for="(item, i) in menu.items" :key="i" class="flex flex-col">
-                        <li class="flex items-center justify-between w-full">
-                            <router-link class="px-4 py-2 text-base font-semibold w-full flex hover:underline" :to="item.url">{{ item.text }}</router-link>
+                        <li class="flex items-center justify-between">
+                            <div class="px-4 py-2">
+                                <router-link class="text-base font-semibold links-hover" :to="item.url">{{ item.text }}</router-link>
+                            </div>
                             <button class="px-4" @click="activeId = activeId != item._id ? item._id : null">
                               <fa class="text-base transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180' : ''] "></fa>
                             </button>
@@ -36,15 +38,21 @@
                         <transition name="slide">
                         <div v-if="item._id == activeId">
                             <div v-for="(item,i) in item.childrens" :key="i" class=" px-4 py-2">
-                                <router-link class="text-base font-normal hover:underline" :to="item.url">{{item.text}}</router-link>
+                                <div class="flex items-center justify-between">
+                                    <router-link class="text-base font-normal links-hover" :to="item.url">
+                                        {{item.text}}
+                                    </router-link>
+                                    <fa @click="showSubItems" class="text-base transform" :class="[(item.childrens && item.childrens.length > 0 ? 'block' : 'hidden'),(SubItems ? 'rotate-180' : '')]"  :icon="['fa', 'angle-down']" ></fa>
+                                </div>
 
-                                <ul v-if="item.childrens && item.childrens.length > 0">
+                                <ul v-if="item.childrens && item.childrens.length > 0 && SubItems">
                                     <li class="px-3 pt-4" v-for="(child,ii) in item.childrens" :key="ii">
-                                        <nuxt-link  class="text-base font-normal hover:underline" :to="child.url">
+                                        <nuxt-link  class="text-base font-normal links-hover" :to="child.url">
                                             {{ child.text }}
                                         </nuxt-link>
                                     </li>
                                 </ul>
+
                             </div>
                         </div>
                         </transition>
@@ -56,19 +64,22 @@
                 <!-- courency and language dropdown  -->
                 <div>
                     <ul v-for="(item, i) in otherMenu" :key="i" class="flex flex-col">
-                        <li class="flex items-center justify-between w-full ">
-                            <a class="px-4 py-2 text-base font-semibold w-full flex hover:underline capitalize " :href="item.url">{{ item.text.split("")[0].toUpperCase() + item.text.slice(1).toLowerCase() }}</a>
-                            <button class="px-4" @click="activeId = activeId != item._id ? item._id : null">
+                        <li @click="activeId = activeId != item._id ? item._id : null" class="flex items-center justify-between">
+                            <div class="px-4 py-2">
+                                <a class="text-base font-semibold links-hover cursor-pointer" :href="item.url">{{ item.text }}</a>
+                            </div>
+                            <button class="px-4" >
                               <fa class="text-base transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180' : ''] "></fa>
                             </button>
                         </li>
                         <transition name="slide">
                         <div v-if="item._id == activeId">
                             <div v-for="(item,i) in item.childrens" :key="i"  class=" px-4 py-2">
-                                <a class="text-base font-normal hover:underline" :href="item.url">{{item.text}}</a>
+                                <a class="text-base font-normal links-hover" :href="item.url">{{item.text}}</a>
                                 <ul  v-if="item.childrens && item.childrens.length > 0">
                                     <li class="px-3 pt-4" v-for="(child,ii) in item.childrens" :key="ii">
-                                        <a class="text-base font-normal hover:underline" :href="child.url">
+                                        <a class="text-base font-normal links-hover" :href="child.url">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10,17a1,1,0,0,1-.707-1.707L12.586,12,9.293,8.707a1,1,0,0,1,1.414-1.414L15.414,12l-4.707,4.707A1,1,0,0,1,10,17Z"></path></svg>
                                             {{ child.text }}
                                         </a>
                                     </li>
@@ -87,6 +98,7 @@
     export default {
         data() {
             return {
+                SubItems: false,
                 show: false,
                 activeId: null,
                 q: this.$route.query.search,
@@ -137,6 +149,11 @@
                 }
             }
         },
+        methods: {
+            showSubItems() {
+                this.SubItems = !this.SubItems
+            }
+        }
     }
     </script>
     <style>

@@ -7,13 +7,12 @@
             class="text-sm font-bold" 
             v-html="description.replace(/__YEAR__/gi, year)"
           ></div>
-
           <!-- Menu -->
             <div v-if="copyright_menu">
               <div class="inline-block mt-2 lg:mt-0 " v-for="(item,i) in copyright_menu.items" :key="i">
                   <div class="flex flex-row items-center">
                       <h4>
-                          <router-link class="mx-3 text-md font-normal underline hover:no-underline" :to="item.url">{{item.text}}</router-link>
+                          <router-link class="mx-3 text-md font-normal underline" :to="item.url">{{item.text}}</router-link>
                       </h4>
                   </div>
               </div>

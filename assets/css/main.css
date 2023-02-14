@@ -1,103 +1,111 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap');
-@font-face{
-  font-family:"Guardian-EgypTT";
-  src:url("../../static/fonts/StagCyr-Light-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/Guardian-EgypTT-Light.woff?v=220104") format("woff");
-  font-style:normal;
-  font-weight:300;
-  font-stretch:normal;
-  font-display:swap;
-  unicode-range:U+400-4FF;
-  ascent-override:96%;
-  descent-override:23%
-}
-@font-face{
-  font-family:"Guardian-EgypTT";
-  src:url("../../static/fonts/Guardian-EgypTT-Light.woff2?v=220104") format("woff2"),url("../../static/fonts/StagCyr-Light-Web.woff?v=220104") format("woff");
-  font-style:normal;
-  font-weight:300;
-  font-stretch:normal;
-  font-display:swap;
-  ascent-override:96%;
-  descent-override:23%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/GraphikCyr-Regular-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/GraphikCyr-Regular-Web.woff?v=220104") format("woff");
-  font-weight:400;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  unicode-range:U+400-4FF;
-  ascent-override:92%;
-  descent-override:22%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/GraphikCyr-Medium-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/GraphikCyr-Medium-Web.woff?v=220104") format("woff");
-  font-weight:500;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  unicode-range:U+400-4FF;
-  ascent-override:92%;
-  descent-override:22%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/GraphikCyr-Medium-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/GraphikCyr-Medium-Web.woff?v=220104") format("woff");
-  font-weight:700;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  unicode-range:U+400-4FF;
-  ascent-override:92%;
-  descent-override:22%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/Graphik-Regular-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/Graphik-Regular-Web.woff?v=220104") format("woff");
-  font-weight:400;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  ascent-override:92%;
-  descent-override:22%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/Graphik-Medium-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/Graphik-Medium-Web.woff?v=220104") format("woff");
-  font-weight:500;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  ascent-override:92%;
-  descent-override:22%
-}
-@font-face{
-  font-family:"Graphik Webfont";
-  src:url("../../static/fonts/Graphik-Medium-Web.woff2?v=220104") format("woff2"),url("../../static/fonts/Graphik-Medium-Web.woff?v=220104") format("woff");
-  font-weight:700;
-  font-style:normal;
-  font-stretch:normal;
-  font-display:swap;
-  ascent-override:92%;
-  descent-override:22%
+
+@font-face {
+  font-family: "Guardian-EgypTT";
+  src: url("../../static/fonts/StagCyr-Light-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/Guardian-EgypTT-Light.woff?v=220104") format("woff");
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+  font-display: swap;
+  unicode-range: U+400-4FF;
+  ascent-override: 96%;
+  descent-override: 23%
 }
 
-[dir="rtl"] body{ 
+@font-face {
+  font-family: "Guardian-EgypTT";
+  src: url("../../static/fonts/Guardian-EgypTT-Light.woff2?v=220104") format("woff2"), url("../../static/fonts/StagCyr-Light-Web.woff?v=220104") format("woff");
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+  font-display: swap;
+  ascent-override: 96%;
+  descent-override: 23%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/GraphikCyr-Regular-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/GraphikCyr-Regular-Web.woff?v=220104") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  unicode-range: U+400-4FF;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/GraphikCyr-Medium-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/GraphikCyr-Medium-Web.woff?v=220104") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  unicode-range: U+400-4FF;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/GraphikCyr-Medium-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/GraphikCyr-Medium-Web.woff?v=220104") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  unicode-range: U+400-4FF;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/Graphik-Regular-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/Graphik-Regular-Web.woff?v=220104") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/Graphik-Medium-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/Graphik-Medium-Web.woff?v=220104") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+@font-face {
+  font-family: "Graphik Webfont";
+  src: url("../../static/fonts/Graphik-Medium-Web.woff2?v=220104") format("woff2"), url("../../static/fonts/Graphik-Medium-Web.woff?v=220104") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  ascent-override: 92%;
+  descent-override: 22%
+}
+
+[dir="rtl"] body {
   font-family: 'Cairo', sans-serif !important;
-} 
+}
 
 body {
-  font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
+  font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
 }
 
 .guard-cairo-font {
-  font-family:"Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
 [dir="rtl"] .guard-cairo-font {
-    font-family: 'Cairo', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 .text-gr {
@@ -108,6 +116,38 @@ body {
   color: #222
 }
 
+.text-red {
+  color: #a61a2e;
+}
+
+.bg-orange {
+  background-color: #faa077;
+}
+
+.links-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+.links-hover::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  border-radius: 4px;
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.links-hover:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
 .text-md {
   font-size: 13px;
 }
@@ -116,19 +156,24 @@ body {
   .align-center {
     text-align: center;
   }
-}​
+}
 
-
-[dir='rtl'] svg.translate{
+​ [dir='rtl'] svg.translate {
   transform: rotateY(180deg);
 }
 
-[dir='rtl'] .icon.translate{
+[dir='rtl'] .icon.translate {
   transform: rotateY(180deg);
 }
 
-.container{
-  max-width: 1340px;
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.small-container {
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -151,33 +196,34 @@ body {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.box-shadow-x{
+.box-shadow-x {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.box-shadow-x-hover{
+.box-shadow-x-hover {
   transition: .5s ease;
 }
 
-.box-shadow-x-hover:hover{
+.box-shadow-x-hover:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.box-shadow-xs{
+.box-shadow-xs {
   box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
 }
 
-.box-shadow-xs-hover{
+.box-shadow-xs-hover {
   transition: .5s ease;
 }
 
-.box-shadow-xs-hover:hover{
+.box-shadow-xs-hover:hover {
   box-shadow: 0 2px 18px rgb(34 34 34 / 20%);
 }
 
 .text-md {
   font-size: 13px;
 }
+
 .scale {
   transition: .1s ease;
 }
@@ -188,37 +234,38 @@ body {
 }
 
 .max_container {
-max-width: 100%;
-margin-left: auto;
-margin-right: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.pb-1\/2{
+
+.pb-1\/2 {
   padding-bottom: 50%;
 }
-.pb-2\/3{
+
+.pb-2\/3 {
   padding-bottom: 75%;
 }
+
 .pb-3\/5 {
   padding-bottom: 60%;
 }
 
-
-.pb-4\/7{
+.pb-4\/7 {
   padding-bottom: 70%;
 }
 
-.pb-4\/5{
+.pb-4\/5 {
   padding-bottom: 80%;
 }
 
-.pb-5\/6  {
+.pb-5\/6 {
   padding-bottom: 85%;
 }
 
-.pb-full{
-    padding-bottom: 100%;
+.pb-full {
+  padding-bottom: 100%;
 }
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -226,29 +273,49 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
 /* Titles */
-h1{ font-size: 2em; }
-h2{ font-size: 1.5em; }
-h3{ font-size: 1.17em; }
-h4{ font-size: 1em; }
-h5{ font-size: .83em; }
-h6{ font-size: .67em; }
+h1 {
+  font-size: 2em;
+}
 
-.two-lines{
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: .83em;
+}
+
+h6 {
+  font-size: .67em;
+}
+
+.two-lines {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 2.8em;
 }
-body{
+
+body {
   color: #333;
 }
+
 /* Toast */
 .toast {
   position: fixed;
@@ -263,7 +330,8 @@ body{
   z-index: 99999999;
   align-items: center;
 }
-.toast-progress{
+
+.toast-progress {
   width: 0%;
   height: 2px;
   position: absolute;
@@ -272,19 +340,24 @@ body{
   transition: .5s;
   animation: widthToZero 4s linear;
 }
-.toast-message{
+
+.toast-message {
   margin: 5px;
 }
-.toast.error .toast-progress{
+
+.toast.error .toast-progress {
   background-color: #ff5252;
 }
-.toast.success .toast-progress{
+
+.toast.success .toast-progress {
   background-color: #4caf50;
 }
-.toast.error svg{
+
+.toast.error svg {
   fill: #ff5252;
 }
-.toast.success svg{
+
+.toast.success svg {
   fill: #4caf50;
 }
 
@@ -299,45 +372,54 @@ body{
   box-shadow: -1px 2px 5px 0 #00000044;
   cursor: pointer;
 }
-.toast-fade-in{
+
+.toast-fade-in {
   animation: fadeInUp 0.5s ease-in-out;
 }
-.toast-fade-out{
+
+.toast-fade-out {
   animation: fadeOutDown 0.5s ease-in-out;
 }
+
 @keyframes fadeInUp {
   from {
     transform: translate(-50%, 50%);
     opacity: 0;
   }
+
   to {
     transform: translate(-50%, -50%);
     opacity: 1;
   }
 }
+
 @keyframes fadeOutDown {
   from {
     transform: translate(-50%, -50%);
     opacity: 1;
   }
+
   to {
     transform: translate(-50%, 50%);
     opacity: 0;
   }
 }
+
 @keyframes widthToZero {
   from {
     width: 100%;
   }
+
   to {
     width: 0%;
   }
 }
 
-.click-effect{
+.click-effect {
   position: relative;
   overflow: hidden;
 }
+
 .click-effect::before {
   opacity: 0;
   position: absolute;
@@ -350,11 +432,13 @@ body{
   content: '';
   transition: transform 1s, opacity 1s;
 }
+
 .click-effect:active::before {
   opacity: 1;
   transform: translate(-50%, -50%) scale(0);
   transition: 0s;
 }
+
 .click-effect::after {
   opacity: 0;
   position: absolute;
@@ -367,6 +451,7 @@ body{
   content: '';
   transition: transform 2s, opacity 2s;
 }
+
 .click-effect:active::after {
   opacity: 1;
   transform: translate(-50%, -50%) scale(0);
@@ -383,12 +468,14 @@ body{
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
-.slide-enter-to, .slide-leave {
+.slide-enter-to,
+.slide-leave {
   max-height: 100px;
   overflow: hidden;
 }
 
-.slide-enter, .slide-leave-to {
+.slide-enter,
+.slide-leave-to {
   overflow: hidden;
   max-height: 0;
 }

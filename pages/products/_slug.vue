@@ -15,13 +15,13 @@
             <!-- Product id -->
 
                 <!--  -->
-                <div style="height: fit-content;"   class="w-full lg:w-3/5 lg:sticky lg:top-6">
+                <div style="height: fit-content;"   class="w-full lg:w-2/3 lg:sticky lg:top-6">
 
                     <div class="flex flex-wrap">
                         
                         <div class="w-full slider md:mx-4">
                             <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
-                                <si-image width="400" height="400" class="product-image h-full w-full absolute inset-0  object-cover md:rounded-xl" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                                    <si-image width="400" height="400" class="product-image h-full w-full absolute inset-0  object-cover md:rounded-xl" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                                
                                 <button class="mx-2 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover:bg-gray-200" @click="prev">
                                     <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -36,7 +36,7 @@
 
                                 <div v-if="$settings.sections.products.add_to_wishlist.active">
                                     <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 md:p-3.5 transition-all ease-linear delay-150  hover:bg-gray-200">
-                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red-500 align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                     </button>
                                     <button v-else @click="addToWishlist" title="Wishlist" class="bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 md:p-3.5 transition-all ease-linear delay-150 hover:bg-gray-200">
                                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
@@ -64,7 +64,7 @@
                     <!--  -->
 
               <!-- Product content -->
-              <div class="content-part w-full lg:w-2/5 px-2">
+              <div class="content-part w-full lg:w-1/3 px-2">
                   <div class="">
                       <div class="bg-white ">
 
@@ -465,6 +465,8 @@
         flex: 0 0 auto;
       }
 }
+
+
 
   </style>
   

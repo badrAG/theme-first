@@ -1,23 +1,25 @@
 <template>
     <div class="">
         <div class="collection-bg">
-            <div class="mx-auto">
+            <div class="mx-auto container">
                 <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl guard-cairo-font font-light px-4 pt-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.top_collections.title }}</h1>
             </div>
         </div>
         
         <div class="relative">
-            <div class="absolute md:h-1/2 w-full collection-bg" :class="items.length > 3? 'h-4/5' : 'h-1/2'"></div>
-            <ul class="lg:w-4/5 mx-auto flex flex-wrap justify-center p-4">
-                <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
-                    <nuxt-link class="my-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
-                    <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 lg:h-28 lg:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
-                </nuxt-link>
-                <nuxt-link class="line w-28" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
-                    <div style="text-align: center;" class="collection-text relative font-medium lg:font-bold text-sm lg:text-base">{{ item.name }}</div>
-                </nuxt-link>
-                </li>
-            </ul> 
+            <div class="absolute md:h-1/2 w-full collection-bg" :class="items.length > 3? 'h-3/4' : 'h-1/2'"></div>
+            <div class="small-container mx-auto">
+                <ul class="flex flex-wrap justify-center p-4">
+                    <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
+                        <nuxt-link class="my-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
+                            <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 md:h-28 md:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
+                        </nuxt-link>
+                        <nuxt-link class="line w-28" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
+                            <div style="text-align: center;" class="collection-text relative font-bold text-md-res md:text-base lg:text-base">{{ item.name }}</div>
+                        </nuxt-link>
+                    </li>
+                </ul> 
+            </div>
         </div>
 
         <!-- Collections not exists -->
@@ -36,9 +38,7 @@
             </div>
         </div>
         <!-- Collections not exists -->
-
     </div>
-
 </template>
 
 <script>
@@ -79,8 +79,38 @@ ul li:nth-child(-n+3) {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.collection-box:hover .collection-text{
-    text-decoration: underline;
-    text-underline-offset: 5px;
+.collection-box:hover .collection-text::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+.collection-box:hover .collection-text {
+  color: #000;
+  opacity: 0.7;
+}
+
+
+.collection-text {
+  position: relative;
+  text-decoration: none;
+}
+
+.collection-text::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2.5px;
+  background-color: #000;
+  opacity: 0.7;
+  bottom: -8px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .text-md-res {
+    font-size: 13px;
+  }
 }
 </style>
