@@ -79,7 +79,7 @@
                         <!-- Price  -->
                         <div class="flex justify-between items-center mb-4 mx-2">
                             <!-- Price -->
-                            <si-price class="flex items-center" :type="'simple'" :price="price" :variants="[]"></si-price>
+                            <si-product-price page="product-price" class="flex items-center" :type="'simple'" :price="price" :variants="[]"></si-product-price>
                             <!-- Price -->
 
                             <!-- Price -->

@@ -16,6 +16,7 @@ export default {
     props:{
         min: { type: Number, default: 0 },
         max: { type: Number, default: 0 }
+        
     },
     watch: {
         minVal: function(val) {

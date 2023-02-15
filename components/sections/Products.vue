@@ -27,7 +27,7 @@
       <!-- Products -->
       <div class="flex flex-wrap px-2 ">
         <div v-for="(item, i) in items" :key="i" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
-          <si-product-home :item="item"></si-product-home>
+          <si-product :item="item" page="home"></si-product>
         </div>
       </div>
       <!-- Products -->

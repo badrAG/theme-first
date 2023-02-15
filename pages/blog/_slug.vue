@@ -78,7 +78,7 @@
                         <!-- products  -->
                         <div class="px-2">
                             <div v-if="products.length > 0 && $settings.sections.blog.sidebar.products.active" class="w-full">
-                                <si-carousel :size="100" component="si-product-home" :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
+                                <si-carousel :size="100" component="si-product"  :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>
                             </div>
                         </div>
                         <!-- products -->

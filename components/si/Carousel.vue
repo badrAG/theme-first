@@ -7,7 +7,7 @@
       <div class="overflow-hidden carousel-container" dir="ltr">
         <div class="flex carousel" :style="`width: ${items.length*width}%`">
             <div v-for="(item,i) in items" :key="i" class="carousel-item p-1" :class="itemClass">
-              <component :is="component" :item="item"></component>
+              <component :is="component" page="home" :item="item"></component>
             </div>
         </div>
       </div>

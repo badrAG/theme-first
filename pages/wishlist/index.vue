@@ -8,7 +8,7 @@
             </div>
             <div class="flex flex-wrap  px-2">
                 <div v-for="(item, i) in items" :key="i" class="w-1/2 md:w-1/4 lg:w-1/5">
-                    <si-product @romve_wishlist="romve_wishlist" :item="item" ></si-product>
+                    <si-product :item="item" ></si-product>
                 </div>
             </div>
         </div>
@@ -41,28 +41,10 @@ export default {
         this.$store.state.seo.description = this.$settings.sections.wishlist.description || this.$settings.store_description;
         await this.initWishlist();
     },
-    // watch: { 
-    //     "store.state.whishlist": { 
-    //         async handler() { 
-    //             await this.initWishlist(); 
-    //             console.log("mouhmed")
-    //         }, 
-    //         deep: true 
-    //         } 
-    //     },
-
     watch: {
-        async "$store.state.whishlist"(val, oldVal){ 
+        async "$store.state.cart.length"(){
             await this.initWishlist();
-
-
-            console.log(val)
-            console.log(this.$store.state.wishlist)
-            console.log(oldVal)
         }
-    },
-    mounted() { 
-        console.log(this.$store.state.wishlist)
     },
     methods: {
         async initWishlist(){
@@ -80,11 +62,8 @@ export default {
             }
             this.loading.wishlist = false;
         },
-        async romve_wishlist(item){
-            console.log("jdfsk fhsjsfhsd jfsdjk")
-            console.log(item)            
-            // this.$tools.call('REMOVE_FROM_WISHLIST', item);
-            await this.initWishlist()
+        async remove(item){
+            this.$tools.call('REMOVE_FROM_WISHLIST', item);
         }
     },
 }
