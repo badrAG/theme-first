@@ -248,7 +248,7 @@
       async fetch() {
           const { slug } = this.$route.params;
           try{
-              const { data } = await this.$storeino.products.get({ slug })
+              const { data } = await this.$storeino.products.get({ slug,lang:'EN',cur:'USD' }) 
               this.item = data;
   
               this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;

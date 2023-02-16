@@ -1,4 +1,5 @@
 <template>
+    <!-- Content -->
     <div class="container my-6">
         <div v-if="items.length > 0">
             <div class="bg-white">
@@ -13,8 +14,8 @@
             </div>
         </div>
     </div>
-
-<!--  -->
+    <!-- Content -->
+    <!-- empty -->
     <div class="flex justify-center p-2">
         <div v-if="!loading.wishlist && items.length == 0" class="flex flex-col items-center">
             <h2 class="w-full text-center mb-3">{{ $settings.sections.wishlist.empty_text }}</h2>
@@ -25,7 +26,7 @@
             </nuxt-link>
         </div>
     </div>
-    <!--  -->
+    <!-- empty design -->
     </div>
 </template>
 <script>
@@ -42,13 +43,12 @@ export default {
         await this.initWishlist();
     },
     watch: {
-        async "$store.state.cart.length"(){
+        async "$store.state.wishlist"(){
             await this.initWishlist();
         }
     },
     methods: {
         async initWishlist(){
-            console.log("Init");
             this.items = [];
             const ids = this.$store.state.wishlist.map(item => item._id);
             this.loading.wishlist = true;
@@ -62,9 +62,6 @@ export default {
             }
             this.loading.wishlist = false;
         },
-        async remove(item){
-            this.$tools.call('REMOVE_FROM_WISHLIST', item);
-        }
     },
 }
 </script>

@@ -21,11 +21,11 @@
                    --buynow-text-rgb: {{ buynow_text_rgb.r }},{{ buynow_text_rgb.g  }}, {{ buynow_text_rgb.b }} ; --buynow-text-col: rgb(var(--buynow-text-rgb));          
                 }
             .bg-primary{ background-color: var(--primary-color); }
-            .bg-primary-border { border-color: var(--primary-color); }
             .bg-primary-hover:hover{ background-color: rgb(var(--primary-rgb)); }
             .text-primary{ color: var(--primary-color); }
             .header-bg {background-color: var(--header-color-bg);}
             .header-text-color {color: var(--header-text-col);}
+            .header-bg-border {border-color: var(--header-text-col);}
             .collection-bg {background-color: var(--collection-color-bg);}
             .collection-text-bg {color: var(--collection-text-col);}
             .testimonial-bg {background-color: var(--testimonial-color-bg);}

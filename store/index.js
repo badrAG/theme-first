@@ -20,6 +20,7 @@ const createStore = () => {
           settings: null,
           domain: 'www.storeino.com',
           apps: [],
+          // token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2M2VjYjI5MmYzMGI5ZTFkOGIzYzJlZTkifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjc2NDc2NDAzLCJleHAiOjE3MDgwMTI0MDN9.XJJ_kbd526wHtj_KT32ED18P1mDjz4-RcyGgFfPOJDc',
           token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MThmMDFlZjZmYWYzYzAxOWU1ZGEyZTEifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjc1ODQ3NjQ3LCJleHAiOjE3MDczODM2NDd9.dmA6bJF5fftbMsIvhd8oGtzy8ASwOLySFeUByCHr7Uo',
           primary: {
             rgb: { r:0, g:0, b:0 },
@@ -44,7 +45,7 @@ const createStore = () => {
           },
           //
           fullImage: null,
-          showHeaderMenu: false
+          showHeaderMenu: false,
         }
       },
       actions: ()=>{},

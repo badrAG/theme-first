@@ -1,5 +1,6 @@
 <template>
     <div class="container py-6 ">
+        <!-- Content -->
         <div class="p-2 px-4 mb-4">
             <h3 class="align-center font-semibold text-lg md:text-xl lg:text-2xl">{{ $settings.sections.bottom_collections.title }}</h3>
         </div>
@@ -10,6 +11,7 @@
                 </li>
             </ul> 
         </div>
+        <!-- Content -->
         <!-- Collections not exists -->
         <div v-if="!loading && items.length==0" class="flex flex-wrap items-center  bg-white p-2 mx-4 border rounded-xl box-shadow">
             <div class="w-full md:w-1/2 flex items-center justify-center md:items-start md:justify-start ">
@@ -25,7 +27,6 @@
         </div>
         <!-- Collections not exists -->
     </div>
-
 </template>
 
 <script>
@@ -36,17 +37,17 @@ export default {
             loading: true
         }
     },
-  async fetch(){
-      try{
-          const filter = {};
-          if(this.$settings.sections.bottom_collections.items.length > 0){
-            this.items = this.$settings.sections.bottom_collections.items;
-          }else{
-            const { data } = await this.$storeino.collections.search(filter)
-            this.items = data.results;
-          }
-      }catch(e){
-        console.log({e});
+    async fetch(){
+        try{
+            const filter = {};
+            if(this.$settings.sections.bottom_collections.items.length > 0){
+                this.items = this.$settings.sections.bottom_collections.items;
+            }else{
+                const { data } = await this.$storeino.collections.search(filter)
+                this.items = data.results;
+            }
+        }catch(e){
+            console.log({e});
       }
       this.loading = false;
   },
@@ -54,10 +55,9 @@ export default {
 </script>
 
 <style scoped>
-
-/* @media (min-width: 1024px) { 
-    ul li:last-child {
+@media (min-width: 1024px) { 
+    ul li:nth-child(6n-0) {
         display: none;
     }
-} */
+}
 </style>

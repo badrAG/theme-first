@@ -2,7 +2,7 @@
     <div class="">
         <div class="collection-bg">
             <div class="mx-auto container">
-                <h1 class="text-3xl lg:text-4xl guard-cairo-font font-light px-4 pt-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.top_collections.title }}</h1>
+                <h1 class="text-3xl lg:text-4xl guard-cairo-font font-light p-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.top_collections.title }}</h1>
             </div>
         </div>
         
