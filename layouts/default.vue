@@ -1,27 +1,45 @@
 <template>
     <div>
         <component :is="'style'">
-            :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); 
-                   --header-rgb: {{ header_rgb.r }},{{ header_rgb.g  }}, {{ header_rgb.b }} ; --header-color-bg: rgb(var(--header-rgb)); 
-                   --header-text-rgb: {{ header_text_rgb.r }},{{ header_text_rgb.g  }}, {{ header_text_rgb.b }} ; --header-text-col: rgb(var(--header-text-rgb));          
-                   --collection-rgb: {{ collection_rgb.r }},{{ collection_rgb.g  }}, {{ collection_rgb.b }} ; --collection-color-bg: rgb(var(--collection-rgb));          
-                   --collection-text-rgb: {{ collection_text_rgb.r }},{{ collection_text_rgb.g  }}, {{ collection_text_rgb.b }} ; --collection-text-col: rgb(var(--collection-text-rgb));          
-                  
-                   --products-price-rgb: {{ products_price_rgb.r }},{{ products_price_rgb.g  }}, {{ products_price_rgb.b }} ; --products-price-col: rgb(var(--products-price-rgb));          
-                   --products-delprice-rgb: {{ products_delprice_rgb.r }},{{ products_delprice_rgb.g  }}, {{ products_delprice_rgb.b }} ; --products-delprice-col: rgb(var(--products-delprice-rgb));          
-                   --testimonial-rgb: {{ testimonial_rgb.r }},{{ testimonial_rgb.g  }}, {{ testimonial_rgb.b }} ; --testimonial-color-bg: rgb(var(--testimonial-rgb));          
-                   --testimonial-text-rgb: {{ testimonial_text_rgb.r }},{{ testimonial_text_rgb.g  }}, {{ testimonial_text_rgb.b }} ; --testimonial-text-col: rgb(var(--testimonial-text-rgb));          
-                   --footer-color-rgb: {{ footer_color_rgb.r }},{{ footer_color_rgb.g  }}, {{ footer_color_rgb.b }} ; --footer-color-bg: rgb(var(--footer-color-rgb));          
-                   --footer-text-rgb: {{ footer_text_rgb.r }},{{ footer_text_rgb.g  }}, {{ footer_text_rgb.b }} ; --footer-text-col: rgb(var(--footer-text-rgb));          
-                   --copyright-color-rgb: {{ copyright_color_rgb.r }},{{ copyright_color_rgb.g  }}, {{ copyright_color_rgb.b }} ; --copyright-color-bg: rgb(var(--copyright-color-rgb));          
-                   --copyright-text-rgb: {{ copyright_text_rgb.r }},{{ copyright_text_rgb.g  }}, {{ copyright_text_rgb.b }} ; --copyright-text-col: rgb(var(--copyright-text-rgb));          
-                   --addtocart-rgb: {{ addtocart_rgb.r }},{{ addtocart_rgb.g  }}, {{ addtocart_rgb.b }} ; --addtocart-color-bg: rgb(var(--addtocart-rgb)); 
-                   --addtocart-text-rgb: {{ addtocart_text_rgb.r }},{{ addtocart_text_rgb.g  }}, {{ addtocart_text_rgb.b }} ; --addtocart-text-col: rgb(var(--addtocart-text-rgb));          
-                   --buynow-rgb: {{ buynow_rgb.r }},{{ buynow_rgb.g  }}, {{ buynow_rgb.b }} ; --buynow-color-bg: rgb(var(--buynow-rgb));          
-                   --buynow-text-rgb: {{ buynow_text_rgb.r }},{{ buynow_text_rgb.g  }}, {{ buynow_text_rgb.b }} ; --buynow-text-col: rgb(var(--buynow-text-rgb));          
-                }
+            :root{  
+                --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; 
+                --primary-color: rgb(var(--primary-rgb)); 
+                --header-rgb: {{ header_rgb.r }},{{ header_rgb.g  }}, {{ header_rgb.b }} ; 
+                --header-color-bg: rgb(var(--header-rgb)); 
+                --header-text-rgb: {{ header_text_rgb.r }},{{ header_text_rgb.g  }}, {{ header_text_rgb.b }} ; 
+                --header-text-col: rgb(var(--header-text-rgb));          
+                --collection-rgb: {{ collection_rgb.r }},{{ collection_rgb.g  }}, {{ collection_rgb.b }} ; 
+                --collection-color-bg: rgb(var(--collection-rgb));          
+                --collection-text-rgb: {{ collection_text_rgb.r }},{{ collection_text_rgb.g  }}, {{ collection_text_rgb.b }} ; 
+                --collection-text-col: rgb(var(--collection-text-rgb));          
+                --products-price-rgb: {{ products_price_rgb.r }},{{ products_price_rgb.g  }}, {{ products_price_rgb.b }} ; 
+                --products-price-col: rgb(var(--products-price-rgb));          
+                --products-delprice-rgb: {{ products_delprice_rgb.r }},{{ products_delprice_rgb.g  }}, {{ products_delprice_rgb.b }} ; 
+                --products-delprice-col: rgb(var(--products-delprice-rgb));          
+                --testimonial-rgb: {{ testimonial_rgb.r }},{{ testimonial_rgb.g  }}, {{ testimonial_rgb.b }} ; 
+                --testimonial-color-bg: rgb(var(--testimonial-rgb));          
+                --testimonial-text-rgb: {{ testimonial_text_rgb.r }},{{ testimonial_text_rgb.g  }}, {{ testimonial_text_rgb.b }} ; 
+                --testimonial-text-col: rgb(var(--testimonial-text-rgb));          
+                --footer-color-rgb: {{ footer_color_rgb.r }},{{ footer_color_rgb.g  }}, {{ footer_color_rgb.b }} ; 
+                --footer-color-bg: rgb(var(--footer-color-rgb));          
+                --footer-text-rgb: {{ footer_text_rgb.r }},{{ footer_text_rgb.g  }}, {{ footer_text_rgb.b }} ; 
+                --footer-text-col: rgb(var(--footer-text-rgb));          
+                --copyright-color-rgb: {{ copyright_color_rgb.r }},{{ copyright_color_rgb.g  }}, {{ copyright_color_rgb.b }} ; 
+                --copyright-color-bg: rgb(var(--copyright-color-rgb));          
+                --copyright-text-rgb: {{ copyright_text_rgb.r }},{{ copyright_text_rgb.g  }}, {{ copyright_text_rgb.b }} ; 
+                --copyright-text-col: rgb(var(--copyright-text-rgb));          
+                --addtocart-rgb: {{ addtocart_rgb.r }},{{ addtocart_rgb.g  }}, {{ addtocart_rgb.b }} ; 
+                --addtocart-color-bg: rgb(var(--addtocart-rgb)); 
+                --addtocart-text-rgb: {{ addtocart_text_rgb.r }},{{ addtocart_text_rgb.g  }}, {{ addtocart_text_rgb.b }} ; 
+                --addtocart-text-col: rgb(var(--addtocart-text-rgb));          
+                --buynow-rgb: {{ buynow_rgb.r }},{{ buynow_rgb.g  }}, {{ buynow_rgb.b }} ; 
+                --buynow-color-bg: rgb(var(--buynow-rgb));          
+                --buynow-text-rgb: {{ buynow_text_rgb.r }},{{ buynow_text_rgb.g  }}, {{ buynow_text_rgb.b }} ; 
+                --buynow-text-col: rgb(var(--buynow-text-rgb));          
+            }
             .bg-primary{ background-color: var(--primary-color); }
             .bg-primary-hover:hover{ background-color: rgb(var(--primary-rgb)); }
+            .bg-primary-border { border-color: var(--primary-color); }
             .text-primary{ color: var(--primary-color); }
             .header-bg {background-color: var(--header-color-bg);}
             .header-text-color {color: var(--header-text-col);}

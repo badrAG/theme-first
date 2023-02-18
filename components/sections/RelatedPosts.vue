@@ -6,7 +6,7 @@
       </div>
       <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full " v-if="$settings.sections.posts.show_more_text">
         <nuxt-link class="text-sm md:text-base font-medium text-center" to="/blog">
-          <span class="">{{ $settings.sections.posts.show_more_text }}</span>
+          <span class="">{{ $settings.sections.posts.show_more_text}}</span>
         </nuxt-link>
       </div>
     </div>

@@ -1,19 +1,22 @@
 <template>
-<div class="container">
-    <div class="flex flex-wrap flex-row justify-between py-6 px-2 md:px-0">
-      <div class="flex w-1/2 md:w-1/4" v-for="(item, i) in items" :key="i">
-        <div class="flex items-center py-4">
-            <nuxt-link :to="item.url" class="flex items-center">
-                <si-image width="80" height="80" class="service mx-2 md:mx-4 w-12 h-12 sm:h-14 sm:w-14 lg:w-16 lg:h-16 object-cover opacity-90" :src="item.image ? item.image.src : null" :alt="item.text"/>
-                <div>
-                    <b class="pb-2 text-sm md:text-base font-bold">{{ item.text }}</b>
-                    <p class="pt-2 text-xs md:text-sm font-normal ">{{ item.description }}</p>
-                </div>
-            </nuxt-link>
+    <div class="container py-4">
+        <div class="p-2 px-4 mb-4">
+            <h3 class="align-center font-semibold text-lg md:text-xl lg:text-2xl">{{ $settings.sections.services.title }}</h3>
         </div>
-      </div>
+        <div class="services flex flex-wrap justify-between items-center px-2">
+            <div class="service flex w-full sm:w-1/2 lg:w-1/4 p-2" v-for="(item, i) in items" :key="i">
+                <div class="w-full bg-white border border-gray-200 rounded-xl transition-all ease-linear box-shadow-x-hover overflow-hidden">
+                    <nuxt-link :to="item.url" class="flex items-center">
+                        <si-image width="80" height="80" class="w-20 h-20 p-2 object-cover opacity-80 bg-gray-50" :src="item.image ? item.image.src : null" :alt="item.text"/>
+                        <div class="mx-2">
+                            <b class="text-base font-bold mb-1">{{ item.text }}</b>
+                            <p class="text-base font-normal mt-1">{{ item.description }}</p>
+                        </div>
+                    </nuxt-link>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </template>
 <script>
 export default {
@@ -21,7 +24,7 @@ export default {
         return {
             items: [
                 {
-                    image: { src: 'https://cdn-icons-png.flaticon.com/512/7610/7610711.png' },
+                    image: { src: 'https://cdn-icons-png.flaticon.com/512/1585/1585176.png' },
                     text: this.$settings.sections.services.items.delivery.text,
                     url: this.$settings.sections.services.items.delivery.url,
                     description: this.$settings.sections.services.items.delivery.description,
@@ -33,7 +36,7 @@ export default {
                     description: this.$settings.sections.services.items.satisfaction.description,
                 },
                 {
-                    image: { src: 'https://cdn-icons-png.flaticon.com/512/1534/1534216.png' },
+                    image: { src: 'https://cdn-icons-png.flaticon.com/512/4301/4301797.png' },
                     text: this.$settings.sections.services.items.quality.text,
                     url: this.$settings.sections.services.items.quality.url,
                     description: this.$settings.sections.services.items.quality.description,
@@ -49,11 +52,10 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-/* [dir="rtl"] .service {
-    margin-left: 1rem;
-    margin-right: 0;
-
+<style>
+/* @media (min-width: 768px) and (max-width:1024px){
+    .services  .service:nth-child(4n-0) {
+        width: 100%
+    }
 } */
 </style>

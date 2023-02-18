@@ -11,7 +11,7 @@
       <div class="flex flex-wrap justify-between mx-2">
         <!--  -->
         <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-          <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 0">
+          <div class="border border-gray-200 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 0">
 
             <nuxt-link :to="`/shop/${collections[0].slug}`" :title="collections[0].name" :aria-label="collections[0].name">
               <div class="icon-box flex items-center justify-between px-4 py-3">
@@ -43,7 +43,7 @@
           
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 1">
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 1">
 
               <nuxt-link :to="`/shop/${collections[1].slug}`" :title="collections[1].name" :aria-label="collections[1].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3 ">
@@ -75,7 +75,7 @@
 
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 2">
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 2">
 
               <nuxt-link :to="`/shop/${collections[2].slug}`" :title="collections[2].name" :aria-label="collections[2].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3">
@@ -107,7 +107,7 @@
 
           <!--  -->
           <div class="w-full sm:w-2/4 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0 block md:hidden lg:block">
-            <div class="border border-gray-300 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 3">
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden" v-if="this.collections.length > 3">
               <nuxt-link :to="`/shop/${collections[3].slug}`" :title="collections[3].name" :aria-label="collections[3].name">
                 <div class="icon-box flex items-center justify-between px-4 py-3">
                   <div class="flex items-center" >

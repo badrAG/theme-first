@@ -56,7 +56,7 @@
 
                         <transition name="slide">
                             <div class="relative" >
-                                <div v-if="item._id == activeId" class="absolute header-bg shadow-lg z-20 border p-4" :class="menu? 'top-9.5' : 'top-2.8'" >
+                                <div v-if="item._id == activeId" class="absolute header-bg shadow-lg z-20 border p-4" :class="menu? 'top-10' : 'top-3'" >
                                     <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
                                         <a class="text-sm hover:underline" :href="item.url">{{item.text}}</a>
                                         <ul v-if="item.childrens && item.childrens.length > 0">
@@ -222,14 +222,6 @@ export default {
 
 .svg-color {
     fill: var(--header-text-col);
-}
-
-.top-9\.5 {
-    top: 39px;
-}
-
-.top-2\.8 {
-    top: 11px;
 }
 
 @media only screen and (min-width: 0) and (max-width: 899px){

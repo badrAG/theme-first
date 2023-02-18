@@ -1,12 +1,12 @@
 <template>
     <!-- Content -->
     <div class="container my-6">
+        <div v-if="loading.wishlist" class="flex justify-center items-center my-5">
+            <si-loader></si-loader>
+        </div>
         <div v-if="items.length > 0">
             <div class="bg-white">
             <h2 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-4">{{ $settings.sections.wishlist.title }}</h2>
-            <div v-if="loading.wishlist" class="flex justify-center items-center my-5">
-                <si-loader></si-loader>
-            </div>
             <div class="flex flex-wrap  px-2">
                 <div v-for="(item, i) in items" :key="i" class="w-1/2 md:w-1/4 lg:w-1/5">
                     <si-product :item="item" ></si-product>

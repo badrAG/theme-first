@@ -93,7 +93,7 @@
 }
 
 [dir="rtl"] body {
-  font-family: 'Cairo', sans-serif !important;
+  font-family: 'Cairo', sans-serif;
 }
 
 body {
@@ -323,7 +323,7 @@ body {
   bottom: 20px;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white !important;
+  background-color: #fff;
   box-shadow: 0 5px 10px 0px #00000044;
   border-radius: 5px;
   padding: 10px 20px;
