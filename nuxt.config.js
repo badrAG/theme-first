@@ -11,7 +11,8 @@ export default {
   target: 'server',
   css: [
     '~/assets/css/icons.css',
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    '~/assets/css/fontCss.css'
   ],
   plugins: [
     '~/plugins/tools.js',
@@ -26,7 +27,6 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
-    'storeino-theme-modulevx00',
     '@nuxtjs/fontawesome'
   ],
   fontawesome: {

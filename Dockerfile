@@ -1,5 +1,3 @@
-
-
 FROM node:12-alpine
 
 WORKDIR /app
@@ -14,4 +12,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["pm2-runtime", "start","npm","--name","theme-esty","--","run","start"]
+CMD ["pm2-runtime", "start","npm","--name","theme-palest","--","run","start"]

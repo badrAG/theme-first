@@ -9,23 +9,22 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.2.1",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^2.0.9",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "config": "^3.3.6",
     "core-js": "^3.15.1",
     "express": "^4.17.1",
     "fontawesome-free": "^1.0.4",
-    "nuxt": "^2.15.7",
-    "storeino-theme-modulevx00": "^1.0.1"
+    "nuxt": "^2.15.7"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@nuxtjs/fontawesome": "^1.1.2",
-    "@nuxtjs/tailwindcss": "^4.2.1",
+    "@nuxtjs/tailwindcss": "^4.2.0",
     "postcss": "^8.3.5"
   }
 }

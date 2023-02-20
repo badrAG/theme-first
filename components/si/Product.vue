@@ -2,7 +2,7 @@
     <div>
         <!-- home page -->
         <div v-if="page == 'home'" class="wishlist-box ">
-            <div  class="image_box pb-4/7 relative ">
+            <div  class="image_box pb-4/7 relative rounded-xl box-shadow box-shadow-xs-hover">
                 <!-- wishlist icon -->
                 <div class="wishlist block md:hidden" v-if="$settings.sections.products.add_to_wishlist.active">
                     <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white  hover:bg-gray-100 rounded-full absolute z-10 top-0 right-0 m-2 p-2">
@@ -16,7 +16,7 @@
                 
                 <!--  products image -->
                 <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
-                    <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover rounded-lg" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
+                    <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover rounded-xl" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                     </nuxt-link>
                     <!--  products image -->
 
@@ -28,7 +28,7 @@
         <!-- home page -->
 
         <!-- else pages -->
-        <div v-else class="wishlist-box flex flex-col relative p-2 mb-5 rounded-xl ">
+        <div v-else class="wishlist-box flex flex-col relative p-2 mb-5 rounded-xl box-shadow-xs-hover">
           <!-- wishlist icon -->
           <div class="wishlist block md:hidden" v-if="$settings.sections.products.add_to_wishlist.active">
                 <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white hover:bg-gray-100 rounded-full absolute z-10 top-0 right-0 m-4 p-2">
