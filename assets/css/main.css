@@ -366,24 +366,28 @@ body {
   transition: 0s;
 }
 
-.slide-enter-active {
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in;
+.slide-left-enter-active {
+  animation: slide-left-in 0.5s;
 }
 
-.slide-leave-active {
-  transition-duration: 0.3s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+.slide-left-leave-active {
+  animation: slide-left-out 0.5s;
 }
 
-.slide-enter-to,
-.slide-leave {
-  max-height: 100px;
-  overflow: hidden;
+@keyframes slide-left-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
-.slide-enter,
-.slide-leave-to {
-  overflow: hidden;
-  max-height: 0;
+@keyframes slide-left-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }

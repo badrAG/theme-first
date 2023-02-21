@@ -3,7 +3,7 @@
 
         <div class="flex my-6 relative">
             <!-- Slider left -->
-            <transition name="slideleft">
+            <transition name="slide-left">
                 <div :class="showSideBar ? 'show':'hide'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-50 overflow-y-auto">
                     
                     <!-- show slider left -->
@@ -21,7 +21,7 @@
                         <!-- close slider left -->
 
                         <!-- Collection title  -->
-                        <h2 v-if="$settings.sections.shop.sidebar.collections.active" class="mb-2 px-4 text-xl font-bold">{{ $settings.sections.shop.sidebar.collections.title }}</h2>
+                        <h2 v-if="$settings.sections.shop.sidebar.collections.active" class="mb-2 px-4 text-base font-bold">{{ $settings.sections.shop.sidebar.collections.title }}</h2>
                         <!-- Collection title -->
 
                         <!-- Collections type -->
@@ -29,7 +29,7 @@
                             <div v-if="loading.collections" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
-                            <div v-for="(item, i) in collections" :key="i" class="flex items-center px-4 mb-2">
+                            <div v-for="(item, i) in collections" :key="i" class="flex items-center px-4 mb-2 text-sm font-normal">
                                 <label class="relative flex items-center cursor-pointer">
                                     <input type="checkbox" class="form-checkbox absolute top-0 left-0" style="z-index: -1" :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0" :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)">
                                     <div class="bg-white border border-gray-400  w-4 h-4 flex justify-center items-center">
@@ -44,7 +44,7 @@
                         <!-- <hr v-if="$settings.sections.shop.sidebar.collections.active"> -->
 
                         <!-- price-range  -->
-                        <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="mb-2 px-4 text-xl font-bold">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
+                        <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="mb-2 px-4 text-base font-bold">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
                         <div v-if="loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
@@ -56,11 +56,11 @@
                         <!-- <hr v-if="$settings.sections.shop.sidebar.prices.active"> -->
 
                         <!-- sizes -->
-                        <h2 class="mb-2 px-4 text-xl font-bold" v-if="$settings.sections.shop.sidebar.sizes.active">{{ $settings.sections.shop.sidebar.sizes.title }}</h2>
+                        <h2 class="mb-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.sizes.active">{{ $settings.sections.shop.sidebar.sizes.title }}</h2>
                         <div v-if="$settings.sections.shop.sidebar.sizes.active && loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="$settings.sections.shop.sidebar.sizes.active && filters" class="flex flex-wrap mx-4 mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.sizes.active && filters" class="flex flex-wrap  mx-4 mb-2 text-sm font-normal">
                             <div v-for="(item, i) in filters.sizes" :key="i" class="flex items-center m-0.5 rounded-md box-shadow box-shadow-xs-hover" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'bg-primary text-white' : 'bg-white' ">
                                 <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
@@ -71,11 +71,11 @@
                         <!-- <hr v-if="$settings.sections.shop.sidebar.sizes.active"> -->
 
                         <!-- colors -->
-                        <h2 class="my-2 px-4 text-xl font-bold" v-if="$settings.sections.shop.sidebar.colors.active">{{ $settings.sections.shop.sidebar.colors.title }}</h2>
+                        <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.colors.active">{{ $settings.sections.shop.sidebar.colors.title }}</h2>
                         <div v-if="$settings.sections.shop.sidebar.colors.active && loading.filters" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
-                        <div v-if="$settings.sections.shop.sidebar.colors.active && filters" class="flex flex-wrap mx-4 mb-2">
+                        <div v-if="$settings.sections.shop.sidebar.colors.active && filters" class="flex flex-wrap mx-4 mb-2 text-sm font-normal">
                             <div v-for="(item, i) in filters.colors" :key="i" class="flex items-center my-0.5 color-option" :class="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0 ? 'active' : '' ">
                                 <input hidden :id="item.value1" :checked="params['options.values.value1'] && params['options.values.value1'].indexOf(item.value1) >= 0" @change="setParams($event, 'options.values.value1', item.value1)" type="checkbox"/>
                                 <label class="cursor-pointer rounded-full box-shadow box-shadow-xs-hover" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
@@ -86,13 +86,13 @@
                         <!-- <hr v-if="$settings.sections.shop.sidebar.colors.active"> -->
 
                         <!--  -->
-                        <h2 class="my-2 px-4 text-xl font-bold" v-if="$settings.sections.shop.sidebar.tags.active">{{ $settings.sections.shop.sidebar.tags.title }}</h2>
+                        <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.tags.active">{{ $settings.sections.shop.sidebar.tags.title }}</h2>
                         
                         <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                             <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
-                            <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-4 mb-2">
+                            <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-4 mb-2 text-sm font-normal">
                                 <label class="relative flex items-center cursor-pointer">
                                     <input type="checkbox" class="form-checkbox absolute top-0 left-0" style="z-index: -1" :checked="params['tags-in'] && params['tags-in'].indexOf(tag) >= 0" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)">
                                     <div class="bg-white border border-gray-400  w-4 h-4 flex justify-center items-center">
@@ -117,13 +117,13 @@
                         <!-- <hr v-if="$settings.sections.shop.sidebar.tags.active"> -->
 
                         <!--  -->
-                        <h2 class="my-2 px-4 text-xl font-bold" v-if="$settings.sections.shop.sidebar.brands.active">{{ $settings.sections.shop.sidebar.brands.title }}</h2>
+                        <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.brands.active">{{ $settings.sections.shop.sidebar.brands.title }}</h2>
 
                         <div v-if="$settings.sections.shop.sidebar.collections.active" class="flex flex-col mb-2  bg-white">
                             <div v-if="$settings.sections.shop.sidebar.brands.active && loading.brands" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
-                            <div v-for="(item, i) in brands" :key="i" class="flex items-center px-4 mb-2">
+                            <div v-for="(item, i) in brands" :key="i" class="flex items-center px-4 mb-2 text-sm font-normal">
                                 <label class="relative flex items-center cursor-pointer">
                                     <input type="checkbox" class="form-checkbox absolute top-0 left-0" style="z-index: -1" :id="item.slug" :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0" @change="setParams($event, 'brand.slug-in', item.slug)">
                                     <div class="bg-white border border-gray-400  w-4 h-4 flex justify-center items-center">
@@ -224,9 +224,11 @@
                                 <span class="text-sm font-bold">{{ paginate.last_page }}</span>
                             </button> 
                         </div>
-                        <button v-else class="mx-2 h-10 w-10 bg-gray-200 rounded-full transition-all ease-linear delay-200 hover:bg-gray-400 box-shadow" :class="paginate.last_page == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page)">
-                            <span class="text-sm font-bold">{{ paginate.last_page }}</span>
-                        </button> 
+                        <div v-else>
+                            <button v-if="paginate.last_page > 0" class="mx-2 h-10 w-10 bg-gray-200 rounded-full transition-all ease-linear delay-200 hover:bg-gray-400 box-shadow" :class="paginate.last_page == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page)">
+                                <span class="text-sm font-bold">{{ paginate.last_page }}</span>
+                            </button> 
+                        </div>
                         <!-- pages -->
                         <!-- chivron right -->
                         <button class="mx-2 flex items-center bg-gray-200 hover:bg-gray-400 p-3.5 rounded-full transition-all ease-linear delay-200" @click="getItems(paginate.current_page+1)">
@@ -234,9 +236,9 @@
                         </button>
                         <!-- chivron right -->
                     </div>
-                    <div class="flex justify-center items-center">
+                    <!-- <div class="flex justify-center items-center">
                         <span class="text-md font-bold mx-4">{{paginate.current_page}}/{{paginate.last_page}}</span>
-                    </div>
+                    </div> -->
                     <!-- Pagination -->
                 </div>
             </div>
@@ -410,7 +412,7 @@ export default {
     },
 }
 </script>
-<style>
+<style scoped>
 [dir='rtl'] svg.translate{
   transform: rotateY(180deg);
 }
@@ -421,8 +423,8 @@ export default {
 }
 
 select {
-   -webkit-appearance: none;
-  -moz-appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
   appearance: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' aria-hidden='true' focusable='false'><polygon points='8.25 5 6 7 3.75 5 8.25 5'/></svg>");
   background-repeat: no-repeat;

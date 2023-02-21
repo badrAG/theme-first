@@ -121,7 +121,6 @@
           <!-- menu3 -->
 
           <!-- payment_methods  -->
-          <!-- style="filter: brightness(0) invert(1); " -->
           <div class="payment_methods w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
             <div @click="showPaymentMethods" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all delay-00 ease-linear hover:bg-gray-500 px-3 mx-1 md:hover:bg-transparent">
               <h4 class="text-base font-bold">{{ footer.methods.title }}</h4>
@@ -143,10 +142,10 @@
          <!--  Social Media -->
           <div class="Social_Media pb-8 mt-2 md:mt-4">
             <h3 class="text-base font-bold mb-4 text-center">{{ footer.social_media.title }}</h3>
-            <div class="flex items-center justify-center flex-wrap">
+            <div class="flex items-center justify-center flex-wrap mx-2">
               <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
                   <a class="h-full flex hover:opacity-60" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
-                      <fa class="text-2xl mx-2" :icon="['fab', item.name]"></fa>
+                      <fa class="text-2xl sm:mx-1 md:mx-2" :icon="['fab', item.name]"></fa>
                   </a>
               </div>
             </div>

@@ -3,9 +3,9 @@
     <!-- title  -->
     <div class="flex items-center justify-between mb-2 mx-4">
       <div class="">
-        <h2 class="text-lg md:text-xl font-medium px-2">{{ this.$settings.sections.product.related.title}}</h2>
+        <h2 class="text-lg md:text-xl font-medium">{{ this.$settings.sections.product.related.title}}</h2>
       </div>
-      <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full " v-if="$settings.sections.products_1.show_more_text">
+      <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full" v-if="$settings.sections.products_1.show_more_text">
         <nuxt-link class="text-md font-bold text-center" to="/shop">
           <span class="">{{ $settings.sections.products_1.show_more_text }}</span>
         </nuxt-link>

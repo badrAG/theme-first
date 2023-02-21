@@ -2,7 +2,7 @@
         <div class="container my-6 ">
           <div class="flex relative">
             <!-- slider left  -->
-              <transition name="slideleft" v-if="$settings.sections.blog.sidebar.active">
+              <transition name="slide-left" v-if="$settings.sections.blog.sidebar.active">
                 <!-- show slider content -->
                 <div :class="showSideBar ? 'show':'hide'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-10">
                     <div class="bg-black bg-opacity-50 fixed block inset-0" @click="showSideBar=false"></div>
@@ -15,14 +15,11 @@
                         </div>
                         <!-- close -->
                         <!-- Category -->
-                        <h3 v-if="$settings.sections.blog.sidebar.categories.active" class="px-4 text-2xl font-bold mb-2">{{ $settings.sections.blog.sidebar.categories.title }}</h3>
+                        <h3 v-if="$settings.sections.blog.sidebar.categories.active" class="px-4 text-base font-bold mb-2">{{ $settings.sections.blog.sidebar.categories.title }}</h3>
                         <!-- Category -->
                         <!-- Select category -->
                         <div v-if="$settings.sections.blog.sidebar.categories.active" class="flex flex-col mb-2">
-                            <div v-if="loading.categories" class="flex justify-center items-center my-5">
-                                <si-loader></si-loader>
-                            </div>
-                            <div v-for="(item, i) in categories" :key="i" class="flex items-center px-4 mb-2">
+                            <div v-for="(item, i) in categories" :key="i" class="flex items-center px-4 mb-2 text-sm font-normal">
                                 <label class="relative flex items-center cursor-pointer">
                                     <input type="checkbox" class="form-checkbox absolute top-0 left-0" style="z-index: -1" :id="item.slug" @change="setParams($event, 'categories.slug-in', item.slug)">
                                     <div class="bg-white border border-gray-400  w-4 h-4 flex justify-center items-center">
@@ -39,7 +36,7 @@
               <!-- slider left -->
 
               <!-- blogs -->
-              <div v-if="items.length > 0"  class="w-full">
+              <div class="w-full">
                   <div class="bg-white">
                         <!-- icons -->
                         <div class="mb-4">
@@ -60,22 +57,23 @@
                             </div>
                         </div>
                         <!-- icons -->
-
                         <!-- Loader -->
                         <div v-if="loading.pages" class="flex justify-center items-center my-5">
                             <si-loader></si-loader>
                         </div>
                         <!-- Loader -->
-
-                        <!-- Posts (No blogs)-->
+                        <!-- Posts-->
                         <div class="flex flex-wrap px-2">
                             <div v-for="(item, i) in items" :key="i" class="w-full sm:w-1/2 md:w-1/3 p-2">
                                 <si-post :item="item"></si-post>
                             </div>
                         </div>
-                        <!-- Posts (No blogs)-->
+                        <!-- Posts -->
 
                         <!-- products  -->
+                        <div v-if="!loading.pages && loading.categories" class="flex justify-center items-center my-5">
+                            <si-loader></si-loader>
+                        </div>
                         <div class="px-2">
                             <div v-if="products.length > 0 && $settings.sections.blog.sidebar.products.active" class="w-full">
                                 <si-carousel :size="100" component="si-product"  :title="$settings.sections.blog.sidebar.products.title" :list="products" itemClass="w-full"></si-carousel>

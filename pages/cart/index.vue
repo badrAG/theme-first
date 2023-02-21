@@ -1,6 +1,11 @@
 <template>
     <div class="container my-6">
         <div>
+            <!-- Loader -->
+            <div v-if="loading.cart" class="flex justify-center items-center my-5">
+                <si-loader></si-loader>
+            </div>
+            <!-- Loader -->
             <div v-if="items.length > 0" class="flex flex-wrap lg:flex-nowrap justify-between">
                 <!-- Products -->
                 <div class="w-full lg:w-4/6 ">
@@ -8,11 +13,7 @@
                     <h2 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-6">{{$settings.sections.cart.title}}</h2>
                     <!-- Cart title -->
     
-                    <!-- Loader -->
-                    <div v-if="loading.cart" class="flex justify-center items-center my-5">
-                        <si-loader></si-loader>
-                    </div>
-                    <!-- Loader -->
+
     
                     <!-- cart -->
                     <div class="cart-items flex flex-col">
@@ -50,12 +51,14 @@
             </div>
  
             <!-- Upsell -->
+            
+            <div v-if="!loading.cart && loading.upsells" class="flex justify-center items-center my-5">
+                <si-loader></si-loader>
+            </div>
+
             <div class="flex flex-col bg-white mt-6" v-if="!loading.cart && items.length > 0">
                 <div class="mx-4 mb-1" v-if="upsells.length > 0">
                     <h2 class="text-2xl">{{ $settings.sections.cart.upsell.title }}</h2>
-                </div>
-                <div v-if="loading.upsells" class="flex justify-center items-center my-5">
-                    <si-loader></si-loader>
                 </div>
                 <div class="flex flex-wrap" v-if="upsells.length > 0">
                     <template v-for="(upsell, i) in upsells">

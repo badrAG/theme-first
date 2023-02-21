@@ -45,10 +45,10 @@
             <!-- Product discount -->
     
             <!-- Products details -->
-            <div class="h-full flex relative overflow-hidden">
+            <div class="h-full flex relative ">
                 <div class="w-full flex flex-col h-full">
                   <!--  -->
-                    <div class="image_box pb-4/5 relative zoom overflow-hidden rounded-lg">
+                    <div class="image_box pb-4/5 relative zoom overflow-hidden rounded-lg box-shadow">
                         <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                             <si-image  width="400" height="400" class="image_zoom h-full w-full absolute inset-0 object-cover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                         </nuxt-link>
@@ -172,7 +172,7 @@ export default {
 </script>
     <style scoped>
     .wishlist-box { 
-        transition: transform 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
     
     .wishlist {
