@@ -29,7 +29,7 @@
               </div>
 
               <div class="flex flex-wrap image-box">
-              <div v-for="(item, i) in products_0.slice(0,4)" :key="i" class="w-2/4 image">
+              <div v-for="(item, i) in products_0.slice(0,4)" :key="i" class="w-2/4 image box-shadow">
                 <div class="pb-4/5 relative zoom overflow-hidden hover:opacity-80">
                       <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                           <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover box-shadow-hover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>

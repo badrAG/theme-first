@@ -109,6 +109,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       // StoreinoApp.component('l-icon', LIcon);
       // StoreinoApp.component('l-tile-layer', LTileLayer);
       // StoreinoApp.component('l-marker', LMarker);
+      
       window.StoreinoApp = StoreinoApp;
       const settings = store.state.settings;
       if (route.query.fbclid) {

@@ -155,11 +155,11 @@
                                </div>
                             </div>
                             <!--  -->
-                            <div class="hidden md:flex">
+                            <!-- <div class="hidden md:flex">
                                 <button v-for="(grid,i) in girds" :key="i" @click="gridClass=grid.class" class="cursor-pointer grid_icon flex items-center justify-center flex-wrap mx-1.5" :style="`width:${grid.width}px`">
                                     <span v-for="i in grid.number" :key="i" class="flex" :class="grid.class == gridClass ? 'bg-primary':'bg-gray-400'" style="margin:2px;width:8px;height:20px" ></span>
                                 </button>
-                            </div>
+                            </div> -->
                             <!--  -->
                             <select class="text-md font-bold sort-select bg-white w-40 px-3 py-1.5 rounded-full transition ease-linear delay-150 box-shadow scale outline-none border-2 bg-primary-border" v-model="params.sort">
                                 <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>
@@ -175,7 +175,7 @@
 
                     <!-- Products  -->
                     <div v-if="items.length > 0" class="flex flex-wrap">
-                        <div v-for="(item, i) in items" :key="i" class="p-2" :class="gridClass">
+                        <div v-for="(item, i) in items" :key="i" class="p-2 w-1/2 md:w-1/3 lg:w-1/4">
                             <si-product :item="item"></si-product>
                         </div>
                     </div>
@@ -188,20 +188,54 @@
                     <!-- empty_text -->
 
                     <!-- Pagination -->
-                    <div class="p-2 bg-white items-center flex justify-center w-full">
-                        <button class="flex items-center border-2 bg-primary-border p-3 rounded-full transition-all ease-linear delay-200 box-shadow scale" @click="getItems(paginate.current_page-1)">
+                    <div class="p-2 flex justify-center items-center flex-wrap w-full">
+                        <!-- chivron left -->
+                         <button class="mx-2 flex items-center bg-gray-200 p-3.5 rounded-full hover:bg-gray-400 transition-all ease-linear delay-200" @click="getItems(paginate.current_page-1)">
                             <svg class="w-3 h-3 translate text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path></svg>
-                            <!-- <span class="mx-1"></span> -->
-                            <!-- <span class=" text-md font-bold">{{ $settings.sections.shop.pagination.prev_text }}</span> -->
                         </button>
-    
-                        <span class="text-md font-bold mx-4">{{paginate.current_page}}/{{paginate.last_page}}</span>
-
-                        <button class="flex items-center border-2 bg-primary-border p-3 rounded-full transition-all ease-linear delay-200 box-shadow scale" @click="getItems(paginate.current_page+1)">
-                            <!-- <span class="text-md font-bold">{{ $settings.sections.shop.pagination.next_text }}</span> -->
-                            <!-- <span class="mx-1"></span> -->
+                        <!-- chivron left -->
+                        <!-- pages -->
+                        <button v-if="paginate.last_page > 1" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="(paginate.last_page - (paginate.last_page -1)) == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page - (paginate.last_page -1))">
+                            <span class="text-sm font-bold">{{ paginate.last_page - (paginate.last_page -1) }}</span>
+                        </button> 
+                        <button v-if="paginate.last_page > 2" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="(paginate.last_page - (paginate.last_page -2)) == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page - (paginate.last_page -2))">
+                            <span class="text-sm font-bold">{{ paginate.last_page - (paginate.last_page -2) }}</span>
+                        </button> 
+                        <button v-if="paginate.last_page > 3" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="(paginate.last_page - (paginate.last_page -3)) == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page - (paginate.last_page -3))">
+                            <span class="text-sm font-bold">{{ paginate.last_page - (paginate.last_page -3) }}</span>
+                        </button> 
+                        <button v-if="paginate.last_page > 4" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="(paginate.last_page - (paginate.last_page -4)) == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page - (paginate.last_page -4))">
+                            <span class="text-sm font-bold">{{ paginate.last_page - (paginate.last_page -4) }}</span>
+                        </button> 
+                        <button v-if="paginate.last_page > 5" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="(paginate.last_page - (paginate.last_page -5)) == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page - (paginate.last_page -5))">
+                            <span class="text-sm font-bold">{{ paginate.last_page - (paginate.last_page -5) }}</span>
+                        </button> 
+                        <!-- More Page exists -->
+                        <button v-if="paginate.last_page > 5" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200" :class="paginate.current_page > (paginate.last_page - (paginate.last_page -5)) &&  paginate.current_page < (paginate.last_page)   ? 'border-2 bg-primary-border' : ''" >
+                            <span class="text-sm font-bold">{{paginate.current_page > (paginate.last_page - (paginate.last_page -5)) &&  paginate.current_page < (paginate.last_page)? paginate.current_page:'...'}}</span>
+                        </button> 
+                        <button v-if="paginate.current_page > (paginate.last_page - (paginate.last_page -5)) &&  paginate.current_page < (paginate.last_page)" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200">
+                            <span class="text-sm font-bold">...</span>      
+                        </button> 
+                        <!-- More Page exists -->
+                        <!-- pages -->
+                        <div v-if="paginate.last_page > 5">
+                            <button v-if="paginate.last_page == paginate.current_page" class="mx-2 h-10 w-10 bg-gray-200 hover:bg-gray-400 rounded-full transition-all ease-linear delay-200 box-shadow" :class="paginate.last_page == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page)">
+                                <span class="text-sm font-bold">{{ paginate.last_page }}</span>
+                            </button> 
+                        </div>
+                        <button v-else class="mx-2 h-10 w-10 bg-gray-200 rounded-full transition-all ease-linear delay-200 hover:bg-gray-400 box-shadow" :class="paginate.last_page == paginate.current_page ? 'border-2 bg-primary-border' : ''" @click="getItems(paginate.last_page)">
+                            <span class="text-sm font-bold">{{ paginate.last_page }}</span>
+                        </button> 
+                        <!-- pages -->
+                        <!-- chivron right -->
+                        <button class="mx-2 flex items-center bg-gray-200 hover:bg-gray-400 p-3.5 rounded-full transition-all ease-linear delay-200" @click="getItems(paginate.current_page+1)">
                             <svg class="w-3 h-3 translate text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>
                         </button>
+                        <!-- chivron right -->
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <span class="text-md font-bold mx-4">{{paginate.current_page}}/{{paginate.last_page}}</span>
                     </div>
                     <!-- Pagination -->
                 </div>

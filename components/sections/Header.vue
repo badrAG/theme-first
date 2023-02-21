@@ -25,7 +25,7 @@
                 </div>
                 <!-- show menu botton  -->
                 <!-- search menu -->
-                <div v-if="$settings.sections.header.icons.search" class="w-full mr-4">
+                <div v-if="$settings.sections.header.icons.search" class="search w-full mr-4">
                     <form @submit.prevent="search" class="flex items-center bg-gray-100 focus:bg-white rounded-full border-2 header-bg-border" action="/shop?">
                         <input  v-model="q" class="b1 flex items-center rounded-l-full bg-transparent outline-none w-full py-2 px-4 text-base focus:bg-white" :placeholder="$settings.sections.header.search.text" type="search" name="q">
                         <button class="b2 ease-linear delay-200 flex items-center py-3 px-4 rounded-r-full hover:bg-gray-200" aria-label="Search button">
@@ -49,14 +49,14 @@
                             <a class="p-2 flex items-center" :href="item.url">
                                 <div class="text-sm font-semibold mx-1">{{ item.text }}</div>
                                 <button>
-                                    <fa class="text-xs mx-1 transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180' : ''] "></fa>
+                                    <fa class="text-xs  transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180' : ''] "></fa>
                                 </button>
                             </a>
                         </li>
 
                         <transition name="slide">
                             <div class="relative" >
-                                <div v-if="item._id == activeId" class="absolute header-bg shadow-lg z-20 border p-4" :class="menu? 'top-10' : 'top-3'" >
+                                <div v-if="item._id == activeId" class="w-28 absolute header-bg shadow-lg z-20 border p-2" :class="menu? 'top-10' : 'top-3'" >
                                     <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
                                         <a class="text-sm hover:underline" :href="item.url">{{item.text}}</a>
                                         <ul v-if="item.childrens && item.childrens.length > 0">
@@ -114,21 +114,27 @@
                 
                 <transition name="slide">
                     <div class="relative">
-                        <div v-if="item._id == activeId" class="w-40 top-2 absolute shadow-lg z-20 border header-bg p-4">
+                        <div v-if="item._id == activeId" class="w-40 top-2 absolute shadow-lg z-20 border header-bg p-2">
                             <div class="py-1" v-for="(item,i) in item.childrens" :key="i">
                                 <div class="flex items-center justify-between">
                                     <router-link class="text-sm font-normal hover:underline" :to="item.url">
                                         {{item.text}}
                                     </router-link>
-                                    <fa @click="showSubItems" class="text-xs  mx-1 transform" :class="[(item.childrens && item.childrens.length > 0 ? 'block' : 'hidden'),(SubItems ? 'rotate-180' : '')]"  :icon="['fa', 'angle-down']" ></fa>
+                                    <button class="" @click="subItems = subItems != item.collectionId ? item.collectionId : null">
+                                        <fa class="text-xs transform " v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[subItems==item.collectionId ? 'rotate-180' : ''] "></fa>
+                                    </button>
                                 </div>
-                                <ul v-if="item.childrens && item.childrens.length > 0 && SubItems">
-                                    <li class="px-2 pt-2" v-for="(child,ii) in item.childrens" :key="ii">
-                                        <nuxt-link  class="hover:underline text-sm" :to="child.url">
-                                        {{ child.text }}
-                                        </nuxt-link>
-                                    </li>
-                                </ul>
+                                <transition name="slide">
+                                    <div v-if="item.collectionId == subItems">
+                                        <ul v-if="item.childrens && item.childrens.length > 0">
+                                            <li class="pt-2" v-for="(child,ii) in item.childrens" :key="ii">
+                                                <nuxt-link  class="hover:underline text-sm" :to="child.url">
+                                                {{ child.text }}
+                                                </nuxt-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </transition>
                             </div>
                         </div>
                     </div>
@@ -144,7 +150,7 @@
 export default {
     data() {
         return {
-            SubItems:false,
+            subItems:null,
             activeId: null,
             showSearch: false,
             iconMenu: null,
@@ -194,9 +200,6 @@ export default {
             this.$router.push({ path: '/shop', query: { search: this.q }});
             this.showSearch = false;
         },
-        showSubItems() {
-            this.SubItems = !this.SubItems
-        }
     },
 }
 </script>
@@ -214,10 +217,10 @@ export default {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
-[dir='rtl'] .active-search,
-[dir='rtl'] .unactive-search{
+
+[dir='rtl'] .search {
     margin-right: 0;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
 }
 
 .svg-color {
