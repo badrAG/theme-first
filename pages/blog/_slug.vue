@@ -9,7 +9,7 @@
                     <div class="border-r bg-white h-full flex flex-col relative">
                         <!-- close -->
                         <div class="w-full flex justify-end"> 
-                            <button @click="showSideBar=false" aria-label="Search button" class="item p-3 rounded-full m-1 hover:bg-gray-200 transition-all ease-linear delay-200">
+                            <button @click="showSideBar=false" aria-label="Search button" class="item p-3 rounded-full m-1 hover-bg transition-all ease-linear delay-200">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-6 h-6 translate"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
                             </button>
                         </div>
@@ -205,7 +205,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
     [dir='rtl'] svg.translate{
     transform: rotateY(180deg);
     }

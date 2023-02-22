@@ -1,7 +1,7 @@
 <template>
     <div class="container my-5" v-if="item">
         <div class="mb-3">
-            <h2 class="text-lg md:text-xl font-medium px-4">{{ $settings.sections.product.upsell.title }}</h2>
+            <h2 class="text-xl font-medium px-4">{{ $settings.sections.product.upsell.title }}</h2>
         </div>
 
         <div class="flex flex-wrap">

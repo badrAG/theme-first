@@ -6,7 +6,7 @@
       
       <div class="flex flex-col items-center md:justify-between md:flex-row mb-1 px-4">
         <div class="">
-          <h2 class="text-lg md:text-xl font-medium">{{ title }}</h2>
+          <h2 class="text-xl font-medium">{{ title }}</h2>
         </div>
   
         <div v-if="section.show_more_text">

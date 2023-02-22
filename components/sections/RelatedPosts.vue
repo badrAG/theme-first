@@ -2,7 +2,7 @@
   <div class="container mt-10" v-if="items.length > 0">
     <div class="flex items-center justify-between mb-4">
       <div class="">
-        <h2 class="text-lg md:text-xl font-medium px-2">{{ $settings.sections.post.related.title }}</h2>
+        <h2 class="text-xl font-medium px-2">{{ $settings.sections.post.related.title }}</h2>
       </div>
       <div class="scale py-1 px-4 mx-2 transition-all ease-linear delay-200 box-shadow border-2 bg-primary-border rounded-full" v-if="$settings.sections.posts.show_more_text">
         <nuxt-link class="text-md font-bold text-center" to="/blog">

@@ -50,7 +50,7 @@
     
                     <!--  Remove products -->
                     <div class="mx-2">
-                        <button style="font-size: 13px;" class="font-bold px-2 py-1 rounded-full transition-all ease-linear delay-200 hover:bg-gray-200" @click="remove">{{this.$settings.sections.cart.buttons.remove_button_text }}</button>
+                        <button style="font-size: 13px;" class="font-bold px-2 py-1 rounded-full transition-all ease-linear delay-200 hover-bg" @click="remove">{{this.$settings.sections.cart.buttons.remove_button_text }}</button>
                      </div>
                     <!-- Remove products -->
 

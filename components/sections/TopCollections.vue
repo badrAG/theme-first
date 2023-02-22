@@ -2,20 +2,20 @@
     <div class="">
         <div class="collection-bg">
             <div class="mx-auto container">
-                <h1 class="text-3xl lg:text-4xl guard-cairo-font font-light p-4 collection-text-bg" style="text-align: center; ">{{ $settings.sections.top_collections.title }}</h1>
+                <h1 class="text-center text-2xl md:text-3xl guard-cairo-font font-light px-4 pt-4 pb-2 collection-text-bg">{{ $settings.sections.top_collections.title }}</h1>
             </div>
         </div>
         
         <div class="relative">
-            <div class="absolute md:h-1/2 w-full collection-bg" :class="items.length > 3? 'h-3/4' : 'h-1/2'"></div>
+            <div class="absolute md:h-2/5 w-full collection-bg" :class="items.length > 3? 'h-2/3' : 'h-1/4'"></div>
             <div class="small-container mx-auto">
                 <ul class="flex flex-wrap justify-center p-4">
                     <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
-                        <nuxt-link class="my-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
+                        <nuxt-link class="mb-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                             <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 md:h-28 md:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
                         </nuxt-link>
                         <nuxt-link class="line w-28" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
-                            <div style="text-align: center;" class="collection-text relative font-bold text-md-res md:text-base lg:text-base">{{ item.name }}</div>
+                            <div class="collection-text text-center relative text-sm md:text-base font-bold">{{ item.name }}</div>
                         </nuxt-link>
                     </li>
                 </ul> 
@@ -67,9 +67,12 @@ export default {
 </script>
 
 <style scoped>
-ul li:nth-child(-n+3) {
-    margin-bottom: 1.25rem;
+@media (max-width: 640px) {
+    ul li:nth-child(-n+3) {
+        margin-bottom: 1.25rem;
+    }
 }
+
 .img-zom {
     transition:  .2s ease;
 }
@@ -88,7 +91,6 @@ ul li:nth-child(-n+3) {
   opacity: 0.7;
 }
 
-
 .collection-text {
   position: relative;
   text-decoration: none;
@@ -106,11 +108,5 @@ ul li:nth-child(-n+3) {
   transform-origin: right;
   transform: scaleX(0);
   transition: transform .3s ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .text-md-res {
-    font-size: 13px;
-  }
 }
 </style>

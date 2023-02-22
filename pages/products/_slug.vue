@@ -17,24 +17,24 @@
                 <!--  -->
                 <div style="height: fit-content;"   class="w-full lg:w-2/3 lg:sticky lg:top-6">
                     <div class="flex flex-wrap">
-                        <div class="w-full slider md:mx-4 border-2 box-shadow rounded-lg">
+                        <div class="w-full slider md:mx-4">
                             <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
                                 <si-image width="400" height="400" class="product-image h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
-                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover:bg-gray-200" @click="prev">
+                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
                                     <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                         <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
                                     </svg>
                                 </button>
-                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 absolute top-1/2 -right-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150 rounded-full hover:bg-gray-200" @click="next">
+                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -right-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150 rounded-full hover-bg" @click="next">
                                     <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                         <path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path>
                                     </svg>
                                 </button>
                                 <div v-if="$settings.sections.products.add_to_wishlist.active">
-                                    <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 md:p-3.5 transition-all ease-linear delay-150  hover:bg-gray-200">
+                                    <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150  hover-bg">
                                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                     </button>
-                                    <button v-else @click="addToWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 p-3 md:p-3.5 transition-all ease-linear delay-150 hover:bg-gray-200">
+                                    <button v-else @click="addToWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150 hover-bg">
                                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
                                     </button>
                                 </div>
@@ -160,8 +160,8 @@
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
                 <div class="flex justify-center items-center mb-4 mx-4">
-                    <div   class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover:bg-gray-200'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+                    <div   class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover-bg'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
                 <div class="flex justify-center mx-4">
@@ -419,7 +419,7 @@
       },
   }
   </script>
-  <style>
+  <style >
   .product-image {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><circle cx='15' cy='15' r='10' fill='white' stroke='black' stroke-width='2'/><line x1='15' y1='10' x2='15' y2='20' stroke='black' stroke-width='2'/><line x1='10' y1='15' x2='20' y2='15' stroke='black' stroke-width='2'/></svg>"), auto;
   }

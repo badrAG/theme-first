@@ -13,15 +13,15 @@
 
         <div class="align-center flex flex-wrap md:justify-between mt-8">
             <div class="mb-5 md:mb-0 w-full md:w-1/3 p-2">
-                <h2 class="text-2xl font-semibold mb-5">{{ testimonial.left.title  }}</h2>
+                <h2 class="text-2xl font-bold mb-5">{{ testimonial.left.title  }}</h2>
                 <p class="text-base font-normal">{{ testimonial.left.description  }}</p>
             </div>
             <div class="mb-5 md:mb-0 w-full md:w-1/3 p-2">
-                <h2 class="text-2xl font-semibold mb-5">{{ testimonial.center.title  }}</h2>
+                <h2 class="text-2xl font-bold mb-5">{{ testimonial.center.title  }}</h2>
                 <p class="text-base font-normal">{{ testimonial.center.description  }}</p>
             </div>
             <div class="w-full md:w-1/3 p-2">
-                <h2 class="text-2xl font-semibold mb-5">{{ testimonial.right.title  }}</h2>
+                <h2 class="text-2xl font-bold mb-5">{{ testimonial.right.title  }}</h2>
                 <p class="text-base font-normal">{{ testimonial.right.description  }}</p>
             </div>
         </div>

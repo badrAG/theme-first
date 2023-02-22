@@ -58,7 +58,7 @@
 
             <div class="flex flex-col bg-white mt-6" v-if="!loading.cart && items.length > 0">
                 <div class="mx-4 mb-1" v-if="upsells.length > 0">
-                    <h2 class="text-2xl">{{ $settings.sections.cart.upsell.title }}</h2>
+                    <h2 class="text-xl font-bold">{{ $settings.sections.cart.upsell.title }}</h2>
                 </div>
                 <div class="flex flex-wrap" v-if="upsells.length > 0">
                     <template v-for="(upsell, i) in upsells">
