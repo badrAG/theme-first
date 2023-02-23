@@ -9,6 +9,9 @@
     <sections-collections-products v-if="$settings.sections.collections_products.active" ></sections-collections-products>
     <sections-bottom-collections v-if="$settings.sections.bottom_collections.active"></sections-bottom-collections>
     <sections-services v-if="$settings.sections.services.active"></sections-services>
+    <div class="container">
+      <si-app-loader  placement="BEFORE_HOME_FOOTER"/>
+    </div>
     <sections-testimonial v-if="$settings.sections.testimonial.active" ></sections-testimonial>
   </div>
 </template>

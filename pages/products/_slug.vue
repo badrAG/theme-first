@@ -156,12 +156,12 @@
               </div>
           </div>
           <!--  -->
-
+          <si-app-loader placement="AFTER_DESCRIPTION"/>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
                 <div class="flex justify-center items-center mb-4 mx-4">
-                    <div   class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover-bg'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
+                    <div  v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover-bg'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
                 <div class="flex justify-center mx-4">
@@ -170,20 +170,19 @@
                         <h2 v-if="item.html.length == 0" class="text-base font-normal" >{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                 </div>
-                <!-- Description -->            
-                <si-app-loader placement="AFTER_DESCRIPTION"/>
+                <!-- Description -->        
+
                 <!-- reviews -->
                 <div v-if="Reviews" class="reviews mx-2">
-                    <div v-if="$settings.sections.product.reviews.active">
-                        <sections-reviews :item="item"></sections-reviews>
+                    <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
+                        <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
+                    <si-app-loader  placement="REPLACE_REVIEWS"/>
                     <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
             </div>  
             <!-- Desciption and Reviews -->
-
-
           <!--  -->
           <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->
@@ -410,7 +409,6 @@
           setImage(index){
             this.visibleSlide = index
             //   this.image = this.$tools.copy(this.item.images[index]);
-
           },
           setTab(tab){
               this.tab = tab;

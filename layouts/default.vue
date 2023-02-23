@@ -83,9 +83,14 @@
                     background-color: var(--hover-color-gb);
                 }
             }
-
-            .hover-text-bg:hover {color: var(--hover-text-col);}
+            .hover-text-bg {
+                transition: all 0.3s ease-in-out;
+            }
+            .hover-text-bg:hover {
+                color: var(--hover-text-col);
+            }
         </component>
+        <sections-header-top></sections-header-top>
         <sections-scroll-top v-if="$settings.sections.scrolltotop.active"></sections-scroll-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>

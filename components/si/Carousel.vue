@@ -4,7 +4,7 @@
         <h2 class="text-xl font-medium px-2">{{ title }}</h2>
       </div>
       <!--  -->
-      <div class="carousel-container" dir="ltr">
+      <div class="overflow-hidden carousel-container" dir="ltr">
         <div class="flex carousel" :style="`width: ${items.length*width}%`">
             <div v-for="(item,i) in items" :key="i" class="carousel-item p-1" :class="itemClass">
               <component :is="component" page="home" :item="item"></component>

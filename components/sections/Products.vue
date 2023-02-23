@@ -11,7 +11,7 @@
   
         <div v-if="section.show_more_text">
           <nuxt-link  :to="section.show_more_url">
-            <span class="text-sm font-normal text-gr underline hover:text-black">{{ section.show_more_text }}</span>
+            <span class="text-sm font-normal text-gr underline hover-text-bg">{{ section.show_more_text }}</span>
           </nuxt-link>
         </div>
       </div>
