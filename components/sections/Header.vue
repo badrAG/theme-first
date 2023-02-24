@@ -55,7 +55,7 @@
                         </li>
                         <transition name="slide">
                             <div class="relative" >
-                                <div v-if="item._id == activeId" class="w-24 absolute header-bg shadow-lg z-20 border p-2" :class="menu? 'top-10' : 'top-3'" >
+                                <div v-if="item._id == activeId" class="w-24 absolute header-bg shadow-lg z-20 border p-2" :class="menu? 'top-10.5' : 'top-3'" >
                                     <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
                                         <a class="text-sm font-normal" :href="item.url">{{item.text}}</a>
                                         <ul v-if="item.childrens && item.childrens.length > 0">
@@ -201,6 +201,10 @@ export default {
 </script>
 
 <style scoped>
+.top-10\.5 {
+    top: 2.60rem;
+}
+
 [dir='rtl'] .b1 {
     border-top-right-radius: 9999px;
     border-bottom-right-radius: 9999px;
