@@ -27,7 +27,7 @@ export default {
                 {
                     image : this.$settings.sections.services.items.delivery.image ,
                     defaultImage: { 
-                        src: 'https://cdn-icons-png.flaticon.com/512/7610/7610711.png'
+                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-fastdelivery.png'
                     },
                     text: this.$settings.sections.services.items.delivery.text,
                     url: this.$settings.sections.services.items.delivery.url,
@@ -36,7 +36,7 @@ export default {
                 {
                     image : this.$settings.sections.services.items.satisfaction.image ,
                     defaultImage: { 
-                        src: 'https://cdn-icons-png.flaticon.com/512/3257/3257683.png' 
+                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-satisfaction.png' 
                     },
                     text: this.$settings.sections.services.items.satisfaction.text,
                     url: this.$settings.sections.services.items.satisfaction.url,
@@ -45,7 +45,7 @@ export default {
                 {
                     image : this.$settings.sections.services.items.quality.image ,
                     defaultImage: { 
-                        src: 'https://cdn-icons-png.flaticon.com/512/1534/1534216.png' 
+                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-heightqualite.png' 
                     },
                     text: this.$settings.sections.services.items.quality.text,
                     url: this.$settings.sections.services.items.quality.url,
@@ -54,7 +54,7 @@ export default {
                 {
                     image : this.$settings.sections.services.items.support.image ,
                     defaultImage: { 
-                        src: 'https://cdn-icons-png.flaticon.com/512/950/950299.png' 
+                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-support.png' 
                     },
                     text: this.$settings.sections.services.items.support.text,
                     url: this.$settings.sections.services.items.support.url,

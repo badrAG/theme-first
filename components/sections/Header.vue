@@ -1,7 +1,7 @@
 <template>
 <div>
     <si-app-loader placement="BEFORE_HEADER"/>
-    <div class="header-bg header-text-color  border-b-2" :class="menu? 'pt-2' : 'py-2'">
+    <div class="header-bg header-text-color  border-b-2" :class="menu ? 'res-p' : 'py-2'">
         <header class="container flex items-center justify-between w-full ">
             <!-- left content -->
             <div class="mx-4">
@@ -231,7 +231,15 @@ export default {
     fill: var(--header-text-col);
 }
 
+.res-p {
+    padding-top: 0.5rem;
+}
+
 @media only screen and (min-width: 0) and (max-width: 899px){
+    .res-p {
+        padding-bottom: 0.5rem;
+    }
+
     .headermenu-button {
         display: block;
     }
