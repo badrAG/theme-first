@@ -2,7 +2,7 @@
     <div class="bg-white">
       <div class="container md:mt-6 mb-6">
         <!-- Loader -->
-        <div v-if="loading" class="flex justify-center items-center ">
+        <div v-if="loading" class="flex justify-center items-center mt-6 md:mt-0">
             <si-loader></si-loader>
         </div>
         <!-- Loader -->
@@ -125,8 +125,9 @@
                         </div>
                         <!-- add to cart -->
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
-                            
-
+                        
+                        
+                        <si-app-loader placement="BEFORE_BUYNOW"/>
                         <si-app-loader placement="REPLACE_BUYNOW"/>
                         <!-- buy now -->
                         <div class="mx-2">
@@ -134,6 +135,8 @@
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
                         </div>
+                        <si-app-loader placement="AFTER_BUYNOW"/>
+                        
                         <!-- buy now -->
 
                       </div>
@@ -156,7 +159,7 @@
               </div>
           </div>
           <!--  -->
-          <si-app-loader placement="AFTER_DESCRIPTION"/>
+          <si-app-loader placement="BEFORE_DESCRIPTION"/>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
                 <div class="flex justify-center items-center mb-4 mx-4">
@@ -183,6 +186,8 @@
                 <!-- reviews -->
             </div>  
             <!-- Desciption and Reviews -->
+          <si-app-loader placement="AFTER_DESCRIPTION"/>
+
           <!--  -->
           <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->

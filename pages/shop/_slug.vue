@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-
         <div class="flex my-6 relative">
             <!-- Slider left -->
+            <si-app-loader placement="BEFORE_SHOP_SIDEBAR"/>
             <transition name="slide-left">
                 <div :class="showSideBar ? 'show':'hide'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-50 overflow-y-auto">
                     
