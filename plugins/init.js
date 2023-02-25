@@ -1,5 +1,4 @@
 import StoreinoApp from 'vue/dist/vue.common.prod';
-
 export default async function ({ $axios, $http ,route, $tools, $storeino, store, app, redirect }, inject) {
     if(process.server) {
         let response = null;
@@ -7,9 +6,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         // Get Template settings
         // Set current domain
         store.state.domain = req.headers.host;
-        if (req.headers.ip) {
-          store.state.IP = req.headers.ip
-        }
         try {
             if(req.body && req.body.preview){
                 console.log("Is Preview");
@@ -57,8 +53,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             store.state.apps = [];
             const response =  await $storeino.apps.search({only: ['name', 'route', 'placement', 'config']});
             const names = response.data.results.map(app => app.route);
-            const url = store.state.baseURL != 'https://api-stores.storeino.com/api' ? 'https://appstatic.storeino.world' : 'https://appstatic.storeino.com';
-            const { data: objects } = await $http.get(`${url}/all/store`, { params: { names } });
+            const { data: objects } = await $http.get('https://appstatic.storeino.com/all/store', { params: { names } });
             for (const app of response.data.results) {
                 const loaded = objects.find(object => object.name === app.route);
                 app.loaded = loaded;
@@ -69,19 +64,16 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         }
     }else{
       // client side
-      // const { LMap, LTileLayer, LMarker, LIcon } = require('vue2-leaflet') ;
-
       const cookies = $tools.cookieToObject(document.cookie);
       if(route.name == 'thanks'){
         if(cookies['ORDER_ID']) {
-          document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
-          document.cookie = 'STOREINO-CART=[];path=/';
-          store.state.cart = [];
+          document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }else{
           window.location.href = '/';
           return false;
         }
       }
+
 
       StoreinoApp.$store = {
         search: async function (module, params) {
@@ -99,157 +91,74 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         update: async function (module, params, data) {
           let response = await $http.post(`/${module}/update`, data, { params });
           return response.data;
-        },
-        customUpdate: async function (module,params,data,headers = {}){
-          let response = await $http.post(`/${module}/me`, data, { params,headers });
-          return response.data;
         }
       };
-      // StoreinoApp.component('l-map', LMap);
-      // StoreinoApp.component('l-icon', LIcon);
-      // StoreinoApp.component('l-tile-layer', LTileLayer);
-      // StoreinoApp.component('l-marker', LMarker);
-      
       window.StoreinoApp = StoreinoApp;
       const settings = store.state.settings;
-      if (route.query.fbclid) {
-        console.log("SET FBCLID");
-        localStorage.setItem('__fbc',`fb.1.${Date.now()}.${route.query.fbclid}`);
-      }
-      localStorage.setItem('__external_id','U'+Date.now());
-
       // Facebook pixel
-      // !function(f,b,e,v,n,t,s)
-      // {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      // n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      // if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      // n.queue=[];t=b.createElement(e);t.async=!0;
-      // t.src=v;s=b.getElementsByTagName(e)[0];
-      // s.parentNode.insertBefore(t,s)}(window, document,'script',
-      // 'https://connect.facebook.net/en_US/fbevents.js');
-      // window.external_id = localStorage.getItem('__external_id');
-      // if(!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
-      //   settings.facebook_multiple_pixel.forEach(p => {
-      //     if (p.active) {
-      //       console.log("SET PIXEL", p.id);
-      //       fbq.disablePushState = true;
-      //       fbq('init', p.id);
-      //     }
-      //   });
-      // }
-      // window._fbpx = app.context.$storeino.fbpx;
-
-            // Facebook pixel
-            !function (s, t, o, r, e, i, n, o_) {
-              if(!(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0)){ r = 'data:application/javascript;utf-8,console.log("Fb%20Pixel%20not%20found%20")'; }
-              if (s.fbq) return; e = s.fbq = function () { e.callMethod ? e.callMethod.apply(e, arguments) : e.queue.push(arguments); }
-              if (!s.fbq) s._fbq = e; e.push = e; e.loaded = !0; e.version = '2.0'; e.queue = [];
-              i = t.createElement(o); i.async = !0; i.src = r; t.head.appendChild(i);
-              s.fbPixel = function (fbId, d = {}) { s.fbq(o_, String(fbId).trim(), d);};
-              s.fbPageView = function (d = {}) { s.fbq(n, 'PageView', d); };
-              s.fbAddToCart = function (d = {}) { fbq(n, 'AddToCart', d); };
-              s.fbViewContent = function (d = {}) { fbq(n, 'ViewContent', d); };
-              s.fbCompleteRegistration = function (d = {}) { fbq(n, 'CompleteRegistration', d); };
-              s.fbInitiateCheckout = function (d = {}) { fbq(n, 'InitiateCheckout', d); };
-              s.fbAddPaymentInfo = function (d = {}) { fbq(n, 'AddPaymentInfo', d); };
-              s.fbPurchase = function (d = {}, id=null) {
-                  let valueCur = 1 ;
-                  if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
-                      valueCur = settings.facebook_currency[d.currency];
-                  }
-                  d.currency = 'USD';
-                d.value = Number(d.value) / valueCur;
-                 if (id) {
-                  fbq('trackSingle', id, 'Purchase', d);
-                 }else  fbq(n, 'Purchase', d);
-              };
-              s.fbSearch = function (d = {}) { fbq(n, 'Search', d); };
-            s.fbLead = function (d = {}, id = null) {
-               let valueCur = 1 ;
-               if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
-                   valueCur = settings.facebook_currency[d.currency];
-               }
-               d.currency = 'USD';
-              if (id) {
-                fbq('trackSingle', id, 'Lead', d);
-              }else fbq(n, 'Lead', d);
-            };
-              s.fbContact = function (d = {}) { fbq(n, 'Contact', d); };
-              s.fbAddToWishlist = function (d = {}) { fbq(n, 'AddToWishlist', d); };
-              s.fbCustomizeProduct = function (d = {}) { fbq(n, 'CustomizeProduct', d); };
-              s.fbDonate = function (d = {}) { fbq(n, 'Donate', d); };
-              s.fbStartTrial = function (d = {}) { fbq(n, 'StartTrial', d); }; s.c = function (d = {}) { fbq(n, 'SubmitApplication', d); };
-              s.fbSubscribe = function (d = {}) { fbq(n, 'Subscribe', d); };
-          }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 0, 0, 'track', 'init');
-          if(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
-            for (const pixel of settings.facebook_multiple_pixel) {
-                if (pixel.active){
-                    if(!pixel.token) {
-                        console.log("%cSimple Facebook pixel is ready", 'color: #bada55');
-                        fbPixel(pixel.id);
-                    }else{
-                        console.log("%cAPI Facebook pixel is ready", 'color: #bada55');
-                    }
-                }
-                if(route.query.pixel){
-                  const objData = JSON.parse(route.query.pixel);
-                  $storeino.fbpx('PageView')
-                  $storeino.fbpx('Purchase',objData)
-                  if(pixel.type && pixel.type=="Lead" ){
-                    window.fbLead(objData,pixel.id);
-                  }else{
-                    window.fbPurchase(objData,pixel.id);
-                  }
+      !function (s, t, o, r, e, i, n, o_) {
+          if(!(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0)){ r = 'data:application/javascript;utf-8,console.log("Fb%20Pixel%20not%20found%20")'; }
+          if (s.fbq) return; e = s.fbq = function () { e.callMethod ? e.callMethod.apply(e, arguments) : e.queue.push(arguments); }
+          if (!s.fbq) s._fbq = e; e.push = e; e.loaded = !0; e.version = '2.0'; e.queue = [];
+          i = t.createElement(o); i.async = !0; i.src = r; t.head.appendChild(i);
+          s.fbPixel = function (fbId, d = {}) { s.fbq(o_, String(fbId).trim(), d);};
+          s.fbPageView = function (d = {}) { s.fbq(n, 'PageView', d); };
+          s.fbAddToCart = function (d = {}) { fbq(n, 'AddToCart', d); };
+          s.fbViewContent = function (d = {}) { fbq(n, 'ViewContent', d); };
+          s.fbCompleteRegistration = function (d = {}) { fbq(n, 'CompleteRegistration', d); };
+          s.fbInitiateCheckout = function (d = {}) { fbq(n, 'InitiateCheckout', d); };
+          s.fbAddPaymentInfo = function (d = {}) { fbq(n, 'AddPaymentInfo', d); };
+          s.fbPurchase = function (d = {}, id=null) {
+              let valueCur = 1 ;
+              if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
+                  valueCur = settings.facebook_currency[d.currency];
+              }
+              d.currency = 'USD';
+            d.value = Number(d.value) / valueCur;
+             if (id) {
+              fbq('trackSingle', id, 'Purchase', d);
+             }else  fbq(n, 'Purchase', d);
+          };
+          s.fbSearch = function (d = {}) { fbq(n, 'Search', d); };
+        s.fbLead = function (d = {}, id = null) {
+           let valueCur = 1 ;
+           if (d.currency && settings && settings.facebook_currency && settings.facebook_currency[d.currency] && settings.facebook_currency[d.currency] != 0 ) {
+               valueCur = settings.facebook_currency[d.currency];
+           }
+           d.currency = 'USD';
+          if (id) {
+            fbq('trackSingle', id, 'Lead', d);
+          }else fbq(n, 'Lead', d);
+        };
+          s.fbContact = function (d = {}) { fbq(n, 'Contact', d); };
+          s.fbAddToWishlist = function (d = {}) { fbq(n, 'AddToWishlist', d); };
+          s.fbCustomizeProduct = function (d = {}) { fbq(n, 'CustomizeProduct', d); };
+          s.fbDonate = function (d = {}) { fbq(n, 'Donate', d); };
+          s.fbStartTrial = function (d = {}) { fbq(n, 'StartTrial', d); }; s.c = function (d = {}) { fbq(n, 'SubmitApplication', d); };
+          s.fbSubscribe = function (d = {}) { fbq(n, 'Subscribe', d); };
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 0, 0, 'track', 'init');
+      if(settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
+        for (const pixel of settings.facebook_multiple_pixel) {
+            if (pixel.active){
+                if(!pixel.token) {
+                    console.log("%cSimple Facebook pixel is ready", 'color: #bada55');
+                    fbPixel(pixel.id);
+                }else{
+                    console.log("%cAPI Facebook pixel is ready", 'color: #bada55');
                 }
             }
-          }
-
-      // start twitter pixel
-    !function(e,t,n,s,u,a){
-      console.log("INIT SCRIPT TWITTER --------------------------");
-      let i = '//static.ads-twitter.com/uwt.js';
-      if(!settings.twitter_pixel || settings.twitter_pixel.length == 0){ i = 'data:application/javascript;utf-8,console.log("Twitter%20Pixel%20not%20found")'; }
-      
-      e.twq||(s=e.twq=function(){
-        s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-        }, s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src=i,
-        a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a)
-      )
-      e.twitterPixel = function (id) { twq('init',id); }
-      e.twitterPageView = function (d = {}) { twq('track', 'PageView'); }
-      e.twitterViewContent = function (d = {}) { twq('track', "ViewContent", d); }
-      e.twitterAddToCart = function (d = {}) { twq('track', "AddToCart", d); }
-      e.twitterAddToWishlist = function (d = {}) { twq('track', "AddToWishlist", d); }
-      e.twitterInitiateCheckout = function (d = {}) { twq('track', "InitiateCheckout", d); }
-      e.twitterSearch = function (d = {}) { twq('track', "Search", d); }
-      e.twitterAddPaymentInfo = function (d = {}) { twq('track', "AddPaymentInfo", d); }
-      e.twitterSignup = function (d = {}) { twq('track', "Signup", d); }
-      e.twitterCompleteRegistration = function (d = {}) { twq('track', "CompleteRegistration", d); }
-      e.twitterDownload = function (d = {}) { twq('track', "Download", d); }
-      e.twitterPurchase = function (d = {}) { twq('track', "Purchase", d); }
-
-    }(window,document,'script');
-    if (!app.context.store.state.isPreview && settings && settings.twitter_pixel && settings.twitter_pixel.length > 0) {
-      settings.twitter_pixel.forEach(p => {
-        if (p.active) twitterPixel(p.id);
-      });
-      console.log("%cSimple Twitter pixel is ready", 'color: #bada55');
-
-      if(route.query.pixel){
-        const pixel = JSON.parse(route.query.pixel);
-        twitterPurchase( {
-          content_ids: pixel.contents.map(p=> { return p.id }),
-          num_items: pixel.contents.length,
-          content_type: 'product',
-          value: pixel.total,
-          currency: store.state.currency.code || "USD"
-        });
+            if(route.query.pixel){
+              const objData = JSON.parse(route.query.pixel);
+              $storeino.fbpx('PageView')
+              $storeino.fbpx('Purchase',objData)
+              if(pixel.type && pixel.type=="Lead" ){
+                window.fbLead(objData,pixel.id);
+              }else{
+                window.fbPurchase(objData,pixel.id);
+              }
+            }
+        }
       }
-
-    }
-    // end twitter pixel
-
-
       // Tiktok pixel
 
       !function (w, d, t) {
@@ -278,8 +187,8 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       if(settings.tiktok_pixel && settings.tiktok_pixel.length > 0){
         for (const pixel of settings.tiktok_pixel) {
             if (pixel.active){
-              console.log("%cSimple Tiktok pixel is ready", 'color: #bada55');
               window.tiktokPixel(pixel.id);
+              console.log("%cSimple Tiktok pixel is ready", 'color: #bada55');
             }
         }
         if(route.query.pixel){
@@ -302,9 +211,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       }
       // Snapchat Pixel
       (function (e, t, n, tr) {
-        if(!(settings.snapchat_pixel && settings.snapchat_pixel.length > 0)){
-          n = 'data:application/javascript;utf-8,console.log("Snap%20Pixel%20not%20found")';
-        }
+        if(!(settings.snapchat_pixel && settings.snapchat_pixel.length > 0)){ n = 'data:application/javascript;utf-8,console.log("Snap%20Pixel%20not%20found")'; }
         if (e.snaptr) return; var a = e.snaptr = function () { a.handleRequest ? a.handleRequest.apply(a, arguments) : a.queue.push(arguments) };
         e.snapPixel = function (id, email = "") { snaptr('init', id, { 'user_email': email }); }
         e.snapPageView = function (d = {}) { snaptr(tr, 'PAGE_VIEW', d); }
@@ -329,30 +236,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         }
       }
       
-      !function(w,d,n) {
-        if(!(settings.linkedin_pixel && settings.linkedin_pixel.events && settings.linkedin_pixel.events.length > 0)){
-          console.log("%cLinkedin Pixel is not ready", 'color: #ff4455');
-          window.lintrk = function(a,d){
-            console.log('lintrk',a,d);
-          }
-        }else{
-          console.log("%cLinkedin Pixel is ready", 'color: #bada55');
-          settings.linkedin_pixel.events.forEach(element => {
-            let _linkedin_partner_id = element.pId;
-            w._linkedin_data_partner_ids = w._linkedin_data_partner_ids || [];
-            w._linkedin_data_partner_ids.push(_linkedin_partner_id);
-          });
-          if (!w.lintrk){
-            w.lintrk = function(a,b){w.lintrk.q.push([a,b])};
-            w.lintrk.q=[]
-          }
-          var s = d.getElementsByTagName("script")[0];
-          var b = d.createElement("script");
-          b.type = "text/javascript";b.async = true;
-          b.src = n
-          "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-          s.parentNode.insertBefore(b, s);}
-      }(window, document,"https://snap.licdn.com/li.lms-analytics/insight.min.js");
       // google ads d
       (function (w, d, t) {
         if(settings && settings.google_ads && settings.google_ads.id){
@@ -378,24 +261,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         window.gtag('js', new Date());
         window.gtag('config', settings.google_analytics_id);
       }
-      function getEvent(source,eventName) {
-        let events=source.filter((e)=>e.name==eventName)
-        if (events&&events.length>0) {
-          return events
-        }
-        return null
-      }
-      window.linkedInEvent = function(eventName){
-        if(settings.linkedin_pixel&&settings.linkedin_pixel.id&&settings.linkedin_pixel.events){
-          let eventsGroup=getEvent(settings.linkedin_pixel.events,eventName)
-          if (eventsGroup) {
-            for (let index = 0; index < eventsGroup.length; index++) {
-             const event = eventsGroup[index];
-             window.lintrk('track', { conversion_id: event.value });
-            }
-           }
-         }
-      }
+
       window.googleAdsEvent = (eventName)=>{
         if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
           console.log(`%cGoogle Ads ${eventName}`, 'color: #bada55');
@@ -415,29 +281,8 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
         if(route.name == 'thanks' && route.query.pixel){
           window.googleAdsEvent('purchase');
-          window.linkedInEvent('purchase');
         }
       }
-      
-      // store.state.IP = '206.71.50.230';
-      // if(store.state.settings.store_currencies&&store.state.settings.store_currencies.length>1 && store.state.IP){
-      //   (async ()=>{
-      //     try {
-      //       const res = await $http.get(`https://api-views.storeino.com/api/geoLite/get?ip=${store.state.IP}`);
-      //       console.log({
-      //         store_currencies:store.state.settings.store_currencies,
-      //         current_currency:store.state.currency.code,
-      //         geoplugin_currencyCode: res.data.geoplugin_currencyCode
-      //       });
-      //       if(res.data.geoplugin_currencyCode != store.state.currency.code && store.state.settings.store_currencies.find(c=>c.code==res.data.geoplugin_currencyCode)){
-      //         store.state.showCurrencyModal = true;
-      //       }
-      //     } catch (error) {
-      //       console.log(error);
-      //     }
-      //   })();
-      // }
-
     }
     inject('settings', store.state.settings);
 }

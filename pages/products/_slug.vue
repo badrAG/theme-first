@@ -6,7 +6,6 @@
             <si-loader></si-loader>
         </div>
         <!-- Loader -->
-        
           <!--  -->
           <div v-if="!loading && item" class="flex flex-wrap justify-between">
 
