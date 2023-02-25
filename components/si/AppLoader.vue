@@ -2,7 +2,6 @@
   <div :id="placement">
   </div>
 </template>
-
 <script>
 export default {
   props: { placement: String },
