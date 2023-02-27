@@ -1,21 +1,20 @@
 <template>
-    <div class="flex items-center justify-center ">
+    <div class="flex items-center justify-center">
         <div class="flex justify-between border box-shadow rounded-lg box-shadow hover:border-gray-400" :class="page=='product'? 'w-full' : ''">
             <div class="flex">                 
                 <label class="relative border-black h-full" :class="page=='product'? 'py-3' : 'py-1.5 md:py-2.5'" >
                     <span class="text-base font-normal py-2 md:py-4 px-3 md:px-5 text-center ">{{ value }}</span>
                     <input :min="quantity.min" :max="quantity.max" class="text-base font-normal rounded-lg px-2 text-center absolute outline-none inset-0 bg-opacity-0 w-full h-full" v-model="value" type="number">
                 </label>
-                    <span class="flex items-center text-primary border px-2" v-if="quantity.unit">{{ quantity.unit }}</span>
+                <span class="text-base font-normal opacity-95" v-if="quantity.unit" :class="page=='product'? 'flex items-center' : 'hidden'">{{ quantity.unit }}</span>
             </div>
-
             <div class="flex">
                 <!--  -->
-                <button @click="inc(-1)" class="munus-button text-black  hover:opacity-90 text-base font-normal"  :class="[(value > quantity.min? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-4')]" >-</button>
+                <button @click="inc(-1)" class="munus-button text-black  hover:opacity-90 text-base font-normal"  :class="[(value > quantity.min? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]" ><fa class="text-xs transform" :icon="['fa', 'minus']" ></fa></button>
                 <!--  -->
                 <span class="w-px"></span>
                 <!--  -->
-                <button @click="inc(1)" class="plus-button text-black  rounded-r-lg hover:opacity-90 text-base font-normal" :class="[(value < quantity.instock ? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-4')]">+</button>
+                <button @click="inc(1)" class="plus-button text-black  rounded-r-lg hover:opacity-90 text-base font-normal" :class="[(value < quantity.instock ? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]"><fa class="text-xs transform" :icon="['fa', 'plus']" ></fa></button>
                 <!--  -->
             </div>
         </div>

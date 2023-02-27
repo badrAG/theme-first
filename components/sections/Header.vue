@@ -28,8 +28,8 @@
                 <div v-if="$settings.sections.header.icons.search" class="search w-full mr-4">
                     <form @submit.prevent="search" class="flex items-center bg-gray-100 focus:bg-white rounded-full border-2 header-bg-border" action="/shop?">
                         <input  v-model="q" class="b1 flex items-center rounded-l-full bg-transparent outline-none w-full py-2 px-4 text-base focus:bg-white" :placeholder="$settings.sections.header.search.text" type="search" name="q">
-                        <button class="b2 flex items-center py-3 px-4 rounded-r-full transition-all ease-in-out delay-150 hover-bg" aria-label="Search button">
-                            <fa class="text-lg header-text-color"  :icon="['fa', 'magnifying-glass']"></fa>
+                        <button class="b2 flex items-center py-3 px-4 rounded-r-full transition-all ease-in-out delay-150" aria-label="Search button">
+                            <fa class="icon text-lg header-text-color"  :icon="['fa', 'magnifying-glass']"></fa>
                         </button>
                     </form>
                 </div>
@@ -201,6 +201,23 @@ export default {
 </script>
 
 <style scoped>
+
+input:focus {
+  transition: all .3s ease;
+}
+input:focus + .b2 {
+  background-color: var(--primary-color);
+  transition: all .3s ease;
+}
+
+input:focus + .b2:hover {
+    background-color: var(--hover-color-gb);
+}
+
+input:focus + .b2 > .icon {
+  color: white;
+}
+
 .top-10\.5 {
     top: 2.60rem;
 }

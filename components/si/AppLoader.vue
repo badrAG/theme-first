@@ -1,5 +1,5 @@
 <template>
-  <div :id="placement" >
+  <div :id="placement">
   </div>
 </template>
 

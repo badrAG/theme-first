@@ -64,7 +64,7 @@
                       <div class="bg-white ">
 
                         <!--  Product Name -->
-                        <h4 class="text-lg md:text-xl lg:text-2xl guard-cairo-font font-light mb-4 mx-2 mt-4 lg:mt-0">{{ item.name }}</h4>
+                        <h4 class="text-lg md:text-lh lg:text-xl guard-cairo-font font-medium mb-4 mx-2 mt-4 lg:mt-0">{{ item.name }}</h4>
                         <!--  Product Name -->
 
                         <!--  product name hidden-->
@@ -159,6 +159,9 @@
           </div>
           <!--  -->
           <si-app-loader placement="BEFORE_DESCRIPTION"/>
+
+
+
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
                 <div class="flex justify-center items-center mb-4 mx-4">
@@ -176,16 +179,24 @@
 
                 <!-- reviews -->
                 <div v-if="Reviews" class="reviews mx-2">
+
+
                     <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
+
                     <si-app-loader  placement="REPLACE_REVIEWS"/>
+
+
+
                     <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
             </div>  
-            <!-- Desciption and Reviews -->
-          <si-app-loader placement="AFTER_DESCRIPTION"/>
+
+
+
+            <si-app-loader placement="AFTER_DESCRIPTION"/>
 
           <!--  -->
           <div v-if="!loading && item" class="flex flex-col mt-3">
@@ -255,7 +266,7 @@
               if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
               // New meta tags
               [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-              { hid: "productID", itemprop: "productID", content: this.product && this.product ? this.product._id : 'productID' }
+              { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
               ].forEach(meta=>{
                   const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
                   if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }

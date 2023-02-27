@@ -55,7 +55,7 @@ export default {
         })
         this.reviews = data;
         this.loading = false;
-    }
+    },
 }
 </script>
 

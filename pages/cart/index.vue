@@ -20,7 +20,6 @@
                         <!-- cart -->
                     </div>
                     <!-- Products -->
-        
                     <!-- Price -->
                     <div class="w-full lg:w-2/6  mx-4 lg:mt-14 md:mb-6 mb-8">
                         <div v-if="!loading.cart && items.length > 0" class="flex flex-col box-shadow-x rounded-2xl p-2">

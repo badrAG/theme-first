@@ -1,18 +1,17 @@
 <template>
     <div>
-        <div class="flex justify-between flex-wrap relative md:mb-6 mb-8">
+        <div class="md:mb-6 mb-8">
             <!-- content  -->
-            <div class="flex flex-wrap justify-between px-4">
+            <div class="flex flex-wrap px-4">
                 <!-- image -->
                 <div class="w-2/6 md:w-1/5">
-                    <div class="pb-2/3 relative zoom overflow-hidden rounded-lg">
+                    <div class="pb-2/3 relative rounded-lg box-shadow-xs-hover">
                         <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                             <si-image  width="400" height="400" class=" rounded-lg h-full w-full absolute inset-0 object-cover"  :src="item.image" :alt="item.name"/>
                         </nuxt-link>
                     </div>
                 </div>
                 <!-- image -->
-
                 <div class="w-4/6 md:w-4/5">
                     <div class="flex flex-wrap justify-between">
                         <!-- product title -->
@@ -25,13 +24,11 @@
                             </div>
                         </div>
                         <!-- procuct title -->
-        
                         <!-- products quantity -->
-                        <div class="flex flex-col justify-start items-start md:items-end w-1/2 md:w-1/4 px-4 my-2  md:mt-0">
+                        <div class="overflow-hidden flex flex-col justify-start items-start md:items-end w-1/2 md:w-1/4 px-4 my-2  md:mt-0">
                             <si-ProductQuantity @selected="quantitySelected" :quantity="item.quantity"/>
                         </div>
                         <!-- products quantity  -->
-                        
                         <!--  Price -->
                         <div class="flex flex-col justify-start items-end w-1/2 md:w-1/4 mt-2 md:mt-0">
                             <div class="">
@@ -47,18 +44,14 @@
                         </div>
                         <!-- Price -->  
                     </div>
-    
                     <!--  Remove products -->
                     <div class="mx-2">
                         <button style="font-size: 13px;" class="font-bold px-2 py-1 rounded-full transition-all ease-linear delay-200 hover-bg" @click="remove">{{this.$settings.sections.cart.buttons.remove_button_text }}</button>
                      </div>
                     <!-- Remove products -->
-
                 </div>
-
             </div>
             <!-- image -->
-
         </div>
     </div>
 </template>

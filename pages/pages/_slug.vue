@@ -5,15 +5,11 @@
         </div>
         <div v-if="item" class="">
             <h1 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-1 ">{{ item.title }}</h1>
-
             <p class="px-4 text-lg"><small>{{ item.excerpt }}</small></p>
-
             <div  v-if="item" class="bg-white text-base font-normal leading-7 rounded-md mt-4 px-4 description" id="description" v-html="item.content"></div>
-
             <div v-if="$route.params.slug && $route.params.slug.indexOf('contact') > -1">
                 <si-app-loader :placement="'AFTER_CONTACT_PAGE'"/>
             </div>
-
             <!-- share products icons -->
             <div class="bg-white mt-4">
                 <div class="flex items-center justify-center">
