@@ -1,13 +1,15 @@
 <template>
     <div class="">
+        <!-- title -->
         <div class="collection-bg">
             <div class="mx-auto container">
                 <h1 class="text-center text-2xl md:text-3xl guard-cairo-font font-light px-4 pt-4 pb-2 collection-text-bg">{{ $settings.sections.top_collections.title }}</h1>
             </div>
         </div>
-        
+        <!-- title -->
+        <!-- collections -->
         <div class="relative">
-            <div class="absolute md:h-2/5 w-full collection-bg" :class="items.length > 3? 'h-2/3' : 'h-1/4'"></div>
+            <div class="absolute md:h-2/5 w-full collection-bg md:" :class="items.length > 3? 'h-2/3' : 'h-2/5'"></div>
             <div class="small-container mx-auto">
                 <ul class="flex flex-wrap justify-center p-4">
                     <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
@@ -21,7 +23,7 @@
                 </ul> 
             </div>
         </div>
-
+        <!-- collections -->
         <!-- Collections not exists -->
         <div class="container">
             <div v-if="!loading && items.length==0" class="flex flex-wrap items-center  bg-white p-2 mx-4 border rounded-xl box-shadow">
@@ -42,71 +44,71 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            loading: true,
-            items: [],
+    export default {
+        data() {
+            return {
+                loading: true,
+                items: [],
+            }
+        },
+    async fetch(){
+        try{
+            const filter = {};
+            if(this.$settings.sections.top_collections.items.length > 0){
+                this.items = this.$settings.sections.top_collections.items;
+            }else{
+                const { data } = await this.$storeino.collections.search(filter)
+                this.items = data.results;
+            }
+        }catch(e){
+            console.log({e});
         }
+        this.loading = false;
     },
-  async fetch(){
-      try{
-          const filter = {};
-          if(this.$settings.sections.top_collections.items.length > 0){
-            this.items = this.$settings.sections.top_collections.items;
-          }else{
-            const { data } = await this.$storeino.collections.search(filter)
-            this.items = data.results;
-          }
-      }catch(e){
-        console.log({e});
-      }
-      this.loading = false;
-  },
-}
+    }
 </script>
 
 <style scoped>
-@media (max-width: 640px) {
-    ul li:nth-child(-n+3) {
-        margin-bottom: 1.25rem;
+    @media (max-width: 768px) {
+        ul li:nth-child(-n+3) {
+            margin-bottom: 1.25rem;
+        }
     }
-}
 
-.img-zom {
-    transition:  .2s ease;
-}
+    .img-zom {
+        transition:  .2s ease;
+    }
 
-.collection-box:hover .img-zom{
-    transform: scale(1.1);
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
+    .collection-box:hover .img-zom{
+        transform: scale(1.1);
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
 
-.collection-box:hover .collection-text::before {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-.collection-box:hover .collection-text {
-  color: #000;
-  opacity: 0.7;
-}
+    .collection-box:hover .collection-text::before {
+    transform-origin: left;
+    transform: scaleX(1);
+    }
+    .collection-box:hover .collection-text {
+    color: #000;
+    opacity: 0.7;
+    }
 
-.collection-text {
-  position: relative;
-  text-decoration: none;
-}
+    .collection-text {
+    position: relative;
+    text-decoration: none;
+    }
 
-.collection-text::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2.5px;
-  background-color: #000;
-  opacity: 0.7;
-  bottom: -8px;
-  left: 0;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform .3s ease-in-out;
-}
+    .collection-text::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2.5px;
+    background-color: #000;
+    opacity: 0.7;
+    bottom: -8px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+    }
 </style>

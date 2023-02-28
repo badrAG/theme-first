@@ -13,64 +13,61 @@
 </template>
 
 <script>
-export default {
-  layout:'account',
-  head() {
-    // return this.seo();
-  },
-  data(){
-    return{
-      iframe:null
-    }
-  },
-    watch: {
-        src: function(val) {
-            console.log(`Source ${val}`);
-        },},
+  export default {
+    layout:'account',
+    head() {
+      // return this.seo();
+    },
     data(){
-        return{
-            routes:['password','orders','profile','messages','login'],
-            src:'/checkout2/orders',
-            settings :null
-        }
+      return{
+        iframe:null
+      }
     },
-   async fetch(){
-     if(this.$route.params && this.$route.params.route) this.src="/checkout2/"+this.$route.params.route
-     if(this.$route.query && this.$route.query.orderId) this.src=this.src+'?orderId='+this.$route.query.orderId
-   },
-    mounted(){
-        if(this.routes.includes(this.$route.params.route) && document.querySelector("#account")){
-           document.querySelector("#account").submit();
-        }
-        this.$storeino.fbpx('PageView')
-    },
-    methods:{
-        load(){
-          if(!process.server){
-            this.resizeIframe()
-            new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
+      watch: {
+          src: function(val) {
+              console.log(`Source ${val}`);
+          },},
+      data(){
+          return{
+              routes:['password','orders','profile','messages','login'],
+              src:'/checkout2/orders',
+              settings :null
           }
-        },
-        resizeIframe(){
-          this.iframe = document.getElementById("iframe");
-          this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
-          this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
-        },
-       seo() {
-        let headTags = {
-           title: this.settings ? this.settings.store_name+'-Account' : "Online-Store-Account",
-           meta: [
-              { hid: "og:description",   property: "og:description", content: this.settings ? this.settings.store_description + " account":'description account' },
-              {hid: "twitter:description",   property: "twitter:description", content: this.settings? this.settings.store_description + " account" :'description home page' },
-              { hid: "description", name: "description", content: this.settings ? this.settings.store_description + " account" : " description acount" },
-            ],
-           script:[]
-        };
-        return headTags;
+      },
+    async fetch(){
+      if(this.$route.params && this.$route.params.route) this.src="/checkout2/"+this.$route.params.route
+      if(this.$route.query && this.$route.query.orderId) this.src=this.src+'?orderId='+this.$route.query.orderId
     },
-    }
-}
+      mounted(){
+          if(this.routes.includes(this.$route.params.route) && document.querySelector("#account")){
+            document.querySelector("#account").submit();
+          }
+          this.$storeino.fbpx('PageView')
+      },
+      methods:{
+          load(){
+            if(!process.server){
+              this.resizeIframe()
+              new ResizeObserver(this.resizeIframe).observe(this.iframe.contentWindow.document.body)
+            }
+          },
+          resizeIframe(){
+            this.iframe = document.getElementById("iframe");
+            this.iframe.style.height =  this.iframe.contentWindow.document.body.scrollHeight+100 + 'px';
+            this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
+          },
+        seo() {
+          let headTags = {
+            title: this.settings ? this.settings.store_name+'-Account' : "Online-Store-Account",
+            meta: [
+                { hid: "og:description",   property: "og:description", content: this.settings ? this.settings.store_description + " account":'description account' },
+                {hid: "twitter:description",   property: "twitter:description", content: this.settings? this.settings.store_description + " account" :'description home page' },
+                { hid: "description", name: "description", content: this.settings ? this.settings.store_description + " account" : " description acount" },
+              ],
+            script:[]
+          };
+          return headTags;
+      },
+      }
+  }
 </script>
-
-<style lang="scss" scoped>
-</style>

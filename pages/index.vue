@@ -15,16 +15,16 @@
     <sections-testimonial v-if="$settings.sections.testimonial.active" ></sections-testimonial>
   </div>
 </template>
-<script>
-export default {
 
-  async fetch(){
-    this.$store.state.seo.title = this.$settings.store_name;
-    this.$store.state.seo.description = this.$settings.store_description;
-  },
-  mounted() {
-    this.$tools.call('PAGE_VIEW');
-    this.$storeino.fbpx('PageView')
-  },
-}
+<script>
+  export default {
+    async fetch(){
+      this.$store.state.seo.title = this.$settings.store_name;
+      this.$store.state.seo.description = this.$settings.store_description;
+    },
+    mounted() {
+      this.$tools.call('PAGE_VIEW');
+      this.$storeino.fbpx('PageView')
+    },
+  }
 </script>

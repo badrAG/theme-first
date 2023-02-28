@@ -28,43 +28,43 @@
         </div>
     </div>
 </template>
+
 <script>
-export default {
-    data() {
-        return {
-            items: [],
-            item: null,
-            loading: true,
+    export default {
+        data() {
+            return {
+                items: [],
+                item: null,
+                loading: true,
+            }
+        },
+        async fetch(){
+            this.items = [];
+            this.loading = true;
+            try{
+                const { data } = await this.$storeino.collections.get({ slug: this.$route.params.slug});
+                this.item = data;
+                const { data : { results } } = await this.$storeino.collections.search({ parent: data._id });
+                this.items = results;
+            }catch(e){
+                console.log({e});
+            }
+            this.loading = false;
+        },
+        mounted() {
+        this.$storeino.fbpx('PageView')
         }
-    },
-    async fetch(){
-        this.items = [];
-        this.loading = true;
-        try{
-            const { data } = await this.$storeino.collections.get({ slug: this.$route.params.slug});
-            this.item = data;
-            const { data : { results } } = await this.$storeino.collections.search({ parent: data._id });
-            this.items = results;
-        }catch(e){
-            console.log({e});
-        }
-        this.loading = false;
-    },
-    mounted() {
-      this.$storeino.fbpx('PageView')
     }
-}
 </script>
 
 <style scoped>
-
     @media (min-width: 768px) {
-    [dir="rtl"] .image-rounded {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        [dir="rtl"] .image-rounded {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
 
-        border-top-right-radius: 0.75rem;
-        border-bottom-right-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
     }
-}
 </style>

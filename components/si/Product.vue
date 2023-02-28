@@ -12,19 +12,16 @@
                 </button>
             </div>
             <!-- wishlist icon -->
-            
             <!--  products image -->
             <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                 <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover rounded-xl" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
-                </nuxt-link>
-                <!--  products image -->
-
+            </nuxt-link>
+            <!--  products image -->
             <!-- product-price -->
             <si-product-price page="home-price" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
             <!-- product-price -->
         </div>
         <!-- home page -->
-
         <!-- else pages -->
         <div v-else class="wishlist-box flex flex-col relative p-2 mb-5 rounded-xl box-shadow-xs-hover">
           <!-- wishlist icon -->
@@ -37,140 +34,138 @@
                 </button>
             </div>
             <!-- wishlist icon -->
-    
             <!-- Product discount -->
             <div v-if="discount" class="text-sm m-2 p-1 h-8 rounded-tl-lg rounded-br-lg flex items-center justify-center bg-primary text-white absolute top-0 left-0 z-10">
                 <b>-{{discount.value}} {{ discount.type == 'percentage' ? '%' : this.$store.state.currency.symbol }}</b>
             </div>
             <!-- Product discount -->
-    
             <!-- Products details -->
             <div class="h-full flex relative ">
                 <div class="w-full flex flex-col h-full">
-                  <!--  -->
+                    <!-- product image -->
                     <div class="image_box pb-4/5 relative zoom overflow-hidden">
                         <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                             <si-image  width="400" height="400" class="image_zoom h-full w-full absolute inset-0 object-cover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                         </nuxt-link>
                     </div>
-                    <!--  -->
+                    <!-- product image -->
+                    <!-- product name -->
                     <div class="mt-3">
                         <nuxt-link :to="`/products/${item.slug}`">
                             <h3 class="text-sm font-normal truncate">{{item.name}}</h3>
                         </nuxt-link>
                     </div>
-                    <!--  -->
+                    <!-- product name -->
+                    <!-- product price -->
                     <div class="mt-1">
                         <si-product-price :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
                     </div>
-                    <!--  -->
+                    <!--  product price -->
                 </div>
-                <!--  -->
-    
             </div>
-            <!--  -->
         </div>
         <!-- else pages -->
     </div>
-    </template>
+</template>
+
 <script>
-export default {
-    props: {
-        upsell: { type: Object, default: null },
-        item: Object,
-        page: { type: String,required: false}
-    },
-    async fetch(){
-        if(this.discount){
-            if(this.item.type == 'simple'){
-                this.item.originalPrice = this.$tools.copy(this.item.price);
-                if(this.discount.type == 'percentage'){
-                        this.item.price.salePrice = this.item.price.salePrice - (this.item.price.salePrice * this.discount.value / 100)
-                        this.item.price.comparePrice = this.item.price.comparePrice - (this.item.price.comparePrice * this.discount.value / 100)
-                }else{
-                    this.item.price.salePrice = this.item.price.salePrice - this.discount.value
-                    this.item.price.comparePrice = this.item.price.comparePrice - this.discount.value
-                }
-            }else{
-                this.item.variants.forEach(variant => {
-                    variant.originalPrice = this.$tools.copy(variant.price)
+    export default {
+        props: {
+            upsell: { type: Object, default: null },
+            item: Object,
+            page: { type: String,required: false}
+        },
+        async fetch(){
+            if(this.discount){
+                if(this.item.type == 'simple'){
+                    this.item.originalPrice = this.$tools.copy(this.item.price);
                     if(this.discount.type == 'percentage'){
-                        variant.price.salePrice = variant.price.salePrice - (variant.price.salePrice * this.discount.value / 100)
-                        variant.price.comparePrice = variant.price.comparePrice - (variant.price.comparePrice * this.discount.value / 100)
+                            this.item.price.salePrice = this.item.price.salePrice - (this.item.price.salePrice * this.discount.value / 100)
+                            this.item.price.comparePrice = this.item.price.comparePrice - (this.item.price.comparePrice * this.discount.value / 100)
                     }else{
-                        variant.price.salePrice = variant.price.salePrice - this.discount.value
-                        variant.price.comparePrice = variant.price.comparePrice - this.discount.value
+                        this.item.price.salePrice = this.item.price.salePrice - this.discount.value
+                        this.item.price.comparePrice = this.item.price.comparePrice - this.discount.value
                     }
-                });
+                }else{
+                    this.item.variants.forEach(variant => {
+                        variant.originalPrice = this.$tools.copy(variant.price)
+                        if(this.discount.type == 'percentage'){
+                            variant.price.salePrice = variant.price.salePrice - (variant.price.salePrice * this.discount.value / 100)
+                            variant.price.comparePrice = variant.price.comparePrice - (variant.price.comparePrice * this.discount.value / 100)
+                        }else{
+                            variant.price.salePrice = variant.price.salePrice - this.discount.value
+                            variant.price.comparePrice = variant.price.comparePrice - this.discount.value
+                        }
+                    });
+                }
             }
-        }
-    },
-    data() {
-        return {
-            filpped: false,
-            added: false,
-            variant: this.item.type == 'variant' ? this.item.variants[0] : null,
-            quantity: this.item.quantity,
-            price: { salePrice: 0, comparePrice: 0 },
-            discount: this.upsell ? this.upsell.discount : null
-        }
-    },
-    methods: {
-        addToCart(ev) {
-            // Call add to cart event
-            console.log('items', this.item)
-            let item = {
-                _id: this.item._id,
-                quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
-                price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                variant: this.variant ? { _id: this.variant._id } : null,
-                upsell: this.upsell
-            };
-            this.$tools.call('ADD_TO_CART', item);
-            this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
-            this.added = true;
-            if(this.$settings.sections.products.add_to_cart_to_checkout){
+        },
+        data() {
+            return {
+                filpped: false,
+                added: false,
+                variant: this.item.type == 'variant' ? this.item.variants[0] : null,
+                quantity: this.item.quantity,
+                price: { salePrice: 0, comparePrice: 0 },
+                discount: this.upsell ? this.upsell.discount : null
+            }
+        },
+        methods: {
+            addToCart(ev) {
+                // Call add to cart event
+                let item = {
+                    _id: this.item._id,
+                    quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
+                    price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                    variant: this.variant ? { _id: this.variant._id } : null,
+                    upsell: this.upsell
+                };
+                this.$tools.call('ADD_TO_CART', item);
+                this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
+                this.added = true;
+                if(this.$settings.sections.products.add_to_cart_to_checkout){
+                    setTimeout(() => {
+                            window.location.href = '/checkout2';
+                    }, 500);
+                }
                 setTimeout(() => {
-                        window.location.href = '/checkout2';
-                }, 500);
-            }
-            setTimeout(() => {
-                this.added = false;
-            }, 2000);
-             this.$storeino.fbpx('AddToCart',{
-               content_name: this.item.name,
-               content_ids: [this.item._id],
-               content_type: "product",
-               value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-               currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-            })
+                    this.added = false;
+                }, 2000);
+                this.$storeino.fbpx('AddToCart',{
+                content_name: this.item.name,
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+                })
+            },
+            variantSelected(variant){
+                this.variant = variant;
+                this.quantitySelected(this.item.quantity.value);
+            },
+            quantitySelected(quantity){
+                this.item.quantity.value = quantity;
+                if(this.variant){
+                    this.price.salePrice = this.variant.price.salePrice * quantity;
+                    this.price.comparePrice = this.variant.price.comparePrice * quantity;
+                }else{
+                    this.price.salePrice = this.item.price.salePrice * quantity;
+                    this.price.comparePrice = this.item.price.comparePrice * quantity;
+                }
+            },
+            addToWishlist(){
+                this.$tools.call('ADD_TO_WISHLIST', this.item);
+                this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
+            },
+            removeFromWishlist(){
+                this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
+                this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
+            },
         },
-        variantSelected(variant){
-            this.variant = variant;
-            this.quantitySelected(this.item.quantity.value);
-        },
-        quantitySelected(quantity){
-            this.item.quantity.value = quantity;
-            if(this.variant){
-                this.price.salePrice = this.variant.price.salePrice * quantity;
-                this.price.comparePrice = this.variant.price.comparePrice * quantity;
-            }else{
-                this.price.salePrice = this.item.price.salePrice * quantity;
-                this.price.comparePrice = this.item.price.comparePrice * quantity;
-            }
-        },
-        addToWishlist(){
-            this.$tools.call('ADD_TO_WISHLIST', this.item);
-            this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
-        },
-        removeFromWishlist(){
-            this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
-            this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
-        },
-    },
-}
+    }
 </script>
-    <style scoped>
+
+<style scoped>
     .wishlist-box { 
         transition: all 0.5s ease-in-out;
     }
@@ -182,5 +177,5 @@ export default {
     .wishlist-box:hover .wishlist {
         opacity: 1;
     }
-    </style>
+</style>
     

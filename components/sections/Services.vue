@@ -20,56 +20,57 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    image : this.$settings.sections.services.items.delivery.image ,
-                    defaultImage: { 
-                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-fastdelivery.png'
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        image : this.$settings.sections.services.items.delivery.image ,
+                        defaultImage: { 
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-fastdelivery.png'
+                        },
+                        text: this.$settings.sections.services.items.delivery.text,
+                        url: this.$settings.sections.services.items.delivery.url,
+                        description: this.$settings.sections.services.items.delivery.description,
                     },
-                    text: this.$settings.sections.services.items.delivery.text,
-                    url: this.$settings.sections.services.items.delivery.url,
-                    description: this.$settings.sections.services.items.delivery.description,
-                },
-                {
-                    image : this.$settings.sections.services.items.satisfaction.image ,
-                    defaultImage: { 
-                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-satisfaction.png' 
+                    {
+                        image : this.$settings.sections.services.items.satisfaction.image ,
+                        defaultImage: { 
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-satisfaction.png' 
+                        },
+                        text: this.$settings.sections.services.items.satisfaction.text,
+                        url: this.$settings.sections.services.items.satisfaction.url,
+                        description: this.$settings.sections.services.items.satisfaction.description,
                     },
-                    text: this.$settings.sections.services.items.satisfaction.text,
-                    url: this.$settings.sections.services.items.satisfaction.url,
-                    description: this.$settings.sections.services.items.satisfaction.description,
-                },
-                {
-                    image : this.$settings.sections.services.items.quality.image ,
-                    defaultImage: { 
-                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-heightqualite.png' 
+                    {
+                        image : this.$settings.sections.services.items.quality.image ,
+                        defaultImage: { 
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-heightqualite.png' 
+                        },
+                        text: this.$settings.sections.services.items.quality.text,
+                        url: this.$settings.sections.services.items.quality.url,
+                        description: this.$settings.sections.services.items.quality.description,
                     },
-                    text: this.$settings.sections.services.items.quality.text,
-                    url: this.$settings.sections.services.items.quality.url,
-                    description: this.$settings.sections.services.items.quality.description,
-                },
-                {
-                    image : this.$settings.sections.services.items.support.image ,
-                    defaultImage: { 
-                        src: 'https://storeno.b-cdn.net/themes/bazar/bazar-support.png' 
-                    },
-                    text: this.$settings.sections.services.items.support.text,
-                    url: this.$settings.sections.services.items.support.url,
-                    description: this.$settings.sections.services.items.support.description,
-                }
-            ]
-        }
-    },
-}
-</script>
-<style scoped>
-@media (min-width: 768px) {
-    [dir="rtl"] .service-title {
-        margin-right: 0.75rem;
-        margin-left: 0;
+                    {
+                        image : this.$settings.sections.services.items.support.image ,
+                        defaultImage: { 
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-support.png' 
+                        },
+                        text: this.$settings.sections.services.items.support.text,
+                        url: this.$settings.sections.services.items.support.url,
+                        description: this.$settings.sections.services.items.support.description,
+                    }
+                ]
+            }
+        },
     }
-}
+</script>
+
+<style scoped>
+    @media (min-width: 768px) {
+        [dir="rtl"] .service-title {
+            margin-right: 0.75rem;
+            margin-left: 0;
+        }
+    }
 </style>

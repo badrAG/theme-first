@@ -18,7 +18,6 @@
                     </div>
                 </div>
                 <!-- title -->
-
                 <!-- image -->
                 <div class="px-4 pt-4 mb-10">
                     <div class="relative pb-3/5 overflow-hidden ">
@@ -26,7 +25,6 @@
                     </div>
                 </div>
                 <!-- image -->
-
                 <div class="flex justify-center ">
                     <div class="max-w-4xl ">
                         <!-- created post  -->
@@ -34,23 +32,19 @@
                             <p class="font-bold text-base leading-5">{{ $settings.sections.post.creator.title }} {{ item.publisher.firstname }} {{ item.publisher.lastname }}</p>
                         </div>
                         <!-- created post  -->
-        
                         <!-- post date -->
                         <div v-if="$settings.sections.post.createdat.active" class="px-4 mb-2">
                             <p class="text-sm">{{ getdate(item.createdAt) }}</p>
                         </div>
-                        <!--  -->
-                        
+                        <!-- post date -->
                         <!-- short description -->
                         <p class="px-4 mt-4 font-normal text-base leading-7 text-gr">{{ item.excerpt }}</p>
                         <!-- short description -->
-            
                         <!-- description -->
                         <div class="px-4">
                             <div  v-if="item" class="font-normal text-base leading-7 text-bl" id="description" v-html="item.content"></div>
                         </div>
                         <!-- description -->
-
                         <!-- share products icons -->
                         <div class="bg-white mt-4" v-if="$settings.sections.post.share_buttons.active">
                           <div class="flex items-center justify-center">
@@ -76,9 +70,10 @@
             </div>
             <!-- Realated post -->
         </div>
-      </div>
-    </template>
-    <script>
+    </div>
+</template>
+
+<script>
     export default {
         data() {
             return {
@@ -141,9 +136,4 @@
             }
         }
     }
-    </script>
-    
-    
-    <style scoped >
-    </style>
-    
+</script>

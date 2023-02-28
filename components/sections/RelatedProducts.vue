@@ -12,45 +12,46 @@
       </div>
     </div>
     <!-- title -->
-    <!--  -->
+    <!-- loader -->
     <div v-if="loading" class="flex justify-center items-center my-5">
       <si-loader></si-loader>
     </div>
-    <!--  -->
-    <!--  -->
+    <!-- loader -->
+    <!-- products -->
     <div class="flex flex-wrap">
       <div v-for="(item, i) in items" :key="i" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 p-2">
         <si-product :item="item"></si-product>
       </div>
     </div>
-    <!--  -->
+    <!-- products -->
   </div>
 </template>
+
 <script>
-export default {
-  props:{
-      item: Object
-  },
-  data() {
-    return {
-      loading: true,
-      items: [],
-    };
-  },
-  async fetch(){
-      try{
-          const ids = this.item.collections.map(c=>c._id);
-          const { data } = await this.$storeino.products.search({
-              "_id-ne": this.item._id,
-              "collections._id-in": ids
-            })
-          this.items = data.results
-      }catch(e){
-        console.log({e});
-      }
-      this.loading = false;
-  }
-};
+  export default {
+    props:{
+        item: Object
+    },
+    data() {
+      return {
+        loading: true,
+        items: [],
+      };
+    },
+    async fetch(){
+        try{
+            const ids = this.item.collections.map(c=>c._id);
+            const { data } = await this.$storeino.products.search({
+                "_id-ne": this.item._id,
+                "collections._id-in": ids
+              })
+            this.items = data.results
+        }catch(e){
+          console.log({e});
+        }
+        this.loading = false;
+    }
+  };
 </script>
 
 

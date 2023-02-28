@@ -30,34 +30,34 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [],
-            loading: true
-        }
-    },
-    async fetch(){
-        try{
-            const filter = {};
-            if(this.$settings.sections.bottom_collections.items.length > 0){
-                this.items = this.$settings.sections.bottom_collections.items;
-            }else{
-                const { data } = await this.$storeino.collections.search(filter)
-                this.items = data.results;
+    export default {
+        data() {
+            return {
+                items: [],
+                loading: true
             }
-        }catch(e){
-            console.log({e});
-      }
-      this.loading = false;
-  },
-}
+        },
+        async fetch(){
+            try{
+                const filter = {};
+                if(this.$settings.sections.bottom_collections.items.length > 0){
+                    this.items = this.$settings.sections.bottom_collections.items;
+                }else{
+                    const { data } = await this.$storeino.collections.search(filter)
+                    this.items = data.results;
+                }
+            }catch(e){
+                console.log({e});
+        }
+        this.loading = false;
+    },
+    }
 </script>
 
 <style scoped>
-@media (min-width: 1024px) { 
-    ul li:nth-child(6n-0) {
-        display: none;
+    @media (min-width: 1024px) { 
+        ul li:nth-child(6n-0) {
+            display: none;
+        }
     }
-}
 </style>

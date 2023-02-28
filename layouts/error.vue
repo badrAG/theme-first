@@ -14,11 +14,13 @@
 		</div>
 	</div>
 </template>
+
 <script>
-export default {
-  props: ['error'],
-}
+	export default {
+	props: ['error'],
+	}
 </script>
+
 <style>
 	.tracking-tighter-less {
 		letter-spacing: -0.75rem;

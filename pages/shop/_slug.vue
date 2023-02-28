@@ -6,11 +6,9 @@
                 <!-- Slider left -->
                 <transition name="slide-left">
                     <div :class="showSideBar ? 'show':'hide'" class="filters w-80 fixed hidden h-full top-0 left-0 bottom-0 bg-white z-50 overflow-y-auto">
-                        
                         <!-- show slider left -->
                         <div class="bg-black bg-opacity-50 fixed block inset-0" @click="showSideBar=false"></div>
                         <!-- show slider left  -->
-    
                         <!--  -->
                         <div class=" bg-white h-full flex flex-col relative">
                             <!-- close slider left -->
@@ -20,11 +18,9 @@
                                 </button>
                             </div>
                             <!-- close slider left -->
-    
                             <!-- Collection title  -->
                             <h2 v-if="$settings.sections.shop.sidebar.collections.active" class="mb-2 px-4 text-base font-bold">{{ $settings.sections.shop.sidebar.collections.title }}</h2>
                             <!-- Collection title -->
-    
                             <!-- Collections type -->
                             <div v-if="$settings.sections.shop.sidebar.collections.active" class="flex flex-col mb-2">
                                 <div v-if="loading.collections" class="flex justify-center items-center my-5">
@@ -38,12 +34,10 @@
                                         </div>
                                         <div class="mx-3 capitalize" :for="item.slug">{{ item.name }}</div>
                                     </label>
-                                </div   >
+                                </div>
                             </div>
                             <!-- Collections type -->
-    
                             <!-- <hr v-if="$settings.sections.shop.sidebar.collections.active"> -->
-    
                             <!-- price-range  -->
                             <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="mb-2 px-4 text-base font-bold">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
                             <div v-if="loading.filters" class="flex justify-center items-center my-5">
@@ -53,9 +47,7 @@
                                 <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
                             </div>
                             <!-- price-range  -->
-    
                             <!-- <hr v-if="$settings.sections.shop.sidebar.prices.active"> -->
-    
                             <!-- sizes -->
                             <h2 class="mb-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.sizes.active">{{ $settings.sections.shop.sidebar.sizes.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.sizes.active && loading.filters" class="flex justify-center items-center my-5">
@@ -68,9 +60,7 @@
                                 </div>
                             </div>
                             <!-- sizes -->
-    
                             <!-- <hr v-if="$settings.sections.shop.sidebar.sizes.active"> -->
-    
                             <!-- colors -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.colors.active">{{ $settings.sections.shop.sidebar.colors.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.colors.active && loading.filters" class="flex justify-center items-center my-5">
@@ -83,12 +73,9 @@
                                 </div>
                             </div>
                             <!-- colors  -->
-    
                             <!-- <hr v-if="$settings.sections.shop.sidebar.colors.active"> -->
-    
                             <!--  -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.tags.active">{{ $settings.sections.shop.sidebar.tags.title }}</h2>
-                            
                             <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                                 <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
                                     <si-loader></si-loader>
@@ -103,7 +90,6 @@
                                     </label>
                                 </div>
                             </div>
-    
                             <!-- <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
                             </div>
@@ -114,12 +100,9 @@
                                 </div>
                             </div> -->
                             <!--  -->
-    
                             <!-- <hr v-if="$settings.sections.shop.sidebar.tags.active"> -->
-    
                             <!--  -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.brands.active">{{ $settings.sections.shop.sidebar.brands.title }}</h2>
-    
                             <div v-if="$settings.sections.shop.sidebar.collections.active" class="flex flex-col mb-2  bg-white">
                                 <div v-if="$settings.sections.shop.sidebar.brands.active && loading.brands" class="flex justify-center items-center my-5">
                                     <si-loader></si-loader>
@@ -139,7 +122,6 @@
                     </div>
                 </transition>
                 <!-- Slider left -->
-    
                 <!--  -->
                 <div class="w-full">  
                     <div class="bg-white">
@@ -173,7 +155,6 @@
                             <si-loader></si-loader>
                         </div>
                         <!-- Loader -->
-    
                         <!-- Products  -->
                         <div v-if="items.length > 0" class="flex flex-wrap">
                             <div v-for="(item, i) in items" :key="i" class="p-2 w-1/2 md:w-1/3 lg:w-1/4">
@@ -181,13 +162,11 @@
                             </div>
                         </div>
                         <!-- Products -->
-    
                         <!-- empty_text -->
                         <div v-if="!loading.products && items.length == 0" class="flex justify-center items-center">
                             <h1 class="pt-4 pb-6">{{ $settings.sections.shop.empty_text }}</h1>
                         </div>
                         <!-- empty_text -->
-    
                         <!-- Pagination -->
                         <div class="p-2 flex justify-center items-center flex-wrap w-full">
                             <!-- chivron left -->
@@ -247,246 +226,248 @@
         </div>
     </div>
 </template>
+
 <script>
-export default {
-    data() {
-        return {
-            loading: {
-                products: true,
-                filters: true,
-                collections: true,
-                brands: true,
+    export default {
+        data() {
+            return {
+                loading: {
+                    products: true,
+                    filters: true,
+                    collections: true,
+                    brands: true,
+                },
+                query: {},
+                param: [],
+                filters: null,
+                showSideBar: false,
+                style: 'mx-2 h-10 w-10 transition-all ease-in-out delay-150 rounded-full box-shadow border-2 bg-primary-border scale',
+                gridClass: 'w-1/2 md:w-1/3 lg:w-1/4',
+                items: [],
+                collections:[],
+                brands: [],
+                paginate: { page: 1, limit: this.$settings.sections.shop.pagination.limit, total: 12 },
+                params: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
+                lastParams: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
+                sorts: [
+                    { field: { 'price.salePrice': 1 }, name: this.$settings.sections.shop.sorts.price_asc },
+                    { field: { 'price.salePrice': -1 }, name: this.$settings.sections.shop.sorts.price_desc },
+                    { field: { 'review.rating': -1 }, name: this.$settings.sections.shop.sorts.rating_desc },
+                    { field: { 'review.rating': 1 }, name: this.$settings.sections.shop.sorts.rating_asc },
+                    { field: { 'name': 1 }, name: this.$settings.sections.shop.sorts.name_asc },
+                    { field: { 'name': -1 }, name: this.$settings.sections.shop.sorts.name_desc },
+                    { field: { createdAt: -1 }, name: this.$settings.sections.shop.sorts.newest },
+                    { field: { createdAt: 1 }, name: this.$settings.sections.shop.sorts.oldest }
+                ],
+                girds: [
+                { number: 2, width: 25, class: 'w-full md:w-1/2 lg:w-1/2' },
+                { number: 3, width: 37, class: 'w-full xs:w1/2 md:w-1/2 lg:w-1/3' },
+                { number: 4, width: 48, class: 'w-1/2 md:w-1/3 lg:w-1/4' },
+                { number: 5, width: 60, class: 'w-1/2 xs:w-1/3 md:w-1/4 lg:w-1/5' },
+                { number: 6, width: 72, class: 'w-1/2 xs:w-1/3 md:w-1/4 lg:w-1/6' },
+                ]
+            }
+        },
+        watch: {
+            params: {
+                handler(val) {
+                    if(JSON.stringify(val) !== JSON.stringify(this.lastParams)){
+                        this.getItems();
+                    }
+                },
+                deep: true
             },
-            query: {},
-            param: [],
-            filters: null,
-            showSideBar: false,
-            style: 'mx-2 h-10 w-10 transition-all ease-in-out delay-150 rounded-full box-shadow border-2 bg-primary-border scale',
-            gridClass: 'w-1/2 md:w-1/3 lg:w-1/4',
-            items: [],
-            collections:[],
-            brands: [],
-            paginate: { page: 1, limit: this.$settings.sections.shop.pagination.limit, total: 12 },
-            params: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
-            lastParams: { page: 1, search: this.$route.query.search, limit: this.$settings.sections.shop.pagination.limit, 'collections.slug-in': [], sort: { createdAt: -1 } },
-            sorts: [
-                { field: { 'price.salePrice': 1 }, name: this.$settings.sections.shop.sorts.price_asc },
-                { field: { 'price.salePrice': -1 }, name: this.$settings.sections.shop.sorts.price_desc },
-                { field: { 'review.rating': -1 }, name: this.$settings.sections.shop.sorts.rating_desc },
-                { field: { 'review.rating': 1 }, name: this.$settings.sections.shop.sorts.rating_asc },
-                { field: { 'name': 1 }, name: this.$settings.sections.shop.sorts.name_asc },
-                { field: { 'name': -1 }, name: this.$settings.sections.shop.sorts.name_desc },
-                { field: { createdAt: -1 }, name: this.$settings.sections.shop.sorts.newest },
-                { field: { createdAt: 1 }, name: this.$settings.sections.shop.sorts.oldest }
-            ],
-            girds: [
-            { number: 2, width: 25, class: 'w-full md:w-1/2 lg:w-1/2' },
-            { number: 3, width: 37, class: 'w-full xs:w1/2 md:w-1/2 lg:w-1/3' },
-            { number: 4, width: 48, class: 'w-1/2 md:w-1/3 lg:w-1/4' },
-            { number: 5, width: 60, class: 'w-1/2 xs:w-1/3 md:w-1/4 lg:w-1/5' },
-            { number: 6, width: 72, class: 'w-1/2 xs:w-1/3 md:w-1/4 lg:w-1/6' },
-            ]
-        }
-    },
-    watch: {
-        params: {
-            handler(val) {
-                if(JSON.stringify(val) !== JSON.stringify(this.lastParams)){
-                    this.getItems();
+            "$route.query.search"(val){
+                this.$set(this.params, 'search', val);
+            }
+        },
+        async fetch(){
+            this.$store.state.seo.title = this.$settings.sections.shop.title + ' - ' + this.$settings.store_name;
+            this.$store.state.seo.description = this.$settings.sections.shop.description || this.$settings.store_description;
+            if(this.$route.params.slug){
+                this.param = this.$route.params.slug.split(',');
+                this.$route.params.slug.split(',').forEach(item => {
+                    this.params['collections.slug-in'].push(item);
+                });
+            }
+            for (const key in this.$route.query) {
+                if(!this.$route.query[key]) continue;
+                switch (key) {
+                    case 'price-from': this.$set(this.params, 'price.salePrice-from', this.$route.query[key]);break;
+                    case 'price-to': this.$set(this.params, 'price.salePrice-to', this.$route.query[key]);break;
+                    case 'colors-size': this.$set(this.params, 'options.values.value1', this.$route.query[key].split(','));break;
+                    case 'tags': this.$set(this.params, 'tags-in', this.$route.query[key].split(','));break;
+                    case 'brands': this.$set(this.params, 'brand.slug-in', this.$route.query[key].split(','));break;
+                    case 'page': this.$set(this.params, 'page', this.$route.query[key]);break;
                 }
+            }
+            this.lastParams = this.params;
+            await this.getFilters();
+            await this.getItems();
+            await this.getCollections();
+            await this.getBrands();
+        },
+        methods: {
+            setParams(e, key, value){
+                if(key.indexOf('price') >= 0 || key.indexOf('page') >= 0){
+                    this.$set(this.params,key, e.target.value);
+                    return false;
+                }else{
+                    if(e.target.checked) {
+                        if(!this.params[key]) this.params[key] = this.$set(this.params, key, []);
+                        this.params[key].push(value);
+                    } else {
+                        this.params[key] = this.params[key].filter(item => item !== value);
+                    }
+                }
+                for (const key in this.params) {
+                    switch(key){
+                        case 'collections.slug-in': this.param = this.params[key];break;
+                        case 'price.salePrice-from': this.query['price-from'] = this.params[key];break;
+                        case 'price.salePrice-to': this.query['price-to'] = this.params[key];break;
+                        case 'options.values.value1': this.query['colors-size'] = this.params[key];break;
+                        case 'tags-in': this.query['tags'] = this.params[key];break;
+                        case 'brand.slug-in': this.query['brands'] = this.params[key];break;
+                        case 'page': this.query['page'] = [this.params[key]];break;
+                    }
+                }
+                let url = `/shop/`;
+                url += this.param.length > 0 ? [...new Set(this.param)].join(',') : '';
+                for (const key in this.query) {
+                    url += url.indexOf('?') == -1 ? '?' : '&';
+                    if(typeof this.query[key] == 'object'){
+                        url += `${key}=${this.query[key].join(',')}`;
+                    }else url += `${key}=${this.query[key]}`;
+                }
+                window.history.pushState({}, '', url);
             },
-            deep: true
-        },
-        "$route.query.search"(val){
-            this.$set(this.params, 'search', val);
-        }
-    },
-    async fetch(){
-        this.$store.state.seo.title = this.$settings.sections.shop.title + ' - ' + this.$settings.store_name;
-        this.$store.state.seo.description = this.$settings.sections.shop.description || this.$settings.store_description;
-        if(this.$route.params.slug){
-            this.param = this.$route.params.slug.split(',');
-            this.$route.params.slug.split(',').forEach(item => {
-                this.params['collections.slug-in'].push(item);
-            });
-        }
-        for (const key in this.$route.query) {
-            if(!this.$route.query[key]) continue;
-            switch (key) {
-                case 'price-from': this.$set(this.params, 'price.salePrice-from', this.$route.query[key]);break;
-                case 'price-to': this.$set(this.params, 'price.salePrice-to', this.$route.query[key]);break;
-                case 'colors-size': this.$set(this.params, 'options.values.value1', this.$route.query[key].split(','));break;
-                case 'tags': this.$set(this.params, 'tags-in', this.$route.query[key].split(','));break;
-                case 'brands': this.$set(this.params, 'brand.slug-in', this.$route.query[key].split(','));break;
-                case 'page': this.$set(this.params, 'page', this.$route.query[key]);break;
-            }
-        }
-        this.lastParams = this.params;
-        await this.getFilters();
-        await this.getItems();
-        await this.getCollections();
-        await this.getBrands();
-    },
-    methods: {
-        setParams(e, key, value){
-            if(key.indexOf('price') >= 0 || key.indexOf('page') >= 0){
-                this.$set(this.params,key, e.target.value);
-                return false;
-            }else{
-                if(e.target.checked) {
-                    if(!this.params[key]) this.params[key] = this.$set(this.params, key, []);
-                    this.params[key].push(value);
-                } else {
-                    this.params[key] = this.params[key].filter(item => item !== value);
+            async getFilters(){
+                this.filters = null;
+                this.loading.filters = true;
+                try{
+                    const { data } = await this.$storeino.products.filters({});
+                    this.filters = data;
+                }catch(e){
+                    console.log({e});
                 }
-            }
-            for (const key in this.params) {
-                switch(key){
-                    case 'collections.slug-in': this.param = this.params[key];break;
-                    case 'price.salePrice-from': this.query['price-from'] = this.params[key];break;
-                    case 'price.salePrice-to': this.query['price-to'] = this.params[key];break;
-                    case 'options.values.value1': this.query['colors-size'] = this.params[key];break;
-                    case 'tags-in': this.query['tags'] = this.params[key];break;
-                    case 'brand.slug-in': this.query['brands'] = this.params[key];break;
-                    case 'page': this.query['page'] = [this.params[key]];break;
+                this.loading.filters = false;
+            },
+            async getCollections(){
+                this.collections = [];
+                this.loading.collections = true;
+                try{
+                    const { data } = await this.$storeino.collections.search({});
+                    this.collections = data.results;
+                }catch(e){
+                    console.log({e});
                 }
-            }
-            let url = `/shop/`;
-            url += this.param.length > 0 ? [...new Set(this.param)].join(',') : '';
-            for (const key in this.query) {
-                url += url.indexOf('?') == -1 ? '?' : '&';
-                if(typeof this.query[key] == 'object'){
-                    url += `${key}=${this.query[key].join(',')}`;
-                }else url += `${key}=${this.query[key]}`;
-            }
-            window.history.pushState({}, '', url);
+                this.loading.collections = false;
+            },
+            async getBrands(){
+                this.brands = [];
+                this.loading.brands = true;
+                try{
+                    const { data } = await this.$storeino.brands.search({});
+                    this.brands = data.results;
+                }catch(e){
+                    console.log({e});
+                }
+                this.loading.brands = false;
+            },
+            async getItems(page=null){
+                if(page != null) this.setParams({target:{value: page}}, 'page', page);
+                this.items = [];
+                this.loading.products = true;
+                try{
+                    this.params.search = this.$route.query.search;
+                    this.params.page = page || this.paginate.current_page;
+                    this.params.limit = this.$settings.sections.shop.pagination.limit;
+                    this.lastParams = this.$tools.copy(this.params);
+                    const {data} = await this.$storeino.products.search(this.params);
+                    this.items = data.results;
+                    this.paginate = data.paginate;
+                }catch(e){
+                    console.log({e});
+                }
+                this.loading.products = false;
+            },
         },
-        async getFilters(){
-            this.filters = null;
-            this.loading.filters = true;
-            try{
-                const { data } = await this.$storeino.products.filters({});
-                this.filters = data;
-            }catch(e){
-                console.log({e});
-            }
-            this.loading.filters = false;
-        },
-        async getCollections(){
-            this.collections = [];
-            this.loading.collections = true;
-            try{
-                const { data } = await this.$storeino.collections.search({});
-                this.collections = data.results;
-            }catch(e){
-                console.log({e});
-            }
-            this.loading.collections = false;
-        },
-        async getBrands(){
-            this.brands = [];
-            this.loading.brands = true;
-            try{
-                const { data } = await this.$storeino.brands.search({});
-                this.brands = data.results;
-            }catch(e){
-                console.log({e});
-            }
-            this.loading.brands = false;
-        },
-        async getItems(page=null){
-            if(page != null) this.setParams({target:{value: page}}, 'page', page);
-            this.items = [];
-            this.loading.products = true;
-            try{
-                this.params.search = this.$route.query.search;
-                this.params.page = page || this.paginate.current_page;
-                this.params.limit = this.$settings.sections.shop.pagination.limit;
-                this.lastParams = this.$tools.copy(this.params);
-                const {data} = await this.$storeino.products.search(this.params);
-                this.items = data.results;
-                this.paginate = data.paginate;
-            }catch(e){
-                console.log({e});
-            }
-            this.loading.products = false;
-        },
-    },
-}
+    }
 </script>
+
 <style scoped>
-[dir='rtl'] svg.translate{
-  transform: rotateY(180deg);
-}
+    [dir='rtl'] svg.translate{
+    transform: rotateY(180deg);
+    }
 
-.grid_icon:hover > span {
+    .grid_icon:hover > span {
+        background-color: var(--primary-color);
+        opacity: 0.6;
+    }
+
+    select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' aria-hidden='true' focusable='false'><polygon points='8.25 5 6 7 3.75 5 8.25 5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right  center;
+    }
+
+    [dir = "rtl"] select {
+        background-position: left center;
+    }
+
+    [dir = "rtl"] .filters {
+        right: 0;
+        left: auto;
+    }
+
+    input[type="checkbox"]:checked + div {
     background-color: var(--primary-color);
-    opacity: 0.6;
-}
+    border-color: var(--primary-color);
+    }
 
-select {
--webkit-appearance: none;
--moz-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' aria-hidden='true' focusable='false'><polygon points='8.25 5 6 7 3.75 5 8.25 5'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right  center;
-}
+    input[type="checkbox"]:checked + div svg {
+    display: block;
+    }
 
-[dir = "rtl"] select {
-    background-position: left center;
-}
+    .color-option label{
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        margin-right: 4px;
+        box-shadow: 0 0 0px 2px rgb(230, 230, 230);
+    }
 
-[dir = "rtl"] .filters {
-    right: 0;
-    left: auto;
-}
+    .color-option.active label{
+        color: transparent;
+        box-shadow: 0 0 0px 2px white, 0 0 0px 4px var(--primary-color);
+        margin-left: 6px;
+        margin-right: 6px;
+        width: 20px;
+        height: 20px;
+    }
 
-input[type="checkbox"]:checked + div {
-background-color: var(--primary-color);
-border-color: var(--primary-color);
-}
+    .slideleft-enter-active {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    }
 
-input[type="checkbox"]:checked + div svg {
-display: block;
-}
+    .slideleft-leave-active {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    }
 
-.color-option label{
-    width: 24px;
-    height: 24px;
-    margin-left: 4px;
-    margin-right: 4px;
-    box-shadow: 0 0 0px 2px rgb(230, 230, 230);
-}
+    .slideleft-enter-to, .slideleft-leave {
+        width: 100%;
+    }
 
-.color-option.active label{
-    color: transparent;
-    box-shadow: 0 0 0px 2px white, 0 0 0px 4px var(--primary-color);
-    margin-left: 6px;
-    margin-right: 6px;
-    width: 20px;
-    height: 20px;
-}
+    .slideleft-enter, .slideleft-leave-to {
+        width: 0%;
+    }
 
-.slideleft-enter-active {
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in;
-}
-
-.slideleft-leave-active {
-  transition-duration: 0.3s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.slideleft-enter-to, .slideleft-leave {
-    width: 100%;
-}
-
-.slideleft-enter, .slideleft-leave-to {
-    width: 0%;
-}
-
-.show {
-    display: block !important;
-}
+    .show {
+        display: block !important;
+    }
 </style>

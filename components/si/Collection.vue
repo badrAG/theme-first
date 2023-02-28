@@ -12,26 +12,27 @@
         </div>
     </div>
 </template>
+
 <script>
-export default {
-    props: {
-        item: Object
+    export default {
+        props: {
+            item: Object
+        }
     }
-}
 </script>
 
 <style scoped>
-.img-zom {
-    transition:  .2s ease;
-}
+    .img-zom {
+        transition:  .2s ease;
+    }
 
-.collection-box:hover .img-zom{
-    transform: scale(1.1);
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
+    .collection-box:hover .img-zom{
+        transform: scale(1.1);
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
 
-.collection-box:hover .collection-text{
-    text-decoration: underline;
-    text-underline-offset: 5px;
-}
+    .collection-box:hover .collection-text{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
 </style>

@@ -1,164 +1,149 @@
-  <template>
-    <div>
-      <si-app-loader placement="BEFORE_FOOTER"/>
-      <div class="footer-bg footer-text-bg">
-        <!-- Start footer Section -->
-        <footer class="footer container">
-  
-          <div class="flex flex-wrap justify-between pt-8">
-  
-            <!-- About section  -->
-            <div class="w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
-                <!-- Store title -->
-                <div @click="showContent" class="mb-4 md:mb-2 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1" >
-                    <h4 class="text-xl md:text-3xl font-bold">{{ title }}</h4>
-                  <div class="md:hidden">
-                    <fa class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isContentVisible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
-                  </div>
+<template>
+  <div>
+    <si-app-loader placement="BEFORE_FOOTER"/>
+    <div class="footer-bg footer-text-bg">
+      <!-- Start footer Section -->
+      <footer class="footer container">
+        <div class="flex flex-wrap justify-between pt-8">
+          <!-- About section  -->
+          <div class="w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
+              <!-- Store title -->
+              <div @click="showContent" class="mb-4 md:mb-2 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1" >
+                  <h4 class="text-xl md:text-3xl font-bold">{{ title }}</h4>
+                <div class="md:hidden">
+                  <fa class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isContentVisible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
                 </div>
-                <!-- Store title -->
-                <transition name="slide">
-                  <div class="md:block px-4 mb-4 md:mb-0" :class="isContentVisible? 'block':'hidden'">
-                    <!-- Footer About -->
-                        <div class="mb-2 text-base text-md-responsive font-normal">{{ footer.about }}</div>
-                    <!-- Footer About -->
-        
-                    <!-- Contacts  -->
-                    <div class="Contacts flex ">
-                      <div>
-                        <p class="mb-3 flex items-center">
-                          <fa class="text-xl font-normal icon translate" :icon="['fa', 'location-dot']"  ></fa>
-                          <span class="mx-3 text-base text-md-responsive font-normal hover:underline">{{ footer.location }}</span>
-                        </p>
-                        <p class="mb-3 flex items-center">
-                          <fa class="text-lg font-normal icon translate" :icon="['fa', 'envelope']"></fa>
-                          <a class="mx-3 text-base text-md-responsive font-normal hover:underline" :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
-                        </p>
-                        <p class="flex items-center"> 
-                          <fa class="text-lg font-normal icon translate" :icon="['fa', 'phone']"></fa>
-                          <a class="mx-3 text-base text-md-responsive font-normal hover:underline" :href="'tel:'+footer.number">{{ footer.number }}</a>
-                        </p>
-                      </div>
+              </div>
+              <!-- Store title -->
+              <transition name="slide">
+                <div class="md:block px-4 mb-4 md:mb-0" :class="isContentVisible? 'block':'hidden'">
+                  <!-- Footer About -->
+                      <div class="mb-2 text-base text-md-responsive font-normal">{{ footer.about }}</div>
+                  <!-- Footer About -->
+                  <!-- Contacts  -->
+                  <div class="Contacts flex ">
+                    <div>
+                      <p class="mb-3 flex items-center">
+                        <fa class="text-xl font-normal icon translate" :icon="['fa', 'location-dot']"  ></fa>
+                        <span class="mx-3 text-base text-md-responsive font-normal hover:underline">{{ footer.location }}</span>
+                      </p>
+                      <p class="mb-3 flex items-center">
+                        <fa class="text-lg font-normal icon translate" :icon="['fa', 'envelope']"></fa>
+                        <a class="mx-3 text-base text-md-responsive font-normal hover:underline" :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
+                      </p>
+                      <p class="flex items-center"> 
+                        <fa class="text-lg font-normal icon translate" :icon="['fa', 'phone']"></fa>
+                        <a class="mx-3 text-base text-md-responsive font-normal hover:underline" :href="'tel:'+footer.number">{{ footer.number }}</a>
+                      </p>
                     </div>
-                    <!-- Contacts  -->
                   </div>
-              </transition>
-                <!-- Contacts  -->
+                  <!-- Contacts  -->
+                </div>
+            </transition>
+              <!-- Contacts  -->
+          </div> 
+          <!-- ِAbout section -->
+          <!-- menu1 --> 
+          <div v-if="menus.menu1_active" class="categoty_menu w-full" :class="menus.menu1_active && !menus.menu2_active && !menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
+            <div @click="showMenu1" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
+              <h4 class="text-base font-bold">{{ menus.menu1_title }}</h4>
+              <div class="md:hidden">
+                  <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu1Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+              </div>
             </div> 
-            <!-- ِAbout section -->
-  
-            <!-- menu1 --> 
-            <div v-if="menus.menu1_active" class="categoty_menu w-full" :class="menus.menu1_active && !menus.menu2_active && !menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
-  
-              <div @click="showMenu1" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
-                <h4 class="text-base font-bold">{{ menus.menu1_title }}</h4>
-                <div class="md:hidden">
-                    <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu1Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
-                </div>
-              </div> 
-  
-              <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu1Visible? 'block':'hidden'">
-                <div v-if="menu1">
-                  <div  v-for="(item,i) in menu1.items" :key="i">
-                        <div>
-                            <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
-                                <router-link :to="item.url">{{item.text}}</router-link>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-              </div>
-  
-            </div>
-            <!-- menu1  -->
-    
-    
-            <!-- menu2 -->
-            <div v-if="menus.menu2_active" class="Infomation_menu w-full" :class="!menus.menu1_active && menus.menu2_active && !menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
-  
-              <div @click="showMenu2" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
-                <h4 class="text-base font-bold">{{ menus.menu2_title }}</h4>
-                <div class="md:hidden">
-                    <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu2Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] " ></fa>
-                </div>
-              </div> 
-  
-              <div v-if="menu2">
-                <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu2Visible? 'block':'hidden'">
-                  <div v-for="(item,i) in menu2.items" :key="i">
-                      <div>
-                          <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
-                              <router-link :to="item.url">{{item.text}}</router-link>
-                          </h4>
-                      </div>
-                  </div>
-                </div>
-              </div>
-  
-            </div>
-            <!-- menu2 -->
-  
-  
-            <!-- menu3 -->
-            <div v-if="menus.menu3_active" class="Infomation_menu w-full" :class="!menus.menu1_active && !menus.menu2_active && menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
-              <div @click="showMenu3" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
-                <h4 class="text-base font-bold">{{ menus.menu3_title }}</h4>
-                <div class="md:hidden">
-                    <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu3Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] " ></fa>
-                </div>
-              </div> 
-              <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu3Visible? 'block':'hidden'">
-                <div v-if="menu3">
-                  <div v-for="(item,i) in menu3.items" :key="i">
-                      <div>
-                          <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
-                              <router-link :to="item.url">{{item.text}}</router-link>
-                          </h4>
-                      </div>
+            <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu1Visible? 'block':'hidden'">
+              <div v-if="menu1">
+                <div  v-for="(item,i) in menu1.items" :key="i">
+                  <div>
+                      <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
+                          <router-link :to="item.url">{{item.text}}</router-link>
+                      </h4>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- menu3 -->
-  
-            <!-- payment_methods  -->
-            <div class="payment_methods w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
-              <div @click="showPaymentMethods" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
-                <h4 class="text-base font-bold">{{ footer.methods.title }}</h4>
-                <div class="md:hidden">
-                    <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isPaymentMethodsVisible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
-                </div>
-              </div> 
-              <div class="md:block px-4" :class="isPaymentMethodsVisible? 'block':'hidden'">
-                <div class="payment_images flex flex-wrap">
-                    <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="payments-bg w-15 h-8 mr-2 mb-2 flex rounded-sm">
-                        <si-image  width="60" height="20" :src="item.image" :alt="item.name" class="h-full object-contain"/>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <!-- payment_methods -->
           </div>
-  
-           <!--  Social Media -->
-            <div class="Social_Media pb-8 mt-2 md:mt-4">
-              <h3 class="text-base font-bold mb-4 text-center">{{ footer.social_media.title }}</h3>
-              <div class="flex items-center justify-center flex-wrap mx-2">
-                <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
-                    <a class="h-full flex hover:opacity-60" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
-                        <fa class="text-2xl sm:mx-1 md:mx-2" :icon="['fab', item.name]"></fa>
-                    </a>
+          <!-- menu1  -->
+          <!-- menu2 -->
+          <div v-if="menus.menu2_active" class="Infomation_menu w-full" :class="!menus.menu1_active && menus.menu2_active && !menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
+            <div @click="showMenu2" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
+              <h4 class="text-base font-bold">{{ menus.menu2_title }}</h4>
+              <div class="md:hidden">
+                  <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu2Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] " ></fa>
+              </div>
+            </div> 
+            <div v-if="menu2">
+              <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu2Visible? 'block':'hidden'">
+                <div v-for="(item,i) in menu2.items" :key="i">
+                    <div>
+                        <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
+                            <router-link :to="item.url">{{item.text}}</router-link>
+                        </h4>
+                    </div>
                 </div>
               </div>
             </div>
-          <!--  Social Media  -->
-        </footer>
-        <!-- End fotter Section -->
-      </div>
-      <si-app-loader placement="AFTER_FOOTER"/>
+          </div>
+          <!-- menu2 -->
+          <!-- menu3 -->
+          <div v-if="menus.menu3_active" class="Infomation_menu w-full" :class="!menus.menu1_active && !menus.menu2_active && menus.menu3_active ? 'md:w-1/3' : menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'md:w-1/5'">
+            <div @click="showMenu3" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
+              <h4 class="text-base font-bold">{{ menus.menu3_title }}</h4>
+              <div class="md:hidden">
+                  <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isMenu3Visible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] " ></fa>
+              </div>
+            </div> 
+            <div class="md:block px-4 mb-4 md:mb-0" :class="isMenu3Visible? 'block':'hidden'">
+              <div v-if="menu3">
+                <div v-for="(item,i) in menu3.items" :key="i">
+                    <div>
+                        <h4 class="mb-2 text-base text-md-responsive font-normal hover:underline">
+                            <router-link :to="item.url">{{item.text}}</router-link>
+                        </h4>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- menu3 -->
+          <!-- payment_methods  -->
+          <div class="payment_methods w-full" :class="[menus.menu1_active || menus.menu2_active || menus.menu3_active ? menus.menu1_active && menus.menu2_active && menus.menu3_active ? 'md:w-1/5' : menus.menu1_active && !menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/3': !menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/3': menus.menu1_active && menus.menu2_active && !menus.menu3_active? 'md:w-1/4': menus.menu1_active && !menus.menu2_active && menus.menu3_active? 'md:w-1/4':  !menus.menu1_active && menus.menu2_active && menus.menu3_active? 'md:w-1/4':'' :'md:w-1/2']">
+            <div @click="showPaymentMethods" class="mb-4 py-2 rounded-full flex items-center justify-between transition-all ease-in-out delay-150 hover-bg-footer px-3 mx-1">
+              <h4 class="text-base font-bold">{{ footer.methods.title }}</h4>
+              <div class="md:hidden">
+                  <fa  class="text-base transform"  :icon="['fa', 'chevron-down']" :class="[isPaymentMethodsVisible ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+              </div>
+            </div> 
+            <div class="md:block px-4" :class="isPaymentMethodsVisible? 'block':'hidden'">
+              <div class="payment_images flex flex-wrap">
+                  <div v-for="item in methods.filter(m=>$settings.sections.footer.methods[m.name])" :key="item.name" class="payments-bg w-15 h-8 mr-2 mb-2 flex rounded-sm">
+                      <si-image  width="60" height="20" :src="item.image" :alt="item.name" class="h-full object-contain"/>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <!-- payment_methods -->
+        </div>
+          <!--  Social Media -->
+          <div class="Social_Media pb-8 mt-2 md:mt-4">
+            <h3 class="text-base font-bold mb-4 text-center">{{ footer.social_media.title }}</h3>
+            <div class="flex items-center justify-center flex-wrap mx-2">
+              <div v-for="item in socialMedia.filter(s=>footer.social_media[s.name])" :key="item.name" class="flex items-center justify-center p-2">
+                  <a class="h-full flex hover:opacity-60" :href="footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
+                      <fa class="text-2xl sm:mx-1 md:mx-2" :icon="['fab', item.name]"></fa>
+                  </a>
+              </div>
+            </div>
+          </div>
+        <!--  Social Media  -->
+      </footer>
+      <!-- End fotter Section -->
     </div>
-  </template>
-  <script>
+    <si-app-loader placement="AFTER_FOOTER"/>
+  </div>
+</template>
+
+<script>
   export default {
     data() {
       return {
@@ -237,30 +222,34 @@
     }
   }
   };
-  </script>
-  
+</script>
   
 <style scoped>
-.payement {
-  background-color: var(--footer-text-col);
-}
+  .payement {
+    background-color: var(--footer-text-col);
+  }
 
-[dir="rtl"] .payement{
-  margin-left: 0.5rem;
-  margin-right: 0;
-}
+  [dir="rtl"] .payement{
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
   .slide-enter-active, .slide-leave-active {
     transition: display .5s;
   }
+
   .slide-enter {
     transform: translateY(-100%);
   }
+
   .slide-enter-to {
     transform: translateY(0);
   }
+
   .slide-leave {
     transform: translateY(0);
   }
+  
   .slide-leave-to {
     transform: translateY(-100%);
   }

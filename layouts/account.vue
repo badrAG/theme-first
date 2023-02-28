@@ -71,10 +71,10 @@
             .buynow-text-bg {color: var(--buynow-text-col);}
             .services-bg {background-color: var(--services-color-gb);}
             .services-text-bg {color: var(--services-text-col);}
-            .hover-bg,
+            .,
             .hover-bg-footer {
                 transform: translate3d(0, -1px, 0);
-            }
+            }hover-bg
             .hover-bg:hover {
                 background-color: var(--hover-color-gb);
             }

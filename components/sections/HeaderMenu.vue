@@ -3,7 +3,7 @@
         <!-- sliderleft shadow -->
         <div v-if="$store.state.showHeaderMenu" :class="$store.state.showHeaderMenu? 'opacity-50' : 'opacity-0'" class="flex transition-all delay-500 fixed inset-0 bg-black" @click="$store.state.showHeaderMenu=false"></div>
         <!-- sliderleft shadow  -->
-
+        <!-- Slide left  -->
         <transition name="slide-left">
             <!-- <transition name="fade"> -->
                 <div :class="$store.state.showHeaderMenu ? 'block':'hidden'" class="header-menu transition-all delay-500 max-w-full relative flex flex-col w-80 header-bg header-text-color">
@@ -90,9 +90,10 @@
                 </div>
             <!-- </transition> -->
         </transition>
+        <!-- Slide left  -->
     </div>
-    </template>
-    <script>
+</template>
+<script>
     export default {
         data() {
             return {
@@ -148,4 +149,4 @@
             }
         },
     }
-    </script>
+</script>

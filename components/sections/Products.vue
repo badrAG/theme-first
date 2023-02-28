@@ -1,29 +1,23 @@
 <template>
   <div class="">
     <div class="container py-4">
-  
       <!-- product title -->
-      
       <div class="flex flex-col items-center md:justify-between md:flex-row mb-1 px-4">
         <div class="">
           <h2 class="text-xl font-medium">{{ title }}</h2>
         </div>
-  
         <div v-if="section.show_more_text">
           <nuxt-link  :to="section.show_more_url">
             <span class="text-sm font-normal text-gr underline hover-text-bg">{{ section.show_more_text }}</span>
           </nuxt-link>
         </div>
       </div>
-  
       <!-- product title -->
-  
       <!-- Loader -->
       <div v-if="loading" class="flex justify-center items-center my-5">
         <si-loader></si-loader>
       </div>
       <!-- Loader -->
-  
       <!-- Products -->
       <div class="flex flex-wrap px-2 ">
         <div v-for="(item, i) in items" :key="i" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
@@ -31,7 +25,6 @@
         </div>
       </div>
       <!-- Products -->
-  
       <!-- Products not exists -->
       <div class="mx-2">
         <div v-if="!loading && items.length==0" class="flex flex-wrap items-center  bg-white p-2 mx-2 border rounded-xl box-shadow">
@@ -48,42 +41,41 @@
         </div>
       </div>
       <!-- Products not exists -->
-      
     </div>
-
   </div>
 </template>
+
 <script>
-export default {
-  props: {
-    section: { type: Object, required: true }
-  },
-  data() {
-    return {
-      title: this.section.title,
-      tags: this.section.tags,
-      collections: this.section.collections,
-      items: [],
-      loading: true
-    };
-  },
-  async fetch(){
-    let filter = { status: 'PUBLISH' };
-    if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
-    if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
-    await this.getProducts(filter);
-  },
-  methods: {
-    async getProducts(filter){
-      this.loading = true;
-      try{
-        const { data } = await this.$storeino.products.search(filter)
-        this.items = data.results
-      }catch(e){
-        console.log({e});
-      }
-      this.loading = false;
+  export default {
+    props: {
+      section: { type: Object, required: true }
     },
-  },
-};
+    data() {
+      return {
+        title: this.section.title,
+        tags: this.section.tags,
+        collections: this.section.collections,
+        items: [],
+        loading: true
+      };
+    },
+    async fetch(){
+      let filter = { status: 'PUBLISH' };
+      if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
+      if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
+      await this.getProducts(filter);
+    },
+    methods: {
+      async getProducts(filter){
+        this.loading = true;
+        try{
+          const { data } = await this.$storeino.products.search(filter)
+          this.items = data.results
+        }catch(e){
+          console.log({e});
+        }
+        this.loading = false;
+      },
+    },
+  };
 </script>

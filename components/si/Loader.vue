@@ -6,7 +6,7 @@
   </div>
 </template>
 
-  <style>
+<style>
   @keyframes ldio-zvrhrhh3zq {
     0% { transform: rotate(0deg) }
     50% { transform: rotate(180deg) }
@@ -39,4 +39,4 @@
     transform-origin: 0 0;
   }
   .ldio-zvrhrhh3zq div { box-sizing: content-box; }
-  </style>
+</style>

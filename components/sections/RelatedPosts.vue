@@ -20,31 +20,32 @@
     </div>
   </div>
 </template>
+
 <script>
-export default {
-  props:{
-      item: Object
-  },
-  data() {
-    return {
-      loading: true,
-      items: [],
-    };
-  },
-  async fetch(){
-      try{
-          const ids = this.item.categories.map(c=>c._id);
-          const { data } = await this.$storeino.pages.search({
-              "_id-ne": this.item._id,
-              "categories._id-in": ids
-            })
-          this.items = data.results
-      }catch(e){
-        console.log({e});
-      }
-      this.loading = false;
-  }
-};
+  export default {
+    props:{
+        item: Object
+    },
+    data() {
+      return {
+        loading: true,
+        items: [],
+      };
+    },
+    async fetch(){
+        try{
+            const ids = this.item.categories.map(c=>c._id);
+            const { data } = await this.$storeino.pages.search({
+                "_id-ne": this.item._id,
+                "categories._id-in": ids
+              })
+            this.items = data.results
+        }catch(e){
+          console.log({e});
+        }
+        this.loading = false;
+    }
+  };
 </script>
 
 <style scoped>
@@ -54,12 +55,12 @@ export default {
   }
 
   .btn_link:hover {
-  border-color: var(--primary);
-  background-color: var(--primary);
-  color: #fff;
-}
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: #fff;
+  }
 
-.btn_link:hover>span {
-  color: #fff;
-}
+  .btn_link:hover>span {
+    color: #fff;
+  }
 </style>

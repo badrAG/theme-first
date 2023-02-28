@@ -55,39 +55,41 @@
         </div>
     </div>
 </template>
-<script>
-export default {
-    props: {
-        item: { type: Object, required: true },
-        quantity: { type: Number, default: 1 }
-    },
-    async fetch(){
-        this.quantitySelected(this.item.quantity.value);
-    },
-    methods: {
-        remove(){
-            this.$emit("remove", this.item);
-        },
-        quantitySelected(quantity){
-            this.item.quantity.value = quantity;
-            this.item.total = this.item.price * quantity;
-            let item = null;
-            if(this.item.variant) item = this.$store.state.cart.find(i => i._id == this.item._id && this.item && i.variant._id == this.item.variant._id);
-            else item = this.$store.state.cart.find(i => i._id == this.item._id && this.item && !i.variant);
-            this.$tools.call('ADD_TO_CART', { ...item, quantity: quantity });
-        }
-    },
-}
-</script>
-<style scoped>
-[dir="rtl"] .product-content {
-    padding-left: 0rem;
-    padding-right: 1rem;
-}
 
-@media (min-width: 768px) {
-    [dir="rtl"] .product-content {
-        padding-left: 1rem;
+<script>
+    export default {
+        props: {
+            item: { type: Object, required: true },
+            quantity: { type: Number, default: 1 }
+        },
+        async fetch(){
+            this.quantitySelected(this.item.quantity.value);
+        },
+        methods: {
+            remove(){
+                this.$emit("remove", this.item);
+            },
+            quantitySelected(quantity){
+                this.item.quantity.value = quantity;
+                this.item.total = this.item.price * quantity;
+                let item = null;
+                if(this.item.variant) item = this.$store.state.cart.find(i => i._id == this.item._id && this.item && i.variant._id == this.item.variant._id);
+                else item = this.$store.state.cart.find(i => i._id == this.item._id && this.item && !i.variant);
+                this.$tools.call('ADD_TO_CART', { ...item, quantity: quantity });
+            }
+        },
     }
-}
+</script>
+
+<style scoped>
+    [dir="rtl"] .product-content {
+        padding-left: 0rem;
+        padding-right: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        [dir="rtl"] .product-content {
+            padding-left: 1rem;
+        }
+    }
 </style>
