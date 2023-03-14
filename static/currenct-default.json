@@ -1,13 +1,11 @@
 {
-    "style": {
-        "primary_color": "#00825a"
-    },
     "sections": {
         "products": {
             "add_to_cart": {
                 "active": true,
                 "text": "Add to cart"
             },
+            "show_reviews": true,
             "add_to_cart_to_checkout": false,
             "add_to_wishlist": {
                 "active": true
@@ -26,21 +24,28 @@
             "icons": {
                 "cart": true,
                 "wishlist": true,
-                "account": false,
+                "account": true,
                 "search": true,
                 "language": true,
                 "currency": true
             },
+            "search": {
+                "text": "Search for products"
+            },
             "menu": null
         },
         "footer": {
-            "about": "<h3>Experience Palest </h3> <p> Whether you are a livestock farmer or a farmer, a contractor or a forester: In the BayWa portal you will find a wide range of animal feed, seeds and crop protection - conventional or ecological  In addition, you will receive detailed information about our diverse advisory services, services, events and topics as well as about us, your BayWa. <br>Discover our diversity - digitally and on site </p>",
+            "about": "Add a short description about the website",
+            "location": "Location",
+            "gmail": "E-mail",
+            "number": "Phone number",
             "methods": {
-                "title": "Our payment methods",
+                "title": "Payment methods",
                 "visa": true,
                 "mastercard": true,
                 "transfer": true,
-                "cash": true
+                "cash": true,
+                "paypal": true
             },
             "social_media": {
                 "title": "Follow us",
@@ -53,83 +58,85 @@
                 "snapchat": "https://www.snapchat.com/",
                 "tiktok": "https://www.tiktok.com/"
             },
-            "menu": null,
-            "copyright": {
-                "store_name": "Online store",
-                "text": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>"
-            }
-        },
-        "banner": {
-            "active": true,
-            "items": {
-                "item_0": {
-                    "image": null,
-                    "title": "Renal & Urology Nutrition News, Diet Tips",
-                    "description": "Greater consumption of healthful plant-based foods is associated with significantly reduced risks for advanced, lethal, and fatal prostate cancer, especially among men younger than 65 years",
-                    "button": {
-                        "active": true,
-                        "url": "/shop",
-                        "text": "Order now"
-                    }
-                }
+            "menus": {
+                "menu1_active": true,
+                "menu1_title": "Menu 1",
+                "menu1": null,
+                "menu2_active": true,
+                "menu2_title": "Menu 2",
+                "menu2": null,
+                "menu3_active": true,
+                "menu3_title": "Menu 3",
+                "menu3": null
             },
-            "right": {
-                "active": true,
-                "image": null,
-                "url": "/shop"
+            "copyright": {
+                "store_name": "Online Store",
+                "text": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>",
+                "menu": null
             }
         },
-        "collections": {
+        "scrolltotop": {
+            "active": true
+        },
+        "top_collections": {
             "active": true,
-            "title": "Top collections",
+            "title": "Find things you'll love. Support independent sellers. Only on Bazar.",
+            "items": []
+        },
+        "center_collections": {
+            "active": true,
+            "items": []
+        },
+        "bottom_collections": {
+            "active": true,
+            "title": "Shop our popular gift categories",
+            "items": []
+        },
+        "collections_products": {
+            "active": true,
+            "title": "Browse collections for more inspiration",
+            "items_title": "Items",
             "items": []
         },
         "products_1": {
             "active": true,
-            "title": "Featured Products",
+            "title": "Featured products",
             "collections": [],
             "tags": "",
-            "show_more_text": "Discover more",
+            "show_more_text": "Explore More",
             "show_more_url": "/shop"
         },
         "products_2": {
             "active": true,
-            "title": "Clothes only",
+            "title": "Best Seller",
             "collections": [],
             "tags": "",
-            "show_more_text": "Show more clothes",
+            "show_more_text": "Show more",
             "show_more_url": "/shop"
         },
         "products_3": {
             "active": false,
             "title": "Toys",
             "collections": [],
-            "tags": ""
+            "tags": "",
+            "show_more_text": "More products",
+            "show_more_url": "/shop"
         },
         "products_4": {
             "active": false,
-            "title": "Phone & Computers",
+            "title": "Phones and Computers",
             "collections": [],
             "tags": "",
-            "show_more_text": "More tech products",
+            "show_more_text": "Latest products",
             "show_more_url": "/shop"
         },
         "products_5": {
             "active": false,
-            "title": "Last Products",
+            "title": "Organic products",
             "collections": [],
             "tags": "",
-            "show_more_text": "Show more products",
+            "show_more_text": "Show more",
             "show_more_url": "/shop"
-        },
-        "posts": {
-            "active": true,
-            "title": "Latest News",
-            "items": [],
-            "button": {
-                "text": "More Details"
-            },
-            "show_more_text": "Show more blog posts"
         },
         "services": {
             "active": true,
@@ -137,16 +144,44 @@
             "items": {
                 "delivery": {
                     "text": "Fast delivery",
-                    "url": "#"
+                    "url": "#",
+                    "description": "Add a description of the delivery",
+                    "image": null
                 },
                 "satisfaction": {
                     "text": "Satisfaction",
-                    "url": "#"
+                    "url": "#",
+                    "description": "Add a description of the satisfaction",
+                    "image": null
                 },
                 "quality": {
                     "text": "Quality",
-                    "url": "#"
+                    "url": "#",
+                    "description": "Add a description of the quality",
+                    "image": null
+                },
+                "support": {
+                    "text": "Support 24/7",
+                    "url": "#",
+                    "description": "Add a description of the support",
+                    "image": null
                 }
+            }
+        },
+        "testimonial": {
+            "active": true,
+            "title": "What is Bazar?",
+            "left": {
+                "title": "First tiltle",
+                "description": "Add a description about the title at the top"
+            },
+            "center": {
+                "title": "Secend title",
+                "description": "Add a description about the title at the top"
+            },
+            "right": {
+                "title": "Third title",
+                "description": "Add a description about the title at the top"
             }
         },
         "product": {
@@ -168,7 +203,8 @@
             },
             "reviews": {
                 "active": true,
-                "title": "Our customers reviews"
+                "title": "Reviews",
+                "empty_title": "No reviews"
             },
             "share_buttons": {
                 "active": true,
@@ -177,11 +213,19 @@
                 "facebook": true,
                 "twitter": true,
                 "linkedin": true
+            },
+            "description": {
+                "title": "Description",
+                "title_empty": "No description"
+            },
+            "quantity": {
+                "text": "Quantity"
             }
         },
         "post": {
             "share_buttons": {
-                "title": "Share this post",
+                "active": true,
+                "title": "Share with your friends",
                 "whatsapp": true,
                 "facebook": true,
                 "twitter": true,
@@ -190,7 +234,17 @@
             "related": {
                 "active": true,
                 "title": "Related posts"
+            },
+            "creator": {
+                "title": "by",
+                "active": true
+            },
+            "createdat": {
+                "active": true
             }
+        },
+        "posts": {
+            "show_more_text": "Show more"
         },
         "shop": {
             "sidebar": {
@@ -201,7 +255,7 @@
                 },
                 "prices": {
                     "active": true,
-                    "title": "Prices"
+                    "title": "Price"
                 },
                 "sizes": {
                     "active": true,
@@ -222,25 +276,23 @@
             },
             "title": "Shop",
             "description": "Find best selling products",
-            "empty_text": "No products found",
             "sorts": {
                 "newest": "Newest",
                 "oldest": "Oldest",
                 "name_asc": "Name (A-Z)",
                 "name_desc": "Name (Z-A)",
-                "price_asc": "Price (lowest first)",
-                "price_desc": "Price (highest first)",
-                "rating_desc": "Rating (highest first)",
-                "rating_asc": "Rating (lowest first)"
+                "price_asc": "Price (low to high)",
+                "price_desc": "Price (high to low)",
+                "rating_asc": "Rating (low to high)",
+                "rating_desc": "Rating (high to low)"
             },
             "pagination": {
-                "limit": 12,
-                "next_text": "Next",
-                "prev_text": "Prev"
-            }
+                "limit": 12
+            },
+            "empty_text": "No products found",
+            "filter_text": "All filtres"
         },
         "blog": {
-            "active": true,
             "sidebar": {
                 "active": true,
                 "categories": {
@@ -253,31 +305,31 @@
                 }
             },
             "title": "Blog",
-            "description": "Our blog posts",
+            "description": "Our latest posts",
             "sorts": {
                 "newest": "Newest",
                 "oldest": "Oldest",
                 "name_asc": "Name (A-Z)",
-                "name_desc": "Name (Z-A)",
-                "price_asc": "Price (lowest first)",
-                "price_desc": "Price (highest first)",
-                "rating_asc": "Rating (lowest first)",
-                "rating_desc": "Rating (highest first)"
+                "name_desc": "Name (Z-A)"
             },
             "pagination": {
-                "limit": 12,
-                "next_text": "Next",
-                "prev_text": "Prev"
+                "limit": "12"
             },
-            "empty_text": "No posts found"
+            "empty_text": "No blogs",
+            "filter_text": "All filtres"
         },
         "cart": {
             "title": "Shopping cart",
             "empty_text": "Your cart is empty",
             "total_text": "Total",
+            "upsell": {
+                "active": true,
+                "title": "Special offer for you"
+            },
             "buttons": {
                 "checkout_text": "Place Order",
                 "back_to_shop_text": "Back to shop",
+                "remove_button_text": "Remove",
                 "show_back_to_shop": true
             }
         },
@@ -301,6 +353,52 @@
             "buttons": {
                 "back_to_shop_text": "Back to shop"
             }
+        }
+    },
+    "style": {
+        "primary": {
+            "color": "#000000"
+        },
+        "header": {
+            "color": "#ffffff",
+            "text_color": "#000000"
+        },
+        "collection": {
+            "color": "#ddebe3",
+            "text_color": "#000000"
+        },
+        "testimonial": {
+            "color": "#fdebd2",
+            "text_color": "#000000"
+        },
+        "footer": {
+            "color": "#2f466c",
+            "text_color": "#ffffff",
+            "payments_color": "#ffffff"
+        },
+        "copyright": {
+            "color": "#232347",
+            "text_color": "#ffffff"
+        },
+        "products": {
+            "price_color": "#000000",
+            "delprice_color": "#222222"
+        },
+        "addtocart": {
+            "color": "#000000",
+            "text_color": "#ffffff"
+        },
+        "buynow": {
+            "color": "#000000",
+            "text_color": "#ffffff"
+        },
+        "services": {
+            "color": "#ffffff",
+            "text_color": "#000000"
+        },
+        "hover": {
+            "color": "#efefef",
+            "text_color": "#022222"
         }
     }
 }
