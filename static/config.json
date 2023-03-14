@@ -3368,11 +3368,7 @@
     ],
     "isActive": false,
     "autoRenew": false,
-    "expiryDate": {
-      "$date": {
-        "$numberLong": "2554416000000"
-      }
-    },
+    "expiryDate": "2050-12-12T00:00:00.000Z",
     "name": "bazar",
     "url": "/themes/bazar",
     "route": "bazar",
