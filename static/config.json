@@ -293,7 +293,7 @@
                       "path": "sections.alerts.removed_from_cart",
                       "type": "tc_input",
                       "translatable": true,
-                      "value": "removed_from_cart"
+                      "value": "removed from cart"
                     },
                     {
                       "name": "removed_from_wishlist",
@@ -594,7 +594,7 @@
                       "value": "Online Store"
                     },
                     {
-                      "name": "copyright_Text",
+                      "name": "copyright_text",
                       "note": "use__YEAR__variable",
                       "path": "sections.footer.copyright.text",
                       "type": "tc_input",
