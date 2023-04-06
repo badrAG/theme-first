@@ -92,7 +92,7 @@
                         <p class="text-sm text-gr font-normal mb-2 mx-2">{{ item.description }}</p>
                         <!-- short description -->
                         <!-- variant -->
-                        <si-product-variants class="flex mx-2" v-if="item.type=='variable'" :options="item.options" :variants="item.variants" @selected="variantSelected"></si-product-variants>
+                        <si-product-variants class="flex mx-2" v-if="item.type=='variable'" :options="item.options" :images="item.images" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
@@ -318,8 +318,7 @@
             slidesLen() {
                 return this.item.images.length
             }
-        }
-        ,
+        },
         methods: {
             next(){
                 if(this.visibleSlide >= this.slidesLen - 1 ){
