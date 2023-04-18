@@ -13,6 +13,6 @@
             return {
                 letters: this.name.split(' ').map(word => word[0]).join('.'),
             }
-        },
+        }
     }
 </script>
