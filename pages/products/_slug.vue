@@ -96,7 +96,7 @@
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
-                        <div class="mx-2 mt-4">
+                        <div class="product-quantity mx-2 mt-4">
                             <div>
                                 <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
                             </div>
