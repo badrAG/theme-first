@@ -16,7 +16,7 @@
                     <div class="flex flex-wrap">
                         <div class="w-full slider md:mx-4">
                             <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
-                                <si-image width="400" height="400" class="product-image h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                                <si-image width="400" height="400" class="cursor-pointer h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                                 <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
                                     <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                         <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
@@ -105,17 +105,17 @@
                         <!-- product quantity -->
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                         <!-- add to cart -->
-                        <div class="mx-2 mt-6 mb-4">
-                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="text-base font-bold w-full flex ai-c justify-center addtocart-bg addtocart-text-bg   rounded-full p-3 px-5 click-effect scale hover:opacity-90">
+                        <div class="fixed z-50 md:static inset-0 top-auto md:mx-2 md:mt-6 md:mb-4">
+                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg md:rounded-full px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                         </div>
                         <!-- add to cart -->
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
                         <si-app-loader placement="BEFORE_BUYNOW"/>
-                        <si-app-loader placement="REPLACE_BUYNOW"/>
                         <!-- buy now -->
-                        <div class="mx-2">
+                        <div class="mx-2 mt-6 md:mt-0">
+                            <si-app-loader placement="REPLACE_BUYNOW"/>
                             <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
@@ -158,7 +158,7 @@
                 </div>
                 <!-- Description -->        
                 <!-- reviews -->
-                <div v-if="Reviews" class="reviews mx-2">
+                <div v-if="Reviews" class="reviews mx-2 overflow-hidden">
                     <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
@@ -400,10 +400,6 @@
 </script>
 
 <style >
-    .product-image {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><circle cx='15' cy='15' r='10' fill='white' stroke='black' stroke-width='2'/><line x1='15' y1='10' x2='15' y2='20' stroke='black' stroke-width='2'/><line x1='10' y1='15' x2='20' y2='15' stroke='black' stroke-width='2'/></svg>"), auto;
-    }
-
     [dir = "rtl"] .dots{
         flex-direction: row-reverse;
     }

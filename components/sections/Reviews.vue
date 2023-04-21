@@ -6,7 +6,7 @@
         </div>
         <!-- loader -->
         <!-- content -->
-        <div class="rounded-md reviews" id="reviews">
+        <div v-if="!loading" class="rounded-md reviews" id="reviews">
             <div class="flex flex-wrap">
                 <div v-for="(review,index) in reviews.results" :key="index" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 ">
                     <div class="flex justify-between flex-col p-2 h-full border border-gray-300 rounded-lg">
@@ -52,6 +52,7 @@
             }
         },
         async fetch(){
+            this.loading = true;
             const { data } = await this.$storeino.reviews.search({
                 "product._id": this.item._id,
                 page: this.reviews.paginate.page+1
