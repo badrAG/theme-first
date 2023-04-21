@@ -15,7 +15,7 @@
                 <div style="height: fit-content;"   class="w-full lg:w-2/3 lg:sticky lg:top-6">
                     <div class="flex flex-wrap">
                         <div class="w-full slider md:mx-4">
-                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-4/5 relative overflow-hidden">
+                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-image relative overflow-hidden">
                                 <si-image width="400" height="400" class="cursor-pointer h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                                 <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
                                     <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -400,6 +400,16 @@
 </script>
 
 <style >
+    .pb-image {
+        padding-bottom: 100%;
+    }
+
+    @media (min-width: 640px) {
+        .pb-image {
+            padding-bottom: 80%;
+        }
+    }
+
     [dir = "rtl"] .dots{
         flex-direction: row-reverse;
     }
