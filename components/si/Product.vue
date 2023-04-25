@@ -25,7 +25,7 @@
                 <!-- product-price -->
             </div>
             <div class="my-2 md:hidden">
-                <si-product-price :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
+                <si-product-price class="text-sm" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
             </div>
         </div>
         <!-- home page -->
@@ -65,7 +65,7 @@
                     <!-- product name -->
                     <!-- product price -->
                     <div class="mt-1">
-                        <si-product-price :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
+                        <si-product-price class="text-sm" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
                     </div>
                     <!--  product price -->
                 </div>

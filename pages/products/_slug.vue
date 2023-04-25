@@ -7,34 +7,34 @@
             </div>
             <!-- Loader -->
             <!--  -->
-            <div v-if="!loading && item" class="flex flex-wrap justify-between">
+            <div v-if="!loading && item" class="flex lg:gap-10 flex-wrap lg:flex-nowrap justify-between">
                 <!-- Product id -->
                 <meta itemprop="productID" :content="item._id" />
                 <!-- Product id -->
                 <!--  -->
                 <div style="height: fit-content;"   class="w-full lg:w-2/3 lg:sticky lg:top-6">
                     <div class="flex flex-wrap">
-                        <div class="w-full slider md:mx-4">
-                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-image relative overflow-hidden">
+                        <div class="relative w-full slider md:mx-4">
+                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-full relative overflow-hidden">
                                 <si-image width="400" height="400" class="cursor-pointer h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
-                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
-                                    <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                        <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
-                                    </svg>
+                            </div>
+                            <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
+                                <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                    <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
+                                </svg>
+                            </button>
+                            <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -right-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150 rounded-full hover-bg" @click="next">
+                                <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                    <path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path>
+                                </svg>
+                            </button>
+                            <div v-if="$settings.sections.products.add_to_wishlist.active">
+                                <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150  hover-bg">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                 </button>
-                                <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -right-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150 rounded-full hover-bg" @click="next">
-                                    <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                        <path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" class=""></path>
-                                    </svg>
+                                <button v-else @click="addToWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150 hover-bg">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
                                 </button>
-                                <div v-if="$settings.sections.products.add_to_wishlist.active">
-                                    <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150  hover-bg">
-                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                    </button>
-                                    <button v-else @click="addToWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150 hover-bg">
-                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                         <div class="galery relative md:w-14 lg:w-16 ml-4 overflow-hidden order-first">
@@ -52,30 +52,54 @@
                     </div>
                 </div>
                 <!--  -->
-
                 <!-- Product content -->
+                <!-- sticky add to cart -->
+                <div class="fixed inset-0 top-auto bg-white z-30 p-4 border-t bg-primary-border" v-if="showStickyAddToCart">
+                    <div class="container flex gap-4 md:gap-6 items-center"> 
+                        <!--  Product Name -->
+                        <div class="hidden md:flex gap-4 md:gap-6 items-center md:w-5/12">
+                            <si-image class="w-14 h-14 object-cover cursor-pointer rounded-sm" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                            <h4 class="text-xl guard-cairo-font font-medium truncate">{{ item.name }}</h4>
+                        </div>
+                        <!--  Product Name -->
+                        <!-- Price -->
+                        <div class="hidden md:block md:w-1/12 lg:w-2/12">
+                            <si-product-price class="text-base" :type="'simple'" :price="price" :variants="[]"></si-product-price>
+                        </div>
+                        <!-- Price -->
+                        <!-- product-quantity -->
+                        <div class="w-2/5 md:w-3/12 lg:w-2/12">
+                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
+                        </div>
+                        <!-- product-quantity -->
+                        <!-- add to cart -->
+                        <div class="w-3/5 md:w-3/12">
+                            <button class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg rounded-full px-5 click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
+                                <span>{{ $settings.sections.product.add_to_cart.text }}</span>
+                            </button>
+                            <button class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90" v-else @click="buyNow">
+                                <span>{{ $settings.sections.product.buy_now.text }}</span>
+                            </button>
+                        </div>
+                        <!-- add to cart -->
+                    </div>
+                </div>
+                <!-- sticky add to cart -->
+                <!-- sections.product.sticky_add_to_cart.active -->
                 <div class="content-part w-full lg:w-1/3 px-2">
                     <div class="">
                         <div class="bg-white ">
-
                         <!--  Product Name -->
                         <h4 class="text-lg md:text-lh lg:text-xl guard-cairo-font font-medium mb-4 mx-2 mt-4 lg:mt-0">{{ item.name }}</h4>
                         <!--  Product Name -->
-
                         <!--  product name hidden-->
                         <meta itemprop="name" :content="item.name" />
                         <!--  product name hidden-->
-
                         <!-- Price  -->
-                        <div class="flex justify-between items-center mb-4 mx-2">
+                        <div class="flex flex-wrap justify-between items-center mb-4 mx-2">
                             <!-- Price -->
-                            <si-product-price page="product-price" class="flex items-center" :type="'simple'" :price="price" :variants="[]"></si-product-price>
+                            <si-product-price class="text-xl" :type="'simple'" :price="price" :variants="[]"></si-product-price>
                             <!-- Price -->
-
-                            <!-- Price -->
-                            <!-- <si-product-price class="flex text-xl md:text-2xl " :type="item.type" :price="item.price" :variants="item.variants"></si-product-price> -->
-                            <!-- Price -->
-
                             <!-- reviews -->
                             <div class="flex items-center justify-start" v-if="$settings.sections.product.reviews.active">
                                 <div class="mb-1 flex">
@@ -83,7 +107,7 @@
                                         <fa class="text-sm"  :icon="['fa', 'star']"></fa>
                                     </span>
                                 </div>
-                                <span class="text-md font-normal" key="count">({{ item.review.reviews.length }})</span>
+                                <span class="text-md font-normal" key="count"> ({{ item.review.reviews.length }})</span>
                             </div>
                             <!-- reviews -->
                         </div>
@@ -96,6 +120,7 @@
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
+                        <!-- sections.product.quantity.active -->
                         <div class="product-quantity mx-2 mt-4">
                             <div>
                                 <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
@@ -105,8 +130,8 @@
                         <!-- product quantity -->
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                         <!-- add to cart -->
-                        <div class="fixed z-50 md:static inset-0 top-auto md:mx-2 md:mt-6 md:mb-4">
-                            <button v-if="$settings.sections.product.add_to_cart.active" @click="addToCart" class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg md:rounded-full px-5 click-effect scale hover:opacity-90">
+                        <div class="mx-2 mt-6 mb-4" v-if="$settings.sections.product.add_to_cart.active">
+                            <button @click="addToCart" class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg rounded-full px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                         </div>
@@ -114,11 +139,11 @@
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
                         <si-app-loader placement="BEFORE_BUYNOW"/>
                         <!-- buy now -->
-                        <div class="mx-2 mt-6 md:mt-0">
-                            <si-app-loader placement="REPLACE_BUYNOW"/>
-                            <button v-if="$settings.sections.product.buy_now.active" v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
+                        <div class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
+                            <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
+                            <si-app-loader placement="REPLACE_BUYNOW"/>
                         </div>
                         <si-app-loader placement="AFTER_BUYNOW"/>
                         <!-- buy now -->
@@ -169,7 +194,6 @@
             </div>  
             <si-app-loader placement="AFTER_DESCRIPTION"/>
             <!-- Desciption and Reviews -->
-            
             <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->
             <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
@@ -182,7 +206,7 @@
             </div>
             <!-- related Products  -->
             </div>
-            <!--  -->
+            <!-- sticky add to cart -->
         </div>
     </div>
 </template>
@@ -193,6 +217,7 @@
             return {
                 Description: true,
                 Reviews: false,
+                showStickyAddToCart: false,
                 visibleSlide: 0,
                 direction:'',
                 loading: true,
@@ -311,8 +336,10 @@
                     ifram.setAttribute('height','');
                     div.appendChild(ifram)
                 }
-                }
             }
+            }
+            //show showStickyAddToCart
+            window.addEventListener('scroll', this.handleScroll);
         },
         computed: {
             slidesLen() {
@@ -320,6 +347,13 @@
             }
         },
         methods: {
+            handleScroll() {
+                if (window.pageYOffset > 400) {
+                    this.showStickyAddToCart = true;
+                } else {
+                    this.showStickyAddToCart = false;
+                }
+            },
             next(){
                 if(this.visibleSlide >= this.slidesLen - 1 ){
                     this.visibleSlide = 0
@@ -399,17 +433,7 @@
     }
 </script>
 
-<style >
-    .pb-image {
-        padding-bottom: 100%;
-    }
-
-    @media (min-width: 640px) {
-        .pb-image {
-            padding-bottom: 80%;
-        }
-    }
-
+<style scoped>
     [dir = "rtl"] .dots{
         flex-direction: row-reverse;
     }

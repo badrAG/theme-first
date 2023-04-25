@@ -1,5 +1,5 @@
 <template>
-    <img @click="$emit('click')" :id="id" :src="newSrc" :alt="alt" loading="lazy">
+    <nuxt-img @click="$emit('click')" :id="id" :src="newSrc" :alt="alt" loading="lazy" format="webp" preload />
 </template>
 
 <script>

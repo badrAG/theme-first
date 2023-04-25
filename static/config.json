@@ -240,7 +240,7 @@
                       "name": "add_to_cart_to_checkout",
                       "path": "sections.products.add_to_cart_to_checkout",
                       "type": "tc_checkbox",
-                      "value": true
+                      "value": false
                     },
                     {
                       "name": "show_wishlist",
@@ -1237,6 +1237,12 @@
                       "type": "tc_input",
                       "translatable": true,
                       "value": "Quantity"
+                    },
+                    {
+                      "name": "show_quantity",
+                      "path": "sections.product.quantity.active",
+                      "type": "tc_checkbox",
+                      "value": true
                     }
                   ]
                 },
@@ -1395,6 +1401,17 @@
                       "type": "tc_input",
                       "translatable": true,
                       "value": "Related products"
+                    }
+                  ]
+                },
+                {
+                  "name": "sticky_add_to_cart",
+                  "values": [
+                    {
+                      "name": "show_sticky_add_to_cart",
+                      "path": "sections.product.sticky_add_to_cart.active",
+                      "type": "tc_checkbox",
+                      "value": true
                     }
                   ]
                 }

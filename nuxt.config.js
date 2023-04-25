@@ -27,7 +27,8 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    '@nuxt/image'
   ],
   fontawesome: {
     component: 'fa',

@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <si-product-price v-if="showPrice" class="flex px-1 text-2xl" :type="'simple'" :price="selected.price" :variants="[]"></si-product-price>
+            <si-product-price v-if="showPrice" class="flex px-1 text-sm" :type="'simple'" :price="selected.price" :variants="[]"></si-product-price>
         </div>
     </div>
 </template>

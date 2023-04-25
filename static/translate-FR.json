@@ -297,5 +297,8 @@
     "thanks_page": "Page de remerciement",
     "thanks_text": "Texte de remerciement",
     "error_page": "Page d'erreur",
-    "404_texts": "Textes 404"
+    "404_texts": "Textes 404",
+    "show_quantity": "Afficher La Quantité",
+    "sticky_add_to_cart":"Gluant Ajouter au Panier",
+    "show_sticky_add_to_cart": "Afficher le collant Ajouter au panier"
 }

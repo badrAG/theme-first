@@ -297,5 +297,8 @@
     "thanks_page": "صفحة الشكر",
     "thanks_text": "نص الشكر",
     "error_page": "صفحة الخطأ",
-    "404_texts": "404 النصوص"
+    "404_texts": "404 النصوص",
+    "show_quantity": "عرض الكمية",
+    "sticky_add_to_cart":"إضافة إلى عربة التسوق مثبت",
+    "show_sticky_add_to_cart": "إظهار إضافة إلى عربة التسوق مثبت"
 }

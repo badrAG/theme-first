@@ -297,5 +297,8 @@
     "thanks_page": "Thanks Page",
     "thanks_text": "Thanks Text",
     "error_page": "Error Page",
-    "404_texts": "404 Texts"
+    "404_texts": "404 Texts",
+    "show_quantity": "Show Quantity",
+    "sticky_add_to_cart": "Sticky Add To Cart",
+    "show_sticky_add_to_cart": "Show Sticky Sdd To Cart"
 }
