@@ -77,9 +77,14 @@
                             <button class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg rounded-full px-5 click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
-                            <button class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90" v-else @click="buyNow">
-                                <span>{{ $settings.sections.product.buy_now.text }}</span>
-                            </button>
+                            <div v-else>
+                                <button v-if="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90"  @click="buyNow">
+                                    <span>{{ $settings.sections.product.buy_now.text }}</span>
+                                </button>
+                                <a href="#chckout" v-else class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90">
+                                    <span>{{ $settings.sections.product.buy_now.text }}</span>
+                                </a>
+                            </div>
                         </div>
                         <!-- add to cart -->
                     </div>
@@ -139,7 +144,7 @@
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
                         <si-app-loader placement="BEFORE_BUYNOW"/>
                         <!-- buy now -->
-                        <div class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
+                        <div id="chckout" class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
                             <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
