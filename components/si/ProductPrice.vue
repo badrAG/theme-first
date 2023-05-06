@@ -7,10 +7,10 @@
             <!-- priceCurrency  -->
             <!-- sale price -->
             <span class="home-price" v-if="type=='simple'">
-                <span class="products-price-text-bg text-md font-bold">{{ price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg text-md font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span v-if="price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
+                    <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
                 <meta itemprop="price" :content="price.salePrice" />
             </span>
@@ -18,18 +18,18 @@
             <!-- rugular price -->
             <span class="home-price" v-else-if="minPrice != maxPrice" > 
                 <meta itemprop="price" :content="minPrice" />
-                <span class="products-price-text-bg text-md font-bold">{{ minPrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg text-md font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="">~</span>
-                <span class="products-price-text-bg text-md font-medium">{{ maxPrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg text-md font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
             </span>
             <!-- rugular price -->
             <!-- buy price -->
             <span class="home-price" v-else-if="variants.length > 0">
                 <meta itemprop="price" :content="variants[0].price.salePrice" />
-                <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
+                    <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
             </span>
             <!-- buy price -->
@@ -42,10 +42,10 @@
             <!-- priceCurrency  -->
             <!-- sale price -->
             <span class="truncate" v-if="type=='simple'">
-                <span class="products-price-text-bg font-bold">{{ price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span v-if="price.comparePrice > 0">
-                    <del class="products-delprice-text-bg font-normal">{{ price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
+                    <del class="products-delprice-text-bg font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
                 <meta itemprop="price" :content="price.salePrice" />
             </span>
@@ -53,18 +53,18 @@
             <!-- regular price -->
             <span class="price" v-else-if="minPrice != maxPrice" > 
                 <meta itemprop="price" :content="minPrice" />
-                <span class="products-price-text-bg font-bold">{{ minPrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="">~</span>
-                <span class="products-price-text-bg font-medium">{{ maxPrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
             </span>
             <!-- regular price -->
             <!-- buy price -->
             <span class="price" v-else-if="variants.length > 0">
                 <meta itemprop="price" :content="variants[0].price.salePrice" />
-                <span class="products-price-text-bg font-bold">{{ variants[0].price.salePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</span>
+                <span class="products-price-text-bg font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                    <del class="products-delprice-text-bg font-normal">{{ variants[0].price.comparePrice.toFixed(2) }} {{ $store.state.currency.symbol }}</del>
+                    <del class="products-delprice-text-bg font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
             </span>
             <!-- buy price -->

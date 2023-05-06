@@ -2,7 +2,7 @@
     <div>
         <!-- home page -->
         <div v-if="page == 'home'" >
-            <div class="wishlist-box pb-full relative rounded-lg md:rounded-xl box-shadow-xs-hover">
+            <div class="wishlist-box pb-5/6 relative rounded-lg md:rounded-xl box-shadow-xs-hover">
                 <!-- wishlist icon -->
                 <div v-if="$settings.sections.products.add_to_wishlist.active">
                     <button  v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="bg-white hover-bg rounded-full absolute z-10 top-0 right-0 m-2 p-2">
