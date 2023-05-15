@@ -6,7 +6,7 @@
         <div class="services flex flex-wrap justify-between px-2">
             <div class="service flex w-1/2 lg:w-1/4 p-2" v-for="(item, i) in items" :key="i">
                 <div class="p-2 w-full services-bg services-text-bg border border-gray-200 rounded-xl transition-all ease-linear box-shadow-x-hover">
-                    <nuxt-link :to="item.url" class="flex flex-col items-center md:flex-row ">
+                    <nuxt-link :to="item.url" class="flex flex-col items-center md:flex-row">
                         <si-image width="80" height="80" class="mb-4 md:mb-0 w-20 h-20 md:w-16 md:h-16 object-cover opacity-80" :src="item.image ? item.image.src : item.defaultImage.src" :alt="item.text"/>
                         <div class="service-title md:ml-3">
                             <p class="align-center text-base font-bold pb-1">{{ item.text }}</p>
@@ -66,7 +66,10 @@
     }
 </script>
 
-<style scoped>
+<style scoped> 
+
+
+
     @media (min-width: 768px) {
         [dir="rtl"] .service-title {
             margin-right: 0.75rem;

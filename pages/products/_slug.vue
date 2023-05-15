@@ -12,12 +12,14 @@
                 <meta itemprop="productID" :content="item._id" />
                 <!-- Product id -->
                 <!--  -->
-                <div style="height: fit-content;"   class="w-full lg:w-2/3 lg:sticky lg:top-6">
+                <div style="height: fit-content;" class="w-full lg:w-2/3 lg:sticky lg:top-6">
                     <div class="flex flex-wrap">
                         <div class="relative w-full slider md:mx-4">
-                            <div v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" class="pb-full relative overflow-hidden">
+                            <!-- image -->
+                            <div class="pb-full relative overflow-hidden">
                                 <si-image width="400" height="400" class="cursor-pointer h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                             </div>
+                            <!-- image -->
                             <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
                                 <svg class="w-5 h-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                     <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" class=""></path>
@@ -224,7 +226,6 @@
                 Reviews: false,
                 showStickyAddToCart: false,
                 visibleSlide: 0,
-                direction:'',
                 loading: true,
                 item: null,
                 image: null,
@@ -361,19 +362,17 @@
             },
             next(){
                 if(this.visibleSlide >= this.slidesLen - 1 ){
-                    this.visibleSlide = 0
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
                 }else {
-                    this.visibleSlide ++
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide ++]);
                 }
-                this.direction = 'left'
             },
             prev() {
                 if(this.visibleSlide <= 0 ){
-                    this.visibleSlide = this.slidesLen - 1
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.slidesLen - 1]);
                 }else {
-                    this.visibleSlide --
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide --]);
                 }
-                this.direction = 'right'
             },
             addToCart() {
                 // Call add to cart event
@@ -421,14 +420,16 @@
                     let index = this.item.images.findIndex(i=>i._id == variant.imageId);
                     if(index == -1) index = 0;
                     this.image = this.item.images[index];
+                    this.visibleSlide = index;
                 }else if(this.item.images.length > 0){
                     this.image = this.item.images[0];
+                    this.visibleSlide = 0
                 }
                 this.quantitySelected(this.item.quantity.value);
             },
             setImage(index){
                 this.visibleSlide = index
-                //   this.image = this.$tools.copy(this.item.images[index]);
+                this.image = this.$tools.copy(this.item.images[index]);
             },
             setTab(tab){
                 this.tab = tab;
