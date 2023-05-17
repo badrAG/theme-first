@@ -7,7 +7,7 @@
                       <nuxt-link class="mb-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                           <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 md:h-28 md:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
                       </nuxt-link>
-                      <nuxt-link class="line w-28" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
+                      <nuxt-link class="center-collections-name line w-28" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                           <div style="text-align: center;" class="collection-text relative text-sm md:text-base font-bold">{{ item.name }}</div>
                       </nuxt-link>
                   </li>

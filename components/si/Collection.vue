@@ -5,7 +5,7 @@
                 <si-image  width="400" height="400" class="image_zoom h-full w-full absolute inset-0 object-cover" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
             </nuxt-link>
         </div>
-        <div class="p-3">
+        <div class="bottom-collections-name p-3">
             <nuxt-link :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                 <div style="text-align: center;" class="text-base md:text-lg font-bold truncate">{{ item.name }}</div>
             </nuxt-link>

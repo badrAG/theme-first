@@ -13,7 +13,7 @@
           <nuxt-link :to="`/shop/${collections[0].slug}`" :title="collections[0].name" :aria-label="collections[0].name">
             <div class="icon-box flex items-center justify-between px-4 py-3">
               <div class="flex items-center" >
-                <h2 class="text-sm lg:text-base font-bold">{{ collections[0].name.length > 18? collections[0].name.slice(0, 18) + '...' : collections[0].name  }}</h2>
+                <h2 class="products-collections-name text-sm lg:text-base font-bold">{{ collections[0].name.length > 18? collections[0].name.slice(0, 18) + '...' : collections[0].name  }}</h2>
                 <span class="w-2"></span>
                 <fa class="icon text-sm lg:text-base text-primary translate"  :icon="['fa', 'arrow-right']"></fa>
               </div>
@@ -41,7 +41,7 @@
           <nuxt-link :to="`/shop/${collections[1].slug}`" :title="collections[1].name" :aria-label="collections[1].name">
             <div class="icon-box flex items-center justify-between px-4 py-3 ">
               <div class="flex items-center" >
-                <h2 class="text-sm lg:text-base font-bold">{{ collections[1].name.length > 20? collections[1].name.slice(0, 20) + '...' : collections[1].name }}</h2>
+                <h2 class="products-collections-name text-sm lg:text-base font-bold">{{ collections[1].name.length > 20? collections[1].name.slice(0, 20) + '...' : collections[1].name }}</h2>
                 <span class="w-2"></span>
                 <fa class="icon text-sm lg:text-base text-primary translate"  :icon="['fa', 'arrow-right']"></fa>
               </div>
@@ -69,7 +69,7 @@
           <nuxt-link :to="`/shop/${collections[2].slug}`" :title="collections[2].name" :aria-label="collections[2].name">
             <div class="icon-box flex items-center justify-between px-4 py-3">
               <div class="flex items-center" >
-                <h2 class="text-sm lg:text-base font-bold">{{ collections[2].name.length > 20? collections[2].name.slice(0, 20) + '...' : collections[2].name }}</h2>
+                <h2 class="products-collections-name text-sm lg:text-base font-bold">{{ collections[2].name.length > 20? collections[2].name.slice(0, 20) + '...' : collections[2].name }}</h2>
                 <span class="w-2"></span>
                 <fa class="icon text-sm lg:text-base text-primary translate"  :icon="['fa', 'arrow-right']"></fa>
               </div>
@@ -97,7 +97,7 @@
           <nuxt-link :to="`/shop/${collections[3].slug}`" :title="collections[3].name" :aria-label="collections[3].name">
             <div class="icon-box flex items-center justify-between px-4 py-3">
               <div class="flex items-center" >
-                <h2 class="text-sm lg:text-base font-bold">{{ collections[3].name.length > 20? collections[3].name.slice(0, 20) + '...' : collections[3].name }}</h2>
+                <h2 class="products-collections-name text-sm lg:text-base font-bold">{{ collections[3].name.length > 20? collections[3].name.slice(0, 20) + '...' : collections[3].name }}</h2>
                 <span class="w-2"></span>
                 <fa class="icon text-sm lg:text-base text-primary translate"  :icon="['fa', 'arrow-right']"></fa>
               </div>
