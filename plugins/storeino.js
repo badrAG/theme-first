@@ -1,4 +1,4 @@
-export default async function ({ $http, store, app }, inject) {
+export default async function ({ $http, store, app, route }, inject) {
     const storeino = {};
     // Gets
     const gets = ['products', 'collections' ,'pages'];
