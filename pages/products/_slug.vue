@@ -387,6 +387,13 @@
                             window.location.href = '/checkout2';
                     }, 500);
                 }
+                this.$storeino.fbpx('AddToCart',{
+               content_name: this.item.name,
+               content_ids: [this.item._id],
+               content_type: "product",
+               value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+               currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+            })
                 this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
             },
             addToWishlist(){
