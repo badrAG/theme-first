@@ -150,7 +150,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             if(route.query.pixel){
               const objData = JSON.parse(route.query.pixel);
               $storeino.fbpx('PageView')
-              $storeino.fbpx('Purchase',objData)
+              // $storeino.fbpx('Purchase',objData)
               if(pixel.type && pixel.type=="Lead" ){
                 window.fbLead(objData,pixel.id);
               }else{
