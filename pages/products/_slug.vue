@@ -364,14 +364,14 @@
                 if(this.visibleSlide >= this.slidesLen - 1 ){
                     this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
                 }else {
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide ++]);
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide + 1]);
                 }
             },
             prev() {
                 if(this.visibleSlide <= 0 ){
                     this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.slidesLen - 1]);
                 }else {
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide --]);
+                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide - 1]);
                 }
             },
             addToCart() {
@@ -419,11 +419,11 @@
                 if(variant.imageId && this.item.images.length > 0){
                     let index = this.item.images.findIndex(i=>i._id == variant.imageId);
                     if(index == -1) index = 0;
-                    this.image = this.item.images[index];
                     this.visibleSlide = index;
+                    this.image = this.item.images[index];
                 }else if(this.item.images.length > 0){
-                    this.image = this.item.images[0];
                     this.visibleSlide = 0
+                    this.image = this.item.images[0];
                 }
                 this.quantitySelected(this.item.quantity.value);
             },
