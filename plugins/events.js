@@ -22,7 +22,7 @@ export default function({ app, store, router, $tools }, inject){
                 gtag('config', `${store.state.settings.google_ads.id}`);
             }
             // Facebook Snap Tiktok Linkedin
-            fbPageView();
+            // fbPageView();
             snapPageView();
             tiktokPageView();
             if(e.data && e.data._id){
