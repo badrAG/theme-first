@@ -22,17 +22,17 @@ export default function({ app, store, router, $tools }, inject){
                 gtag('config', `${store.state.settings.google_ads.id}`);
             }
             // Facebook Snap Tiktok Linkedin
-            fbPageView();
+            // fbPageView();
             snapPageView();
             tiktokPageView();
             if(e.data && e.data._id){
-                fbViewContent({
-                    content_name: e.data.name,
-                    content_ids: [e.data._id],
-                    content_type: "product",
-                    value: e.data.price.salePrice,
-                    currency: store.state.currency.code
-                });
+                // fbViewContent({
+                //     content_name: e.data.name,
+                //     content_ids: [e.data._id],
+                //     content_type: "product",
+                //     value: e.data.price.salePrice,
+                //     currency: store.state.currency.code
+                // });
                 snapViewContent({ item_ids: [e.data._id] });
                 tiktokViewContent({
                     content_id: e.data._id,
