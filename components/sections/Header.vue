@@ -8,7 +8,7 @@
                     <!-- logo -->
                     <div class="logo">
                         <router-link to="/">
-                            <si-image width="70" height="50" property="height" class="h-10 md:h-12 w-full object-contain" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
+                            <si-image width="70" height="50" property="height" class="h-10 md:h-12 w-auto object-contain" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
                         </router-link>
                     </div>
                     <!-- logo -->
