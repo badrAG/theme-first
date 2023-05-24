@@ -26,9 +26,9 @@ export default {
     '@nuxtjs/tailwindcss',
   ],
   modules: [
+    '@nuxt/image',
     '@nuxtjs/axios',
-    '@nuxtjs/fontawesome',
-    '@nuxt/image'
+    '@nuxtjs/fontawesome'
   ],
   fontawesome: {
     component: 'fa',

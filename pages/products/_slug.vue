@@ -71,7 +71,7 @@
                         <!-- Price -->
                         <!-- product-quantity -->
                         <div class="w-2/5 md:w-3/12 lg:w-2/12">
-                            <div v-if="($settings.sections.product.quantity.active != null && $settings.sections.product.quantity.active )">
+                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
                                 <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                         <!-- product cart -->
                         <!-- product quantity -->
                         <!-- v-if="sections.product.quantity.active" -->
-                        <div class="product-quantity mx-2 mt-4" v-if="($settings.sections.product.quantity.active != null && $settings.sections.product.quantity.active )">
+                        <div class="product-quantity mx-2 mt-4" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
                             <div>
                                 <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
                             </div>
