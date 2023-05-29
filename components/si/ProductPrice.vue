@@ -1,92 +1,93 @@
 <template>
     <div>
-        <!-- priceCurrency  -->
-        <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
-        <!-- priceCurrency  -->
-        <!-- home  price -->
-        <div v-if="page=='home-price'" class="home-prices">
-            <!-- sale price -->
-            <span class="home-price" v-if="type=='simple'">
-                <meta itemprop="price" :content="price.salePrice" />
-                <span class="products-price-text-bg text-md font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="mx-0.5"></span>
-                <span v-if="price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
-                </span>
-            </span>
-            <!-- sale price -->
-            <!-- rugular price -->
-            <span class="home-price" v-else-if="minPrice != maxPrice" > 
-                <meta itemprop="price" :content="minPrice" />
-                <span class="products-price-text-bg text-md font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="">~</span>
-                <span class="products-price-text-bg text-md font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
-            </span>
-            <!-- rugular price -->
-            <!-- buy price -->
-            <span class="home-price" v-else-if="variants.length > 0">
-                <meta itemprop="price" :content="variants[0].price.salePrice" />
-                <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="mx-0.5"></span>
-                <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                    <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
-                </span>
-            </span>
-            <!-- buy price -->
-        </div>
-        <!-- home price -->
-        <!-- else price -->
-        <div v-else class="prices">
-            <!-- sale price -->
-            <span class="truncate" v-if="type=='simple'">
-                <meta itemprop="price" :content="price.salePrice" />
-                <span class="products-price-text-bg font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="mx-0.5"></span>
-                <span v-if="price.comparePrice > 0">
-                    <del class="products-delprice-text-bg font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
-                </span>
-            </span>
-            <!-- sale price -->
-            <!-- regular price -->
-            <span class="price" v-else-if="minPrice != maxPrice" > 
-                <meta itemprop="price" :content="minPrice" />
-                <span class="products-price-text-bg font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="">~</span>
-                <span class="products-price-text-bg font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
-            </span>
-            <!-- regular price -->
-            <!-- buy price -->
-            <span class="price" v-else-if="variants.length > 0">
-                <meta itemprop="price" :content="variants[0].price.salePrice" />
-                <span class="products-price-text-bg font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
-                <span class="mx-0.5"></span>
-                <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                    <del class="products-delprice-text-bg font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
-                </span>
-            </span>
-            <!-- buy price -->
-        </div>
-        <!-- else price -->
+      <!-- priceCurrency  -->
+      <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
+      <!-- priceCurrency  -->
+      <!-- home  price -->
+      <div v-if="page === 'home-price'" class="home-prices">
+        <!-- sale price -->
+        <span class="home-price" v-if="type === 'simple'">
+          <meta itemprop="price" :content="price.salePrice" />
+          <span class="products-price-text-bg text-md font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="mx-0.5"></span>
+          <span v-if="price.comparePrice > 0">
+            <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+          </span>
+        </span>
+        <!-- sale price -->
+        <!-- regular price -->
+        <span class="home-price" v-else-if="minPrice !== null && minPrice !== maxPrice"> 
+          <meta itemprop="price" :content="minPrice" />
+          <span class="products-price-text-bg text-md font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="">~</span>
+          <span class="products-price-text-bg text-md font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
+        </span>
+        <!-- regular price -->
+        <!-- buy price -->
+        <span class="home-price" v-else-if="variants.length > 0 && variants[0].price">
+          <meta itemprop="price" :content="variants[0].price.salePrice" />
+          <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="mx-0.5"></span>
+          <span class="relative" v-if="variants[0].price.comparePrice > 0">
+            <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+          </span>
+        </span>
+        <!-- buy price -->
+      </div>
+      <!-- home price -->
+      <!-- else price -->
+      <div v-else class="prices">
+        <!-- sale price -->
+        <span class="truncate" v-if="type === 'simple'">
+          <meta itemprop="price" :content="price.salePrice" />
+          <span class="products-price-text-bg font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="mx-0.5"></span>
+          <span v-if="price.comparePrice > 0">
+            <del class="products-delprice-text-bg font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+          </span>
+        </span>
+        <!-- sale price -->
+        <!-- regular price -->
+        <span class="price" v-else-if="minPrice !== null && minPrice !== maxPrice"> 
+          <meta itemprop="price" :content="minPrice" />
+          <span class="products-price-text-bg font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="">~</span>
+          <span class="products-price-text-bg font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
+        </span>
+        <!-- regular price -->
+        <!-- buy price -->
+        <span class="price" v-else-if="variants.length > 0 && variants[0].price">
+          <meta itemprop="price" :content="variants[0].price.salePrice" />
+          <span class="products-price-text-bg font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
+          <span class="mx-0.5"></span>
+          <span class="relative" v-if="variants[0].price.comparePrice > 0">
+            <del class="products-delprice-text-bg font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+          </span>
+        </span>
+        <!-- buy price -->
+      </div>
+      <!-- else price -->
     </div>
-</template>
-
-<script>
-    export default {
-        props: {
-            type: String,
-            price: Object,
-            originalPrice: { type: Object, default: null },
-            variants: { type: Array, default: [] },
-            page: { type: String,required: false}
-        },
-        data() {
-            return {
-                minPrice : this.type == 'variable' ? Math.min(...this.variants.map(v=>v.price.salePrice)) : 0,
-                maxPrice : this.type == 'variable' ? Math.max(...this.variants.map(v=>v.price.salePrice)) : 0,
-            }
-        },
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      type: String,
+      price: Object,
+      originalPrice: { type: Object, default: null },
+      variants: { type: Array, default: [] },
+      page: { type: String,required: false}
+    },
+    data() {
+      return {
+        minPrice : this.type == 'variable' ? Math.min(...this.variants.map(v=>v.price.salePrice)) : 0,
+        maxPrice : this.type == 'variable' ? Math.max(...this.variants.map(v=>v.price.salePrice)) : 0,
+      }
     }
-</script>
+  }
+  </script>
+  
 
 <style scoped>
     .prices,.home-prices {
