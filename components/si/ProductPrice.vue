@@ -1,18 +1,18 @@
 <template>
     <div>
+        <!-- priceCurrency  -->
+        <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
+        <!-- priceCurrency  -->
         <!-- home  price -->
         <div v-if="page=='home-price'" class="home-prices">
-            <!-- priceCurrency  -->
-            <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
-            <!-- priceCurrency  -->
             <!-- sale price -->
             <span class="home-price" v-if="type=='simple'">
+                <meta itemprop="price" :content="price.salePrice" />
                 <span class="products-price-text-bg text-md font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span v-if="price.comparePrice > 0">
                     <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
-                <meta itemprop="price" :content="price.salePrice" />
             </span>
             <!-- sale price -->
             <!-- rugular price -->
@@ -37,17 +37,14 @@
         <!-- home price -->
         <!-- else price -->
         <div v-else class="prices">
-            <!-- priceCurrency  -->
-            <meta itemprop="priceCurrency" :content="$store.state.currency.code" />
-            <!-- priceCurrency  -->
             <!-- sale price -->
             <span class="truncate" v-if="type=='simple'">
+                <meta itemprop="price" :content="price.salePrice" />
                 <span class="products-price-text-bg font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
                 <span class="mx-0.5"></span>
                 <span v-if="price.comparePrice > 0">
                     <del class="products-delprice-text-bg font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
                 </span>
-                <meta itemprop="price" :content="price.salePrice" />
             </span>
             <!-- sale price -->
             <!-- regular price -->

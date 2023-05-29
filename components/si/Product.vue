@@ -24,9 +24,9 @@
                 </div>
                 <!-- product-price -->
             </div>
-            <!-- <div class="my-2 md:hidden">
+            <div class="my-2 md:hidden">
                 <si-product-price class="text-sm" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
-            </div> -->
+            </div>
         </div>
         <!-- home page -->
         <!-- else pages -->
@@ -64,9 +64,9 @@
                     </div>
                     <!-- product name -->
                     <!-- product price -->
-                    <!-- <div class="mt-1">
+                    <div class="mt-1">
                         <si-product-price class="text-sm" :type="item.type" :price="item.price" :variants="item.variants"></si-product-price>
-                    </div> -->
+                    </div>
                     <!--  product price -->
                 </div>
             </div>
