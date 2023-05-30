@@ -71,7 +71,7 @@
                         <!-- Price -->
                         <!-- product-quantity -->
                         <div class="w-2/5 md:w-3/12 lg:w-2/12">
-                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
+                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true">
                                 <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                             </div>
                         </div>
@@ -129,7 +129,6 @@
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
-                        <!-- v-if="sections.product.quantity.active" -->
                         <div class="product-quantity mx-2 mt-4" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
                             <div>
                                 <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
@@ -232,7 +231,10 @@
                 item: null,
                 image: null,
                 tab: 'description',
+                outofstock: false,
                 quantity: {},
+                showVariantDiv:false,
+                showVarianteModal:false,
                 variant: null,
                 price: { salePrice: 0, comparePrice: 0 },
                 socialMedia: [
@@ -262,8 +264,9 @@
         async fetch() {
             const { slug } = this.$route.params;
             try{
-                const { data } = await this.$storeino.products.get({ slug }) 
+                const { data } = await this.$storeino.products.get({ slug })
                 this.item = data;
+
                 this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
                 this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
                 this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -282,6 +285,12 @@
                 if(this.item.images.length > 0) this.setImage(0);
                 // Set default variant if exists
                 if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
+                if(this.item.type == 'simple'){
+                    // Check outof stock
+                    if(!this.item.outStock.disabled && this.item.quantity.instock <= 0){
+                        this.outofstock = true;
+                    }
+                }
                 // Set default quantity
                 this.quantitySelected(this.quantity.default);
                 // Generate share urls
@@ -290,24 +299,28 @@
                     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
                 }
                 if(!process.server){
+                    console.log("Send facebook events");
                     this.$storeino.fbpx('PageView')
-                this.$storeino.fbpx('ViewContent',{
-                content_name: this.item.name?this.item.name:'',
-                content_ids: [this.item._id],
-                content_type: "product",
-                value: this.item.price.salePrice,
-                currency: this.$store.state.currency.code
-                })
+                    this.$storeino.fbpx('ViewContent',{
+                        content_name: this.item.name?this.item.name:'',
+                        content_ids: [this.item._id],
+                        content_type: "product",
+                        value: this.item.price.salePrice,
+                        currency: this.$store.state.currency.code
+                    });
                     this.$tools.call('PAGE_VIEW', this.item);
                 }
+
             }catch(e){
                 // Redirect to error page if product not exists
+                console.log(e);
                 this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
             }
         },
         mounted() {
             if(this.item) this.$tools.call('PAGE_VIEW', this.item);
             window.addEventListener("APP_LOADER", e => {
+                console.log("Despatching event CURRENT_PRODUCT APP_LOADER");
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
@@ -319,13 +332,13 @@
                 }));
             });
             if(this.item){
-                this.$storeino.fbpx('PageView')
-                this.$storeino.fbpx('ViewContent',{
-                    content_name: this.item.name?this.item.name:'',
-                    content_ids: [this.item._id],
-                    content_type: "product",
-                    value: this.item.price.salePrice,
-                    currency: this.$store.state.currency.code
+            this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('ViewContent',{
+                content_name: this.item.name?this.item.name:'',
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.item.price.salePrice,
+                currency: this.$store.state.currency.code
                 })
             }
             if(this.item){
@@ -334,17 +347,17 @@
                 const width = ifram.getAttribute('width')
                 const height = ifram.getAttribute('height')
                 const parent = ifram.parentNode
-                if (!parent.classList.contains('video-wrapper')) {
-                    const div = document.createElement("div");
-                    ifram.after(div)
-                    div.classList.add('video-wrapper');
-                    ifram.style.width=null;
-                    ifram.style.height=null;
-                    ifram.setAttribute('width','');
-                    ifram.setAttribute('height','');
-                    div.appendChild(ifram)
+                    if (!parent.classList.contains('video-wrapper')) {
+                        const div = document.createElement("div");
+                        ifram.after(div)
+                        div.classList.add('video-wrapper');
+                        ifram.style.width=null;
+                        ifram.style.height=null;
+                        ifram.setAttribute('width','');
+                        ifram.setAttribute('height','');
+                        div.appendChild(ifram)
+                    }
                 }
-            }
             }
             //show showStickyAddToCart
             window.addEventListener('scroll', this.handleScroll);
@@ -376,6 +389,32 @@
                     this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide - 1]);
                 }
             },
+            t(key){
+            const langs = {
+                    price_title_products: {
+                        EN: "Price:	",
+                        FR: "Prix:	",
+                        AR: "السعر: ",
+                        ES: "Prezo: ",
+                        PT: "Preço: "
+                    },
+                    check_choice:{
+                        EN: "Please check your choice :",
+                        FR: "Veuillez vérifier votre choix:	",
+                        AR: "يرجى تأكيد الإختيار: ",
+                        ES: "Por favor marque su elección: ",
+                        PT :"Por favor, verifique a sua escolha: "
+                    },
+                    can_change_choice:{
+                        EN: "You can change your choice :",
+                        FR: "Vous pouvez modifier votre choix :	",
+                        AR: "يمكنك تغيير اختيارك: ",
+                        ES: "Puede cambiar su elección: ",
+                        PT:"Você pode alterar sua escolha: "
+                    }
+                }
+                return langs[key] && langs[key][this.$store.state.language.code] || '';
+            },
             addToCart() {
                 // Call add to cart event
                 this.$tools.call('ADD_TO_CART', {
@@ -390,12 +429,12 @@
                     }, 500);
                 }
                 this.$storeino.fbpx('AddToCart',{
-               content_name: this.item.name,
-               content_ids: [this.item._id],
-               content_type: "product",
-               value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-               currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-            })
+                    content_name: this.item.name,
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                    currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+                })
                 this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
             },
             addToWishlist(){
@@ -408,6 +447,10 @@
             },
             buyNow() {
                 // Add to cart and redirect to checkout
+                if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
+                    this.showVarianteModal = true
+                    return;
+                }
                 this.addToCart();
                 setTimeout(() => {
                     window.location.href = '/checkout2';
@@ -422,6 +465,18 @@
                     this.price.salePrice = this.item.price.salePrice * quantity;
                     this.price.comparePrice = this.item.price.comparePrice * quantity;
                 }
+                if(!process.server){
+                    console.log("Despatching event CURRENT_PRODUCT quantitySelected");
+                    window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                        detail: {
+                            product_id: this.item._id,
+                            product_quantity: this.quantity.value,
+                            product_variant: this.variant ? this.variant._id : undefined,
+                            product_currency: this.$store.state.currency.code,
+                            product_price: this.price
+                        }
+                    }));
+                }
             },
             variantSelected(variant) {
                 this.variant = variant;
@@ -433,6 +488,12 @@
                 }else if(this.item.images.length > 0){
                     this.visibleSlide = 0
                     this.image = this.item.images[0];
+                }
+                // Check outof stock
+                if(!this.item.outStock.disabled && this.variant.quantity.instock <= 0){
+                    this.outofstock = true;
+                }else{
+                    this.outofstock = false;
                 }
                 this.quantitySelected(this.item.quantity.value);
             },

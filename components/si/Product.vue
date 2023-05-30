@@ -109,7 +109,6 @@
         },
         data() {
             return {
-                filpped: false,
                 added: false,
                 variant: this.item.type == 'variant' ? this.item.variants[0] : null,
                 quantity: this.item.quantity,
@@ -118,48 +117,6 @@
             }
         },
         methods: {
-            addToCart(ev) {
-                // Call add to cart event
-                let item = {
-                    _id: this.item._id,
-                    quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
-                    price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                    variant: this.variant ? { _id: this.variant._id } : null,
-                    upsell: this.upsell
-                };
-                this.$tools.call('ADD_TO_CART', item);
-                this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
-                this.added = true;
-                if(this.$settings.sections.products.add_to_cart_to_checkout){
-                    setTimeout(() => {
-                            window.location.href = '/checkout2';
-                    }, 500);
-                }
-                setTimeout(() => {
-                    this.added = false;
-                }, 2000);
-                this.$storeino.fbpx('AddToCart',{
-                content_name: this.item.name,
-                content_ids: [this.item._id],
-                content_type: "product",
-                value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-                })
-            },
-            variantSelected(variant){
-                this.variant = variant;
-                this.quantitySelected(this.item.quantity.value);
-            },
-            quantitySelected(quantity){
-                this.item.quantity.value = quantity;
-                if(this.variant){
-                    this.price.salePrice = this.variant.price.salePrice * quantity;
-                    this.price.comparePrice = this.variant.price.comparePrice * quantity;
-                }else{
-                    this.price.salePrice = this.item.price.salePrice * quantity;
-                    this.price.comparePrice = this.item.price.comparePrice * quantity;
-                }
-            },
             addToWishlist(){
                 this.$tools.call('ADD_TO_WISHLIST', this.item);
                 this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
@@ -168,7 +125,7 @@
                 this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
                 this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
             },
-        },
+        }
     }
 </script>
 

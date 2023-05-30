@@ -22,7 +22,7 @@ const createStore = () => {
           settings: null,
           domain: 'www.storeino.com',
           apps: [],
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MThmMDFlZjZmYWYzYzAxOWU1ZGEyZTEifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjg1Mzc4NzQzLCJleHAiOjE3MTY5MTQ3NDN9.08eTaviymfZMfo-sVO3HZSz5bv8Jlj7eOIswsF5FnDo',
+          token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NDc1YjM1MGU3NTI3MTIyYzc5M2JjOTkifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjg1NDM1NTE0LCJleHAiOjE3MTY5NzE1MTR9.3pnstLwByamHNr6T1R0SkUe_sKDVdFaz_3KY1Ym_lFU",
           primary: {
             rgb: { r:0, g:0, b:0 },
             color: '#000000'
