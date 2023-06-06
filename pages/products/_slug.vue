@@ -202,7 +202,7 @@
             </div>
             <div class="px-4">
               <!-- reviews after description -->
-              <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active">
+              <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
                 <div class="px-4 py-1 cursor-pointer rounded-full bg-primary text-white">
                   <span class="text-sm md:text-base font-bold">{{ $settings.sections.product.reviews.title }}</span>
                 </div>
@@ -521,14 +521,16 @@
               this.Description = false; this.Reviews = true
             },
             foundApp(placement) {
-              const foundApp = this.$store.state.apps.find((app) => {
-                return app.config?.placements?.includes(placement) && app.name === "PIN REVIEW";
-              });
-              if (foundApp) {
-                return 'flex'
-              } else {
-                return 'hidden'
-              }
+                if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
+                    const foundApp = this.$store.state.apps.find((app) => {
+                      return app.config?.placements?.includes(placement);
+                    });
+                    if (foundApp) {
+                      return 'flex'
+                    } else {
+                      return 'hidden'
+                    }
+                }
             }
         },
     }
