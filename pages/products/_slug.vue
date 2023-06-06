@@ -57,7 +57,7 @@
                 <!-- Product content -->
                 <!-- sticky add to cart -->
                 <div class="fixed inset-0 top-auto bg-white z-30 p-4 border-t bg-primary-border" v-if="showStickyAddToCart">
-                    <div class="container flex gap-4 md:gap-6 items-center"> 
+                    <div class="container flex gap-4 md:gap-6 items-center">
                         <!--  Product Name -->
                         <div class="hidden md:flex gap-4 md:gap-6 items-center md:w-5/12">
                             <si-image class="w-14 h-14 object-cover cursor-pointer rounded-sm" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
@@ -178,29 +178,38 @@
             <si-app-loader placement="BEFORE_DESCRIPTION"/>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
-                <div class="flex justify-center items-center mb-4 mx-4">
-                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div  v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover-bg'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+                <div class="flex justify-center items-center mb-4 px-4">
+                    <div class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active" class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="[foundApp('REPLACE_REVIEWS'),(Reviews == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
-                <div class="flex justify-center mx-4">
+                <div class="flex justify-center px-4">
                     <div v-if="Description">
-                        <div class="bg-white description font-normal leading-7 text-base w-full" id="description" v-html="item.html"></div>
-                        <h2 v-if="item.html.length == 0" class="text-base font-normal" >{{ $settings.sections.product.description.title_empty }}</h2>
+                        <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
+                        <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                 </div>
-                <!-- Description -->        
+                <!-- Description -->
                 <!-- reviews -->
-                <div v-if="Reviews" class="reviews mx-2 overflow-hidden">
+                <div v-if="Reviews" class="reviews mx-2 overflow-hidden rounded-lg">
                     <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
-                    <si-app-loader  placement="REPLACE_REVIEWS"/>
+                    <si-app-loader placement="REPLACE_REVIEWS"/>
                     <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
-            </div>  
-            <si-app-loader placement="AFTER_DESCRIPTION"/>
+            </div>
+            <div class="px-4">
+              <!-- reviews after description -->
+              <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active">
+                <div class="px-4 py-1 cursor-pointer rounded-full bg-primary text-white">
+                  <span class="text-sm md:text-base font-bold">{{ $settings.sections.product.reviews.title }}</span>
+                </div>
+              </div>
+                <!-- reviews after description -->
+              <si-app-loader placement="AFTER_DESCRIPTION"/>
+            </div>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->
@@ -504,51 +513,88 @@
             setTab(tab){
                 this.tab = tab;
                 if(tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
+            },
+            ShowDescription(){
+                this.Description = true; this.Reviews = false
+            },
+            ShowReviews(){
+              this.Description = false; this.Reviews = true
+            },
+            foundApp(placement) {
+              const foundApp = this.$store.state.apps.find((app) => {
+                return app.config?.placements?.includes(placement) && app.name === "PIN REVIEW";
+              });
+              if (foundApp) {
+                return 'flex'
+              } else {
+                return 'hidden'
+              }
             }
         },
     }
 </script>
 
 <style scoped>
-    [dir = "rtl"] .dots{
-        flex-direction: row-reverse;
-    }
+/* description styles */
 
-    .video-wrapper {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 0;
-        padding-top: 56.25%;
-    }
+  .description {
+    white-space: normal !important;
+  }
 
-    .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-    }
+  .description {
+    display: block !important;
+  }
 
-    .scroll::-webkit-scrollbar {
-        display: none;
-    }
+  .text-info {
+    line-height: 26px;
+    display: block;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
 
-    [dir = 'rtl'] .galery {
-        margin-right: 1rem;
-        margin-left: 0;
-    }
- 
-    @media (min-width: 768px) { 
-        .slider {
-            flex: 1 0 0%;
-        }
-        
-        .galery {
-            flex: 0 0 auto;
-        }
-    }
+  .text-info > :first-child {
+    white-space: break-spaces;
+  }
+
+  [dir = "rtl"] .dots{
+      flex-direction: row-reverse;
+  }
+
+  .video-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      padding-top: 56.25%;
+  }
+
+  .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .scroll::-webkit-scrollbar {
+      display: none;
+  }
+
+  [dir = 'rtl'] .galery {
+      margin-right: 1rem;
+      margin-left: 0;
+  }
+
+  @media (min-width: 768px) {
+      .slider {
+          flex: 1 0 0%;
+      }
+
+      .galery {
+          flex: 0 0 auto;
+      }
+  }
 </style>
-  
