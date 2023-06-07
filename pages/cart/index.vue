@@ -30,7 +30,7 @@
                             </div>
                             <!--  -->
                             <div class="flex flex-col p-2">
-                                <a @click="removeAllFromCart" href="/checkout2" class="flex items-center justify-center text-xl px-4 py-2 bg-primary text-white border-2 bg-primary-border rounded-full mb-4 scale hover:opacity-80">
+                                <a href="/checkout2" class="flex items-center justify-center text-xl px-4 py-2 bg-primary text-white border-2 bg-primary-border rounded-full mb-4 scale hover:opacity-80">
                                     <span class="whitespace-nowrap overflow-ellipsis overflow-hidden text-base font-bold">{{ $settings.sections.cart.buttons.checkout_text }}</span>
                                 </a>
                                 <nuxt-link to="/shop" class="flex items-center justify-center text-xl px-4 py-2 text-primary border-2 bg-primary-border  rounded-full scale hover:opacity-80">
@@ -111,13 +111,6 @@
             }
         },
         methods: {
-          async removeAllFromCart() {
-              setTimeout(() => {
-                this.items.forEach(item => {
-                    this.$tools.call('REMOVE_FROM_CART', item);
-                });
-              }, 1000);
-            },
             async getUpsells(){
                 const ids = this.$store.state.cart.map(item => item._id);
                 this.loading.upsells = true;
