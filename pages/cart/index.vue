@@ -96,7 +96,7 @@
             }
         },
         mounted() {
-        this.$storeino.fbpx('PageView')
+          this.$storeino.fbpx('PageView')
         },
         watch: {
             async "$store.state.cart.length"(){

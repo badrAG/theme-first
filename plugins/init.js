@@ -67,7 +67,9 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       const cookies = $tools.cookieToObject(document.cookie);
       if(route.name == 'thanks'){
         if(cookies['ORDER_ID']) {
-          document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+          document.cookie = 'STOREINO-CART=[];path=/';
+          store.state.cart = [];
         }else{
           window.location.href = '/';
           return false;
@@ -192,7 +194,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           window.snapPurchase({});
         }
       }
-      
+
       // google ads d
       (function (w, d, t) {
         if(settings && settings.google_ads && settings.google_ads.id){
