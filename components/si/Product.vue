@@ -50,7 +50,7 @@
             <div class="h-full flex relative ">
                 <div class="w-full flex flex-col h-full">
                     <!-- product image -->
-                    <div class="image_box pb-4/5 relative zoom overflow-hidden">
+                    <div class="image_box pb-full relative zoom overflow-hidden">
                         <nuxt-link :to="`/products/${item.slug}`" :title="item.name" :aria-label="item.name">
                             <si-image  width="400" height="400" class="image_zoom h-full w-full absolute inset-0 object-cover" :src="item.images.length > 0 ? item.images[0].src : null" :alt="item.name"/>
                         </nuxt-link>
@@ -130,10 +130,10 @@
 </script>
 
 <style scoped>
-    .wishlist-box { 
+    .wishlist-box {
         transition: all 0.5s ease-in-out;
     }
-    
+
     .wishlist {
         transition: all 0.5s ease-in-out;
     }
@@ -142,4 +142,3 @@
         opacity: 1;
     }
 </style>
-    
