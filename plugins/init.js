@@ -192,14 +192,14 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         }
         if(route.name == 'thanks' && route.query.pixel){
          
-      let pixelData = JSON.parse(route.query.pixel);
-          window.snapPurchase({
-            price: pixelData.total,
-            transaction_id: route.query.code,
-            currency: this.$store.state._current_currency && this.$store.state._current_currency.code ? this.$store.state._current_currency.code : "",
-            item_ids:pixelData.content_ids,
-            click_id:route.query.ScCid ? route.query.ScCid  : null
-          });
+      // let pixelData = JSON.parse(route.query.pixel);
+      //     window.snapPurchase({
+      //       price: pixelData.total,
+      //       transaction_id: route.query.code,
+      //       currency: this.$store.state._current_currency && this.$store.state._current_currency.code ? this.$store.state._current_currency.code : "",
+      //       item_ids:pixelData.content_ids,
+      //       click_id:route.query.ScCid ? route.query.ScCid  : null
+      //     });
         }
       }
 
