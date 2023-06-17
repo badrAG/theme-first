@@ -24,7 +24,7 @@ mounted() {
     window.snapPurchase({
           price: pixelData.total,
           transaction_id: this.$route.query.code,
-          currency: this.$store.state._current_currency && this.$store.state._current_currency.code ? this.$store.state._current_currency.code : "",
+          currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "",
           item_ids:pixelData.content_ids,
           click_id:this.$route.query.ScCid ? this.$route.query.ScCid  : null
         });
