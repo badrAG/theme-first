@@ -192,7 +192,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         }
         if(route.name == 'thanks' && route.query.pixel){
          
-      let pixelData = JSON.parse(this.$route.query.pixel);
+      let pixelData = JSON.parse(route.query.pixel);
           window.snapPurchase({
             price: pixelData.total,
             transaction_id: route.query.code,
