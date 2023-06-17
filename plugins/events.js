@@ -58,14 +58,14 @@ export default function({ app, store, router, $tools }, inject){
             }
             $tools.setCart(store.state.cart);
             $tools.call('ADDED_TO_CART');
-            fbAddToCart({
-                id: item._id,
-                content_name: item.name,
-                content_ids: [item._id],
-                content_type: 'product',
-                value: item.price,
-                currency: store.state.currency.code || "USD"
-            });
+            // fbAddToCart({
+            //     id: item._id,
+            //     content_name: item.name,
+            //     content_ids: [item._id],
+            //     content_type: 'product',
+            //     value: item.price,
+            //     currency: store.state.currency.code || "USD"
+            // });
             snapAddToCart({
                 item_ids: [item._id],
                 price: item.price,

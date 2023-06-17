@@ -57,7 +57,7 @@
                 <!-- Product content -->
                 <!-- sticky add to cart -->
                 <div class="fixed inset-0 top-auto bg-white z-30 p-4 border-t bg-primary-border" v-if="showStickyAddToCart">
-                    <div class="container flex gap-4 md:gap-6 items-center"> 
+                    <div class="container flex gap-4 md:gap-6 items-center">
                         <!--  Product Name -->
                         <div class="hidden md:flex gap-4 md:gap-6 items-center md:w-5/12">
                             <si-image class="w-14 h-14 object-cover cursor-pointer rounded-sm" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
@@ -71,7 +71,7 @@
                         <!-- Price -->
                         <!-- product-quantity -->
                         <div class="w-2/5 md:w-3/12 lg:w-2/12">
-                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
+                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true">
                                 <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                             </div>
                         </div>
@@ -129,7 +129,6 @@
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
-                        <!-- v-if="sections.product.quantity.active" -->
                         <div class="product-quantity mx-2 mt-4" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
                             <div>
                                 <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
@@ -179,29 +178,38 @@
             <si-app-loader placement="BEFORE_DESCRIPTION"/>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="mb-6 mt-10">
-                <div class="flex justify-center items-center mb-4 mx-4">
-                    <div  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="Description = true; Reviews = false">{{ $settings.sections.product.description.title }}</div>
-                    <div  v-if="$settings.sections.product.reviews.active"  class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="Reviews == true? 'bg-primary text-white': 'hover-bg'" @click="Description = false; Reviews = true">{{ $settings.sections.product.reviews.title }}</div>
+                <div class="flex justify-center items-center mb-4 px-4">
+                    <div class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active" class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="[foundApp('REPLACE_REVIEWS'),(Reviews == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
-                <div class="flex justify-center mx-4">
+                <div class="flex justify-center px-4">
                     <div v-if="Description">
-                        <div class="bg-white description font-normal leading-7 text-base w-full" id="description" v-html="item.html"></div>
-                        <h2 v-if="item.html.length == 0" class="text-base font-normal" >{{ $settings.sections.product.description.title_empty }}</h2>
+                        <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
+                        <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                 </div>
-                <!-- Description -->        
+                <!-- Description -->
                 <!-- reviews -->
-                <div v-if="Reviews" class="reviews mx-2 overflow-hidden">
+                <div v-if="Reviews" class="reviews mx-2 overflow-hidden rounded-lg">
                     <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
-                    <si-app-loader  placement="REPLACE_REVIEWS"/>
+                    <si-app-loader placement="REPLACE_REVIEWS"/>
                     <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
-            </div>  
-            <si-app-loader placement="AFTER_DESCRIPTION"/>
+            </div>
+            <div class="px-4">
+              <!-- reviews after description -->
+              <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
+                <div class="px-4 py-1 cursor-pointer rounded-full bg-primary text-white">
+                  <span class="text-sm md:text-base font-bold">{{ $settings.sections.product.reviews.title }}</span>
+                </div>
+              </div>
+                <!-- reviews after description -->
+              <si-app-loader placement="AFTER_DESCRIPTION"/>
+            </div>
             <!-- Desciption and Reviews -->
             <div v-if="!loading && item" class="flex flex-col mt-3">
             <!-- upsells  -->
@@ -232,7 +240,10 @@
                 item: null,
                 image: null,
                 tab: 'description',
+                outofstock: false,
                 quantity: {},
+                showVariantDiv:false,
+                showVarianteModal:false,
                 variant: null,
                 price: { salePrice: 0, comparePrice: 0 },
                 socialMedia: [
@@ -262,8 +273,9 @@
         async fetch() {
             const { slug } = this.$route.params;
             try{
-                const { data } = await this.$storeino.products.get({ slug }) 
+                const { data } = await this.$storeino.products.get({ slug })
                 this.item = data;
+
                 this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
                 this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
                 this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -282,6 +294,12 @@
                 if(this.item.images.length > 0) this.setImage(0);
                 // Set default variant if exists
                 if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
+                if(this.item.type == 'simple'){
+                    // Check outof stock
+                    if(!this.item.outStock.disabled && this.item.quantity.instock <= 0){
+                        this.outofstock = true;
+                    }
+                }
                 // Set default quantity
                 this.quantitySelected(this.quantity.default);
                 // Generate share urls
@@ -290,24 +308,28 @@
                     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
                 }
                 if(!process.server){
+                    console.log("Send facebook events");
                     this.$storeino.fbpx('PageView')
-                this.$storeino.fbpx('ViewContent',{
-                content_name: this.item.name?this.item.name:'',
-                content_ids: [this.item._id],
-                content_type: "product",
-                value: this.item.price.salePrice,
-                currency: this.$store.state.currency.code
-                })
+                    this.$storeino.fbpx('ViewContent',{
+                        content_name: this.item.name?this.item.name:'',
+                        content_ids: [this.item._id],
+                        content_type: "product",
+                        value: this.item.price.salePrice,
+                        currency: this.$store.state.currency.code
+                    });
                     this.$tools.call('PAGE_VIEW', this.item);
                 }
+
             }catch(e){
                 // Redirect to error page if product not exists
+                console.log(e);
                 this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
             }
         },
         mounted() {
             if(this.item) this.$tools.call('PAGE_VIEW', this.item);
             window.addEventListener("APP_LOADER", e => {
+                console.log("Despatching event CURRENT_PRODUCT APP_LOADER");
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
@@ -319,13 +341,13 @@
                 }));
             });
             if(this.item){
-                this.$storeino.fbpx('PageView')
-                this.$storeino.fbpx('ViewContent',{
-                    content_name: this.item.name?this.item.name:'',
-                    content_ids: [this.item._id],
-                    content_type: "product",
-                    value: this.item.price.salePrice,
-                    currency: this.$store.state.currency.code
+            this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('ViewContent',{
+                content_name: this.item.name?this.item.name:'',
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.item.price.salePrice,
+                currency: this.$store.state.currency.code
                 })
             }
             if(this.item){
@@ -334,17 +356,17 @@
                 const width = ifram.getAttribute('width')
                 const height = ifram.getAttribute('height')
                 const parent = ifram.parentNode
-                if (!parent.classList.contains('video-wrapper')) {
-                    const div = document.createElement("div");
-                    ifram.after(div)
-                    div.classList.add('video-wrapper');
-                    ifram.style.width=null;
-                    ifram.style.height=null;
-                    ifram.setAttribute('width','');
-                    ifram.setAttribute('height','');
-                    div.appendChild(ifram)
+                    if (!parent.classList.contains('video-wrapper')) {
+                        const div = document.createElement("div");
+                        ifram.after(div)
+                        div.classList.add('video-wrapper');
+                        ifram.style.width=null;
+                        ifram.style.height=null;
+                        ifram.setAttribute('width','');
+                        ifram.setAttribute('height','');
+                        div.appendChild(ifram)
+                    }
                 }
-            }
             }
             //show showStickyAddToCart
             window.addEventListener('scroll', this.handleScroll);
@@ -376,6 +398,32 @@
                     this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide - 1]);
                 }
             },
+            t(key){
+            const langs = {
+                    price_title_products: {
+                        EN: "Price:	",
+                        FR: "Prix:	",
+                        AR: "السعر: ",
+                        ES: "Prezo: ",
+                        PT: "Preço: "
+                    },
+                    check_choice:{
+                        EN: "Please check your choice :",
+                        FR: "Veuillez vérifier votre choix:	",
+                        AR: "يرجى تأكيد الإختيار: ",
+                        ES: "Por favor marque su elección: ",
+                        PT :"Por favor, verifique a sua escolha: "
+                    },
+                    can_change_choice:{
+                        EN: "You can change your choice :",
+                        FR: "Vous pouvez modifier votre choix :	",
+                        AR: "يمكنك تغيير اختيارك: ",
+                        ES: "Puede cambiar su elección: ",
+                        PT:"Você pode alterar sua escolha: "
+                    }
+                }
+                return langs[key] && langs[key][this.$store.state.language.code] || '';
+            },
             addToCart() {
                 // Call add to cart event
                 this.$tools.call('ADD_TO_CART', {
@@ -390,12 +438,12 @@
                     }, 500);
                 }
                 this.$storeino.fbpx('AddToCart',{
-               content_name: this.item.name,
-               content_ids: [this.item._id],
-               content_type: "product",
-               value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-               currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-            })
+                    content_name: this.item.name,
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                    currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+                })
                 this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
             },
             addToWishlist(){
@@ -408,6 +456,10 @@
             },
             buyNow() {
                 // Add to cart and redirect to checkout
+                if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
+                    this.showVarianteModal = true
+                    return;
+                }
                 this.addToCart();
                 setTimeout(() => {
                     window.location.href = '/checkout2';
@@ -422,6 +474,18 @@
                     this.price.salePrice = this.item.price.salePrice * quantity;
                     this.price.comparePrice = this.item.price.comparePrice * quantity;
                 }
+                if(!process.server){
+                    console.log("Despatching event CURRENT_PRODUCT quantitySelected");
+                    window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                        detail: {
+                            product_id: this.item._id,
+                            product_quantity: this.quantity.value,
+                            product_variant: this.variant ? this.variant._id : undefined,
+                            product_currency: this.$store.state.currency.code,
+                            product_price: this.price
+                        }
+                    }));
+                }
             },
             variantSelected(variant) {
                 this.variant = variant;
@@ -434,6 +498,12 @@
                     this.visibleSlide = 0
                     this.image = this.item.images[0];
                 }
+                // Check outof stock
+                if(!this.item.outStock.disabled && this.variant.quantity.instock <= 0){
+                    this.outofstock = true;
+                }else{
+                    this.outofstock = false;
+                }
                 this.quantitySelected(this.item.quantity.value);
             },
             setImage(index){
@@ -443,51 +513,90 @@
             setTab(tab){
                 this.tab = tab;
                 if(tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
+            },
+            ShowDescription(){
+                this.Description = true; this.Reviews = false
+            },
+            ShowReviews(){
+              this.Description = false; this.Reviews = true
+            },
+            foundApp(placement) {
+                if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
+                    const foundApp = this.$store.state.apps.find((app) => {
+                      return app.config?.placements?.includes(placement);
+                    });
+                    if (foundApp) {
+                      return 'flex'
+                    } else {
+                      return 'hidden'
+                    }
+                }
             }
         },
     }
 </script>
 
 <style scoped>
-    [dir = "rtl"] .dots{
-        flex-direction: row-reverse;
-    }
+/* description styles */
 
-    .video-wrapper {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 0;
-        padding-top: 56.25%;
-    }
+  .description {
+    white-space: normal !important;
+  }
 
-    .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-    }
+  .description {
+    display: block !important;
+  }
 
-    .scroll::-webkit-scrollbar {
-        display: none;
-    }
+  .text-info {
+    line-height: 26px;
+    display: block;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
 
-    [dir = 'rtl'] .galery {
-        margin-right: 1rem;
-        margin-left: 0;
-    }
- 
-    @media (min-width: 768px) { 
-        .slider {
-            flex: 1 0 0%;
-        }
-        
-        .galery {
-            flex: 0 0 auto;
-        }
-    }
+  .text-info > :first-child {
+    white-space: break-spaces;
+  }
+
+  [dir = "rtl"] .dots{
+      flex-direction: row-reverse;
+  }
+
+  .video-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      padding-top: 56.25%;
+  }
+
+  .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .scroll::-webkit-scrollbar {
+      display: none;
+  }
+
+  [dir = 'rtl'] .galery {
+      margin-right: 1rem;
+      margin-left: 0;
+  }
+
+  @media (min-width: 768px) {
+      .slider {
+          flex: 1 0 0%;
+      }
+
+      .galery {
+          flex: 0 0 auto;
+      }
+  }
 </style>
-  
