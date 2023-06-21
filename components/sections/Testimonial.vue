@@ -9,27 +9,18 @@
         <!-- svg top design -->
         <!-- content -->
         <div class="container py-14 px-4">
-            <div class="container flex justify-center p-2 ">
+            <div class="container flex justify-center p-2" v-show="testimonial.title.length > 0">
                 <h1 class="text-4xl md:text-5xl guard-cairo-font font-light">{{ testimonial.title }}</h1>
             </div>
-
             <div class="align-center flex flex-wrap md:justify-between mt-8">
-                <div class="mb-5 md:mb-0 w-full md:w-1/3 p-2">
-                    <h2 class="text-2xl font-bold mb-5">{{ testimonial.left.title  }}</h2>
-                    <p class="text-base font-normal">{{ testimonial.left.description  }}</p>
-                </div>
-                <div class="mb-5 md:mb-0 w-full md:w-1/3 p-2">
-                    <h2 class="text-2xl font-bold mb-5">{{ testimonial.center.title  }}</h2>
-                    <p class="text-base font-normal">{{ testimonial.center.description  }}</p>
-                </div>
-                <div class="w-full md:w-1/3 p-2">
-                    <h2 class="text-2xl font-bold mb-5">{{ testimonial.right.title  }}</h2>
-                    <p class="text-base font-normal">{{ testimonial.right.description  }}</p>
+                <div class="mb-5 md:mb-0 w-full md:w-auto md:flex-1 p-2" v-for="(item, index) in items" :key="index" v-show="(item.title.length > 0  && item.description.length > 0) || (item.title.length > 0 || item.description.length > 0)">
+                    <h2 class="text-2xl font-bold mb-5" v-show="item.title.length > 0">{{ item.title }}</h2>
+                    <p class="text-base font-normal" v-show="item.description.length > 0">{{ item.description  }}</p>
                 </div>
             </div>
         </div>
         <!-- content -->
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -37,8 +28,21 @@
         data(){
             return {
                 testimonial: this.$settings.sections.testimonial,
+                items: [
+                    {
+                        title: this.$settings.sections.testimonial.left.title,
+                        description: this.$settings.sections.testimonial.left.description,
+                    },
+                    {
+                        title: this.$settings.sections.testimonial.center.title,
+                        description: this.$settings.sections.testimonial.center.description,
+                    },
+                    {
+                        title: this.$settings.sections.testimonial.right.title,
+                        description: this.$settings.sections.testimonial.right.description,
+                    }
+                ]
             }
         }
-
     }
 </script>

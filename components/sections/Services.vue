@@ -1,6 +1,6 @@
 <template>
     <div class="container py-4">
-        <div class="p-2 px-4 mb-4">
+        <div class="p-2 px-4 mb-4" v-show="$settings.sections.services.title.length > 0">
             <h3 class="align-center font-bold text-xl md:text-2xl">{{ $settings.sections.services.title }}</h3>
         </div>
         <div class="services flex flex-wrap justify-between px-2">
@@ -26,7 +26,7 @@
                 items: [
                     {
                         image : this.$settings.sections.services.items.delivery.image ,
-                        defaultImage: { 
+                        defaultImage: {
                             src: 'https://storeno.b-cdn.net/themes/bazar/bazar-fastdelivery.png'
                         },
                         text: this.$settings.sections.services.items.delivery.text,
@@ -35,8 +35,8 @@
                     },
                     {
                         image : this.$settings.sections.services.items.satisfaction.image ,
-                        defaultImage: { 
-                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-satisfaction.png' 
+                        defaultImage: {
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-satisfaction.png'
                         },
                         text: this.$settings.sections.services.items.satisfaction.text,
                         url: this.$settings.sections.services.items.satisfaction.url,
@@ -44,8 +44,8 @@
                     },
                     {
                         image : this.$settings.sections.services.items.quality.image ,
-                        defaultImage: { 
-                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-heightqualite.png' 
+                        defaultImage: {
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-heightqualite.png'
                         },
                         text: this.$settings.sections.services.items.quality.text,
                         url: this.$settings.sections.services.items.quality.url,
@@ -53,8 +53,8 @@
                     },
                     {
                         image : this.$settings.sections.services.items.support.image ,
-                        defaultImage: { 
-                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-support.png' 
+                        defaultImage: {
+                            src: 'https://storeno.b-cdn.net/themes/bazar/bazar-support.png'
                         },
                         text: this.$settings.sections.services.items.support.text,
                         url: this.$settings.sections.services.items.support.url,
@@ -66,10 +66,7 @@
     }
 </script>
 
-<style scoped> 
-
-
-
+<style scoped>
     @media (min-width: 768px) {
         [dir="rtl"] .service-title {
             margin-right: 0.75rem;

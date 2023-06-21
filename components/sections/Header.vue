@@ -40,9 +40,9 @@
                 <div class="icons flex-shrink-0 mx-1">
                     <div class="flex items-center content-between">
                     <!-- courency and language dropdown  -->
-                    <div class="lang flex items-center justify-between">
-                        <ul v-for="(item, i) in otherMenu" :key="i" class="flex flex-col ">
-                            <li @click="activeId = activeId != item._id ? item._id : null" class="cursor-pointer transition-all ease-in-out delay-150 hover-bg rounded-full flex items-center justify-between">
+                    <div class="lang flex items-center justify-between relative">
+                        <ul v-for="(item, i) in otherMenu" :key="i" class="flex flex-col" @mouseover="activeId = activeId = item._id" @mouseleave="activeId = activeId = null">
+                            <li class="cursor-pointer transition-all ease-in-out delay-150 hover-bg rounded-full flex items-center justify-between">
                                 <a class="p-2 flex items-center" :href="item.url">
                                     <div class="text-sm font-bold mx-1">{{ item.text }}</div>
                                     <button>
@@ -51,20 +51,18 @@
                                 </a>
                             </li>
                             <transition name="slide">
-                                <div class="relative" >
-                                    <div v-if="item._id == activeId" class="w-24 absolute header-bg shadow-lg z-20 border p-2" :class="menu? 'top-10.5' : 'top-3'" >
-                                        <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
-                                            <a class="text-sm font-normal" :href="item.url">{{item.text}}</a>
-                                            <ul v-if="item.childrens && item.childrens.length > 0">
-                                                <li class="px-2 pt-1" v-for="(child,ii) in item.childrens" :key="ii">
-                                                    <a class="text-sm font-normal" :href="child.url">
-                                                        > {{ child.text }}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                              <div class="w-24 absolute top-full header-bg shadow-lg z-20 border p-2" :class="menu? 'top-10.5' : 'top-3'" v-if="item._id == activeId">
+                                  <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
+                                      <a class="text-sm font-normal hover:underline" :href="item.url">{{item.text}}</a>
+                                      <ul v-if="item.childrens && item.childrens.length > 0">
+                                          <li class="px-2 pt-1" v-for="(child,ii) in item.childrens" :key="ii">
+                                              <a class="text-sm font-normal hover:underline" :href="child.url">
+                                                  > {{ child.text }}
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
                             </transition>
                             </ul>
                         </div>

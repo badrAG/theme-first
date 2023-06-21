@@ -2,11 +2,11 @@
   <div class="">
     <div class="container py-4">
       <!-- product title -->
-      <div class="flex flex-col items-center md:justify-between md:flex-row mb-1 px-4">
-        <div class="">
+      <div class="flex flex-col items-center md:justify-between md:flex-row mb-1 px-4" v-show="( title.length > 0 && section.show_more_text.length > 0 ) || ( title.length > 0 || section.show_more_text.length > 0 )">
+        <div v-show="title.length > 0">
           <h2 class="text-xl font-medium">{{ title }}</h2>
         </div>
-        <div v-if="section.show_more_text">
+        <div v-show="section.show_more_text.length > 0">
           <nuxt-link  :to="section.show_more_url">
             <span class="text-sm font-normal text-gr underline hover-text-bg">{{ section.show_more_text }}</span>
           </nuxt-link>
