@@ -3,7 +3,7 @@
       <div class="relative">
           <div class="small-container mx-auto">
               <ul class="flex flex-wrap justify-center p-4">
-                  <li class="collection-box md:mb-0 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items.slice(0,6)" :key="i" > 
+                  <li class="collection-box mb-5 md:mb-6 flex items-center flex-col w-1/3 md:w-1/6" v-for="(item,i) in items" :key="i" >
                       <nuxt-link class="mb-3" :to="item.childrens.length > 0 ? `/collections/${item.slug}` : `/shop/${item.slug}`">
                           <si-image class="img-zom rounded-full overflow-hidden h-24 w-24 md:h-28 md:w-28 object-cover relative" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
                       </nuxt-link>
@@ -11,7 +11,7 @@
                           <div style="text-align: center;" class="collection-text relative text-sm md:text-base font-bold">{{ item.name }}</div>
                       </nuxt-link>
                   </li>
-              </ul> 
+              </ul>
           </div>
       </div>
       <!-- Collections not exists -->
@@ -59,12 +59,6 @@ async fetch(){
 </script>
 
 <style scoped>
-  @media (max-width: 768px) {
-      ul li:nth-child(-n+3) {
-          margin-bottom: 1.25rem;
-      }
-  }
-
   .img-zom {
     transition:  .2s ease;
   }

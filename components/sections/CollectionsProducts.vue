@@ -7,9 +7,9 @@
       <si-loader></si-loader>
     </div>
     <!-- collections -->
-    <div v-if="!loading.collections && collections.length > 0" class="collections flex flex-wrap mx-2">
+    <div v-if="!loading.collections && collections.length > 0" class="collections flex flex-wrap justify-center mx-2">
       <!-- Collection products card -->
-      <div class="collection w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 md:mb-0" v-for="(collection, index) in collections.slice(0, 4)" :key="index">
+      <div class="collection w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4" v-for="(collection, index) in collections" :key="index">
         <div class="border border-gray-200 rounded-xl bg-white overflow-hidden box-shadow-xs-hover">
           <nuxt-link :to="`/shop/${collection.slug}`" :title="collection.name" :aria-label="collection.name">
             <div class="icon-box flex items-center justify-between px-4 py-3">
@@ -63,7 +63,7 @@ export default {
         collections: true,
         products: true,
       },
-      products: [[], [], [], []],
+      products: [],
       collections: [],
     };
   },
@@ -119,11 +119,11 @@ export default {
 </script>
 
 <style scoped>
-  @media (min-width: 768px) and (max-width: 1024px) {
+  /* @media (min-width: 768px) and (max-width: 1024px) {
     .collections .collection:last-child {
       display: none;
     }
-  }
+  } */
 
   .image-box .image:nth-child(4n-3) ,
   .image-box .image:nth-child(4n-1) {

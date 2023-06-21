@@ -4,9 +4,9 @@
         <div class="p-2 px-4 mb-4" v-show="$settings.sections.bottom_collections.title.length > 0">
             <h3 class="align-center font-bold text-xl md:text-2xl">{{ $settings.sections.bottom_collections.title }}</h3>
         </div>
-        <div class="px-2 ">
-            <ul class="flex flex-wrap">
-                <li class="w-1/2 md:w-1/3 lg:w-1/5 p-2" v-for="(item,i) in items.slice(0,6)" :key="i" >
+        <div class="px-2">
+            <ul class="flex flex-wrap justify-center">
+                <li class="w-1/2 md:w-1/3 lg:w-1/5 p-2" v-for="(item,i) in items" :key="i" >
                     <si-collection :item="item"></si-collection>
                 </li>
             </ul>
