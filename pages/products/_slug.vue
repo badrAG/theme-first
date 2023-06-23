@@ -1,13 +1,13 @@
 <template>
     <div class="bg-white">
-        <div class="container md:mt-6 mb-6">
+        <div class="container mb-6 md:mt-6">
             <!-- Loader -->
-            <div v-if="loading" class="flex justify-center items-center mt-6 md:mt-0">
+            <div v-if="loading" class="flex items-center justify-center mt-6 md:mt-0">
                 <si-loader></si-loader>
             </div>
             <!-- Loader -->
             <!--  -->
-            <div v-if="!loading && item" class="flex lg:gap-10 flex-wrap lg:flex-nowrap justify-between">
+            <div v-if="!loading && item" class="flex flex-wrap justify-between lg:gap-10 lg:flex-nowrap">
                 <!-- Product id -->
                 <meta itemprop="productID" :content="item._id" />
                 <!-- Product id -->
@@ -16,8 +16,8 @@
                     <div class="flex flex-wrap">
                         <div class="relative w-full slider md:mx-4">
                             <!-- image -->
-                            <div class="pb-full relative overflow-hidden">
-                                <si-image width="400" height="400" class="cursor-pointer h-full w-full absolute inset-0  object-cover md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                            <div class="relative overflow-hidden pb-full">
+                                <si-image width="400" height="400" class="absolute inset-0 object-cover w-full h-full cursor-pointer md:rounded-lg" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
                             </div>
                             <!-- image -->
                             <button v-if="item.images.length > 1" class="box-shadow-xs mx-2 md:mx-3 absolute top-1/2 -left-0 transform -translate-y-1/2 p-3 md:p-3.5 bg-white transition-all ease-linear delay-150  rounded-full  hover-bg" @click="prev">
@@ -32,21 +32,21 @@
                             </button>
                             <div v-if="$settings.sections.products.add_to_wishlist.active">
                                 <button v-if="$store.state.wishlist.find(i=>i._id==item._id)" @click="removeFromWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150  hover-bg">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate text-red align-middle"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs align-middle translate text-red"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                 </button>
                                 <button v-else @click="addToWishlist" title="Wishlist" class="box-shadow-xs bg-white rounded-full absolute z-10 top-0 right-0 m-2 md:m-3 p-3 md:p-3.5 transition-all ease-linear delay-150 hover-bg">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs translate align-middle"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-xs align-middle translate"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
                                 </button>
                             </div>
                         </div>
-                        <div class="galery relative md:w-14 lg:w-16 ml-4 overflow-hidden order-first">
-                            <div class="absolute inset-0  scroll overflow-y-scroll">
-                                <si-image  class="w-14 h-14 lg:w-16 lg:h-16 cursor-pointer object-cover rounded-lg mb-2" :class="visibleSlide == index ? 'opacity-100 border-2 border-black' : 'opacity-60'" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
+                        <div class="relative order-first ml-4 overflow-hidden galery md:w-14 lg:w-16">
+                            <div class="absolute inset-0 overflow-y-scroll scroll">
+                                <si-image  class="object-cover mb-2 rounded-lg cursor-pointer w-14 h-14 lg:w-16 lg:h-16" :class="visibleSlide == index ? 'opacity-100 border-2 border-black' : 'opacity-60'" v-for="(image, index) in item.images" @click="setImage(index)" :key="index" :src="image.src" :alt="`${item.name} - ${image.title}`"/>
                             </div>
                         </div>
                     </div>
                     <div class="block md:hidden">
-                        <div class="dots flex items-center  justify-center mx-3 mt-3 ">
+                        <div class="flex items-center justify-center mx-3 mt-3 dots ">
                             <div class="mx-1" v-for="(image, index) in item.images" :key="index" >
                                 <div class="h-2.5 w-2.5 rounded-full cursor-pointer" :class="visibleSlide == index ? 'bg-primary' : 'bg-gray-300'" @click="setImage(index)"></div>
                             </div>
@@ -56,12 +56,12 @@
                 <!--  -->
                 <!-- Product content -->
                 <!-- sticky add to cart -->
-                <div class="fixed inset-0 top-auto bg-white z-30 p-4 border-t bg-primary-border" v-if="showStickyAddToCart">
-                    <div class="container flex gap-4 md:gap-6 items-center">
+                <div class="fixed inset-0 top-auto z-30 p-4 bg-white border-t bg-primary-border" v-if="showStickyAddToCart">
+                    <div class="container flex items-center gap-4 md:gap-6">
                         <!--  Product Name -->
-                        <div class="hidden md:flex gap-4 md:gap-6 items-center md:w-5/12">
-                            <si-image class="w-14 h-14 object-cover cursor-pointer rounded-sm" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
-                            <h4 class="text-xl guard-cairo-font font-medium truncate">{{ item.name }}</h4>
+                        <div class="items-center hidden gap-4 md:flex md:gap-6 md:w-5/12">
+                            <si-image class="object-cover rounded-sm cursor-pointer w-14 h-14" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
+                            <h4 class="text-xl font-medium truncate guard-cairo-font">{{ item.name }}</h4>
                         </div>
                         <!--  Product Name -->
                         <!-- Price -->
@@ -78,14 +78,14 @@
                         <!-- product-quantity -->
                         <!-- add to cart -->
                         <div class="w-3/5 md:w-3/12">
-                            <button class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg rounded-full px-5 click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
+                            <button class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                             <div v-else>
-                                <button v-if="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90"  @click="buyNow">
+                                <button v-if="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0)" class="flex justify-center w-full p-3 px-5 text-base font-bold rounded-full ai-c buynow-bg buynow-text-bg click-effect scale hover:opacity-90"  @click="buyNow">
                                     <span>{{ $settings.sections.product.buy_now.text }}</span>
                                 </button>
-                                <a href="#chckout" v-else class="text-base font-bold w-full flex ai-c justify-center buynow-bg buynow-text-bg rounded-full p-3 px-5 click-effect scale hover:opacity-90">
+                                <a href="#chckout" v-else class="flex justify-center w-full p-3 px-5 text-base font-bold rounded-full ai-c buynow-bg buynow-text-bg click-effect scale hover:opacity-90">
                                     <span>{{ $settings.sections.product.buy_now.text }}</span>
                                 </a>
                             </div>
@@ -95,43 +95,43 @@
                 </div>
                 <!-- sticky add to cart -->
                 <!-- sections.product.sticky_add_to_cart.active -->
-                <div class="content-part w-full lg:w-1/3 px-2">
+                <div class="w-full px-2 content-part lg:w-1/3">
                     <div class="">
                         <div class="bg-white ">
                         <!--  Product Name -->
-                        <h4 class="text-lg md:text-lh lg:text-xl guard-cairo-font font-medium mb-4 mx-2 mt-4 lg:mt-0">{{ item.name }}</h4>
+                        <h4 class="mx-2 mt-4 mb-4 text-lg font-medium md:text-lh lg:text-xl guard-cairo-font lg:mt-0">{{ item.name }}</h4>
                         <!--  Product Name -->
                         <!--  product name hidden-->
                         <meta itemprop="name" :content="item.name" />
                         <!--  product name hidden-->
                         <!-- Price  -->
-                        <div class="flex flex-wrap justify-between items-center mb-4 mx-2">
+                        <div class="flex flex-wrap items-center justify-between mx-2 mb-4">
                             <!-- Price -->
                             <si-product-price class="text-xl" :type="'simple'" :price="price" :variants="[]"></si-product-price>
                             <!-- Price -->
                             <!-- reviews -->
                             <div class="flex items-center justify-start" v-if="$settings.sections.product.reviews.active">
-                                <div class="mb-1 flex">
+                                <div class="flex mb-1">
                                     <span v-for="(star,i) in 5" :class="star <= item.review.rating ? 'text-yellow-500 ': 'text-black'" :key="i">
                                         <fa class="text-sm"  :icon="['fa', 'star']"></fa>
                                     </span>
                                 </div>
-                                <span class="text-md font-normal" key="count"> ({{ item.review.reviews.length }})</span>
+                                <span class="font-normal text-md" key="count"> ({{ item.review.reviews.length }})</span>
                             </div>
                             <!-- reviews -->
                         </div>
                         <!-- Price -->
                         <!-- short description -->
-                        <p class="text-sm text-gr font-normal mb-2 mx-2">{{ item.description }}</p>
+                        <p class="mx-2 mb-2 text-sm font-normal text-gr">{{ item.description }}</p>
                         <!-- short description -->
                         <!-- variant -->
                         <si-product-variants class="flex mx-2" v-if="item.type=='variable'" :options="item.options" :images="item.images" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
-                        <div class="product-quantity mx-2 mt-4" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
+                        <div class="mx-2 mt-4 product-quantity" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
                             <div>
-                                <h2 class="capitalize text-md font-normal mb-2">{{ $settings.sections.product.quantity.text }}</h2>
+                                <h2 class="mb-2 font-normal capitalize text-md">{{ $settings.sections.product.quantity.text }}</h2>
                             </div>
                             <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                         </div>
@@ -139,7 +139,7 @@
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
                         <!-- add to cart -->
                         <div class="mx-2 mt-6 mb-4" v-if="$settings.sections.product.add_to_cart.active">
-                            <button @click="addToCart" class="h-12 text-base font-bold w-full flex items-center justify-center addtocart-bg addtocart-text-bg rounded-full px-5 click-effect scale hover:opacity-90">
+                            <button @click="addToCart" class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
                         </div>
@@ -148,7 +148,7 @@
                         <si-app-loader placement="BEFORE_BUYNOW"/>
                         <!-- buy now -->
                         <div id="chckout" class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
-                            <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="text-base font-bold w-full flex ai-c justify-center buynow-bg  buynow-text-bg  rounded-full p-3 px-5 click-effect scale hover:opacity-90">
+                            <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="flex justify-center w-full p-3 px-5 text-base font-bold rounded-full ai-c buynow-bg buynow-text-bg click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.buy_now.text }}</span>
                             </button>
                             <si-app-loader placement="REPLACE_BUYNOW"/>
@@ -159,12 +159,12 @@
                         <!-- share products icons -->
                         <div class="mx-2" v-if="$settings.sections.product.share_buttons">
                             <div>
-                                <h3 class="align-center whitespace-nowrap text-lg font-bold px-4 mb-3 mt-4">{{ $settings.sections.product.share_buttons.title }}</h3>
+                                <h3 class="px-4 mt-4 mb-3 text-lg font-bold align-center whitespace-nowrap">{{ $settings.sections.product.share_buttons.title }}</h3>
                             </div>
                             <div class="flex justify-center md:justify-start">
-                                <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="m-2  flex items-center justify-center">
-                                    <a class="h-full flex " :href="item.url" target="_blank" rel="noopener noreferrer">
-                                    <fa class="text-3xl mx-2 hover:opacity-80" :icon="['fab', item.name]"></fa>
+                                <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="flex items-center justify-center m-2">
+                                    <a class="flex h-full " :href="item.url" target="_blank" rel="noopener noreferrer">
+                                    <fa class="mx-2 text-3xl hover:opacity-80" :icon="['fab', item.name]"></fa>
                                     </a>
                                 </div>
                             </div>
@@ -176,11 +176,11 @@
             </div>
             <!--  -->
             <si-app-loader placement="BEFORE_DESCRIPTION"/>
-            <!-- Desciption and Reviews -->
-            <div v-if="!loading && item" class="mb-6 mt-10">
-                <div class="flex justify-center items-center mb-4 px-4">
-                    <div class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
-                    <div v-if="$settings.sections.product.reviews.active" class="text-sm md:text-base font-bold cursor-pointer mx-2 py-1 px-4 transition ease-in delay-150 rounded-full" :class="[foundApp('REPLACE_REVIEWS'),(Reviews == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
+            <!-- replace Desciption and Reviews -->
+            <div v-if="!loading && item" class="mt-10 mb-6">
+                <div class="flex items-center justify-center px-4 mb-4">
+                    <div class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active" class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base" :class="[foundApp('REPLACE_REVIEWS'),(Reviews == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
                 <div class="flex justify-center px-4">
@@ -191,39 +191,42 @@
                 </div>
                 <!-- Description -->
                 <!-- reviews -->
-                <div v-if="Reviews" class="reviews mx-2 overflow-hidden rounded-lg">
+                <div v-if="Reviews" class="mx-2 overflow-hidden rounded-lg reviews">
                     <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
                     <si-app-loader placement="REPLACE_REVIEWS"/>
-                    <h2 v-if="item.review.reviews.length == 0" class="text-base font-normal flex justify-center mx-2" >{{ $settings.sections.product.reviews.empty_title }}</h2>
+                    <h2 v-if="item.review.reviews.length == 0" class="flex justify-center mx-2 text-base font-normal" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                 </div>
                 <!-- reviews -->
             </div>
-            <div class="px-4">
-              <!-- reviews after description -->
-              <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
-                <div class="px-4 py-1 cursor-pointer rounded-full bg-primary text-white">
-                  <span class="text-sm md:text-base font-bold">{{ $settings.sections.product.reviews.title }}</span>
-                </div>
-              </div>
+            <!-- replace Desciption and Reviews -->
+            <!-- after Desciption and Reviews -->
+            <div v-if="!loading && item" class="px-4">
                 <!-- reviews after description -->
-              <si-app-loader placement="AFTER_DESCRIPTION"/>
+                <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
+                    <div class="px-4 py-1 text-white rounded-full cursor-pointer bg-primary">
+                    <span class="text-sm font-bold md:text-base">{{ $settings.sections.product.reviews.title }}</span>
+                    </div>
+                </div>
+                    <si-app-loader placement="AFTER_DESCRIPTION"/>
+                <!-- reviews after description -->
             </div>
-            <!-- Desciption and Reviews -->
+            <!-- after Desciption and Reviews -->
+            <!-- upsells && related Products -->
             <div v-if="!loading && item" class="flex flex-col mt-3">
-            <!-- upsells  -->
-            <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
-                <sections-upsell :item="item.upsell"/>
+                <!-- upsells  -->
+                <div v-if="$settings.sections.product.upsell.active" class="upsells">
+                    <sections-upsell :item="item.upsell"/>
+                </div>
+                <!-- upsells -->
+                <!-- related Products  -->
+                <div v-if="$settings.sections.product.related.active" class="related">
+                    <sections-related-products :item="item"/>
+                </div>
+                <!-- related Products  -->
             </div>
-            <!-- upsells -->
-            <!-- related Products  -->
-            <div v-if="item && $settings.sections.product.related.active" class="related">
-                <sections-related-products :item="item"/>
-            </div>
-            <!-- related Products  -->
-            </div>
-            <!-- sticky add to cart -->
+            <!-- upsells && related Products -->
         </div>
     </div>
 </template>
@@ -275,7 +278,9 @@
             try{
                 const { data } = await this.$storeino.products.get({ slug })
                 this.item = data;
-
+                console.log("====================")
+                console.log(this.item)
+                console.log("====================")
                 this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
                 this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
                 this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -518,17 +523,17 @@
                 this.Description = true; this.Reviews = false
             },
             ShowReviews(){
-              this.Description = false; this.Reviews = true
+                this.Description = false; this.Reviews = true
             },
             foundApp(placement) {
                 if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
                     const foundApp = this.$store.state.apps.find((app) => {
-                      return app.config?.placements?.includes(placement);
+                        return app.config?.placements?.includes(placement);
                     });
                     if (foundApp) {
-                      return 'flex'
+                        return 'flex'
                     } else {
-                      return 'hidden'
+                        return 'hidden'
                     }
                 }
             }
