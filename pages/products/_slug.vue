@@ -179,20 +179,20 @@
             <!-- replace Desciption and Reviews -->
             <div v-if="!loading && item" class="mt-10 mb-6">
                 <div class="flex items-center justify-center px-4 mb-4">
-                    <div class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base " :class="Description == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
-                    <div v-if="$settings.sections.product.reviews.active" class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base" :class="[foundApp('REPLACE_REVIEWS'),(Reviews == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
+                    <div class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base " :class="desc == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
+                    <div v-if="$settings.sections.product.reviews.active" class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base" :class="[foundApp('REPLACE_REVIEWS'),(rev == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
                 </div>
                 <!-- Description -->
                 <div class="flex justify-center px-4">
-                    <div v-if="Description">
+                    <div v-if="desc">
                         <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
                         <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                 </div>
                 <!-- Description -->
                 <!-- reviews -->
-                <div v-if="Reviews" class="mx-2 overflow-hidden rounded-lg reviews">
-                    <div v-if="item && $settings.sections.product.reviews.active" class="reviews">
+                <div v-if="rev" class="mx-2 overflow-hidden rounded-lg">
+                    <div v-if="$settings.sections.product.reviews.active" class="reviews">
                         <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
                     </div>
                     <si-app-loader placement="REPLACE_REVIEWS"/>
@@ -201,7 +201,7 @@
                 <!-- reviews -->
             </div>
             <!-- replace Desciption and Reviews -->
-            <!-- after Desciption and Reviews -->
+            <!-- after Description and Reviews -->
             <div v-if="!loading && item" class="px-4">
                 <!-- reviews after description -->
                 <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
@@ -209,10 +209,10 @@
                     <span class="text-sm font-bold md:text-base">{{ $settings.sections.product.reviews.title }}</span>
                     </div>
                 </div>
-                    <si-app-loader placement="AFTER_DESCRIPTION"/>
+                <si-app-loader placement="AFTER_DESCRIPTION"/>
                 <!-- reviews after description -->
             </div>
-            <!-- after Desciption and Reviews -->
+            <!-- after Description and Reviews -->
             <!-- upsells && related Products -->
             <div v-if="!loading && item" class="flex flex-col mt-3">
                 <!-- upsells  -->
@@ -235,8 +235,8 @@
     export default {
         data() {
             return {
-                Description: true,
-                Reviews: false,
+                desc: true,
+                rev: false,
                 showStickyAddToCart: false,
                 visibleSlide: 0,
                 loading: true,
@@ -278,9 +278,7 @@
             try{
                 const { data } = await this.$storeino.products.get({ slug })
                 this.item = data;
-                console.log("====================")
-                console.log(this.item)
-                console.log("====================")
+
                 this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
                 this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
                 this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -382,6 +380,24 @@
             }
         },
         methods: {
+            ShowDescription(){
+                this.desc = true; this.rev = false
+            },
+            ShowReviews(){
+                this.desc = false; this.rev = true
+            },
+            foundApp(placement) {
+                if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
+                    const foundApp = this.$store.state.apps.find((app) => {
+                        return app.config?.placements?.includes(placement);
+                    });
+                    if (foundApp) {
+                        return 'flex'
+                    } else {
+                        return 'hidden'
+                    }
+                }
+            },
             handleScroll() {
                 if (window.pageYOffset > 400) {
                     this.showStickyAddToCart = true;
@@ -518,24 +534,6 @@
             setTab(tab){
                 this.tab = tab;
                 if(tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
-            },
-            ShowDescription(){
-                this.Description = true; this.Reviews = false
-            },
-            ShowReviews(){
-                this.Description = false; this.Reviews = true
-            },
-            foundApp(placement) {
-                if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
-                    const foundApp = this.$store.state.apps.find((app) => {
-                        return app.config?.placements?.includes(placement);
-                    });
-                    if (foundApp) {
-                        return 'flex'
-                    } else {
-                        return 'hidden'
-                    }
-                }
             }
         },
     }
