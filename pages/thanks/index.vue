@@ -24,10 +24,10 @@ mounted() {
     console.log("query",this.$route.query);
     window.snapPurchase({
           price: pixelData.total,
+          click_id:this.$route.query.ScCid ? this.$route.query.ScCid  : null,
           transaction_id: this.$route.query.code,
           currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "",
           item_ids:pixelData.content_ids,
-          click_id:"5df4bb8f-a2ec-41f2-a431-afb5e3ebe220"
         });
   }
 }
