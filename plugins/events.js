@@ -34,7 +34,8 @@ export default function({ app, store, router, $tools }, inject){
                 //     currency: store.state.currency.code
                 // });
                 snapViewContent({ item_ids: [e.data._id],currency: store.state.currency.code || "USD" });
-                console.log({router:router.query});
+                console.log({router:router});
+                console.log({router:app.router});
                 tiktokViewContent({
                     content_id: e.data._id,
                     quantity: 1,
