@@ -21,6 +21,7 @@ mounted() {
   this.$storeino.fbpx('Purchase');
   if (this.$route.query.pixel) {
     let pixelData = JSON.parse(this.$route.query.pixel);
+    console.log("query",this.$route.query);
     window.snapPurchase({
           price: pixelData.total,
           transaction_id: this.$route.query.code,
