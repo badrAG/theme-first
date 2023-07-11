@@ -175,64 +175,69 @@
                 <!-- Product content -->
             </div>
             <!--  -->
-            <si-app-loader placement="BEFORE_DESCRIPTION"/>
-            <!-- replace Desciption and Reviews -->
-            <div v-if="!loading && item" class="mt-10 mb-6">
-                <div class="flex items-center justify-center px-4 mb-4">
-                    <div class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base " :class="desc == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
-                    <div v-if="$settings.sections.product.reviews.active" class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base" :class="[foundApp('REPLACE_REVIEWS'),(rev == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
-                </div>
-                <!-- Description -->
-                <div class="flex justify-center px-4">
-                    <div v-if="desc">
-                        <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
-                        <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
+            <div v-if="!loading && item">
+                <si-app-loader placement="BEFORE_DESCRIPTION"/>
+                <!-- replace Desciption and Reviews -->
+                <div class="mt-10 mb-6">
+                    <div class="flex items-center justify-center px-4 mb-4">
+                        <div class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base " :class="desc == true? 'bg-primary text-white': 'hover-bg'" @click="ShowDescription">{{ $settings.sections.product.description.title }}</div>
+                        <div v-if="$settings.sections.product.reviews.active" class="px-4 py-1 mx-2 text-sm font-bold transition ease-in delay-150 rounded-full cursor-pointer md:text-base" :class="[foundApp('REPLACE_REVIEWS'),(rev == true? 'bg-primary text-white': 'hover-bg')]" @click="ShowReviews">{{ $settings.sections.product.reviews.title }}</div>
                     </div>
-                </div>
-                <!-- Description -->
-                <!-- reviews -->
-                <div v-if="rev" class="mx-2 overflow-hidden rounded-lg">
-                    <div v-if="$settings.sections.product.reviews.active" class="reviews">
-                        <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
+                    <!-- Description -->
+                    <div class="flex justify-center px-4">
+                        <div v-if="desc">
+                            <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
+                            <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
+                        </div>
                     </div>
-                    <si-app-loader placement="REPLACE_REVIEWS"/>
-                    <h2 v-if="item.review.reviews.length == 0" class="flex justify-center mx-2 text-base font-normal" >{{ $settings.sections.product.reviews.empty_title }}</h2>
-                </div>
-                <!-- reviews -->
-            </div>
-            <!-- replace Desciption and Reviews -->
-            <!-- after Description and Reviews -->
-            <div v-if="!loading && item" class="px-4">
-                <!-- reviews after description -->
-                <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
-                    <div class="px-4 py-1 text-white rounded-full cursor-pointer bg-primary">
-                    <span class="text-sm font-bold md:text-base">{{ $settings.sections.product.reviews.title }}</span>
+                    <!-- Description -->
+                    <!-- reviews -->
+                    <div v-if="rev" class="mx-2 overflow-hidden rounded-lg">
+                        <div v-if="$settings.sections.product.reviews.active" class="reviews">
+                            <sections-reviews v-show="!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_REVIEWS') >= 0)" :item="item"></sections-reviews>
+                        </div>
+                        <si-app-loader placement="REPLACE_REVIEWS"/>
+                        <h2 v-if="item.review.reviews.length == 0" class="flex justify-center mx-2 text-base font-normal" >{{ $settings.sections.product.reviews.empty_title }}</h2>
                     </div>
+                    <!-- reviews -->
                 </div>
-                <si-app-loader placement="AFTER_DESCRIPTION"/>
-                <!-- reviews after description -->
+                <!-- replace Desciption and Reviews -->
+                <!-- after Description and Reviews -->
+                <div class="px-4">
+                    <!-- reviews after description -->
+                    <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
+                        <div class="px-4 py-1 text-white rounded-full cursor-pointer bg-primary">
+                        <span class="text-sm font-bold md:text-base">{{ $settings.sections.product.reviews.title }}</span>
+                        </div>
+                    </div>
+                    <si-app-loader placement="AFTER_DESCRIPTION"/>
+                    <!-- reviews after description -->
+                </div>
+                <!-- after Description and Reviews -->
+                <!-- upsells && related Products -->
+                <div class="flex flex-col mt-3">
+                    <!-- upsells  -->
+                    <div v-if="$settings.sections.product.upsell.active" class="upsells">
+                        <sections-upsell :item="item.upsell"/>
+                    </div>
+                    <!-- upsells -->
+                    <!-- related Products  -->
+                    <div v-if="$settings.sections.product.related.active" class="related">
+                        <sections-related-products :item="item"/>
+                    </div>
+                    <!-- related Products  -->
+                </div>
+                <!-- upsells && related Products -->
             </div>
-            <!-- after Description and Reviews -->
-            <!-- upsells && related Products -->
-            <div v-if="!loading && item" class="flex flex-col mt-3">
-                <!-- upsells  -->
-                <div v-if="$settings.sections.product.upsell.active" class="upsells">
-                    <sections-upsell :item="item.upsell"/>
-                </div>
-                <!-- upsells -->
-                <!-- related Products  -->
-                <div v-if="$settings.sections.product.related.active" class="related">
-                    <sections-related-products :item="item"/>
-                </div>
-                <!-- related Products  -->
-            </div>
-            <!-- upsells && related Products -->
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        head() {
+            return this.seo();
+        },
         data() {
             return {
                 desc: true,
@@ -276,21 +281,22 @@
         async fetch() {
             const { slug } = this.$route.params;
             try{
+                this.loading = true;
                 const { data } = await this.$storeino.products.get({ slug })
                 this.item = data;
-
-                this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
-                this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
-                this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
-                if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
+                //old meta tag
+                // this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
+                // this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
+                // this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
+                // if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
                 // New meta tags
-                [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-                { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
-                ].forEach(meta=>{
-                    const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
-                    if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
-                    this.$store.state.seo.metaTags.push(meta);
-                });
+                // [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
+                // { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
+                // ].forEach(meta=>{
+                //     const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
+                //     if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
+                //     this.$store.state.seo.metaTags.push(meta);
+                // });
                 this.loading = false;
                 this.quantity = this.item.quantity;
                 // Set default image if exists
@@ -380,6 +386,40 @@
             }
         },
         methods: {
+            seo() {
+                if (!this.item) {  return; }
+                return {
+                    title: (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name,
+                    meta: [
+                        { hid: "product:price:amount", property: "product:price:amount", content: this.item ? this.item.price.salePrice : 0 },
+                        { hid: "productID", itemprop: "productID", content: this.item._id || 'productID' },
+                        { hid: "description", name: "description", content: this.item.seo.description || this.item.description || this.$settings.store_description },
+                        { hid: 'keywords', name: 'keywords', content: (this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || []).join(',') },
+                        { hid: "og:image", property: "og:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
+                        { hid: "name", itemprop: "name", content: this.item ? this.item.name : 'article' },
+                        { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
+                        { hid: "url", itemprop: "url", content: this.$store.state.seo.url },
+                        { hid: "price", itemprop: "price", content: this.item && this.item ? this.item.price.salePrice : 0 },
+                        { hid: "robots", name: "robots", content: (this.$settings && this.$settings.store_indexing) || (this.item && this.item.seo && !this.item.seo.hide) ? "index" : "noindex" },
+                        { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name  : "Online Store" },
+                        { hid: "og:title", property: "og:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
+                        { hid: "og:type", property: "og:type", content: "article" },
+                        { hid: "og:url", property: "og:url", content: this.$store.state.seo.url },
+                        { hid: "og:description", property: "og:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
+                        { hid: "apple-mobile-web-app-status-bar-style", property: "apple-mobile-web-app-status-bar-style", content: "black" },
+                        { hid: "apple-mobile-web-app-capable", property: "apple-mobile-web-app-capable", content: "yes" },
+                        { hid: "product:plural_title", property: "product:plural_title", content: this.item && this.item ? this.item.name : 'article' },
+                        { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
+                        { hid: "theme-color", property: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#ffffff" },
+                        { hid: "twitter:card", property: "twitter:card", content: "summary" },
+                        { hid: "twitter:site", property: "twitter:site", content: this.$settings ? this.$settings.store_name : "Online Store" },
+                        { hid: "twitter:title", property: "twitter:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
+                        { hid: "twitter:description", property: "twitter:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
+                        { hid: "twitter:image", property: "twitter:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
+                        { hid: "twitter:url", property: "twitter:url", content: this.$store.state.seo.url },
+                    ]
+                };
+            },
             ShowDescription(){
                 this.desc = true; this.rev = false
             },
