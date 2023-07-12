@@ -70,7 +70,8 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
           document.cookie = 'STOREINO-CART=[];path=/';
           store.state.cart = [];
-        }else{
+        }
+        else{
           window.location.href = '/';
           return false;
         }
