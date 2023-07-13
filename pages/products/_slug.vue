@@ -203,7 +203,7 @@
                 </div>
                 <!-- replace Desciption and Reviews -->
                 <!-- after Description and Reviews -->
-                <div class="px-4">
+                <div class="px-4 overflow-hidden">
                     <!-- reviews after description -->
                     <div class="items-center justify-center" :class="foundApp('AFTER_DESCRIPTION')" v-if="$settings.sections.product.reviews.active && this.$store.state.apps.find(a=>a.name === 'PIN REVIEW')">
                         <div class="px-4 py-1 text-white rounded-full cursor-pointer bg-primary">

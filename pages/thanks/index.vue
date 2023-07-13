@@ -9,7 +9,10 @@
 
         <!-- orderCode -->
         <div class="flex items-center justify-center px-4 py-1 text-base bg-gray-100 rounded-full" v-if="orderCode">
-          <span class="text-sm md:text-base">Order #: {{ orderCode }}</span>
+          <span v-if="this.$store.state.language.code == 'AR'" class="text-sm md:text-base">الطلبية #: </span>
+          <span v-else-if="this.$store.state.language.code == 'FR'" class="text-sm md:text-base">Commande #: </span>
+          <span v-else class="text-sm md:text-base">Order #: </span>
+          <span class="text-sm md:text-base">{{ orderCode }}</span>
         </div>  
         <!-- orderCode -->
 
