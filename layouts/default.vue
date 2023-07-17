@@ -134,7 +134,9 @@
                     { hid: "og:type", property: "og:type", content: "article"  },
                     { hid: "og:description", property: "og:description",content: this.$store.state.seo.description  },
                     { name: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#333" },
-                    {  hid: "currency", name: "currency", content:  this.$store.state.currency.code },
+                    { hid: "currency", name: "currency", content:  this.$store.state.currency.code },
+                    //Seo meta tags
+                    ...this.$store.state.seo.metaTags
                 ],
                 link: [
                     { rel: 'icon', type: 'image/x-icon', href: this.$settings.store_favicon ? this.$settings.store_favicon.src : this.$store.state.defaults.icon },
