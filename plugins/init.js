@@ -6,6 +6,9 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         // Get Template settings
         // Set current domain
         store.state.domain = req.headers.host;
+         if (req.headers.ip) {
+          store.state.IP = req.headers.ip
+        }
         try {
             if(req.body && req.body.preview){
                 console.log("Is Preview");
@@ -31,9 +34,9 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         // Sentry Log
 
         // Head tags
-        // Seo  Meta tags
+        // Meta tags
         const settings = store.state.settings;
-        if(settings && settings.meta_tags &&settings.meta_tags.length > 0){
+        if(settings &&settings.meta_tags &&settings.meta_tags.length > 0){
             for (const metaTag of settings.meta_tags) {
                 const meta = { hid: metaTag[metaTag.type], [metaTag.type]: metaTag[metaTag.type], content: metaTag.content }
                 store.state.seo.metaTags.push(meta);
@@ -70,8 +73,7 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
           document.cookie = 'ORDER_ID=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
           document.cookie = 'STOREINO-CART=[];path=/';
           store.state.cart = [];
-        }
-        else{
+        }else{
           window.location.href = '/';
           return false;
         }
