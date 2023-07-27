@@ -91,18 +91,18 @@
                 <!-- right content -->
             </header>
             <!-- Nav Bar -->
-            <nav v-if="menu" class="flex items-center justify-center overflow-x-auto text-sm font-normal scroll-x">
-                <ul v-for="(item, i) in menu.items" :key="i" class="flex flex-col" @mouseover="activeId = activeId = item._id" @mouseleave="activeId = activeId = null">
-                    <li class="flex items-center p-2 mx-2 transition-all ease-linear delay-150 border-b-2 border-transparent hover:border-black">
-                        <router-link :to="item.url">
-                            <span class="whitespace-nowrap">{{ item.text }}</span>
-                        </router-link>
-                        <button v-if="item.childrens.length > 0" class="ml-1 chivron"  @click="activeId = activeId != item._id ? item._id : null">
-                            <fa class="text-xs transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
-                        </button>
-                    </li>
-                    <transition name="slide">
-                        <div class="relative">
+            <nav v-if="menu" class="relative">
+                <div class="flex items-center justify-center overflow-x-auto text-sm font-normal scroll-x">
+                    <ul v-for="(item, i) in menu.items" :key="i" class="flex flex-col" @mouseover="activeId = activeId = item._id" @mouseleave="activeId = activeId = null">
+                        <li class="flex items-center p-2 mx-2 transition-all ease-linear delay-150 border-b-2 border-transparent hover:border-black">
+                            <router-link :to="item.url">
+                                <span class="whitespace-nowrap">{{ item.text }}</span>
+                            </router-link>
+                            <button v-if="item.childrens.length > 0" class="ml-1 chivron"  @click="activeId = activeId != item._id ? item._id : null">
+                                <fa class="text-xs transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                            </button>
+                        </li>
+                        <transition name="slide">
                             <div v-if="item._id == activeId && item.childrens.length > 0" class="absolute z-20 w-40 p-2 border shadow-lg top-full header-bg">
                                 <div class="py-1" v-for="(item,i) in item.childrens" :key="i" @mouseover="subItems = subItems = item.collectionId" @mouseleave="subItems = subItems = null">
                                     <div class="flex items-center justify-between">
@@ -126,9 +126,9 @@
                                     </transition>
                                 </div>
                             </div>
-                        </div>
-                    </transition>
-                </ul>
+                        </transition>
+                    </ul>
+                </div>
             </nav>
             <!-- Nav Bar -->
         </div>
