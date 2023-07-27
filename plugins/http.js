@@ -2,6 +2,11 @@ import https from 'https';
 export default async function ({ $axios, store, $tools, app, route }, inject) {
   if(process.server) {
     const config = app.context.req.config;
+    if(app.context.req && app.context.req.headers && app.context.req.headers.ip) {
+      store.state.IP = app.context.req.headers.ip
+    }
+    console.log({ env: process.env.NODE_ENV, config: config.env });
+    //if (process.env.NODE_ENV == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     if(config.env == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     try{ 
     }catch(e){ 
