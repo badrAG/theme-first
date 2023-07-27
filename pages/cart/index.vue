@@ -119,7 +119,7 @@
                         const response = await this.$storeino.upsells.search({ 'with': ['products'],'product._id-in': ids, limit: 1000 });
                         this.upsells = response.data.results;
                     }catch(e){
-                        console.log(e);
+                        console.log({e});
                     }
                 }
                 this.loading.upsells = false;
@@ -156,7 +156,7 @@
                         }
                         this.calcTotal();
                     }catch(e){
-                        console.log(e);
+                        console.log({e});
                     }
                 }
                 this.loading.cart = false;

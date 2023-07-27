@@ -12,30 +12,18 @@ export default function({ app, store, router, $tools }, inject){
         window.addEventListener('PAGE_VIEW', (e)=> {
             // Analytics ready
             if(store.state.settings && store.state.settings.google_analytics_id){
-                console.log("%cGoogle Analytics Page View", 'color: #bada55');
                 gtag('js', new Date());
                 gtag('config',window.escape(`${store.state.settings.google_analytics_id}`));
             }
             // Google ads ready
             if (store.state.settings && store.state.settings.google_ads && store.state.settings.google_ads.id) {
-                console.log("%cGoogle Ads Page View", 'color: #bada55');
                 gtag('config', `${store.state.settings.google_ads.id}`);
             }
-            // Facebook Snap Tiktok Linkedin
-            // fbPageView();
+            // Facebook Snap
             snapPageView();
             tiktokPageView();
             if(e.data && e.data._id){
-                // fbViewContent({
-                //     content_name: e.data.name,
-                //     content_ids: [e.data._id],
-                //     content_type: "product",
-                //     value: e.data.price.salePrice,
-                //     currency: store.state.currency.code
-                // });
                 snapViewContent({ item_ids: [e.data._id],currency: store.state.currency.code || "USD" });
-                console.log({router:router});
-                console.log({router:app.router});
                 tiktokViewContent({
                     content_id: e.data._id,
                     quantity: 1,
@@ -44,8 +32,6 @@ export default function({ app, store, router, $tools }, inject){
                     currency: store.state.currency.code || "USD"
                 })
             }
-            //tiktokPageView();
-            //linkedinPageView();
         });
         window.addEventListener('ADD_TO_CART', (e) => {
             const item = $tools.reformCartItem(e.data);
@@ -60,14 +46,6 @@ export default function({ app, store, router, $tools }, inject){
             }
             $tools.setCart(store.state.cart);
             $tools.call('ADDED_TO_CART');
-            // fbAddToCart({
-            //     id: item._id,
-            //     content_name: item.name,
-            //     content_ids: [item._id],
-            //     content_type: 'product',
-            //     value: item.price,
-            //     currency: store.state.currency.code || "USD"
-            // });
             snapAddToCart({
                 item_ids: [item._id],
                 price: item.price,

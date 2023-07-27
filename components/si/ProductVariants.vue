@@ -142,18 +142,10 @@ export default {
     data() {
         return {
             selected: this.variants[0],
-            listStyleColorValue:{
-                // index: 1,
-                // value: "61f7e86fdf0bff1286fbde94"
-            },
-            listStyleSizeValue:{
-
-            },
-            listStyleOtherOption:{
-
-            },
+            listStyleColorValue:{},
+            listStyleSizeValue:{},
+            listStyleOtherOption:{},
             loadImages : false
-
         }
     },
     async fetch(){
@@ -225,7 +217,6 @@ export default {
             this.setVariant(index,value);
         },
         setVariant(index, value) {
-            // 1 2 3
             let index1 ,index2;
             if(index == 1){ index1=2; index2=3; }
             if(index == 2){ index1=1; index2=3; }
@@ -387,7 +378,6 @@ export default {
   .check-style{
     width: 20px;
     height: 20px;
-    /*margin-right: 7px;*/
   }
 
   .content-check-style{
@@ -398,7 +388,6 @@ export default {
   .radio-style{
     width: 20px;
     height: 20px;
-    /*margin-right: 7px;*/
   }
 
   .content-radio-style{
@@ -414,7 +403,6 @@ export default {
   .check-style{
     width: 20px;
     height: 20px;
-    /*margin-right: 7px;*/
   }
 
   .content-check-style{
@@ -474,12 +462,6 @@ export default {
         text-align: center;
         padding-top: 17px;
         padding-bottom: 13px;
-    }
-
-    .vr-image-style .content-image-style .image-style-image{
-        /* display: inline-block;
-        cursor: pointer;
-        margin-right: 5px; */
     }
 
     .vr-image-style .content-image-style .image-style-image img{

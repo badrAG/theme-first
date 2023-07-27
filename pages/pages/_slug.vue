@@ -75,7 +75,6 @@
                 this.loading = false;
             }catch(e){
                 console.log({e});
-                // Redirect to error page if product not exists
                 this.$nuxt.error({ statusCode: 404, message: 'post_not_found' })
             }
         },

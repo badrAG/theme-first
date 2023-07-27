@@ -94,7 +94,6 @@
                     </div>
                 </div>
                 <!-- sticky add to cart -->
-                <!-- sections.product.sticky_add_to_cart.active -->
                 <div class="w-full px-2 content-part lg:w-1/3">
                     <div class="">
                         <div class="bg-white ">
@@ -317,7 +316,6 @@
                     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
                 }
                 if(!process.server){
-                    console.log("Send facebook events");
                     this.$storeino.fbpx('PageView')
                     this.$storeino.fbpx('ViewContent',{
                         content_name: this.item.name?this.item.name:'',
@@ -329,16 +327,14 @@
                     this.$tools.call('PAGE_VIEW', this.item);
                 }
 
-            }catch(e){
-                // Redirect to error page if product not exists
-                console.log(e);
+            }catch(err){
+                console.log({err});
                 this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
             }
         },
         mounted() {
             if(this.item) this.$tools.call('PAGE_VIEW', this.item);
             window.addEventListener("APP_LOADER", e => {
-                console.log("Despatching event CURRENT_PRODUCT APP_LOADER");
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
@@ -536,7 +532,6 @@
                     this.price.comparePrice = this.item.price.comparePrice * quantity;
                 }
                 if(!process.server){
-                    console.log("Despatching event CURRENT_PRODUCT quantitySelected");
                     window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                         detail: {
                             product_id: this.item._id,
@@ -580,8 +575,6 @@
 </script>
 
 <style scoped>
-/* description styles */
-
   .description {
     white-space: normal !important;
   }

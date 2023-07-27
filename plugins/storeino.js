@@ -60,8 +60,6 @@ export default async function ({ $http, store, app, route }, inject) {
             if(pixelData.fbParams) params =  pixelData.fbParams;
         }
 
-
-        console.log(`%cFIRE EVENT : ${ev}`, 'color: #2196f3');
         if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0){
         let query = { name: "fbpx", type: ev, ref: window.location.href };
         if (params) { for (const key in params) { query[key] = params[key];} }
@@ -84,7 +82,6 @@ export default async function ({ $http, store, app, route }, inject) {
             }
             });
         }else{
-            console.log("%cEVENT : "+ev, 'color: #2196f3');
             store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
                 if (pixel.active && !pixel.token) {
                     fbq("trackSingle", pixel.id, ev, data);

@@ -8,7 +8,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         store.state.domain = req.headers.host;
         try {
             if(req.body && req.body.preview){
-                console.log("Is Preview");
                 store.state.isPreview = true;
                 const body = { data: JSON.parse(req.body.preview.data), schema: JSON.parse(req.body.preview.schema) };
                 response = await $http.post('/settings/current', body);
@@ -17,7 +16,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
             }
             store.state.settings = response.data;
         } catch (error) {
-            console.log({ error: error.response });
             if(error.response) throw "ERROR :: " + error.response.data;
             throw "ERROR :: INVALID TOKEN" + error;
         }
@@ -112,7 +110,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
   if(!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0){
     settings.facebook_multiple_pixel.forEach(p => {
       if (p.active) {
-        console.log("SET PIXEL", p.id);
         fbq.disablePushState = true;
         fbq('init', p.id);
       }
@@ -124,7 +121,9 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       !function (w, d, t) {
         w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){
           var i="https://analytics.tiktok.com/i18n/pixel/events.js";
-          if(!(settings.tiktok_pixel && settings.tiktok_pixel.length > 0)){ i = 'data:application/javascript;utf-8,console.log("Tiktok%20Pixel%20not%20found")'; }
+          if(!(settings.tiktok_pixel && settings.tiktok_pixel.length > 0)){ 
+            // i = 'data:application/javascript;utf-8,console.log("Tiktok%20Pixel%20not%20found")'; 
+          }
           else { ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a) };
         }
         w.tiktokPixel = function (id) { ttq.load(id); }
@@ -148,7 +147,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
         for (const pixel of settings.tiktok_pixel) {
             if (pixel.active){
               window.tiktokPixel(pixel.id);
-              console.log("%cSimple Tiktok pixel is ready", 'color: #bada55');
             }
         }
         if(route.query.pixel){
@@ -171,7 +169,9 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       }
       // Snapchat Pixel
       (function (e, t, n, tr) {
-        if(!(settings.snapchat_pixel && settings.snapchat_pixel.length > 0)){ n = 'data:application/javascript;utf-8,console.log("Snap%20Pixel%20not%20found")'; }
+        // if(!(settings.snapchat_pixel && settings.snapchat_pixel.length > 0)) {
+        //   n = 'data:application/javascript;utf-8,console.log("Snap%20Pixel%20not%20found")'; 
+        // }
         if (e.snaptr) return; var a = e.snaptr = function () { a.handleRequest ? a.handleRequest.apply(a, arguments) : a.queue.push(arguments) };
         e.snapPixel = function (id, email = "") { snaptr('init', id, { 'user_email': email }); }
         e.snapPageView = function (d = {}) { snaptr(tr, 'PAGE_VIEW', d); }
@@ -187,20 +187,10 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       if(settings.snapchat_pixel && settings.snapchat_pixel.length > 0){
         for (const pixel of settings.snapchat_pixel) {
           if (pixel.active){
-            console.log("%cSimple Snapchat pixel is ready", 'color: #bada55');
             snapPixel(pixel.id, pixel.email);
           }
         }
         if(route.name == 'thanks' && route.query.pixel){
-         
-      // let pixelData = JSON.parse(route.query.pixel);
-      //     window.snapPurchase({
-      //       price: pixelData.total,
-      //       transaction_id: route.query.code,
-      //       currency: this.$store.state._current_currency && this.$store.state._current_currency.code ? this.$store.state._current_currency.code : "",
-      //       item_ids:pixelData.content_ids,
-      //       click_id:route.query.ScCid ? route.query.ScCid  : null
-      //     });
         }
       }
 
@@ -219,7 +209,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
       })(window, document, 'script');
       // google analytics
       if(settings && settings.google_analytics_id){
-        console.log("Add Google Analytics");
         var ga = document.createElement('script');
         ga.type = 'text/javascript'; ga.async = true;
         ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.google_analytics_id;
@@ -232,7 +221,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
 
       window.googleAdsEvent = (eventName)=>{
         if(settings.google_ads && settings.google_ads.id && settings.google_ads.events){
-          console.log(`%cGoogle Ads ${eventName}`, 'color: #bada55');
           const eventsGroup = settings.google_ads.events.filter((e)=>e.name==eventName)
           if (eventsGroup.length > 0){
             for (const event of eventsGroup) {
@@ -240,7 +228,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
                 'send_to':`${settings.google_ads.id}/${event.value}`,
                 'event_callback': ()=>{}
               };
-              console.log("Google Ads Event");
               gtag('event', 'conversion', object);
             }
           }

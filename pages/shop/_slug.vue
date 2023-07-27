@@ -36,9 +36,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- Collections type -->
-                            <!-- <hr v-if="$settings.sections.shop.sidebar.collections.active"> -->
-                            <!-- price-range  -->
                             <h2 v-if="$settings.sections.shop.sidebar.prices.active" class="mb-2 px-4 text-base font-bold">{{ $settings.sections.shop.sidebar.prices.title }}</h2>
                             <div v-if="loading.filters" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
@@ -46,9 +43,6 @@
                             <div v-if="$settings.sections.shop.sidebar.prices.active && filters" class="flex flex-col mb-2" dir="ltr">
                                 <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
                             </div>
-                            <!-- price-range  -->
-                            <!-- <hr v-if="$settings.sections.shop.sidebar.prices.active"> -->
-                            <!-- sizes -->
                             <h2 class="mb-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.sizes.active">{{ $settings.sections.shop.sidebar.sizes.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.sizes.active && loading.filters" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
@@ -59,9 +53,6 @@
                                     <label class="cursor-pointer px-2" :for="item.value1">{{ item.value1 }}</label>
                                 </div>
                             </div>
-                            <!-- sizes -->
-                            <!-- <hr v-if="$settings.sections.shop.sidebar.sizes.active"> -->
-                            <!-- colors -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.colors.active">{{ $settings.sections.shop.sidebar.colors.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.colors.active && loading.filters" class="flex justify-center items-center my-5">
                                 <si-loader></si-loader>
@@ -72,9 +63,6 @@
                                     <label class="cursor-pointer rounded-full box-shadow box-shadow-xs-hover" :style="`background-color:${item.value2}`" :for="item.value1" :aria-label="item.value1"></label>
                                 </div>
                             </div>
-                            <!-- colors  -->
-                            <!-- <hr v-if="$settings.sections.shop.sidebar.colors.active"> -->
-                            <!--  -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.tags.active">{{ $settings.sections.shop.sidebar.tags.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
                                 <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
@@ -90,18 +78,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- <div v-if="$settings.sections.shop.sidebar.tags.active && loading.filters" class="flex justify-center items-center my-5">
-                                <si-loader></si-loader>
-                            </div>
-                            <div v-if="$settings.sections.shop.sidebar.tags.active && filters" class="flex flex-col mb-2">
-                                <div v-for="(tag, i) in filters.tags" :key="i" class="flex items-center px-2">
-                                    <input class="w-4 h-4 mx-1" :checked="params['tags-in'] && params['tags-in'].indexOf(tag) >= 0" :id="`tag_${tag}`" @change="setParams($event, 'tags-in', tag)" type="checkbox"/>
-                                    <label class="cursor-pointer capitalize" :for="`tag_${tag}`">{{ tag }}</label>
-                                </div>
-                            </div> -->
-                            <!--  -->
-                            <!-- <hr v-if="$settings.sections.shop.sidebar.tags.active"> -->
-                            <!--  -->
                             <h2 class="my-2 px-4 text-base font-bold" v-if="$settings.sections.shop.sidebar.brands.active">{{ $settings.sections.shop.sidebar.brands.title }}</h2>
                             <div v-if="$settings.sections.shop.sidebar.collections.active" class="flex flex-col mb-2  bg-white">
                                 <div v-if="$settings.sections.shop.sidebar.brands.active && loading.brands" class="flex justify-center items-center my-5">
@@ -137,13 +113,6 @@
                                        <span class="text-md font-bold">{{ $settings.sections.shop.filter_text }}</span>
                                    </div>
                                 </div>
-                                <!--  -->
-                                <!-- <div class="hidden md:flex">
-                                    <button v-for="(grid,i) in girds" :key="i" @click="gridClass=grid.class" class="cursor-pointer grid_icon flex items-center justify-center flex-wrap mx-1.5" :style="`width:${grid.width}px`">
-                                        <span v-for="i in grid.number" :key="i" class="flex" :class="grid.class == gridClass ? 'bg-primary':'bg-gray-400'" style="margin:2px;width:8px;height:20px" ></span>
-                                    </button>
-                                </div> -->
-                                <!--  -->
                                 <select class="text-md font-bold sort-select bg-white w-40 px-3 py-1.5 rounded-full transition ease-linear delay-150 box-shadow scale outline-none border-2 bg-primary-border" v-model="params.sort">
                                     <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>
                                 </select>
@@ -216,9 +185,6 @@
                             </button>
                             <!-- chivron right -->
                         </div>
-                        <!-- <div class="flex justify-center items-center">
-                            <span class="text-md font-bold mx-4">{{paginate.current_page}}/{{paginate.last_page}}</span>
-                        </div> -->
                         <!-- Pagination -->
                     </div>
                 </div>

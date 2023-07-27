@@ -119,12 +119,6 @@ export default {
 </script>
 
 <style scoped>
-  /* @media (min-width: 768px) and (max-width: 1024px) {
-    .collections .collection:last-child {
-      display: none;
-    }
-  } */
-
   .image-box .image:nth-child(4n-3) ,
   .image-box .image:nth-child(4n-1) {
   padding-right:2px;

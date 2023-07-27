@@ -5,7 +5,6 @@
         <!-- sliderleft shadow  -->
         <!-- Slide left  -->
         <transition name="slide-left">
-            <!-- <transition name="fade"> -->
                 <div :class="$store.state.showHeaderMenu ? 'block':'hidden'" class="header-menu transition-all delay-500 max-w-full relative flex flex-col w-80 header-bg header-text-color">
                     <!-- close slider left botton -->
                     <div class="w-full flex items-center justify-between py-2"> 

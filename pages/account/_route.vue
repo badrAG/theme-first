@@ -15,25 +15,18 @@
 <script>
   export default {
     layout:'account',
-    head() {
-      // return this.seo();
-    },
     data(){
-      return{
+      return {
         iframe:null
       }
     },
-      watch: {
-          src: function(val) {
-              console.log(`Source ${val}`);
-          },},
-      data(){
-          return{
-              routes:['password','orders','profile','messages','login'],
-              src:'/checkout2/orders',
-              settings :null
-          }
-      },
+    data(){
+        return{
+            routes:['password','orders','profile','messages','login'],
+            src:'/checkout2/orders',
+            settings :null
+        }
+    },
     async fetch(){
       if(this.$route.params && this.$route.params.route) this.src="/checkout2/"+this.$route.params.route
       if(this.$route.query && this.$route.query.orderId) this.src=this.src+'?orderId='+this.$route.query.orderId
