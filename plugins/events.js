@@ -91,20 +91,20 @@ export default function({ app, store, router, $tools }, inject){
             $tools.setWishlist(store.state.wishlist);
         });
         window.addEventListener('message', (e) => {
-           let response = e.data
-           if (response.type == "addToCart")  app.router.push(`/products/${response.data.product.slug}`)
-           if (response.type == "loading") {
-             if (response.data.route=="/login") {
-               app.router.push('/account/login')
-             }
-             setTimeout(() => {
-               store.state.loading = false
-             }, 1000)
-           }
-           if(e.data.token) store.state.customer = $tools.tokenDecode(e.data.token)
-           if(response.data=="login") store.state.customer=null
-           if(response.type=='route'){window.history.pushState( {},"", $tools.$pushState('/account/',[`${response.data}`],''))}
-           if(response.type=='route_id'){window.history.pushState( {},"", $tools.$pushState('/account/',[`${response.data.name}`],{orderId:response.data.query}))}
+        let response = e.data
+        if (response.type == "addToCart")  app.router.push(`/products/${response.data.product.slug}`)
+            if (response.type == "loading") {
+                if (response.data.route=="/login") {
+                app.router.push('/account/login')
+                }
+                setTimeout(() => {
+                store.state.loading = false
+                }, 1000)
+            }
+        if(e.data.token) store.state.customer = $tools.tokenDecode(e.data.token)
+        if(response.data=="login") store.state.customer=null
+        if(response.type=='route'){window.history.pushState( {},"", $tools.$pushState('/account/',[`${response.data}`],''))}
+        if(response.type=='route_id'){window.history.pushState( {},"", $tools.$pushState('/account/',[`${response.data.name}`],{orderId:response.data.query}))}
         })
     }
 }

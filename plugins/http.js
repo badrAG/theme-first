@@ -6,7 +6,6 @@ export default async function ({ $axios, store, $tools, app, route }, inject) {
       store.state.IP = app.context.req.headers.ip
     }
     console.log({ env: process.env.NODE_ENV, config: config.env });
-    //if (process.env.NODE_ENV == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     if(config.env == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     try{ 
     }catch(e){ 
@@ -25,7 +24,6 @@ export default async function ({ $axios, store, $tools, app, route }, inject) {
       store.state.language.code = cookies['CURRENT_LANGUAGE'];
     }
     if (app.context.req && app.context.req.headers && app.context.req.headers['x-auth-token']) {
-      // baseURL = 'http://api-stores:3031/api';
       store.state.token = app.context.req.headers['x-auth-token'];
     }
 
