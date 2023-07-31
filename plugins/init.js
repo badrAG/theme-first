@@ -34,10 +34,6 @@ export default async function ({ $axios, $http ,route, $tools, $storeino, store,
     if(settings &&settings.meta_tags &&settings.meta_tags.length > 0){
         for (const metaTag of settings.meta_tags) {
             const meta = { hid: metaTag[metaTag.type], [metaTag.type]: metaTag[metaTag.type], content: metaTag.content }
-            
-            console.log(meta);
-
-
             store.state.seo.metaTags.push(meta);
         }
     }
