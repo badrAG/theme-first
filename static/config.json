@@ -1283,6 +1283,18 @@
                   ]
                 },
                 {
+                  "name": "out_of_stock",
+                  "values": [
+                    {
+                      "name": "out_of_stock_text",
+                      "path": "sections.product.out_of_stock.text",
+                      "type": "tc_input",
+                      "translatable": true,
+                      "value": "Out Of Stock"
+                    }
+                  ]
+                },
+                {
                   "name": "description",
                   "values": [
                     {
@@ -2333,6 +2345,10 @@
               "value": "اشتري الآن"
             },
             {
+              "name": "sections.product.out_of_stock.text",
+              "value": "غير متوفر"
+            },
+            {
               "name": "sections.product.related.title",
               "value": "منتجات ذات صلة"
             },
@@ -2758,6 +2774,10 @@
               "value": "Acheter maintenant"
             },
             {
+              "name": "sections.product.out_of_stock.text",
+              "value": "Indisponible"
+            },
+            {
               "name": "sections.product.related.title",
               "value": "Produits relatifs"
             },
@@ -3170,6 +3190,9 @@
             "active": true,
             "text": "Buy now"
           },
+          "out_of_stock": {
+            "text": "Out of stock"
+          }, 
           "related": {
             "active": true,
             "title": "Related products"

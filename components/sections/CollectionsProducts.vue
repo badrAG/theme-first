@@ -85,7 +85,7 @@ export default {
         const { data } = await this.$storeino.products.search(params);
         this.products[index] = data.results;
       } catch (e) {
-        console.log({ e });
+        console.log({e});
       }
       this.loading.products = false;
     },
@@ -101,7 +101,7 @@ export default {
           this.collections = data.results;
         }
       } catch (e) {
-        console.log({ e });
+        console.log({e});
       }
       this.loading.collections = false;
     },
@@ -112,9 +112,13 @@ export default {
       return this.products[index];
     },
     getProductsCount(index) {
-      return this.products[index].length;
+      if (this.products[index]) {
+        return this.products[index].length;
+      } else {
+        return 0;
+      }
     },
-  },
+  },  
 };
 </script>
 

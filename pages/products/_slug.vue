@@ -128,30 +128,46 @@
                         <!-- variant -->
                         <!-- product cart -->
                         <!-- product quantity -->
-                        <div class="mx-2 mt-4 product-quantity" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
-                            <div>
-                                <h2 class="mb-2 font-normal capitalize text-md">{{ $settings.sections.product.quantity.text }}</h2>
+                        <div class="product-quantity" v-show="!outofstock">
+                            <div class="mx-2 mt-" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true ">
+                                <div>
+                                    <h2 class="mb-2 font-normal capitalize text-md">{{ $settings.sections.product.quantity.text }}</h2>
+                                </div>
+                                <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                             </div>
-                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                         </div>
                         <!-- product quantity -->
                         <si-app-loader placement="BEFORE_ADD_TO_CART"/>
+                        <!-- Out Of Stock -->
+                        <div class="add-to-cart" v-show="outofstock">
+                            <div class="mx-2 mt-6 mb-4">
+                                <button  class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg hover:opacity-90">
+                                    <span>{{ $settings.sections.product.out_of_stock ? $settings.sections.product.out_of_stock.text : 'Out Of Stock' }}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Out Of Stock -->
                         <!-- add to cart -->
-                        <div class="mx-2 mt-6 mb-4" v-if="$settings.sections.product.add_to_cart.active">
-                            <button @click="addToCart" class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90">
-                                <span>{{ $settings.sections.product.add_to_cart.text }}</span>
-                            </button>
+                        <div class="add-to-cart" v-show="!outofstock">
+                            <div class="mx-2 mt-6 mb-4" v-if="$settings.sections.product.add_to_cart.active">
+                                <button @click="addToCart" class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90">
+                                    <span>{{ $settings.sections.product.add_to_cart.text }}</span>
+                                </button>
+                            </div>
                         </div>
                         <!-- add to cart -->
                         <si-app-loader placement="AFTER_ADD_TO_CART"/>
                         <si-app-loader placement="BEFORE_BUYNOW"/>
                         <!-- buy now -->
-                        <div id="chckout" class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
-                            <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="flex justify-center w-full p-3 px-5 text-base font-bold rounded-full ai-c buynow-bg buynow-text-bg click-effect scale hover:opacity-90">
-                                <span>{{ $settings.sections.product.buy_now.text }}</span>
-                            </button>
-                            <si-app-loader placement="REPLACE_BUYNOW"/>
+                        <div class="express-checkout" v-show="!outofstock">
+                            <div id="chckout" class="mx-2 mt-6" v-if="$settings.sections.product.buy_now.active">
+                                <button v-show="(!$store.state.apps.find(a=>a.placement.indexOf('REPLACE_BUYNOW') >= 0))" @click="buyNow" class="flex justify-center w-full p-3 px-5 text-base font-bold rounded-full ai-c buynow-bg buynow-text-bg click-effect scale hover:opacity-90">
+                                    <span>{{ $settings.sections.product.buy_now.text }}</span>
+                                </button>
+                                <si-app-loader placement="REPLACE_BUYNOW"/>
+                            </div>
                         </div>
+                        
                         <si-app-loader placement="AFTER_BUYNOW"/>
                         <!-- buy now -->
                         </div>
