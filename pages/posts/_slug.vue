@@ -1,27 +1,27 @@
 <template>
     <div>
         <div class="container my-6 bg-white ">
-            <div v-if="loading" class="flex justify-center items-center my-5">
+            <div v-if="loading" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
             <div v-if="item" class="">
                 <!-- title -->
                 <div class="px-4">
                     <div class="flex justify-center">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl guard-cairo-font font-light text-center max-w-4xl">{{ item.title }}</h1>
+                        <h1 class="max-w-4xl text-3xl font-light text-center md:text-4xl lg:text-5xl guard-cairo-font">{{ item.title }}</h1>
                     </div>
 
                     <div class="flex justify-center m-4 ">
                         <div v-for="(category, i) in item.categories"  :key="i" >
-                            <span class="capitalize font-normal text-md py-1 px-4 mx-1 rounded-full bg-gray-100 max-w-4xl">{{ category.name}} </span>
+                            <span class="max-w-4xl px-4 py-1 mx-1 font-normal capitalize bg-gray-100 rounded-full text-md">{{ category.name}} </span>
                         </div>
                     </div>
                 </div>
                 <!-- title -->
                 <!-- image -->
                 <div class="px-4 pt-4 mb-10">
-                    <div class="relative pb-3/5 overflow-hidden ">
-                        <si-image  width="400" height="400" class="h-full w-full absolute inset-0 object-cover bg-no-repeat" :src="item.image ? item.image.url : null" :alt="item.name"/>
+                    <div class="relative overflow-hidden pb-3/5 ">
+                        <si-image  width="400" height="400" class="absolute inset-0 object-cover w-full h-full bg-no-repeat" :src="item.image ? item.image.url : null" :alt="item.name"/>
                     </div>
                 </div>
                 <!-- image -->
@@ -29,7 +29,7 @@
                     <div class="max-w-4xl ">
                         <!-- created post  -->
                         <div v-if="$settings.sections.post.creator.active" class="px-4 mb-2">
-                            <p class="font-bold text-base leading-5">{{ $settings.sections.post.creator.title }} {{ item.publisher.firstname }} {{ item.publisher.lastname }}</p>
+                            <p class="text-base font-bold leading-5">{{ $settings.sections.post.creator.title }} {{ item.publisher.firstname }} {{ item.publisher.lastname }}</p>
                         </div>
                         <!-- created post  -->
                         <!-- post date -->
@@ -38,22 +38,22 @@
                         </div>
                         <!-- post date -->
                         <!-- short description -->
-                        <p class="px-4 mt-4 font-normal text-base leading-7 text-gr">{{ item.excerpt }}</p>
+                        <p class="px-4 mt-4 text-base font-normal leading-7 text-gr">{{ item.excerpt }}</p>
                         <!-- short description -->
                         <!-- description -->
                         <div class="px-4">
-                            <div  v-if="item" class="font-normal text-base leading-7 text-bl" id="description" v-html="item.content"></div>
+                            <div  v-if="item" class="text-base font-normal leading-7 text-bl" id="description" v-html="item.content"></div>
                         </div>
                         <!-- description -->
                         <!-- share products icons -->
-                        <div class="bg-white mt-4" v-if="$settings.sections.post.share_buttons.active">
+                        <div class="mt-4 bg-white" v-if="$settings.sections.post.share_buttons.active">
                           <div class="flex items-center justify-center">
-                              <h3 class="whitespace-nowrap text-lg font-bold px-4 mb-3">{{ $settings.sections.post.share_buttons.title }}</h3>
+                              <h3 class="px-4 mb-3 text-lg font-bold whitespace-nowrap">{{ $settings.sections.post.share_buttons.title }}</h3>
                           </div>
                           <div class="flex justify-center">
-                              <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="m-2 flex items-center justify-center">
-                                  <a class="h-full flex hover:opacity-80" :href="item.url" target="_blank" rel="noopener noreferrer">
-                                    <fa class="text-3xl mx-2" :icon="['fab', item.name]"></fa>
+                              <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="flex items-center justify-center m-2">
+                                  <a class="flex h-full hover:opacity-80" :href="item.url" target="_blank" rel="noopener noreferrer">
+                                    <fa class="mx-2 text-3xl" :icon="['fab', item.name]"></fa>
                                   </a>
                               </div>
                           </div>
@@ -125,7 +125,8 @@
             }
         },
         mounted() {
-            this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('PageView');
+            this.$tools.call('PAGE_VIEW');
         },methods: {
             getdate(createdDatte){
                 const date = new Date(createdDatte);

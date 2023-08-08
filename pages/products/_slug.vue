@@ -331,8 +331,9 @@
                 for (const button of this.socialMedia) {
                     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
                 }
+
                 if(!process.server){
-                    this.$storeino.fbpx('PageView')
+                    this.$storeino.fbpx('PageView');
                     this.$storeino.fbpx('ViewContent',{
                         content_name: this.item.name?this.item.name:'',
                         content_ids: [this.item._id],
@@ -349,7 +350,9 @@
             }
         },
         mounted() {
-            if(this.item) this.$tools.call('PAGE_VIEW', this.item);
+            if(this.item) {
+                this.$tools.call('PAGE_VIEW', this.item);
+            }
             window.addEventListener("APP_LOADER", e => {
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
@@ -362,13 +365,13 @@
                 }));
             });
             if(this.item){
-            this.$storeino.fbpx('PageView')
-            this.$storeino.fbpx('ViewContent',{
-                content_name: this.item.name?this.item.name:'',
-                content_ids: [this.item._id],
-                content_type: "product",
-                value: this.item.price.salePrice,
-                currency: this.$store.state.currency.code
+                this.$storeino.fbpx('PageView');
+                this.$storeino.fbpx('ViewContent',{
+                    content_name: this.item.name?this.item.name:'',
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.item.price.salePrice,
+                    currency: this.$store.state.currency.code
                 })
             }
             if(this.item){
