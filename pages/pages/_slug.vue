@@ -1,24 +1,24 @@
 <template>
     <div class="container my-6 bg-white">
-        <div v-if="loading" class="flex justify-center items-center my-5">
+        <div v-if="loading" class="flex items-center justify-center my-5">
             <si-loader></si-loader>
         </div>
         <div v-if="item" class="">
-            <h1 class="text-3xl md:text-4xl font-light guard-cairo-font px-4 mb-1 ">{{ item.title }}</h1>
+            <h1 class="px-4 mb-1 text-3xl font-light md:text-4xl guard-cairo-font ">{{ item.title }}</h1>
             <p class="px-4 text-lg"><small>{{ item.excerpt }}</small></p>
-            <div  v-if="item" class="bg-white text-base font-normal leading-7 rounded-md mt-4 px-4 description" id="description" v-html="item.content"></div>
+            <div  v-if="item" class="px-4 mt-4 text-base font-normal leading-7 bg-white rounded-md description" id="description" v-html="item.content"></div>
             <div v-if="$route.params.slug && $route.params.slug.indexOf('contact') > -1">
                 <si-app-loader :placement="'AFTER_CONTACT_PAGE'"/>
             </div>
             <!-- share products icons -->
-            <div class="bg-white mt-4">
+            <div class="mt-4 bg-white">
                 <div class="flex items-center justify-center">
-                    <h3 class="whitespace-nowrap text-lg font-bold px-4 mb-3">{{ $settings.sections.post.share_buttons.title }}</h3>
+                    <h3 class="px-4 mb-3 text-lg font-bold whitespace-nowrap">{{ $settings.sections.post.share_buttons.title }}</h3>
                 </div>
                 <div class="flex justify-center">
-                    <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="m-2 flex items-center justify-center">
-                        <a class="h-full flex hover:opacity-80" :href="item.url" target="_blank" rel="noopener noreferrer">
-                        <fa class="text-3xl mx-2" :icon="['fab', item.name]"></fa>
+                    <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="flex items-center justify-center m-2">
+                        <a class="flex h-full hover:opacity-80" :href="item.url" target="_blank" rel="noopener noreferrer">
+                        <fa class="mx-2 text-3xl" :icon="['fab', item.name]"></fa>
                         </a>
                     </div>
                 </div>
@@ -79,7 +79,8 @@
             }
         },
         mounted(){
-        this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('PageView');
+            this.$tools.call('PAGE_VIEW');
         }
     }
 </script>

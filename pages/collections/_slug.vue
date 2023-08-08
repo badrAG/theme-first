@@ -1,27 +1,27 @@
 <template>
     <div class="container my-6">
         <nuxt-link :to="`/shop/${item.slug}`" :title="item.title" :aria-label="item.title">
-            <div v-if="item" class="flex flex-wrap items-center bg-white border border-gray-200 rounded-xl transition-all ease-linear mx-4 box-shadow-xs-hover">
+            <div v-if="item" class="flex flex-wrap items-center mx-4 transition-all ease-linear bg-white border border-gray-200 rounded-xl box-shadow-xs-hover">
                 <div class="w-full md:w-1/3">
-                    <div class="pb-4/5 relative">
-                            <si-image width="400" height="400" class="image-rounded h-full w-full rounded-t-xl md:rounded-t-none md:rounded-l-xl absolute inset-0 object-cover" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
+                    <div class="relative pb-4/5">
+                            <si-image width="400" height="400" class="absolute inset-0 object-cover w-full h-full image-rounded rounded-t-xl md:rounded-t-none md:rounded-l-xl" :src="item.image ? item.image.src : null" :alt="item.name" srcset=""/>
                     </div>
                 </div>
-                <div class="w-full md:w-2/3 p-4">
-                    <div class="flex flex-col justify-start items-start">
-                        <h1 class="guard-cairo-font text-2xl md:text-3xl font-bold mb-4 ">{{ item.name }}</h1>
-                        <p class="font-normal text-base leading-7 text-bl">{{ item.description }}</p>
+                <div class="w-full p-4 md:w-2/3">
+                    <div class="flex flex-col items-start justify-start">
+                        <h1 class="mb-4 text-2xl font-bold guard-cairo-font md:text-3xl ">{{ item.name }}</h1>
+                        <p class="text-base font-normal leading-7 text-bl">{{ item.description }}</p>
                         
                     </div>
                 </div>
             </div>
         </nuxt-link>
-        <div class="mt-10 px-2">
-            <div v-if="loading" class="flex justify-center items-center my-5">
+        <div class="px-2 mt-10">
+            <div v-if="loading" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
             <ul class="flex flex-wrap">
-                <li class="w-1/2 md:w-1/3 lg:w-1/5 p-2" v-for="(item,i) in items.slice(0,6)" :key="i" > 
+                <li class="w-1/2 p-2 md:w-1/3 lg:w-1/5" v-for="(item,i) in items.slice(0,6)" :key="i" > 
                     <si-collection :item="item"></si-collection>
                 </li>
             </ul> 
@@ -52,7 +52,8 @@
             this.loading = false;
         },
         mounted() {
-        this.$storeino.fbpx('PageView')
+        this.$storeino.fbpx('PageView');
+        this.$tools.call('PAGE_VIEW');
         }
     }
 </script>

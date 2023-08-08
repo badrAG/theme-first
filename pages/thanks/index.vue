@@ -36,9 +36,9 @@ export default {
     };
   },
   mounted() {
-    this.$tools.call('PAGE_VIEW');
     this.$storeino.fbpx('PageView');
     this.$storeino.fbpx('Purchase');
+    this.$tools.call('PAGE_VIEW');
     if (this.$route.query.pixel) {
       let pixelData = JSON.parse(this.$route.query.pixel);
       window.snapPurchase({
