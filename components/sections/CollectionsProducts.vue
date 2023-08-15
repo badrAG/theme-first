@@ -109,7 +109,11 @@ export default {
       return name.length > 18 ? name.toUpperCase().slice(0, 18) + '...' : name.toUpperCase();
     },
     getProductsByIndex(index) {
-      return this.products[index];
+      if (index >= 0 && index < this.products.length) {
+        return this.products[index] || [];
+      } else {
+        return [];
+      }
     },
     getProductsCount(index) {
       if (this.products[index]) {
