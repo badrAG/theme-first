@@ -94,7 +94,7 @@
         <sections-scroll-top v-if="$settings.sections.scrolltotop.active"></sections-scroll-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
-        <Nuxt keep-alive/>
+        <Nuxt />
         <sections-footer></sections-footer>
         <sections-copyright></sections-copyright>
         <si-full-image></si-full-image>

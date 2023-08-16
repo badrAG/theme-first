@@ -201,7 +201,7 @@
                     <!-- Description -->
                     <div class="flex justify-center px-4">
                         <div v-if="desc">
-                            <div class="text-base font-normal description text-info" id="description" v-html="item.html"></div>
+                            <div class="text-sm font-normal description text-info" id="description" v-html="item.html"></div>
                             <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                         </div>
                     </div>
@@ -594,25 +594,28 @@
 </script>
 
 <style scoped>
-  .description {
-    white-space: normal !important;
-  }
-
-  .description {
-    display: block !important;
-  }
-
-  .text-info {
-    line-height: 26px;
+.text-info {
+    line-height: 36px;
     display: block;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-  }
+}
 
-  .text-info > :first-child {
+.text-info > :first-child {
     white-space: break-spaces;
-  }
+}
+
+.description *{
+    max-width: 100% !important;
+}
+.description pre {
+    white-space: normal !important;
+}
+
+.description p {
+    display: block !important;
+}
 
   [dir = "rtl"] .dots{
       flex-direction: row-reverse;

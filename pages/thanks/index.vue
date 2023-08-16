@@ -6,7 +6,6 @@
             <span>{{ $settings.sections.thanks.title }}</span>
         </h1>
         <!-- title -->
-
         <!-- orderCode -->
         <div class="flex items-center justify-center px-4 py-1 text-base bg-gray-100 rounded-full" v-if="orderCode">
           <span v-if="this.$store.state.language.code == 'AR'" class="text-sm md:text-base">الطلبية #: </span>
@@ -15,11 +14,9 @@
           <span class="text-sm md:text-base">{{ orderCode }}</span>
         </div>  
         <!-- orderCode -->
-
         <!-- text thank you -->
         <p class="text-2xl font-semibold text-gray-700 md:text-3xl lg:text-4xl">{{ $settings.sections.thanks.description }}</p>
         <!-- text thank you -->
-
         <!-- button -->
         <nuxt-link to="/shop" class="inline-flex px-4 py-2.5 text-sm font-medium tracking-wider rounded-full shadow-sm md:px-6 md:py-3 bg-primary text-gray-50 hover:shadow-lg"> 
           {{ $settings.sections.thanks.buttons.back_to_shop_text }}
@@ -28,6 +25,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
