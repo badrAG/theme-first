@@ -51,7 +51,7 @@
             this.iframe.style.width  =  this.iframe.contentWindow.document.body.scrollWidth + 'px';
           },
         seo() {
-          let headTags = {
+          const headTags = {
             title: this.settings ? this.settings.store_name+'-Account' : "Online-Store-Account",
             meta: [
                 { hid: "og:description",   property: "og:description", content: this.settings ? this.settings.store_description + " account":'description account' },

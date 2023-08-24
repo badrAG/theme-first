@@ -5,7 +5,6 @@ export default async function ({ $axios, store, $tools, app, route }, inject) {
     if(app.context.req && app.context.req.headers && app.context.req.headers.ip) {
       store.state.IP = app.context.req.headers.ip
     }
-    console.log({ env: process.env.NODE_ENV, config: config.env });
     if(config.env == 'production') store.state.baseURL = "https://api-stores.storeino.com/api";
     try{ 
     }catch(e){ 

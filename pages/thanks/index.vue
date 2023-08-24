@@ -38,7 +38,7 @@ export default {
     this.$storeino.fbpx('Purchase');
     this.$tools.call('PAGE_VIEW');
     if (this.$route.query.pixel) {
-      let pixelData = JSON.parse(this.$route.query.pixel);
+      const pixelData = JSON.parse(this.$route.query.pixel);
       window.snapPurchase({
             price: pixelData.total,
             click_id:this.$route.query.ScCid ? this.$route.query.ScCid  : null,

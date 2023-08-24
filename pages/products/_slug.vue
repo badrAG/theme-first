@@ -327,7 +327,7 @@
                 // Set default quantity
                 this.quantitySelected(this.quantity.default);
                 // Generate share urls
-                let url = `https://${this.$store.state.domain}/posts/${slug}`;
+                const url = `https://${this.$store.state.domain}/posts/${slug}`;
                 for (const button of this.socialMedia) {
                     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
                 }

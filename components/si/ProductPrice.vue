@@ -5,16 +5,16 @@
         <!-- priceCurrency  -->
         <!-- home  price -->
         <div v-if="page=='home-price'">
-            <div class="home-prices" v-if="price && price.salePrice && price.comparePrice">
+            <div class="home-prices" v-if="price">
                 <!-- sale price -->
                 <span class="home-price" v-if="type=='simple'">
                     <!-- meta tag -->
                     <meta itemprop="price" :content="price.salePrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg text-md font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg text-md">{{ `${price.salePrice}${$store.state.currency.symbol}` }} </span>
                     <span class="mx-0.5"></span>
                     <span v-if="price.comparePrice > 0">
-                        <del class="products-delprice-text-bg text-md font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+                        <del class="font-normal products-delprice-text-bg text-md"> {{ `${price.comparePrice}${$store.state.currency.symbol}` }} </del>
                     </span>
                 </span>
                 <!-- sale price -->
@@ -23,9 +23,9 @@
                     <!-- meta tag -->
                     <meta itemprop="price" :content="minPrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg text-md font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg text-md"> {{ `${minPrice}${$store.state.currency.symbol}` }} </span>
                     <span class="">~</span>
-                    <span class="products-price-text-bg text-md font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-medium products-price-text-bg text-md"> {{ `${maxPrice}${$store.state.currency.symbol}` }} </span>
                 </span>
                 <!-- rugular price -->
                 <!-- buy price -->
@@ -33,10 +33,10 @@
                     <!-- meta tag -->
                     <meta itemprop="price" :content="variants[0].price.salePrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg text-md font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg text-md"> {{ `${variants[0].price.salePrice}${$store.state.currency.symbol}`}} </span>
                     <span class="mx-0.5"></span>
                     <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                        <del class="products-delprice-text-bg text-md font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+                        <del class="font-normal products-delprice-text-bg text-md"> {{ `${variants[0].price.comparePrice}${$store.state.currency.symbol}` }} </del>
                     </span>
                 </span>
                 <!-- buy price -->
@@ -46,16 +46,16 @@
         <!-- home price -->
         <!-- else price -->
         <div v-else>
-            <div class="prices" v-if="price && price.salePrice && price.comparePrice">
+            <div class="prices" v-if="price">
                 <!-- sale price -->
                 <span class="truncate" v-if="type=='simple'">
                     <!-- meta tag -->
                     <meta itemprop="price" :content="price.salePrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg font-bold">{{ price.salePrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg">{{ `${price.salePrice}${$store.state.currency.symbol}`   }}</span>
                     <span class="mx-0.5"></span>
                     <span v-if="price.comparePrice > 0">
-                        <del class="products-delprice-text-bg font-normal">{{ price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+                        <del class="font-normal products-delprice-text-bg">{{ `${price.comparePrice}${$store.state.currency.symbol}` }}</del>
                     </span>
                 </span>
                 <!-- sale price -->
@@ -64,9 +64,9 @@
                     <!-- meta tag -->
                     <meta itemprop="price" :content="minPrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg font-bold">{{ minPrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg"> {{ `${minPrice}${$store.state.currency.symbol}` }} </span>
                     <span class="">~</span>
-                    <span class="products-price-text-bg font-medium">{{ maxPrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-medium products-price-text-bg"> {{ `${maxPrice}${$store.state.currency.symbol}` }} </span>
                 </span>
                 <!-- regular price -->
                 <!-- buy price -->
@@ -74,10 +74,10 @@
                     <!-- meta tag -->
                     <meta itemprop="price" :content="variants[0].price.salePrice" />
                     <!-- meta tag -->
-                    <span class="products-price-text-bg font-bold">{{ variants[0].price.salePrice }} {{ $store.state.currency.symbol }}</span>
+                    <span class="font-bold products-price-text-bg"> {{ `${variants[0].price.salePrice}${$store.state.currency.symbol}` }} </span>
                     <span class="mx-0.5"></span>
                     <span class="relative" v-if="variants[0].price.comparePrice > 0">
-                        <del class="products-delprice-text-bg font-normal">{{ variants[0].price.comparePrice }} {{ $store.state.currency.symbol }}</del>
+                        <del class="font-normal products-delprice-text-bg"> {{ `${variants[0].price.comparePrice}${$store.state.currency.symbol}` }} </del>
                     </span>
                 </span>
                 <!-- buy price -->

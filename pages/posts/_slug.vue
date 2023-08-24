@@ -114,7 +114,7 @@
                 if(this.item.image){ this.$store.state.seo.image = this.item.image.url; }
     
     
-                let url = `https://${this.$store.state.domain}/posts/${slug}`;
+                const url = `https://${this.$store.state.domain}/posts/${slug}`;
                 for (const button of this.socialMedia) {
                     button.url = button.url.replace(/\{title\}/gi, this.item.title).replace(/\{url\}/gi, url);
                 }
