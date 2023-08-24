@@ -160,9 +160,9 @@
                 }
                 switch(key){
                     case 'categories.slug-in': this.param = [...new Set(...this.param, value)];break;
-                    case 'price.salePrice-from': this.query['price-from'] = value;
-                    case 'price.salePrice-to': this.query['price-to'] = value;
-                    case 'options.values.value1': this.query['colors'] = value
+                    case 'price.salePrice-from': this.query['price-from'] = value;break;
+                    case 'price.salePrice-to': this.query['price-to'] = value;break;
+                    case 'options.values.value1': this.query['colors'] = value;break;
                 }
             },
             async getProducts(){

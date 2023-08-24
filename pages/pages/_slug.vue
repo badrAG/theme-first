@@ -68,7 +68,7 @@
                 this.$store.state.seo.description = this.item.excerpt || this.$settings.store_description;
                 if(this.item.image){ this.$store.state.seo.image = this.item.image.url; }
 
-                let url = `https://${this.$store.state.domain}/pages/${slug}`;
+                const url = `https://${this.$store.state.domain}/pages/${slug}`;
                 for (const button of this.socialMedia) {
                     button.url = button.url.replace(/\{title\}/gi, this.item.title).replace(/\{url\}/gi, url);
                 }
