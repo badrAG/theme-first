@@ -34,8 +34,10 @@ export default {
     };
   },
   mounted() {
+    // facebook events
     this.$storeino.fbpx('PageView');
     this.$storeino.fbpx('Purchase');
+    // snapchat events
     this.$tools.call('PAGE_VIEW');
     if (this.$route.query.pixel) {
       const pixelData = JSON.parse(this.$route.query.pixel);
