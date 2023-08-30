@@ -40,11 +40,16 @@ export default async function ({ $http, store, app, route }, inject) {
         return $http.get('/products/filters', { params });
     }
 
-    storeino.fbpx = async function(ev, data = {},params = {}){
-        if (ev == "Purchase" && !route.query.pixel && !data.currency) return 0;
-        else if ( ev == "Purchase" && route.query.pixel) {
-            let pixelData = JSON.parse(route.query.pixel);
-            pixelData.contents.forEach((element) => {
+    // Fb events
+    storeino.fbpx = async function(ev, data = {}, params = {}) {
+        const { query } = route;
+        const { settings, currency } = store.state;
+    
+        if (ev === "Purchase" && (!query.pixel || !data.currency)) {
+            return 0;
+        } else if (ev === "Purchase" && query.pixel) {
+            const pixelData = JSON.parse(query.pixel);
+            pixelData.contents.forEach(element => {
                 element.quantity = Math.round(element.quantity);
                 delete element._id;
                 delete element.variant;
@@ -55,48 +60,118 @@ export default async function ({ $http, store, app, route }, inject) {
                 content_type: "product",
                 contents: pixelData.contents,
                 value: pixelData.total,
-                currency: (store.state.currency && store.state.currency.code) ? store.state.currency.code : "USD"
+                currency: currency && currency.code ? currency.code : "USD"
             };
-            if(pixelData.fbParams) params =  pixelData.fbParams;
+            if (pixelData.fbParams) params = pixelData.fbParams;
         }
-
-        if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0){
-        let query = { name: "fbpx", type: ev, ref: window.location.href };
-        if (params) { for (const key in params) { query[key] = params[key];} }
-        if (localStorage.getItem('__external_id')) query['user_external_id'] = localStorage.getItem('__external_id');
-        if (localStorage.getItem('__fbc')) query['user_fbc'] = localStorage.getItem('__fbc');
-        
-        if (data.currency) {
-            let valueCur = 1 ;
-            if (store.state.settings['facebook_currency'] && store.state.settings.facebook_currency[data.currency] && store.state.settings.facebook_currency[data.currency] != 0) {
-            valueCur = store.state.settings.facebook_currency[data.currency];
+    
+        if (!store.state.isPreview && settings.facebook_multiple_pixel && settings.facebook_multiple_pixel.length > 0) {
+            const query = { name: "fbpx", type: ev, ref: window.location.href };
+            Object.assign(query, params);
+    
+            if (localStorage.getItem('__external_id')) {
+                query.user_external_id = localStorage.getItem('__external_id');
             }
-            data.currency = 'USD';
-            data.value = Number(data.value) / valueCur;
-        }
-        if (ev == "Purchase") {
-            store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-            if (pixel.active && !pixel.token) {
-                if (pixel.type && pixel.type == "Lead") fbq("trackSingle", pixel.id, 'Lead', data);
-                else fbq("trackSingle", pixel.id, 'Purchase', data);
+            if (localStorage.getItem('__fbc')) {
+                query.user_fbc = localStorage.getItem('__fbc');
             }
-            });
-        }else{
-            store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+    
+            if (data.currency) {
+                const valueCur = settings.facebook_currency && settings.facebook_currency[data.currency] && settings.facebook_currency[data.currency] !== 0
+                    ? settings.facebook_currency[data.currency]
+                    : 1;
+                data.currency = 'USD';
+                data.value = Number(data.value) / valueCur;
+            }
+    
+            const trackEvent = ev === "Purchase" ? "Purchase" : ev;
+    
+            settings.facebook_multiple_pixel.forEach(pixel => {
                 if (pixel.active && !pixel.token) {
-                    fbq("trackSingle", pixel.id, ev, data);
+                    const event = pixel.type === "Lead" ? 'Lead' : trackEvent;
+                    fbq("trackSingle", pixel.id, event, data);
                 }
             });
-        }
-        
-
-        let exits = false;
-        store.state.settings['facebook_multiple_pixel'].forEach(p => { if (p.active && p.token) exits = true;  });
-        if (exits) {
-            await $http.post(`/events/create`, data,{ params:query });
-        }
+    
+            const exits = settings.facebook_multiple_pixel.some(p => p.active && p.token);
+            if (exits) {
+                await $http.post(`/events/create`, data, { params: query });
+            }
         }
     }
+    
+    // storeino.fbpx = async function(ev, data = {},params = {}){
+    //     if (ev == "Purchase" && !route.query.pixel && !data.currency) {
+    //         return 0;
+    //     }
+    //     else if ( ev == "Purchase" && route.query.pixel) {
+    //         let pixelData = JSON.parse(route.query.pixel);
+    //         pixelData.contents.forEach((element) => {
+    //             element.quantity = Math.round(element.quantity);
+    //             delete element._id;
+    //             delete element.variant;
+    //             delete element.name;
+    //         });
+    //         data = {
+    //             content_ids: pixelData.content_ids,
+    //             content_type: "product",
+    //             contents: pixelData.contents,
+    //             value: pixelData.total,
+    //             currency: (store.state.currency && store.state.currency.code) ? store.state.currency.code : "USD"
+    //         };
+    //         if(pixelData.fbParams) params =  pixelData.fbParams;
+    //     }
+
+    //     if(!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0) {
+    //         let query = { name: "fbpx", type: ev, ref: window.location.href };
+    //         if (params) { 
+    //             for (const key in params) { 
+    //                 query[key] = params[key];
+    //             } 
+    //         }
+    //         if (localStorage.getItem('__external_id')) {
+    //             query['user_external_id'] = localStorage.getItem('__external_id');
+    //         } 
+    //         if (localStorage.getItem('__fbc')) {
+    //             query['user_fbc'] = localStorage.getItem('__fbc');
+    //         } 
+        
+    //         if (data.currency) {
+    //             let valueCur = 1 ;
+    //             if (store.state.settings['facebook_currency'] && store.state.settings.facebook_currency[data.currency] && store.state.settings.facebook_currency[data.currency] != 0) {
+    //                 valueCur = store.state.settings.facebook_currency[data.currency];
+    //             }
+    //             data.currency = 'USD';
+    //             data.value = Number(data.value) / valueCur;
+    //         }
+
+    //         if (ev == "Purchase") {
+    //             store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+    //                 if (pixel.active && !pixel.token) {
+    //                     if (pixel.type && pixel.type == "Lead") {
+    //                         fbq("trackSingle", pixel.id, 'Lead', data);
+    //                     } 
+    //                     else {
+    //                         fbq("trackSingle", pixel.id, 'Purchase', data);
+    //                     } 
+    //                 }
+    //             });
+    //         }else{
+    //             store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+    //                 if (pixel.active && !pixel.token) {
+    //                     fbq("trackSingle", pixel.id, ev, data);
+    //                 }
+    //             });
+    //         }
+    //         let exits = false;
+    //         store.state.settings['facebook_multiple_pixel'].forEach(p => { 
+    //             if (p.active && p.token) exits = true;  }
+    //         );
+    //         if (exits) {
+    //             await $http.post(`/events/create`, data,{ params:query });
+    //         }
+    //     }
+    // }
 
     inject('storeino', storeino);
 }
