@@ -138,7 +138,6 @@ export default {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: this.$settings.store_favicon ? this.$settings.store_favicon.src : this.$store.state.defaults.icon },
                 { rel: "dns-prefetch", href: 'https://storeno.b-cdn.net/stores/' },
-                ...this.otherLinks
             ],
             htmlAttrs: {
                 lang: this.$store.state.language.code,
@@ -169,9 +168,7 @@ export default {
             services_rgb: { r: 0, g: 130, b: 70 },
             services_text_rgb: { r: 0, g: 130, b: 70 },
             hover_rgb: { r: 0, g: 130, b: 70 },
-            hover_text_rgb: { r: 0, g: 130, b: 70 },
-            otherLinks: [
-                ]
+            hover_text_rgb: { r: 0, g: 130, b: 70 }
         }
     },
     async fetch(){
@@ -202,13 +199,6 @@ export default {
         this.services_text_rgb = this.$tools.hexToRgb(this.$settings.style.services.text_color);
         this.hover_rgb = this.$tools.hexToRgb(this.$settings.style.hover.color);
         this.hover_text_rgb = this.$tools.hexToRgb(this.$settings.style.hover.text_color);
-        if(this.$store.state.language.code == 'AR'){
-            this.otherLinks = [
-                { rel: "preconnect", href: 'https://fonts.googleapis.com' },
-                { rel: "preconnect", href: 'https://fonts.gstatic.com', crossorigin: true },
-                { rel: "stylesheet", href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&display=swap' }
-            ]
-        }
     },
 }
 </script>
