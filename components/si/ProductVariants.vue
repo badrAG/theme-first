@@ -1,9 +1,9 @@
 <template>
     <div class="options">
         <div v-for="(option, i) in options" :key="i" :class="option.key">
-            <b class="capitalize option-name flex text-md font-normal">{{ option.name }}</b>
+            <b class="flex font-normal capitalize option-name text-md">{{ option.name }}</b>
 
-            <div class="overflow-x-auto scroll py-2 px-1">
+            <div class="px-1 py-2 overflow-x-auto scroll">
                 <!--  -->
                 <div v-if="!option.hasOwnProperty('style') || option.style == '' || option.style == null  || (option.style !== 'LIST' && option.style !== 'CHECK' && option.style !== 'RADIO') && (option.key !== 'color' && option.style == 'SIZE') || (option.key == 'color' && option.style == 'COLOR') " class="options-list">
                     <div v-for="(val, ii) in option.values" :key="ii" class="option mr-f-2">
@@ -365,6 +365,10 @@ export default {
   margin-right: 17px;
 }
 
+    .list-radio {
+        flex-direction: column;
+    }
+  
   .list-checkbox-colors,
   .list-radio{
     display: flex;
