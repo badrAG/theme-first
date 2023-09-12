@@ -43,12 +43,21 @@ export default {
       Oswald: [400]
     }
   },
-
   modules: [
+    '@nuxtjs/sentry',
     '@nuxt/image',
     '@nuxtjs/axios',
     '@nuxtjs/fontawesome'
   ],
+  sentry: {
+    dsn: 'https://223d984c7563639c19a86ba3e0947172@logs.storeino.com/9',
+    config: {
+      debug: true
+    },
+    clientConfig: {
+      dsn: 'https://223d984c7563639c19a86ba3e0947172@logs.storeino.com/9'
+    }
+  },
   fontawesome: {
     component: 'fa',
     icons: {

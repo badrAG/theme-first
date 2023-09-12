@@ -84,8 +84,8 @@ export default {
       try {
         const { data } = await this.$storeino.products.search(params);
         this.products[index] = data.results;
-      } catch (e) {
-        console.log({e});
+      } catch (err) {
+        this.$sentry.captureException(err);
       }
       this.loading.products = false;
     },
@@ -100,8 +100,8 @@ export default {
           const { data } = await this.$storeino.collections.search(filter);
           this.collections = data.results;
         }
-      } catch (e) {
-        console.log({e});
+      } catch (err) {
+        this.$sentry.captureException(err);
       }
       this.loading.collections = false;
     },

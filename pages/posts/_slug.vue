@@ -119,8 +119,8 @@
                     button.url = button.url.replace(/\{title\}/gi, this.item.title).replace(/\{url\}/gi, url);
                 }
                 this.loading = false;
-            }catch(e){
-                console.log({e});
+            }catch(err){
+                this.$sentry.captureException(err);
                 this.$nuxt.error({ statusCode: 404, message: 'post_not_found' })
             }
         },

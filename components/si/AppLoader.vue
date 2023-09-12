@@ -39,7 +39,7 @@ export default {
           js = js.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);
           app[`loaded_${uid}`] = { manifest, html, css, js };
         } catch (err) {
-          console.log({err});
+          this.$sentry.captureException(err);
         }
       }
       const html = document.createElement(`div`);

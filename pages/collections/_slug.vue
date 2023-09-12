@@ -46,8 +46,8 @@
                 this.item = data;
                 const { data : { results } } = await this.$storeino.collections.search({ parent: data._id });
                 this.items = results;
-            }catch(e){
-                console.log({e});
+            }catch(err){
+                this.$sentry.captureException(err);
             }
             this.loading = false;
         },

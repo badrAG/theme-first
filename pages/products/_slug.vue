@@ -345,7 +345,7 @@
                 }
 
             }catch(err){
-                console.log({err});
+                this.$sentry.captureException(err);
                 this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
             }
         },

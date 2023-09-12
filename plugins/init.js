@@ -62,8 +62,8 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
         app.loaded = loaded;
         store.state.apps.push(app);
       }
-    } catch (e) {
-      console.log({ e });
+    } catch (err) {
+      this.$sentry.captureException(err);
     }
   } else {
     // client side
@@ -348,7 +348,7 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
             store.state.showCurrencyModal = true;
           }
         } catch (err) {
-          console.log({ err });
+          this.$sentry.captureException(err);
         }
       })();
     }
