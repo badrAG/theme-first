@@ -1,8 +1,12 @@
 <template>
-    <div class="flex justify-center items-center fixed z-50 inset-0 md:p-10 p-5" v-if="$store.state.fullImage">
-        <div @click="$store.state.fullImage=null" class="bg-black absolute inset-0 bg-opacity-60"></div>
-            <si-image class="zooom relative md:h-full w-full md:w-auto z-10 object-contain bg-white rounded-xl shadow cursor-pointer" :src="$store.state.fullImage" :alt="`Full screen image`"/>
-        <button @click="$store.state.fullImage=null" class="absolute top-0 z-20 right-0 m-2 bg-white rounded-full shadow-lg w-12 h-12 px-2 flex items-center justify-center transition ease-linear delay-200 scale hover-bg"><fa class="text-xl"  :icon="['fa', 'xmark']"></fa></button>
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-5 md:p-10" v-if="$store.state.fullImage">
+        <div @click="$store.state.fullImage=null" class="absolute inset-0 bg-black bg-opacity-60"></div>
+            <si-image class="relative z-10 object-contain w-full bg-white shadow cursor-pointer zooom md:h-full md:w-auto rounded-xl" :src="$store.state.fullImage" :alt="`Full screen image`"/>
+        <button @click="$store.state.fullImage=null" class="absolute top-0 right-0 z-20 flex items-center justify-center w-12 h-12 px-2 m-2 transition ease-linear delay-200 bg-white rounded-full shadow-lg scale hover-bg">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
 </template>
 

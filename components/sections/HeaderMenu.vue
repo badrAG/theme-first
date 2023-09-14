@@ -1,19 +1,19 @@
 <template>
-    <div class="flex fixed inset-0 z-20" v-if="show">
+    <div class="fixed inset-0 z-20 flex" v-if="show">
         <!-- sliderleft shadow -->
-        <div v-if="$store.state.showHeaderMenu" :class="$store.state.showHeaderMenu? 'opacity-50' : 'opacity-0'" class="flex transition-all delay-500 fixed inset-0 bg-black" @click="$store.state.showHeaderMenu=false"></div>
+        <div v-if="$store.state.showHeaderMenu" :class="$store.state.showHeaderMenu? 'opacity-50' : 'opacity-0'" class="fixed inset-0 flex transition-all delay-500 bg-black" @click="$store.state.showHeaderMenu=false"></div>
         <!-- sliderleft shadow  -->
         <!-- Slide left  -->
         <transition name="slide-left">
-                <div :class="$store.state.showHeaderMenu ? 'block':'hidden'" class="header-menu transition-all delay-500 max-w-full relative flex flex-col w-80 header-bg header-text-color">
+                <div :class="$store.state.showHeaderMenu ? 'block':'hidden'" class="relative flex flex-col max-w-full transition-all delay-500 header-menu w-80 header-bg header-text-color">
                     <!-- close slider left botton -->
-                    <div class="w-full flex items-center justify-between py-2"> 
+                    <div class="flex items-center justify-between w-full py-2"> 
                         <div class="px-4">
                             <router-link to="/">
-                                <si-image width="70" height="50" property="height" class="h-8 w-full object-contain" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
+                                <si-image width="70" height="50" property="height" class="object-contain w-full h-8" :src="section.logo ? section.logo.src : $store.state.defaults.logo" alt="Store logo"/>
                             </router-link>
                         </div>
-                        <button @click="$store.state.showHeaderMenu=false" aria-label="Close button" class="item p-3 rounded-full m-1 transition-all ease-in-out delay-150 hover-bg">
+                        <button @click="$store.state.showHeaderMenu=false" aria-label="Close button" class="p-3 m-1 transition-all ease-in-out delay-150 rounded-full item hover-bg">
                             <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-6 h-6 translate"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
                         </button>
                     </div>
@@ -25,25 +25,29 @@
                                 <div class="px-4 py-2">
                                     <router-link class="text-base font-bold hover:underline" :to="item.url">{{ item.text }}</router-link>
                                 </div>
-                                <button class="mx-1 px-3 transition-all ease-in-out delay-150 hover-bg rounded-full" >
-                                  <fa class="text-sm transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                <button class="px-3 mx-1 transition-all ease-in-out delay-150 rounded-full hover-bg" >
+                                    <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none"  v-if="item.childrens && item.childrens.length > 0" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] ">
+                                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </button>
                             </li>
                             <transition name="slide">
                             <div v-if="item._id == activeId">
                                 <div v-for="(item,i) in item.childrens" :key="i" class="py-2">
                                     <div class="flex items-center justify-between">
-                                        <router-link class="text-base font-normal hover:underline px-4" :to="item.url">
+                                        <router-link class="px-4 text-base font-normal hover:underline" :to="item.url">
                                             {{item.text}}
                                         </router-link>
-                                        <button class="mx-1 px-3 hover-bg rounded-full transition-all ease-linear delay-200" @click="subItems = subItems != item.collectionId ? item.collectionId : null">
-                                            <fa class="text-sm transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[subItems==item.collectionId ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                        <button class="px-3 mx-1 transition-all ease-linear delay-200 rounded-full hover-bg" @click="subItems = subItems != item.collectionId ? item.collectionId : null">
+                                            <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" v-if="item.childrens && item.childrens.length > 0" :class="[subItems==item.collectionId ? 'rotate-180 transition-all delay-150 ease-linear' : '']">
+                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
                                         </button>
                                     </div>
                                     <transition name="slide">
                                         <div v-if="item.collectionId == subItems"> 
                                             <ul v-if="item.childrens && item.childrens.length > 0">
-                                                <li class="pt-4 px-4" v-for="(child,ii) in item.childrens" :key="ii">
+                                                <li class="px-4 pt-4" v-for="(child,ii) in item.childrens" :key="ii">
                                                     <nuxt-link  class="text-base font-normal hover:underline" :to="child.url">
                                                         {{ child.text }}
                                                     </nuxt-link>
@@ -62,15 +66,17 @@
                         <ul v-for="(item, i) in otherMenu" :key="i" class="flex flex-col">
                             <li @click="activeId = activeId != item._id ? item._id : null" class="flex items-center justify-between">
                                 <div class="px-4 py-2">
-                                    <a class="text-base font-bold hover:underline cursor-pointer" :href="item.url">{{ item.text }}</a>
+                                    <a class="text-base font-bold cursor-pointer hover:underline" :href="item.url">{{ item.text }}</a>
                                 </div>
-                                <button class="mx-1 px-3 transition-all ease-in-out delay-150 hover-bg rounded-full">
-                                  <fa class="text-sm transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                <button class="px-3 mx-1 transition-all ease-in-out delay-150 rounded-full hover-bg">
+                                    <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" v-if="item.childrens && item.childrens.length > 0" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : '']" >
+                                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </button>
                             </li>
                             <transition name="slide">
                             <div v-if="item._id == activeId">
-                                <div v-for="(item,i) in item.childrens" :key="i"  class=" px-4 py-2">
+                                <div v-for="(item,i) in item.childrens" :key="i"  class="px-4 py-2 ">
                                     <a class="text-base font-normal hover:underline" :href="item.url">{{item.text}}</a>
                                     <ul  v-if="item.childrens && item.childrens.length > 0">
                                         <li class="px-3 pt-4" v-for="(child,ii) in item.childrens" :key="ii">

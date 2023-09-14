@@ -1,25 +1,27 @@
 [dir="rtl"] body {
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 body {
-  font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans", Arial, sans-serif;
+  font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans",
+    Arial, sans-serif;
 }
 
 .guard-cairo-font {
-  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria,
+    "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
 [dir="rtl"] .guard-cairo-font {
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .text-gr {
-  color: #595959
+  color: #595959;
 }
 
 .text-bl {
-  color: #222
+  color: #222;
 }
 
 .text-red {
@@ -36,7 +38,7 @@ body {
 }
 
 .links-hover::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 1.5px;
@@ -46,7 +48,7 @@ body {
   left: 0;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform .3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .links-hover:hover::before {
@@ -58,17 +60,17 @@ body {
   font-size: 13px;
 }
 
-@media (min-width:0px) and (max-width:768px) {
+@media (min-width: 0px) and (max-width: 768px) {
   .align-center {
     text-align: center;
   }
 }
 
-​[dir='rtl'] svg.translate {
+​[dir="rtl"] svg.translate {
   transform: rotateY(180deg);
 }
 
-[dir='rtl'] .icon.translate {
+[dir="rtl"] .icon.translate {
   transform: rotateY(180deg);
 }
 
@@ -95,7 +97,7 @@ body {
 }
 
 .box-shadow-hover {
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .box-shadow-hover:hover {
@@ -107,7 +109,7 @@ body {
 }
 
 .box-shadow-x-hover {
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .box-shadow-x-hover:hover {
@@ -119,7 +121,7 @@ body {
 }
 
 .box-shadow-xs-hover {
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .box-shadow-xs-hover:hover {
@@ -131,7 +133,7 @@ body {
 }
 
 .scale {
-  transition: .1s ease;
+  transition: 0.1s ease;
 }
 
 .scale:hover {
@@ -181,7 +183,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -203,11 +205,11 @@ h4 {
 }
 
 h5 {
-  font-size: .83em;
+  font-size: 0.83em;
 }
 
 h6 {
-  font-size: .67em;
+  font-size: 0.67em;
 }
 
 .two-lines {
@@ -243,7 +245,7 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  transition: .5s;
+  transition: 0.5s;
   animation: widthToZero 4s linear;
 }
 
@@ -335,7 +337,7 @@ body {
   padding: 50%;
   border-radius: 50%;
   background-color: #fff;
-  content: '';
+  content: "";
   transition: transform 1s, opacity 1s;
 }
 
@@ -354,7 +356,7 @@ body {
   padding: 50%;
   border-radius: 50%;
   background-color: #fff;
-  content: '';
+  content: "";
   transition: transform 2s, opacity 2s;
 }
 

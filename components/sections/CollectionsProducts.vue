@@ -16,7 +16,9 @@
               <div class="flex items-center">
                 <h2 class="text-sm font-bold products-collections-name lg:text-base" :title="getFormattedCollectionName(collection.name)">{{ getFormattedCollectionName(collection.name) }}</h2>
                 <span class="w-2"></span>
-                <fa class="text-sm icon lg:text-base text-primary translate" :icon="['fa', 'arrow-right']"></fa>
+                <svg class="h-4 w-4 icon lg:h-5 lg:w-5 text-primary translate" xmlns="http://www.w3.org/2000/svg" width="20px" height="200px" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
               <span class="font-medium text-md text-gr">{{ getProductsCount(index) }} {{ $settings.sections.collections_products.items_title }}</span>
             </div>

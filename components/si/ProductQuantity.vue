@@ -1,20 +1,28 @@
 <template>
     <div class="flex items-center justify-center">
-        <div class="flex justify-between border box-shadow rounded-lg box-shadow hover:border-gray-400" :class="page=='product'? 'w-full' : ''">
+        <div class="flex justify-between border rounded-lg box-shadow hover:border-gray-400" :class="page=='product'? 'w-full' : ''">
             <div class="flex">                 
-                <label class="relative border-black h-full" :class="page=='product'? 'py-3' : 'py-1.5 md:py-2.5'" >
-                    <span class="text-base font-normal py-2 md:py-4 px-3 md:px-5 text-center ">{{ value }}</span>
-                    <input :min="quantity.min" :max="quantity.max" class="text-base font-normal rounded-lg px-2 text-center absolute outline-none inset-0 bg-opacity-0 w-full h-full" v-model="value" type="number">
+                <label class="relative h-full border-black" :class="page=='product'? 'py-3' : 'py-1.5 md:py-2.5'" >
+                    <span class="px-3 py-2 text-base font-normal text-center md:py-4 md:px-5 ">{{ value }}</span>
+                    <input :min="quantity.min" :max="quantity.max" class="absolute inset-0 w-full h-full px-2 text-base font-normal text-center bg-opacity-0 rounded-lg outline-none" v-model="value" type="number">
                 </label>
                 <span class="text-base font-normal opacity-95" v-if="quantity.unit" :class="page=='product'? 'flex items-center' : 'hidden'">{{ quantity.unit }}</span>
             </div>
             <div class="flex">
                 <!--  -->
-                <button @click="inc(-1)" class="munus-button text-black  hover:opacity-90 text-base font-normal"  :class="[(value > quantity.min? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]" ><fa class="text-xs transform" :icon="['fa', 'minus']" ></fa></button>
+                <button @click="inc(-1)" class="text-base font-normal text-black munus-button hover:opacity-90"  :class="[(value > quantity.min? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]" >
+                    <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 12L18 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
                 <!--  -->
                 <span class="w-px"></span>
                 <!--  -->
-                <button @click="inc(1)" class="plus-button text-black  rounded-r-lg hover:opacity-90 text-base font-normal" :class="[(value < quantity.instock ? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]"><fa class="text-xs transform" :icon="['fa', 'plus']" ></fa></button>
+                <button @click="inc(1)" class="text-base font-normal text-black rounded-r-lg plus-button hover:opacity-90" :class="[(value < quantity.instock ? 'bg-primary text-white' : ''),(page=='product'?'px-5':'px-2 md:px-3')]">
+                    <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 12H18M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
                 <!--  -->
             </div>
         </div>

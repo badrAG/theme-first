@@ -28,7 +28,7 @@
                         <form @submit.prevent="search" class="flex items-center bg-gray-100 border-2 rounded-full focus:bg-white header-bg-border" action="/shop?">
                             <input  v-model="q" class="flex items-center w-full px-4 py-2 text-base bg-transparent rounded-l-full outline-none b1 focus:bg-white" :placeholder="$settings.sections.header.search.text" type="search" name="q">
                             <button class="flex items-center px-4 py-3 transition-all ease-in-out delay-150 rounded-r-full b2" aria-label="Search button">
-                                <fa class="text-lg icon header-text-color"  :icon="['fa', 'magnifying-glass']"></fa>
+                                <svg class="w-6 h-6 icon header-text-color" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18ZM10,4a6,6,0,1,0,6,6A6.007,6.007,0,0,0,10,4Z" fill="currentColor"></path><path d="M21,22a1,1,0,0,1-.707-0.293l-4-4a1,1,0,0,1,1.414-1.414l4,4A1,1,0,0,1,21,22Z" fill="currentColor"></path></svg>
                             </button>
                         </form>
                     </div>
@@ -46,23 +46,25 @@
                                 <a class="flex items-center p-2" :href="item.url">
                                     <div class="mx-1 text-sm font-bold">{{ item.text }}</div>
                                     <button>
-                                        <fa class="text-xs transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                        <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" v-if="item.childrens && item.childrens.length > 0" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] ">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
                                     </button>
                                 </a>
                             </li>
                             <transition name="slide">
-                              <div class="absolute z-20 w-24 p-2 border shadow-lg top-full header-bg" :class="menu? 'top-10.5' : 'top-3'" v-if="item._id == activeId">
-                                  <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
-                                      <a class="text-sm font-normal hover:underline" :href="item.url">{{item.text}}</a>
-                                      <ul v-if="item.childrens && item.childrens.length > 0">
-                                          <li class="px-2 pt-1" v-for="(child,ii) in item.childrens" :key="ii">
-                                              <a class="text-sm font-normal hover:underline" :href="child.url">
-                                                  > {{ child.text }}
-                                              </a>
-                                          </li>
-                                      </ul>
-                                  </div>
-                              </div>
+                                <div class="absolute z-20 w-24 p-2 border shadow-lg top-full header-bg" :class="menu? 'top-10.5' : 'top-3'" v-if="item._id == activeId">
+                                    <div class="pb-1" v-for="(item,i) in item.childrens" :key="i" >
+                                        <a class="text-sm font-normal hover:underline" :href="item.url">{{item.text}}</a>
+                                        <ul v-if="item.childrens && item.childrens.length > 0">
+                                            <li class="px-2 pt-1" v-for="(child,ii) in item.childrens" :key="ii">
+                                                <a class="text-sm font-normal hover:underline" :href="child.url">
+                                                    > {{ child.text }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </transition>
                             </ul>
                         </div>
@@ -98,7 +100,9 @@
                                 <span class="whitespace-nowrap">{{ item.text }}</span>
                             </router-link>
                             <button v-if="item.childrens.length > 0" class="ml-1 chivron"  @click="activeId = activeId != item._id ? item._id : null">
-                                <fa class="text-xs transform" v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" v-if="item.childrens && item.childrens.length > 0" :class="[activeId==item._id ? 'rotate-180 transition-all delay-150 ease-linear' : ''] ">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </button>
                         </li>
                         <transition name="slide">
@@ -109,7 +113,9 @@
                                             {{item.text}}
                                         </router-link>
                                         <button class="" @click="subItems = subItems != item.collectionId ? item.collectionId : null">
-                                            <fa class="text-xs transform " v-if="item.childrens && item.childrens.length > 0"  :icon="['fa', 'angle-down']" :class="[subItems==item.collectionId ? 'rotate-180 transition-all delay-150 ease-linear' : ''] "></fa>
+                                            <svg class="w-5 h-5 transform" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" v-if="item.childrens && item.childrens.length > 0" :class="[subItems==item.collectionId ? 'rotate-180 transition-all delay-150 ease-linear' : ''] ">
+                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
                                         </button>
                                     </div>
                                     <transition name="slide">
