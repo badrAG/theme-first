@@ -1,5 +1,8 @@
 <template>
   <div class="home-page">
+    <div class="after-home-header">
+      <si-app-loader placement="AFTER_HOME_HEADER"/>
+    </div>
     <sections-top-collections class="home-top-collections" v-if="$settings.sections.top_collections.active"></sections-top-collections>
     <sections-products :class="`home-products-${1}`" :key="1" :data-key="1" v-if="$settings.sections[`products_${1}`].active" :section="$settings.sections[`products_${1}`]"></sections-products>
     <sections-center-collections class="home-center-collections" v-if="$settings.sections.center_collections.active"></sections-center-collections>
