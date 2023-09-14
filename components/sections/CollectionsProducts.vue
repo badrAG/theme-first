@@ -16,7 +16,7 @@
               <div class="flex items-center">
                 <h2 class="text-sm font-bold products-collections-name lg:text-base" :title="getFormattedCollectionName(collection.name)">{{ getFormattedCollectionName(collection.name) }}</h2>
                 <span class="w-2"></span>
-                <svg class="h-4 w-4 icon lg:h-5 lg:w-5 text-primary translate" xmlns="http://www.w3.org/2000/svg" width="20px" height="200px" viewBox="0 0 24 24" fill="none">
+                <svg class="w-4 h-4 icon lg:h-5 lg:w-5 text-primary translate" xmlns="http://www.w3.org/2000/svg" width="20px" height="200px" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
@@ -65,7 +65,7 @@ export default {
         collections: true,
         products: true,
       },
-      products: [[],[],[],[]],
+      products: [[], [], [], []],
       collections: [],
     };
   },
@@ -124,46 +124,48 @@ export default {
         return 0;
       }
     },
-  },  
+  },
 };
 </script>
 
 <style scoped>
-  .image-box .image:nth-child(4n-3) ,
-  .image-box .image:nth-child(4n-1) {
-  padding-right:2px;
-  }
+.image-box .image:nth-child(4n-3),
+.image-box .image:nth-child(4n-1) {
+  padding-right: 2px;
+}
 
-  [dir="rtl"] .image-box .image:nth-child(4n-3) ,
-  [dir="rtl"] .image-box .image:nth-child(4n-1) {
-  padding-right:0px;
-  padding-left:2px;
-  }
+[dir="rtl"] .image-box .image:nth-child(4n-3),
+[dir="rtl"] .image-box .image:nth-child(4n-1) {
+  padding-right: 0px;
+  padding-left: 2px;
+}
 
-  .image-box .image:nth-child(4n-2) ,
-  .image-box .image:nth-child(4n-0) {
-  padding-left:2px;
-  }
+.image-box .image:nth-child(4n-2),
+.image-box .image:nth-child(4n-0) {
+  padding-left: 2px;
+}
 
-  [dir="rtl"] .image-box .image:nth-child(4n-2) ,
-  [dir="rtl"] .image-box .image:nth-child(4n-0) {
-  padding-left:0px;
-  padding-right:2px;
-  }
-  .image-box .image:nth-child(4n-1) ,
-  .image-box .image:nth-child(4n-0) {
-  padding-top:4px;
-  }
+[dir="rtl"] .image-box .image:nth-child(4n-2),
+[dir="rtl"] .image-box .image:nth-child(4n-0) {
+  padding-left: 0px;
+  padding-right: 2px;
+}
 
-  .icon {
-  transition: margin  .5s;
-  }
-  .icon-box:hover .icon {
-    margin-left: 6px;
-  }
+.image-box .image:nth-child(4n-1),
+.image-box .image:nth-child(4n-0) {
+  padding-top: 4px;
+}
 
-  [dir="rtl"] .icon-box:hover .icon {
-    margin-left: 0px;
-    margin-right: 6px;
-  }
+.icon {
+  transition: margin .5s;
+}
+
+.icon-box:hover .icon {
+  margin-left: 6px;
+}
+
+[dir="rtl"] .icon-box:hover .icon {
+  margin-left: 0px;
+  margin-right: 6px;
+}
 </style>

@@ -140,141 +140,143 @@
         <si-app-loader placement="AFTER_HEADER"/>
     </div>
 </template>
+
 <script>
-    export default {
-        data() {
-            return {
-                subItems:null,
-                activeId: null,
-                showSearch: false,
-                iconMenu: null,
-                q: this.$route.query.search,
-                section: this.$settings.sections.header,
-                menu: this.$settings.sections.header.menu,
-                otherMenu: [
-                        {
-                            _id: "lang",
-                            text: this.$store.state.language.code,
-                            active: this.$settings.sections.header.icons.language,
-                            childrens: this.$settings.store_languages.map(l=> {
-                                return {
-                                    _id: l.code,
-                                    text: l.name,
-                                    url: `?lang=${l.code}`
-                                }
-                            })
-                        },
-                        {
-                            _id: "currency",
-                            text: this.$store.state.currency.code,
-                            active: this.$settings.sections.header.icons.currency,
-                            childrens: this.$settings.store_currencies.map(c=> {
-                                return {
-                                    _id: c.code,
-                                    text: c.name,
-                                    url: `?cur=${c.code}`
-                                }
-                            })
+export default {
+    data() {
+        return {
+            subItems: null,
+            activeId: null,
+            showSearch: false,
+            iconMenu: null,
+            q: this.$route.query.search,
+            section: this.$settings.sections.header,
+            menu: this.$settings.sections.header.menu,
+            otherMenu: [
+                {
+                    _id: "lang",
+                    text: this.$store.state.language.code,
+                    active: this.$settings.sections.header.icons.language,
+                    childrens: this.$settings.store_languages.map(l => {
+                        return {
+                            _id: l.code,
+                            text: l.name,
+                            url: `?lang=${l.code}`
                         }
-                    ].filter(item=> item.active)
-            }
-        },
-        watch: {
-            showSearch(val) {
-                if (val) {
-                    this.$nextTick(()=>{
-                        document.querySelector('form.search input').focus();
+                    })
+                },
+                {
+                    _id: "currency",
+                    text: this.$store.state.currency.code,
+                    active: this.$settings.sections.header.icons.currency,
+                    childrens: this.$settings.store_currencies.map(c => {
+                        return {
+                            _id: c.code,
+                            text: c.name,
+                            url: `?cur=${c.code}`
+                        }
                     })
                 }
+            ].filter(item => item.active)
+        }
+    },
+    watch: {
+        showSearch(val) {
+            if (val) {
+                this.$nextTick(() => {
+                    document.querySelector('form.search input').focus();
+                })
             }
+        }
+    },
+    methods: {
+        search() {
+            this.$store.state.search = this.q;
+            this.$router.push({ path: '/shop', query: { search: this.q } });
+            this.showSearch = false;
         },
-        methods: {
-            search(){
-                this.$store.state.search = this.q;
-                this.$router.push({ path: '/shop', query: { search: this.q }});
-                this.showSearch = false;
-            },
-        },
-    }
+    },
+}
 </script>
 
 <style scoped>
-    input:focus {
+input:focus {
     transition: all .3s ease;
-    }
+}
 
-    input:focus + .b2 {
+input:focus+.b2 {
     background-color: var(--primary-color);
     transition: all .3s ease;
-    }
+}
 
-    input:focus + .b2:hover {
-        background-color: var(--hover-color-gb);
-    }
+input:focus+.b2:hover {
+    background-color: var(--hover-color-gb);
+}
 
-    input:focus + .b2 > .icon {
+input:focus+.b2>.icon {
     color: white;
-    }
+}
 
-    .top-10\.5 {
-        top: 2.60rem;
-    }
+.top-10\.5 {
+    top: 2.60rem;
+}
 
-    [dir='rtl'] .b1 {
-        border-top-right-radius: 9999px;
-        border-bottom-right-radius: 9999px;
-        border-top-left-radius: 90px;
-        border-bottom-left-radius: 0px;
-    }
+[dir='rtl'] .b1 {
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 0px;
+}
 
-    [dir='rtl'] .b2 {
-        border-top-left-radius: 9999px;
-        border-bottom-left-radius: 9999px;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-    }
+[dir='rtl'] .b2 {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 
-    [dir='rtl'] .search {
-        margin-right: 0;
-        margin-left: 1rem;
-    }
+[dir='rtl'] .search {
+    margin-right: 0;
+    margin-left: 1rem;
+}
 
-    [dir='rtl'] .chivron {
-        margin-right: 0.25rem;
-        margin-left: 0;
-    }
+[dir='rtl'] .chivron {
+    margin-right: 0.25rem;
+    margin-left: 0;
+}
 
-    .svg-color {
-        fill: var(--header-text-col);
-    }
+.svg-color {
+    fill: var(--header-text-col);
+}
 
+.res-p {
+    padding-top: 0.5rem;
+}
+
+@media only screen and (min-width: 0) and (max-width: 899px) {
     .res-p {
-        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
 
-    @media only screen and (min-width: 0) and (max-width: 899px){
-        .res-p {
-            padding-bottom: 0.5rem;
-        }
-
-        .headermenu-button {
-            display: block;
-        }
-
-        header {
-            flex-wrap: wrap;
-        }
-
-        nav,.lang {
-            display: none;
-        }
-
-        .active-search {
-            order: 2;
-        }
-
-        .unactive-search {
-            order: -1;
-        }
+    .headermenu-button {
+        display: block;
     }
+
+    header {
+        flex-wrap: wrap;
+    }
+
+    nav,
+    .lang {
+        display: none;
+    }
+
+    .active-search {
+        order: 2;
+    }
+
+    .unactive-search {
+        order: -1;
+    }
+}
 </style>

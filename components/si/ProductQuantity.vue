@@ -33,23 +33,23 @@
 export default {
     props: {
         quantity: Object,
-        page: {  type: String, required: false }
+        page: { type: String, required: false }
     },
     data() {
         return {
             value: this.quantity.value || this.quantity.default || 1
         }
     },
-    watch:{
-        value(val, old){
-            if(val > this.quantity.instock) this.value = this.quantity.instock;
-            if(val < this.quantity.min) this.value = this.quantity.default;
-            if(isNaN(val)) this.value = this.quantity.default;
+    watch: {
+        value(val, old) {
+            if (val > this.quantity.instock) this.value = this.quantity.instock;
+            if (val < this.quantity.min) this.value = this.quantity.default;
+            if (isNaN(val)) this.value = this.quantity.default;
             this.$emit('selected', this.value);
         }
     },
     methods: {
-        inc(inc){
+        inc(inc) {
             this.value = Number(this.value) + (Number(this.quantity.increment) * Number(inc))
         }
     },
@@ -57,11 +57,11 @@ export default {
 </script>
 
 <style scoped>
-    [dir="rtl"] .plus-button {
-        border-top-left-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
+[dir="rtl"] .plus-button {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
 
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0
-    }
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
 </style>

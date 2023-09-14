@@ -100,39 +100,20 @@
         <div v-if="$settings.other_scripts" class="other-scripts" v-html="$settings.other_scripts"></div>
     </div>
 </template>
+
 <script>
 export default {
-    head(){
+    head() {
         return {
             title: this.$store.state.seo.title,
             meta: [
-                // { hid: 'description', name: 'description', content: this.$store.state.seo.description },
-                // { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
-                // { hid: 'og:title', property: 'og:title', content: this.$store.state.seo.title },
-                // { hid: 'og:site_name', property: 'og:site_name', content: this.$settings.store_name },
-                // { hid: 'og:description', property: 'og:description', content: this.$store.state.seo.description },
-                // { hid: 'og:image', property: 'og:image', content: this.$store.state.seo.image },
-                // { hid: 'og:url', property: 'og:url', content: this.$store.state.seo.url },
-                // { hid: 'og:type', property: 'og:type', content: 'website' },
-                // { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-                // { hid: 'twitter:title', name: 'twitter:title', content: this.$store.state.seo.title },
-                // { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
-                // { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
-                // { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
-                // { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary_color },
-                // { hid: "currency", name: "currency", content: this.$store.state.currency.code },
-                // { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
-                // { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
-                // ...this.$store.state.seo.metaTags
-                // new meta tag
                 { hid: "description", name: "description", content: this.$store.state.seo.description },
-                { hid: "og:title",   property: "og:title",  content: this.$store.state.seo.title   },
+                { hid: "og:title", property: "og:title", content: this.$store.state.seo.title },
                 { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name : "" },
-                { hid: "og:type", property: "og:type", content: "article"  },
-                { hid: "og:description", property: "og:description",content: this.$store.state.seo.description  },
+                { hid: "og:type", property: "og:type", content: "article" },
+                { hid: "og:description", property: "og:description", content: this.$store.state.seo.description },
                 { name: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#333" },
-                {  hid: "currency", name: "currency", content:  this.$store.state.currency.code },
-                //Seo meta tags
+                { hid: "currency", name: "currency", content: this.$store.state.currency.code },
                 ...this.$store.state.seo.metaTags
             ],
             link: [
@@ -171,12 +152,12 @@ export default {
             hover_text_rgb: { r: 0, g: 130, b: 70 }
         }
     },
-    async fetch(){
+    async fetch() {
         this.$store.state.seo.title = this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.store_description;
         this.$store.state.seo.keywords = this.$settings.store_keywords || [];
-        if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
-        if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
+        if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; }
+        if (this.$settings.favicon) { this.$store.state.seo.favicon = this.$settings.favicon.src; }
         this.rgb = this.$tools.hexToRgb(this.$settings.style.primary.color);
         this.header_rgb = this.$tools.hexToRgb(this.$settings.style.header.color);
         this.header_text_rgb = this.$tools.hexToRgb(this.$settings.style.header.text_color);

@@ -89,25 +89,26 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            type: String,
-            price: Object,
-            originalPrice: { type: Object, default: null },
-            variants: { type: Array, default: [] },
-            page: { type: String,required: false}
-        },
-        data() {
-            return {
-                minPrice : this.type == 'variable' ? Math.min(...this.variants.map(v=>v.price.salePrice)) : 0,
-                maxPrice : this.type == 'variable' ? Math.max(...this.variants.map(v=>v.price.salePrice)) : 0,
-            }
-        },
-    }
+export default {
+    props: {
+        type: String,
+        price: Object,
+        originalPrice: { type: Object, default: null },
+        variants: { type: Array, default: [] },
+        page: { type: String, required: false }
+    },
+    data() {
+        return {
+            minPrice: this.type == 'variable' ? Math.min(...this.variants.map(v => v.price.salePrice)) : 0,
+            maxPrice: this.type == 'variable' ? Math.max(...this.variants.map(v => v.price.salePrice)) : 0,
+        }
+    },
+}
 </script>
 
 <style scoped>
-    .prices,.home-prices {
+.prices,
+.home-prices {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -115,9 +116,10 @@
     min-width: 0;
     z-index: 10;
     display: block;
-    }
+}
 
-    .price, .home-price {
+.price,
+.home-price {
     direction: ltr;
     color: inherit;
     display: inline-block;
@@ -127,25 +129,25 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    }
+}
 
-    .home-prices {
+.home-prices {
     margin-bottom: 6px;
     padding-right: 6px;
     padding-left: 6px;
     position: absolute;
     bottom: 0;
-    }
-    .home-price {
+}
+
+.home-price {
     border-radius: 15px;
     line-height: 1;
     font-size: 13px;
     padding-top: 6px;
     padding-left: 9px;
     padding-right: 9px;
-    border: 1px solid rgba(34,34,34,.15);
+    border: 1px solid rgba(34, 34, 34, .15);
     padding-bottom: 6px;
     background: #fff;
     font-weight: bold;
-    }
-</style>
+}</style>

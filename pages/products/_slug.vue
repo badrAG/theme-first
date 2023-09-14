@@ -249,111 +249,295 @@
 </template>
 
 <script>
-    export default {
-        head() {
-            return this.seo();
-        },
-        data() {
-            return {
-                desc: true,
-                rev: false,
-                showStickyAddToCart: false,
-                visibleSlide: 0,
-                loading: true,
-                item: null,
-                image: null,
-                tab: 'description',
-                outofstock: false,
-                quantity: {},
-                showVariantDiv:false,
-                showVarianteModal:false,
-                variant: null,
-                price: { salePrice: 0, comparePrice: 0 },
-                socialMedia: [
-                    {
-                        name: "whatsapp",
-                        url: "https://api.whatsapp.com/send?text={title}%20{url}",
-                        image: 'M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z'
-                    },
-                    {
-                        name: "facebook",
-                        url: "https://www.facebook.com/sharer.php?u={url}",
-                        image: 'M15.1742424,5.3203125 L17,5.3203125 L17,2.140625 C16.6856061,2.09765625 15.6022727,2 14.3409091,2 C11.7083333,2 9.90530303,3.65625 9.90530303,6.69921875 L9.90530303,9.5 L7,9.5 L7,13.0546875 L9.90530303,13.0546875 L9.90530303,22 L13.4659091,22 L13.4659091,13.0546875 L16.2537879,13.0546875 L16.6969697,9.5 L13.4659091,9.5 L13.4659091,7.05078125 C13.4659091,6.0234375 13.7424242,5.3203125 15.1742424,5.3203125 Z'
-                    },
-                    {
-                        name: "twitter",
-                        url: "https://twitter.com/intent/tweet?url={url}&text={title}",
-                        image: 'M19.83 8.00001C19.83 8.17001 19.83 8.35001 19.83 8.52001C19.8393 10.0302 19.5487 11.5272 18.9751 12.9242C18.4014 14.3212 17.5562 15.5904 16.4883 16.6583C15.4204 17.7262 14.1512 18.5714 12.7542 19.1451C11.3572 19.7187 9.86017 20.0093 8.34999 20C6.15213 20.0064 3.9992 19.3779 2.14999 18.19C2.47999 18.19 2.78999 18.19 3.14999 18.19C4.96345 18.19 6.72433 17.5808 8.14999 16.46C7.30493 16.4524 6.48397 16.1774 5.80489 15.6744C5.12581 15.1714 4.62349 14.4662 4.36999 13.66C4.62464 13.7006 4.88213 13.7207 5.13999 13.72C5.49714 13.7174 5.85281 13.6738 6.19999 13.59C5.2965 13.4056 4.48448 12.9147 3.90135 12.2003C3.31822 11.486 2.99981 10.5921 2.99999 9.67001C3.55908 9.97841 4.18206 10.153 4.81999 10.18C4.25711 9.80767 3.79593 9.30089 3.47815 8.7055C3.16038 8.11011 2.99604 7.44489 2.99999 6.77001C3.00124 6.06749 3.18749 5.37769 3.53999 4.77001C4.55172 6.01766 5.81423 7.03889 7.24575 7.76757C8.67727 8.49625 10.2459 8.91613 11.85 9.00001C11.7865 8.69737 11.753 8.38922 11.75 8.08001C11.7239 7.25689 11.9526 6.44578 12.4047 5.75746C12.8569 5.06913 13.5104 4.53714 14.2762 4.23411C15.0419 3.93109 15.8826 3.87181 16.6833 4.06437C17.484 4.25693 18.2057 4.69195 18.75 5.31001C19.655 5.12822 20.5214 4.78981 21.31 4.31001C21.0088 5.24317 20.3754 6.0332 19.53 6.53001C20.3337 6.44316 21.1194 6.23408 21.86 5.91001C21.3116 6.71097 20.6361 7.41694 19.86 8.00001H19.83Z'
-                    },
-                    {
-                        name: "linkedin",
-                        url: "https://www.linkedin.com/sharing/share-offsite/?url={url}",
-                        image: 'M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z'
-                    }
-                ]
+export default {
+    head() {
+        return this.seo();
+    },
+    data() {
+        return {
+            desc: true,
+            rev: false,
+            showStickyAddToCart: false,
+            visibleSlide: 0,
+            loading: true,
+            item: null,
+            image: null,
+            tab: 'description',
+            outofstock: false,
+            quantity: {},
+            showVariantDiv: false,
+            showVarianteModal: false,
+            variant: null,
+            price: { salePrice: 0, comparePrice: 0 },
+            socialMedia: [
+                {
+                    name: "whatsapp",
+                    url: "https://api.whatsapp.com/send?text={title}%20{url}",
+                    image: 'M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z'
+                },
+                {
+                    name: "facebook",
+                    url: "https://www.facebook.com/sharer.php?u={url}",
+                    image: 'M15.1742424,5.3203125 L17,5.3203125 L17,2.140625 C16.6856061,2.09765625 15.6022727,2 14.3409091,2 C11.7083333,2 9.90530303,3.65625 9.90530303,6.69921875 L9.90530303,9.5 L7,9.5 L7,13.0546875 L9.90530303,13.0546875 L9.90530303,22 L13.4659091,22 L13.4659091,13.0546875 L16.2537879,13.0546875 L16.6969697,9.5 L13.4659091,9.5 L13.4659091,7.05078125 C13.4659091,6.0234375 13.7424242,5.3203125 15.1742424,5.3203125 Z'
+                },
+                {
+                    name: "twitter",
+                    url: "https://twitter.com/intent/tweet?url={url}&text={title}",
+                    image: 'M19.83 8.00001C19.83 8.17001 19.83 8.35001 19.83 8.52001C19.8393 10.0302 19.5487 11.5272 18.9751 12.9242C18.4014 14.3212 17.5562 15.5904 16.4883 16.6583C15.4204 17.7262 14.1512 18.5714 12.7542 19.1451C11.3572 19.7187 9.86017 20.0093 8.34999 20C6.15213 20.0064 3.9992 19.3779 2.14999 18.19C2.47999 18.19 2.78999 18.19 3.14999 18.19C4.96345 18.19 6.72433 17.5808 8.14999 16.46C7.30493 16.4524 6.48397 16.1774 5.80489 15.6744C5.12581 15.1714 4.62349 14.4662 4.36999 13.66C4.62464 13.7006 4.88213 13.7207 5.13999 13.72C5.49714 13.7174 5.85281 13.6738 6.19999 13.59C5.2965 13.4056 4.48448 12.9147 3.90135 12.2003C3.31822 11.486 2.99981 10.5921 2.99999 9.67001C3.55908 9.97841 4.18206 10.153 4.81999 10.18C4.25711 9.80767 3.79593 9.30089 3.47815 8.7055C3.16038 8.11011 2.99604 7.44489 2.99999 6.77001C3.00124 6.06749 3.18749 5.37769 3.53999 4.77001C4.55172 6.01766 5.81423 7.03889 7.24575 7.76757C8.67727 8.49625 10.2459 8.91613 11.85 9.00001C11.7865 8.69737 11.753 8.38922 11.75 8.08001C11.7239 7.25689 11.9526 6.44578 12.4047 5.75746C12.8569 5.06913 13.5104 4.53714 14.2762 4.23411C15.0419 3.93109 15.8826 3.87181 16.6833 4.06437C17.484 4.25693 18.2057 4.69195 18.75 5.31001C19.655 5.12822 20.5214 4.78981 21.31 4.31001C21.0088 5.24317 20.3754 6.0332 19.53 6.53001C20.3337 6.44316 21.1194 6.23408 21.86 5.91001C21.3116 6.71097 20.6361 7.41694 19.86 8.00001H19.83Z'
+                },
+                {
+                    name: "linkedin",
+                    url: "https://www.linkedin.com/sharing/share-offsite/?url={url}",
+                    image: 'M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z'
+                }
+            ]
+        }
+    },
+    async fetch() {
+        const { slug } = this.$route.params;
+        try {
+            this.loading = true;
+            const { data } = await this.$storeino.products.get({ slug })
+            this.item = data;
+            this.loading = false;
+            this.quantity = this.item.quantity;
+            // Set default image if exists
+            if (this.item.images.length > 0) this.setImage(0);
+            // Set default variant if exists
+            if (this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
+            if (this.item.type == 'simple') {
+                // Check outof stock
+                if (!this.item.outStock.disabled && this.item.quantity.instock <= 0) {
+                    this.outofstock = true;
+                }
             }
-        },
-        async fetch() {
-            const { slug } = this.$route.params;
-            try{
-                this.loading = true;
-                const { data } = await this.$storeino.products.get({ slug })
-                this.item = data;
-                //old meta tag
-                // this.$store.state.seo.title = (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name;
-                // this.$store.state.seo.description = this.item.seo.description || this.item.description || this.$settings.store_description;
-                // this.$store.state.seo.keywords = this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || [];
-                // if(this.item.images.length > 0){ this.$store.state.seo.image = this.item.images[0].src; }
-                // New meta tags
-                // [ { hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-                // { hid: "productID", itemprop: "productID", content: this.item && this.item ? this.item._id : 'productID' }
-                // ].forEach(meta=>{
-                //     const index = this.$store.state.seo.metaTags.findIndex(m=>m.hid === meta.hid);
-                //     if(index > -1){ this.$store.state.seo.metaTags.splice(index, 1, meta); }
-                //     this.$store.state.seo.metaTags.push(meta);
-                // });
-                this.loading = false;
-                this.quantity = this.item.quantity;
-                // Set default image if exists
-                if(this.item.images.length > 0) this.setImage(0);
-                // Set default variant if exists
-                if(this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
-                if(this.item.type == 'simple'){
-                    // Check outof stock
-                    if(!this.item.outStock.disabled && this.item.quantity.instock <= 0){
-                        this.outofstock = true;
-                    }
-                }
-                // Set default quantity
-                this.quantitySelected(this.quantity.default);
-                // Generate share urls
-                const url = `https://${this.$store.state.domain}/posts/${slug}`;
-                for (const button of this.socialMedia) {
-                    button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
-                }
-
-                if(!process.server){
-                    this.$storeino.fbpx('PageView');
-                    this.$storeino.fbpx('ViewContent',{
-                        content_name: this.item.name?this.item.name:'',
-                        content_ids: [this.item._id],
-                        content_type: "product",
-                        value: this.item.price.salePrice,
-                        currency: this.$store.state.currency.code
-                    });
-                    this.$tools.call('PAGE_VIEW', this.item);
-                }
-
-            }catch(err){
-                this.$sentry.captureException(err);
-                this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
+            // Set default quantity
+            this.quantitySelected(this.quantity.default);
+            // Generate share urls
+            const url = `https://${this.$store.state.domain}/posts/${slug}`;
+            for (const button of this.socialMedia) {
+                button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
             }
-        },
-        mounted() {
-            if(this.item) {
+
+            if (!process.server) {
+                this.$storeino.fbpx('PageView');
+                this.$storeino.fbpx('ViewContent', {
+                    content_name: this.item.name ? this.item.name : '',
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.item.price.salePrice,
+                    currency: this.$store.state.currency.code
+                });
                 this.$tools.call('PAGE_VIEW', this.item);
             }
-            window.addEventListener("APP_LOADER", e => {
+
+        } catch (err) {
+            this.$sentry.captureException(err);
+            this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
+        }
+    },
+    mounted() {
+        if (this.item) {
+            this.$tools.call('PAGE_VIEW', this.item);
+        }
+        window.addEventListener("APP_LOADER", e => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.item._id,
+                    product_quantity: this.quantity.value,
+                    product_variant: this.variant ? this.variant._id : undefined,
+                    product_currency: this.$store.state.currency.code,
+                    product_price: this.price
+                }
+            }));
+        });
+        if (this.item) {
+            this.$storeino.fbpx('PageView');
+            this.$storeino.fbpx('ViewContent', {
+                content_name: this.item.name ? this.item.name : '',
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.item.price.salePrice,
+                currency: this.$store.state.currency.code
+            })
+        }
+        if (this.item) {
+            const iframes = document.querySelectorAll('iframe')
+            for (const ifram of iframes) {
+                const width = ifram.getAttribute('width')
+                const height = ifram.getAttribute('height')
+                const parent = ifram.parentNode
+                if (!parent.classList.contains('video-wrapper')) {
+                    const div = document.createElement("div");
+                    ifram.after(div)
+                    div.classList.add('video-wrapper');
+                    ifram.style.width = null;
+                    ifram.style.height = null;
+                    ifram.setAttribute('width', '');
+                    ifram.setAttribute('height', '');
+                    div.appendChild(ifram)
+                }
+            }
+        }
+        //show showStickyAddToCart
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    computed: {
+        slidesLen() {
+            return this.item.images.length
+        }
+    },
+    methods: {
+        seo() {
+            if (!this.item) { return; }
+            return {
+                title: (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name,
+                meta: [
+                    { hid: "product:price:amount", property: "product:price:amount", content: this.item ? this.item.price.salePrice : 0 },
+                    { hid: "productID", itemprop: "productID", content: this.item._id || 'productID' },
+                    { hid: "description", name: "description", content: this.item.seo.description || this.item.description || this.$settings.store_description },
+                    { hid: 'keywords', name: 'keywords', content: (this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || []).join(',') },
+                    { hid: "og:image", property: "og:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
+                    { hid: "name", itemprop: "name", content: this.item ? this.item.name : 'article' },
+                    { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
+                    { hid: "url", itemprop: "url", content: this.$store.state.seo.url },
+                    { hid: "price", itemprop: "price", content: this.item && this.item ? this.item.price.salePrice : 0 },
+                    { hid: "robots", name: "robots", content: (this.$settings && this.$settings.store_indexing) || (this.item && this.item.seo && !this.item.seo.hide) ? "index" : "noindex" },
+                    { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name : "Online Store" },
+                    { hid: "og:title", property: "og:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
+                    { hid: "og:type", property: "og:type", content: "article" },
+                    { hid: "og:url", property: "og:url", content: this.$store.state.seo.url },
+                    { hid: "og:description", property: "og:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
+                    { hid: "apple-mobile-web-app-status-bar-style", property: "apple-mobile-web-app-status-bar-style", content: "black" },
+                    { hid: "apple-mobile-web-app-capable", property: "apple-mobile-web-app-capable", content: "yes" },
+                    { hid: "product:plural_title", property: "product:plural_title", content: this.item && this.item ? this.item.name : 'article' },
+                    { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
+                    { hid: "theme-color", property: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#ffffff" },
+                    { hid: "twitter:card", property: "twitter:card", content: "summary" },
+                    { hid: "twitter:site", property: "twitter:site", content: this.$settings ? this.$settings.store_name : "Online Store" },
+                    { hid: "twitter:title", property: "twitter:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
+                    { hid: "twitter:description", property: "twitter:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
+                    { hid: "twitter:image", property: "twitter:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
+                    { hid: "twitter:url", property: "twitter:url", content: this.$store.state.seo.url },
+                ]
+            };
+        },
+        ShowDescription() {
+            this.desc = true; this.rev = false
+        },
+        ShowReviews() {
+            this.desc = false; this.rev = true
+        },
+        foundApp(placement) {
+            if (this.$store.state.apps.find(a => a.name === "PIN REVIEW")) {
+                const foundApp = this.$store.state.apps.find((app) => {
+                    return app.config?.placements?.includes(placement);
+                });
+                if (foundApp) {
+                    return 'flex'
+                } else {
+                    return 'hidden'
+                }
+            }
+        },
+        handleScroll() {
+            if (window.pageYOffset > 400) {
+                this.showStickyAddToCart = true;
+            } else {
+                this.showStickyAddToCart = false;
+            }
+        },
+        next() {
+            if (this.visibleSlide >= this.slidesLen - 1) {
+                this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
+            } else {
+                this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide + 1]);
+            }
+        },
+        prev() {
+            if (this.visibleSlide <= 0) {
+                this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.slidesLen - 1]);
+            } else {
+                this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide - 1]);
+            }
+        },
+        t(key) {
+            const langs = {
+                price_title_products: {
+                    EN: "Price:	",
+                    FR: "Prix:	",
+                    AR: "السعر: ",
+                    ES: "Prezo: ",
+                    PT: "Preço: "
+                },
+                check_choice: {
+                    EN: "Please check your choice :",
+                    FR: "Veuillez vérifier votre choix:	",
+                    AR: "يرجى تأكيد الإختيار: ",
+                    ES: "Por favor marque su elección: ",
+                    PT: "Por favor, verifique a sua escolha: "
+                },
+                can_change_choice: {
+                    EN: "You can change your choice :",
+                    FR: "Vous pouvez modifier votre choix :	",
+                    AR: "يمكنك تغيير اختيارك: ",
+                    ES: "Puede cambiar su elección: ",
+                    PT: "Você pode alterar sua escolha: "
+                }
+            }
+            return langs[key] && langs[key][this.$store.state.language.code] || '';
+        },
+        addToCart() {
+            // Call add to cart event
+            this.$tools.call('ADD_TO_CART', {
+                _id: this.item._id,
+                quantity: this.quantity.value,
+                price: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
+                variant: this.variant ? { _id: this.variant._id } : null
+            });
+            if (this.$settings.sections.products.add_to_cart_to_checkout) {
+                setTimeout(() => {
+                    window.location.href = '/checkout2';
+                }, 500);
+            }
+            this.$storeino.fbpx('AddToCart', {
+                content_name: this.item.name,
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
+                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+            })
+            this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
+        },
+        addToWishlist() {
+            this.$tools.call('ADD_TO_WISHLIST', this.item);
+            this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
+        },
+        removeFromWishlist() {
+            this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
+            this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
+        },
+        buyNow() {
+            // Add to cart and redirect to checkout
+            if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type == 'variable' && !this.showVarianteModal) {
+                this.showVarianteModal = true
+                return;
+            }
+            this.addToCart();
+            setTimeout(() => {
+                window.location.href = '/checkout2';
+            }, 500);
+        },
+        quantitySelected(quantity) {
+            this.item.quantity.value = quantity;
+            if (this.variant) {
+                this.price.salePrice = this.variant.price.salePrice * quantity;
+                this.price.comparePrice = this.variant.price.comparePrice * quantity;
+            } else {
+                this.price.salePrice = this.item.price.salePrice * quantity;
+                this.price.comparePrice = this.item.price.comparePrice * quantity;
+            }
+            if (!process.server) {
                 window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                     detail: {
                         product_id: this.item._id,
@@ -363,234 +547,37 @@
                         product_price: this.price
                     }
                 }));
-            });
-            if(this.item){
-                this.$storeino.fbpx('PageView');
-                this.$storeino.fbpx('ViewContent',{
-                    content_name: this.item.name?this.item.name:'',
-                    content_ids: [this.item._id],
-                    content_type: "product",
-                    value: this.item.price.salePrice,
-                    currency: this.$store.state.currency.code
-                })
-            }
-            if(this.item){
-                const iframes=document.querySelectorAll('iframe')
-                for(const ifram of iframes){
-                const width = ifram.getAttribute('width')
-                const height = ifram.getAttribute('height')
-                const parent = ifram.parentNode
-                    if (!parent.classList.contains('video-wrapper')) {
-                        const div = document.createElement("div");
-                        ifram.after(div)
-                        div.classList.add('video-wrapper');
-                        ifram.style.width=null;
-                        ifram.style.height=null;
-                        ifram.setAttribute('width','');
-                        ifram.setAttribute('height','');
-                        div.appendChild(ifram)
-                    }
-                }
-            }
-            //show showStickyAddToCart
-            window.addEventListener('scroll', this.handleScroll);
-        },
-        computed: {
-            slidesLen() {
-                return this.item.images.length
             }
         },
-        methods: {
-            seo() {
-                if (!this.item) {  return; }
-                return {
-                    title: (this.item.seo.title || this.item.name) + ' - ' + this.$settings.store_name,
-                    meta: [
-                        { hid: "product:price:amount", property: "product:price:amount", content: this.item ? this.item.price.salePrice : 0 },
-                        { hid: "productID", itemprop: "productID", content: this.item._id || 'productID' },
-                        { hid: "description", name: "description", content: this.item.seo.description || this.item.description || this.$settings.store_description },
-                        { hid: 'keywords', name: 'keywords', content: (this.item.seo.keywords.length > 0 ? this.item.seo.keywords || [] : this.$settings.store_keywords || []).join(',') },
-                        { hid: "og:image", property: "og:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
-                        { hid: "name", itemprop: "name", content: this.item ? this.item.name : 'article' },
-                        { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
-                        { hid: "url", itemprop: "url", content: this.$store.state.seo.url },
-                        { hid: "price", itemprop: "price", content: this.item && this.item ? this.item.price.salePrice : 0 },
-                        { hid: "robots", name: "robots", content: (this.$settings && this.$settings.store_indexing) || (this.item && this.item.seo && !this.item.seo.hide) ? "index" : "noindex" },
-                        { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name  : "Online Store" },
-                        { hid: "og:title", property: "og:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
-                        { hid: "og:type", property: "og:type", content: "article" },
-                        { hid: "og:url", property: "og:url", content: this.$store.state.seo.url },
-                        { hid: "og:description", property: "og:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
-                        { hid: "apple-mobile-web-app-status-bar-style", property: "apple-mobile-web-app-status-bar-style", content: "black" },
-                        { hid: "apple-mobile-web-app-capable", property: "apple-mobile-web-app-capable", content: "yes" },
-                        { hid: "product:plural_title", property: "product:plural_title", content: this.item && this.item ? this.item.name : 'article' },
-                        { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
-                        { hid: "theme-color", property: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#ffffff" },
-                        { hid: "twitter:card", property: "twitter:card", content: "summary" },
-                        { hid: "twitter:site", property: "twitter:site", content: this.$settings ? this.$settings.store_name : "Online Store" },
-                        { hid: "twitter:title", property: "twitter:title", content: this.item && this.item.seo && this.item.seo.title ? this.item.seo.title : this.item && this.item ? this.item.name : 'Online Store' },
-                        { hid: "twitter:description", property: "twitter:description", content: this.item && this.item.seo ? this.item.seo.description : "description" },
-                        { hid: "twitter:image", property: "twitter:image", content: this.item && this.item.images && this.item.images.length > 0 ? this.item.images[0].src : this.$store.state.defaults.image },
-                        { hid: "twitter:url", property: "twitter:url", content: this.$store.state.seo.url },
-                    ]
-                };
-            },
-            ShowDescription(){
-                this.desc = true; this.rev = false
-            },
-            ShowReviews(){
-                this.desc = false; this.rev = true
-            },
-            foundApp(placement) {
-                if(this.$store.state.apps.find(a=>a.name === "PIN REVIEW")) {
-                    const foundApp = this.$store.state.apps.find((app) => {
-                        return app.config?.placements?.includes(placement);
-                    });
-                    if (foundApp) {
-                        return 'flex'
-                    } else {
-                        return 'hidden'
-                    }
-                }
-            },
-            handleScroll() {
-                if (window.pageYOffset > 400) {
-                    this.showStickyAddToCart = true;
-                } else {
-                    this.showStickyAddToCart = false;
-                }
-            },
-            next(){
-                if(this.visibleSlide >= this.slidesLen - 1 ){
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
-                }else {
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide + 1]);
-                }
-            },
-            prev() {
-                if(this.visibleSlide <= 0 ){
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.slidesLen - 1]);
-                }else {
-                    this.image = this.$tools.copy(this.item.images[this.visibleSlide = this.visibleSlide - 1]);
-                }
-            },
-            t(key){
-            const langs = {
-                    price_title_products: {
-                        EN: "Price:	",
-                        FR: "Prix:	",
-                        AR: "السعر: ",
-                        ES: "Prezo: ",
-                        PT: "Preço: "
-                    },
-                    check_choice:{
-                        EN: "Please check your choice :",
-                        FR: "Veuillez vérifier votre choix:	",
-                        AR: "يرجى تأكيد الإختيار: ",
-                        ES: "Por favor marque su elección: ",
-                        PT :"Por favor, verifique a sua escolha: "
-                    },
-                    can_change_choice:{
-                        EN: "You can change your choice :",
-                        FR: "Vous pouvez modifier votre choix :	",
-                        AR: "يمكنك تغيير اختيارك: ",
-                        ES: "Puede cambiar su elección: ",
-                        PT:"Você pode alterar sua escolha: "
-                    }
-                }
-                return langs[key] && langs[key][this.$store.state.language.code] || '';
-            },
-            addToCart() {
-                // Call add to cart event
-                this.$tools.call('ADD_TO_CART', {
-                    _id: this.item._id,
-                    quantity: this.quantity.value,
-                    price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                    variant: this.variant ? { _id: this.variant._id } : null
-                });
-                if(this.$settings.sections.products.add_to_cart_to_checkout){
-                    setTimeout(() => {
-                            window.location.href = '/checkout2';
-                    }, 500);
-                }
-                this.$storeino.fbpx('AddToCart',{
-                    content_name: this.item.name,
-                    content_ids: [this.item._id],
-                    content_type: "product",
-                    value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
-                    currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-                })
-                this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
-            },
-            addToWishlist(){
-                this.$tools.call('ADD_TO_WISHLIST', this.item);
-                this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);
-            },
-            removeFromWishlist(){
-                this.$tools.call('REMOVE_FROM_WISHLIST', this.item);
-                this.$tools.toast(this.$settings.sections.alerts.removed_from_wishlist);
-            },
-            buyNow() {
-                // Add to cart and redirect to checkout
-                if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
-                    this.showVarianteModal = true
-                    return;
-                }
-                this.addToCart();
-                setTimeout(() => {
-                    window.location.href = '/checkout2';
-                }, 500);
-            },
-            quantitySelected(quantity) {
-                this.item.quantity.value = quantity;
-                if(this.variant){
-                    this.price.salePrice = this.variant.price.salePrice * quantity;
-                    this.price.comparePrice = this.variant.price.comparePrice * quantity;
-                }else{
-                    this.price.salePrice = this.item.price.salePrice * quantity;
-                    this.price.comparePrice = this.item.price.comparePrice * quantity;
-                }
-                if(!process.server){
-                    window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-                        detail: {
-                            product_id: this.item._id,
-                            product_quantity: this.quantity.value,
-                            product_variant: this.variant ? this.variant._id : undefined,
-                            product_currency: this.$store.state.currency.code,
-                            product_price: this.price
-                        }
-                    }));
-                }
-            },
-            variantSelected(variant) {
-                this.variant = variant;
-                if(variant.imageId && this.item.images.length > 0){
-                    let index = this.item.images.findIndex(i=>i._id == variant.imageId);
-                    if(index == -1) index = 0;
-                    this.visibleSlide = index;
-                    this.image = this.item.images[index];
-                }else if(this.item.images.length > 0){
-                    this.visibleSlide = 0
-                    this.image = this.item.images[0];
-                }
-                // Check outof stock
-                if(!this.item.outStock.disabled && this.variant.quantity.instock <= 0){
-                    this.outofstock = true;
-                }else{
-                    this.outofstock = false;
-                }
-                this.quantitySelected(this.item.quantity.value);
-            },
-            setImage(index){
-                this.visibleSlide = index
-                this.image = this.$tools.copy(this.item.images[index]);
-            },
-            setTab(tab){
-                this.tab = tab;
-                if(tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
+        variantSelected(variant) {
+            this.variant = variant;
+            if (variant.imageId && this.item.images.length > 0) {
+                let index = this.item.images.findIndex(i => i._id == variant.imageId);
+                if (index == -1) index = 0;
+                this.visibleSlide = index;
+                this.image = this.item.images[index];
+            } else if (this.item.images.length > 0) {
+                this.visibleSlide = 0
+                this.image = this.item.images[0];
             }
+            // Check outof stock
+            if (!this.item.outStock.disabled && this.variant.quantity.instock <= 0) {
+                this.outofstock = true;
+            } else {
+                this.outofstock = false;
+            }
+            this.quantitySelected(this.item.quantity.value);
         },
-    }
+        setImage(index) {
+            this.visibleSlide = index
+            this.image = this.$tools.copy(this.item.images[index]);
+        },
+        setTab(tab) {
+            this.tab = tab;
+            if (tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
+        }
+    },
+}
 </script>
 
 <style scoped>
@@ -602,13 +589,14 @@
     margin-inline-end: 0px;
 }
 
-.text-info > :first-child {
+.text-info> :first-child {
     white-space: break-spaces;
 }
 
-.description *{
+.description * {
     max-width: 100% !important;
 }
+
 .description pre {
     white-space: normal !important;
 }
@@ -617,44 +605,44 @@
     display: block !important;
 }
 
-  [dir = "rtl"] .dots{
-      flex-direction: row-reverse;
-  }
+[dir="rtl"] .dots {
+    flex-direction: row-reverse;
+}
 
-  .video-wrapper {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 0;
-      padding-top: 56.25%;
-  }
+.video-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+}
 
-  .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-  }
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
 
-  .scroll::-webkit-scrollbar {
-      display: none;
-  }
+.scroll::-webkit-scrollbar {
+    display: none;
+}
 
-  [dir = 'rtl'] .galery {
-      margin-right: 1rem;
-      margin-left: 0;
-  }
+[dir='rtl'] .galery {
+    margin-right: 1rem;
+    margin-left: 0;
+}
 
-  @media (min-width: 768px) {
-      .slider {
-          flex: 1 0 0%;
-      }
+@media (min-width: 768px) {
+    .slider {
+        flex: 1 0 0%;
+    }
 
-      .galery {
-          flex: 0 0 auto;
-      }
-  }
+    .galery {
+        flex: 0 0 auto;
+    }
+}
 </style>

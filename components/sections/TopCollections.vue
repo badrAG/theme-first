@@ -44,55 +44,56 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                loading: true,
-                items: [],
-            }
-        },
-    async fetch(){
-        try{
+export default {
+    data() {
+        return {
+            loading: true,
+            items: [],
+        }
+    },
+    async fetch() {
+        try {
             const filter = {};
-            if(this.$settings.sections.top_collections.items.length > 0){
+            if (this.$settings.sections.top_collections.items.length > 0) {
                 this.items = this.$settings.sections.top_collections.items;
-            }else{
+            } else {
                 const { data } = await this.$storeino.collections.search(filter)
                 this.items = data.results;
             }
-        }catch(err){
+        } catch (err) {
             this.$sentry.captureException(err);
         }
         this.loading = false;
     },
-    }
+}
 </script>
 
 <style scoped>
-  .img-zom {
-      transition:  .2s ease;
-  }
+.img-zom {
+    transition: .2s ease;
+}
 
-  .collection-box:hover .img-zom{
-      transform: scale(1.1);
-      box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  }
+.collection-box:hover .img-zom {
+    transform: scale(1.1);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 
-  .collection-box:hover .collection-text::before {
+.collection-box:hover .collection-text::before {
     transform-origin: left;
     transform: scaleX(1);
-  }
-  .collection-box:hover .collection-text {
+}
+
+.collection-box:hover .collection-text {
     color: #000;
     opacity: 0.7;
-  }
+}
 
-  .collection-text {
+.collection-text {
     position: relative;
     text-decoration: none;
-  }
+}
 
-  .collection-text::before {
+.collection-text::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -104,5 +105,5 @@
     transform-origin: right;
     transform: scaleX(0);
     transition: transform .3s ease-in-out;
-  }
+}
 </style>

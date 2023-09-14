@@ -78,96 +78,96 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                loading: { cart: true, upsells: true },
-                items: [],
-                total: 0,
-                upsells: []
-            }
-        },
-        async fetch(){
-            this.$store.state.seo.title = this.$settings.sections.cart.title + ' - ' + this.$settings.store_name;
-            this.$store.state.seo.description = this.$settings.sections.cart.description || this.$settings.store_description;
+export default {
+    data() {
+        return {
+            loading: { cart: true, upsells: true },
+            items: [],
+            total: 0,
+            upsells: []
+        }
+    },
+    async fetch() {
+        this.$store.state.seo.title = this.$settings.sections.cart.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.cart.description || this.$settings.store_description;
+        await this.initCart();
+        if (this.items.length > 0) {
+            await this.getUpsells();
+        }
+    },
+    mounted() {
+        this.$storeino.fbpx('PageView');
+        this.$tools.call('PAGE_VIEW');
+    },
+    watch: {
+        async "$store.state.cart.length"() {
             await this.initCart();
-            if(this.items.length > 0){
-                await this.getUpsells();
+            await this.getUpsells();
+        },
+        items: {
+            deep: true,
+            handler() {
+                this.calcTotal();
             }
-        },
-        mounted() {
-            this.$storeino.fbpx('PageView');
-            this.$tools.call('PAGE_VIEW');
-        },
-        watch: {
-            async "$store.state.cart.length"(){
-                await this.initCart();
-                await this.getUpsells();
-            },
-            items: {
-                deep: true,
-                handler(){
-                    this.calcTotal();
+        }
+    },
+    methods: {
+        async getUpsells() {
+            const ids = this.$store.state.cart.map(item => item._id);
+            this.loading.upsells = true;
+            if (ids.length > 0) {
+                try {
+                    const response = await this.$storeino.upsells.search({ 'with': ['products'], 'product._id-in': ids, limit: 1000 });
+                    this.upsells = response.data.results;
+                } catch (err) {
+                    this.$sentry.captureException(err);
                 }
             }
+            this.loading.upsells = false;
         },
-        methods: {
-            async getUpsells(){
-                const ids = this.$store.state.cart.map(item => item._id);
-                this.loading.upsells = true;
-                if(ids.length > 0){
-                    try{
-                        const response = await this.$storeino.upsells.search({ 'with': ['products'],'product._id-in': ids, limit: 1000 });
-                        this.upsells = response.data.results;
-                    }catch(err){
-                        this.$sentry.captureException(err);
-                    }
-                }
-                this.loading.upsells = false;
-            },
-            async initCart(){
-                this.items = [];
-                const ids = this.$store.state.cart.map(item => item._id);
-                this.loading.cart = true;
-                if(ids.length > 0){
-                    try{
-                        const response = await this.$storeino.products.search({ '_id-in': ids, limit: 1000 });
-                        const products = response.data.results;
-                        for (const item of this.$store.state.cart) {
-                            const cartItem = {};
-                            const product = products.find(p => p._id === item._id);
-                            cartItem._id = product._id;
-                            cartItem.slug = product.slug;
-                            cartItem.name = product.name;
-                            cartItem.price = product.price.salePrice;
-                            cartItem.quantity = product.quantity;
-                            cartItem.quantity.value = item.quantity;
-                            cartItem.image = product.images.length > 0 ? product.images[0].src : '';
-                            if(item.variant && item.variant._id){
-                                cartItem.variant = product.variants.find(variant => variant._id === item.variant._id);
-                                cartItem.price = cartItem.variant.price.salePrice;
-                            }
-                            if(item.upsell){
-                                cartItem.upsell = item.upsell;
-                                const discount = cartItem.upsell.type == 'percentage' ? cartItem.price * (cartItem.upsell.value / 100) : cartItem.upsell.value
-                                cartItem.price = cartItem.price - discount;
-                            }
-                            cartItem.total = cartItem.price * cartItem.quantity.value;
-                            this.items.push(cartItem);
+        async initCart() {
+            this.items = [];
+            const ids = this.$store.state.cart.map(item => item._id);
+            this.loading.cart = true;
+            if (ids.length > 0) {
+                try {
+                    const response = await this.$storeino.products.search({ '_id-in': ids, limit: 1000 });
+                    const products = response.data.results;
+                    for (const item of this.$store.state.cart) {
+                        const cartItem = {};
+                        const product = products.find(p => p._id === item._id);
+                        cartItem._id = product._id;
+                        cartItem.slug = product.slug;
+                        cartItem.name = product.name;
+                        cartItem.price = product.price.salePrice;
+                        cartItem.quantity = product.quantity;
+                        cartItem.quantity.value = item.quantity;
+                        cartItem.image = product.images.length > 0 ? product.images[0].src : '';
+                        if (item.variant && item.variant._id) {
+                            cartItem.variant = product.variants.find(variant => variant._id === item.variant._id);
+                            cartItem.price = cartItem.variant.price.salePrice;
                         }
-                        this.calcTotal();
-                    }catch(err){
-                        this.$sentry.captureException(err);
+                        if (item.upsell) {
+                            cartItem.upsell = item.upsell;
+                            const discount = cartItem.upsell.type == 'percentage' ? cartItem.price * (cartItem.upsell.value / 100) : cartItem.upsell.value
+                            cartItem.price = cartItem.price - discount;
+                        }
+                        cartItem.total = cartItem.price * cartItem.quantity.value;
+                        this.items.push(cartItem);
                     }
+                    this.calcTotal();
+                } catch (err) {
+                    this.$sentry.captureException(err);
                 }
-                this.loading.cart = false;
-            },
-            async remove(item){
-                this.$tools.call('REMOVE_FROM_CART', item);
-            },
-            calcTotal(){
-                this.total = this.items.reduce((total, item) => total + (item.price * item.quantity.value), 0);
             }
+            this.loading.cart = false;
         },
-    }
+        async remove(item) {
+            this.$tools.call('REMOVE_FROM_CART', item);
+        },
+        calcTotal() {
+            this.total = this.items.reduce((total, item) => total + (item.price * item.quantity.value), 0);
+        }
+    },
+}
 </script>

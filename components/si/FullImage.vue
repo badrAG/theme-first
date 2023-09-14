@@ -11,20 +11,21 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            document.addEventListener('keydown', (e)=>{
-                if(e.key == 'Escape' && this.$store.state.fullImage != null) this.$store.state.fullImage=null;
-            })
-        }
+export default {
+    mounted() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key == 'Escape' && this.$store.state.fullImage != null) this.$store.state.fullImage = null;
+        })
     }
+}
 </script>
 
 <style scoped>
-    .zooom {
-        transition: transform 0.3s;
-    }
-    .zooom:hover {
-        transform: scale(1.05);
-    }
+.zooom {
+    transition: transform 0.3s;
+}
+
+.zooom:hover {
+    transform: scale(1.05);
+}
 </style>

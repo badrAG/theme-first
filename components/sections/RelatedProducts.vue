@@ -28,30 +28,30 @@
 </template>
 
 <script>
-  export default {
-    props:{
-        item: Object
-    },
-    data() {
-      return {
-        loading: true,
-        items: [],
-      };
-    },
-    async fetch(){
-        try{
-            const ids = this.item.collections.map(c=>c._id);
-            const { data } = await this.$storeino.products.search({
-                "_id-ne": this.item._id,
-                "collections._id-in": ids
-              })
-            this.items = data.results
-        }catch(err){
-          this.$sentry.captureException(err);
-        }
-        this.loading = false;
+export default {
+  props: {
+    item: Object
+  },
+  data() {
+    return {
+      loading: true,
+      items: [],
+    };
+  },
+  async fetch() {
+    try {
+      const ids = this.item.collections.map(c => c._id);
+      const { data } = await this.$storeino.products.search({
+        "_id-ne": this.item._id,
+        "collections._id-in": ids
+      })
+      this.items = data.results
+    } catch (err) {
+      this.$sentry.captureException(err);
     }
-  };
+    this.loading = false;
+  }
+};
 </script>
 
 

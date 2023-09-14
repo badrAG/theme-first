@@ -10,37 +10,37 @@
 </template>
   
 <script>
-  export default {
-    data() {
-      return {
-        showButton: false
+export default {
+  data() {
+    return {
+      showButton: false
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      if (window.pageYOffset > 100) {
+        this.showButton = true;
+      } else {
+        this.showButton = false;
       }
     },
-    mounted() {
-      window.addEventListener('scroll', this.handleScroll);
-    },
-    methods: {
-      handleScroll() {
-        if (window.pageYOffset > 100) {
-          this.showButton = true;
-        } else {
-          this.showButton = false;
-        }
-      },
-      scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   }
+}
 </script>
 
 <style scoped>
-  [dir="rtl"] .scoll-to-top {
-    left: 3.5rem;
-    right: auto;
-  }
+[dir="rtl"] .scoll-to-top {
+  left: 3.5rem;
+  right: auto;
+}
 </style>
   

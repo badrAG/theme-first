@@ -1,15 +1,15 @@
 <template>
-    <div class="h-full flex relative">
-        <div class="w-full flex flex-col h-full bg-white rounded-xl border box-shadow-xs-hover">
-            <div class="pb-4/5 relative overflow-hidden">
+    <div class="relative flex h-full">
+        <div class="flex flex-col w-full h-full bg-white border rounded-xl box-shadow-xs-hover">
+            <div class="relative overflow-hidden pb-4/5">
                 <nuxt-link :to="`/posts/${item.slug}`" :title="item.title" :aria-label="item.title">
-                    <si-image width="400" height="400" class="h-full w-full absolute inset-0  object-cover rounded-t-xl" :src="item.image ? item.image.url : null" :alt="item.title"/>
+                    <si-image width="400" height="400" class="absolute inset-0 object-cover w-full h-full rounded-t-xl" :src="item.image ? item.image.url : null" :alt="item.title"/>
                 </nuxt-link>
             </div>
             <div class="h-full px-4">
                 <div class="flex py-2.5">
                     <div v-for="(category, i) in item.categories"  :key="i" >
-                        <span class="categoty capitalize font-normal text-md mr-2">{{ category.name}} </span>
+                        <span class="mr-2 font-normal capitalize categoty text-md">{{ category.name}} </span>
                     </div>
                 </div>
                 <nuxt-link :to="`/posts/${item.slug}`" :title="item.title" :aria-label="item.title">
@@ -24,17 +24,17 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            item: Object
-        },
+export default {
+    props: {
+        item: Object
+    },
 
-    }
+}
 </script>
 
 <style scoped>
-    [dir="rtl"] .categoty{
-        margin-right: 0;
-        margin-left: 0.5rem;
-    }
+[dir="rtl"] .categoty {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
 </style>

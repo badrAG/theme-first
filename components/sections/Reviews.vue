@@ -41,30 +41,30 @@
 </template>
 
 <script>
-    export default {
-        props:{
-            item: { type: Object, default: null }
-        },
-        data(){
-            return {
-                reviews: { paginate: { page: 0 }, results: [] },
-                loading: true
-            }
-        },
-        async fetch(){
-            this.loading = true;
-            const { data } = await this.$storeino.reviews.search({
-                "product._id": this.item._id,
-                page: this.reviews.paginate.page+1
-            })
-            this.reviews = data;
-            this.loading = false;
-        },
-    }
+export default {
+    props: {
+        item: { type: Object, default: null }
+    },
+    data() {
+        return {
+            reviews: { paginate: { page: 0 }, results: [] },
+            loading: true
+        }
+    },
+    async fetch() {
+        this.loading = true;
+        const { data } = await this.$storeino.reviews.search({
+            "product._id": this.item._id,
+            page: this.reviews.paginate.page + 1
+        })
+        this.reviews = data;
+        this.loading = false;
+    },
+}
 </script>
 
 <style scoped>
-  .scroll::-webkit-scrollbar {
+.scroll::-webkit-scrollbar {
     display: none;
-  }
+}
 </style>

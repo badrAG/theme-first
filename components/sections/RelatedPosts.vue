@@ -22,45 +22,45 @@
 </template>
 
 <script>
-  export default {
-    props:{
-        item: Object
-    },
-    data() {
-      return {
-        loading: true,
-        items: [],
-      };
-    },
-    async fetch(){
-        try{
-            const ids = this.item.categories.map(c=>c._id);
-            const { data } = await this.$storeino.pages.search({
-                "_id-ne": this.item._id,
-                "categories._id-in": ids
-              })
-            this.items = data.results
-        }catch(err){
-          this.$sentry.captureException(err);
-        }
-        this.loading = false;
+export default {
+  props: {
+    item: Object
+  },
+  data() {
+    return {
+      loading: true,
+      items: [],
+    };
+  },
+  async fetch() {
+    try {
+      const ids = this.item.categories.map(c => c._id);
+      const { data } = await this.$storeino.pages.search({
+        "_id-ne": this.item._id,
+        "categories._id-in": ids
+      })
+      this.items = data.results
+    } catch (err) {
+      this.$sentry.captureException(err);
     }
-  };
+    this.loading = false;
+  }
+};
 </script>
 
 <style scoped>
-  .post_title {
-    font-size: 18px;
-    font-weight: 700;
-  }
+.post_title {
+  font-size: 18px;
+  font-weight: 700;
+}
 
-  .btn_link:hover {
-    border-color: var(--primary);
-    background-color: var(--primary);
-    color: #fff;
-  }
+.btn_link:hover {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: #fff;
+}
 
-  .btn_link:hover>span {
-    color: #fff;
-  }
+.btn_link:hover>span {
+  color: #fff;
+}
 </style>

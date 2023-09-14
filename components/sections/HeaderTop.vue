@@ -7,9 +7,3 @@
         <si-app-loader placement="AFTER_TOP_HEADER"/>
     </div>
 </template>
-
-<script>
-export default {
-    
-}
-</script>

@@ -92,174 +92,176 @@
         </div>
     </div>
 </template>
-  
+
 <script>
-    export default {
-        data() {
-            return {
-                loading: {
-                    pages: true,
-                    products: true,
-                    categories: true,
-                },
-                query: {},
-                param: [],
-                products: [],
-                showSideBar: false,
-                gridClass: 'w-full md:w-1/2 lg:w-1/3',
-                items: [],
-                categories:[],
-                paginate: { page: 1, limit: 12, total: 12 },
-                params: { status: 'PUBLISH' , 'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
-                lastParams: { status: 'PUBLISH'  ,'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
-                sorts: [
-                    { field: { 'name': 1 }, name: this.$settings.sections.blog.sorts.name_asc },
-                    { field: { 'name': -1 }, name: this.$settings.sections.blog.sorts.name_desc },
-                    { field: { createdAt: -1 }, name: this.$settings.sections.blog.sorts.newest },
-                    { field: { createdAt: 1 }, name: this.$settings.sections.blog.sorts.oldest }
-                ],
-                girds: [
-                    { number: 6, width: 16, class: 'w-full md:w-1/2 lg:w-1/2' },
-                    { number: 9, width: 21, class: 'w-full md:w-1/2 lg:w-1/3' },
-                    { number: 12, width: 26, class: 'w-1/2 md:w-1/3 lg:w-1/4' }
-                ]
-            }
-        },
-        watch: {
-            params: {
-                handler(val) {
-                    if(JSON.stringify(val) !== JSON.stringify(this.lastParams)){
-                        this.getItems();
-                    }
-                },
-                deep: true
-            }
-        },
-        async fetch(){
-            await this.getItems();
-            await this.getCategories();
-            await this.getProducts();
-            this.$store.state.seo.title = this.$settings.sections.blog.title + ' - ' + this.$settings.store_name;
-            this.$store.state.seo.description = this.$settings.sections.blog.description || this.$settings.store_description;
-        },
-        mounted() {
+export default {
+    data() {
+        return {
+            loading: {
+                pages: true,
+                products: true,
+                categories: true,
+            },
+            query: {},
+            param: [],
+            products: [],
+            showSideBar: false,
+            gridClass: 'w-full md:w-1/2 lg:w-1/3',
+            items: [],
+            categories: [],
+            paginate: { page: 1, limit: 12, total: 12 },
+            params: { status: 'PUBLISH', 'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
+            lastParams: { status: 'PUBLISH', 'categories.slug-in': [], sort: { createdAt: -1 }, type: 'POST' },
+            sorts: [
+                { field: { 'name': 1 }, name: this.$settings.sections.blog.sorts.name_asc },
+                { field: { 'name': -1 }, name: this.$settings.sections.blog.sorts.name_desc },
+                { field: { createdAt: -1 }, name: this.$settings.sections.blog.sorts.newest },
+                { field: { createdAt: 1 }, name: this.$settings.sections.blog.sorts.oldest }
+            ],
+            girds: [
+                { number: 6, width: 16, class: 'w-full md:w-1/2 lg:w-1/2' },
+                { number: 9, width: 21, class: 'w-full md:w-1/2 lg:w-1/3' },
+                { number: 12, width: 26, class: 'w-1/2 md:w-1/3 lg:w-1/4' }
+            ]
+        }
+    },
+    watch: {
+        params: {
+            handler(val) {
+                if (JSON.stringify(val) !== JSON.stringify(this.lastParams)) {
+                    this.getItems();
+                }
+            },
+            deep: true
+        }
+    },
+    async fetch() {
+        await this.getItems();
+        await this.getCategories();
+        await this.getProducts();
+        this.$store.state.seo.title = this.$settings.sections.blog.title + ' - ' + this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.sections.blog.description || this.$settings.store_description;
+    },
+    mounted() {
         this.$storeino.fbpx('PageView');
         this.$tools.call('PAGE_VIEW');
+    },
+    methods: {
+        setParams(e, key, value) {
+            if (key.indexOf('price') >= 0) {
+                this.$set(this.params, key, e.target.value);
+            } else {
+                if (e.target.checked) {
+                    if (!this.params[key]) this.params[key] = this.$set(this.params, key, []);
+                    this.params[key].push(value);
+                } else {
+                    this.params[key] = this.params[key].filter(item => item !== value);
+                }
+            }
+            switch (key) {
+                case 'categories.slug-in': this.param = [...new Set(...this.param, value)]; break;
+                case 'price.salePrice-from': this.query['price-from'] = value; break;
+                case 'price.salePrice-to': this.query['price-to'] = value; break;
+                case 'options.values.value1': this.query['colors'] = value; break;
+            }
         },
-        methods: {
-            setParams(e, key, value){
-                if(key.indexOf('price') >= 0){
-                    this.$set(this.params,key, e.target.value);
-                }else{
-                    if(e.target.checked) {
-                        if(!this.params[key]) this.params[key] = this.$set(this.params, key, []);
-                        this.params[key].push(value);
-                    } else {
-                        this.params[key] = this.params[key].filter(item => item !== value);
-                    }
-                }
-                switch(key){
-                    case 'categories.slug-in': this.param = [...new Set(...this.param, value)];break;
-                    case 'price.salePrice-from': this.query['price-from'] = value;break;
-                    case 'price.salePrice-to': this.query['price-to'] = value;break;
-                    case 'options.values.value1': this.query['colors'] = value;break;
-                }
-            },
-            async getProducts(){
-                this.products = [];
-                this.loading.products = true;
-                try{
-                    const { data } = await this.$storeino.products.search({limit: 5});
-                    this.products = data.results;
-                }catch(err){
-                    this.$sentry.captureException(err);
-                }
-                this.loading.products = false;
-            },
-            async getCategories(){
-                this.categories = [];
-                this.loading.categories = true;
-                try{
-                    const { data } = await this.$storeino.categories.search({});
-                    this.categories = data.results;
-                }catch(err){
-                    this.$sentry.captureException(err);
-                }
-                this.loading.categories = false;
-            },
-            async getItems(){
-                this.items = [];
-                this.loading.pages = true;
-                try{
-                    this.lastParams = this.$tools.copy(this.params);
-                    const { data } = await this.$storeino.pages.search(this.params);
-                    this.items = data.results
-                }catch(err){
-                    this.$sentry.captureException(err);
-                }
-                this.loading.pages = false;
-            },
+        async getProducts() {
+            this.products = [];
+            this.loading.products = true;
+            try {
+                const { data } = await this.$storeino.products.search({ limit: 5 });
+                this.products = data.results;
+            } catch (err) {
+                this.$sentry.captureException(err);
+            }
+            this.loading.products = false;
         },
-    }
+        async getCategories() {
+            this.categories = [];
+            this.loading.categories = true;
+            try {
+                const { data } = await this.$storeino.categories.search({});
+                this.categories = data.results;
+            } catch (err) {
+                this.$sentry.captureException(err);
+            }
+            this.loading.categories = false;
+        },
+        async getItems() {
+            this.items = [];
+            this.loading.pages = true;
+            try {
+                this.lastParams = this.$tools.copy(this.params);
+                const { data } = await this.$storeino.pages.search(this.params);
+                this.items = data.results
+            } catch (err) {
+                this.$sentry.captureException(err);
+            }
+            this.loading.pages = false;
+        },
+    },
+}
 </script>
 
 <style >
-    [dir='rtl'] svg.translate{
+[dir='rtl'] svg.translate {
     transform: rotateY(180deg);
-    }
+}
 
-    .grid_icon:hover > span {
-        background-color: var(--primary-color);
-        opacity: 0.6;
-    }
+.grid_icon:hover>span {
+    background-color: var(--primary-color);
+    opacity: 0.6;
+}
 
-    select {
+select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' aria-hidden='true' focusable='false'><polygon points='8.25 5 6 7 3.75 5 8.25 5'/></svg>");
     background-repeat: no-repeat;
-    background-position: right  center;
-    }
+    background-position: right center;
+}
 
-    [dir = "rtl"] select {
-        background-position: left center;
-    }
+[dir="rtl"] select {
+    background-position: left center;
+}
 
-    [dir = "rtl"] .filters {
-        right: 0;
-        left: auto;
-    }
+[dir="rtl"] .filters {
+    right: 0;
+    left: auto;
+}
 
-    input[type="checkbox"]:checked + div {
+input[type="checkbox"]:checked+div {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    }
+}
 
-    input[type="checkbox"]:checked + div svg {
+input[type="checkbox"]:checked+div svg {
     display: block;
-    }
+}
 
-    .slideleft-enter-active {
-        transition-duration: 0.3s;
-        transition-timing-function: ease-in;
-    }
-    
-    .slideleft-leave-active {
-        transition-duration: 0.3s;
-        transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    }
-    
-    .slideleft-enter-to, .slideleft-leave {
-        width: 100%;
-    }
-    
-    .slideleft-enter, .slideleft-leave-to {
-        width: 0%;
-    }
+.slideleft-enter-active {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+}
 
-    .show {
-        display: block !important;
-    }
-  </style>
+.slideleft-leave-active {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slideleft-enter-to,
+.slideleft-leave {
+    width: 100%;
+}
+
+.slideleft-enter,
+.slideleft-leave-to {
+    width: 0%;
+}
+
+.show {
+    display: block !important;
+}
+</style>
   

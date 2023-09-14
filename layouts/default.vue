@@ -103,106 +103,85 @@
 </template>
 
 <script>
-    export default {
-        head(){
-            return {
-                title: this.$store.state.seo.title,
-                meta: [
-                    // old meta tag
-                    // { hid: 'description', name: 'description', content: this.$store.state.seo.description },
-                    // { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
-                    // { hid: 'og:title', property: 'og:title', content: this.$store.state.seo.title },
-                    // { hid: 'og:site_name', property: 'og:site_name', content: this.$settings.store_name },
-                    // { hid: 'og:description', property: 'og:description', content: this.$store.state.seo.description },
-                    // { hid: 'og:image', property: 'og:image', content: this.$store.state.seo.image },
-                    // { hid: 'og:url', property: 'og:url', content: this.$store.state.seo.url },
-                    // { hid: 'og:type', property: 'og:type', content: 'website' },
-                    // { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-                    // { hid: 'twitter:title', name: 'twitter:title', content: this.$store.state.seo.title },
-                    // { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
-                    // { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
-                    // { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
-                    // { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary.color },
-                    // { hid: "currency", name: "currency", content: this.$store.state.currency.code },
-                    // { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
-                    // { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
-                    // ...this.$store.state.seo.metaTags
-                    // new meta tag
-                    { hid: "description", name: "description", content: this.$store.state.seo.description },
-                    { hid: "og:title",   property: "og:title",  content: this.$store.state.seo.title   },
-                    { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name : "" },
-                    { hid: "og:type", property: "og:type", content: "article"  },
-                    { hid: "og:description", property: "og:description",content: this.$store.state.seo.description  },
-                    { name: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#333" },
-                    { hid: "currency", name: "currency", content:  this.$store.state.currency.code },
-                    //Seo meta tags
-                    ...this.$store.state.seo.metaTags
-                ],
-                link: [
-                    { rel: 'icon', type: 'image/x-icon', href: this.$settings.store_favicon ? this.$settings.store_favicon.src : this.$store.state.defaults.icon },
-                    { rel: "dns-prefetch", href: 'https://storeno.b-cdn.net/stores/' }
-                ],
-                htmlAttrs: {
-                    lang: this.$store.state.language.code,
-                    dir: this.$store.state.language.code == 'AR' ? 'rtl' : 'ltr'
-                }
+export default {
+    head() {
+        return {
+            title: this.$store.state.seo.title,
+            meta: [
+                { hid: "description", name: "description", content: this.$store.state.seo.description },
+                { hid: "og:title", property: "og:title", content: this.$store.state.seo.title },
+                { hid: "og:site_name", property: "og:site_name", content: this.$settings ? this.$settings.store_name : "" },
+                { hid: "og:type", property: "og:type", content: "article" },
+                { hid: "og:description", property: "og:description", content: this.$store.state.seo.description },
+                { name: "theme-color", content: this.$settings ? this.$settings.style.primary.color : "#333" },
+                { hid: "currency", name: "currency", content: this.$store.state.currency.code },
+                ...this.$store.state.seo.metaTags
+            ],
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: this.$settings.store_favicon ? this.$settings.store_favicon.src : this.$store.state.defaults.icon },
+                { rel: "dns-prefetch", href: 'https://storeno.b-cdn.net/stores/' }
+            ],
+            htmlAttrs: {
+                lang: this.$store.state.language.code,
+                dir: this.$store.state.language.code == 'AR' ? 'rtl' : 'ltr'
             }
-        },
-        data() {
-            return {
-                rgb: { r: 0, g: 130, b: 70 },
-                header_rgb: { r: 0, g: 130, b: 70 },
-                header_text_rgb: { r: 0, g: 130, b: 70 },
-                collection_rgb: { r: 0, g: 130, b: 70 },
-                collection_text_rgb: { r: 0, g: 130, b: 70 },
-                products_price_rgb: { r: 0, g: 130, b: 70 },
-                products_delprice_rgb: { r: 0, g: 130, b: 70 },
-                testimonial_rgb: { r: 0, g: 130, b: 70 },
-                testimonial_text_rgb: { r: 0, g: 130, b: 70 },
-                footer_color_rgb: { r: 0, g: 130, b: 70 },
-                footer_text_rgb: { r: 0, g: 130, b: 70 },
-                payments_color_rgb: { r: 0, g: 130, b: 70 },
-                copyright_color_rgb: { r: 0, g: 130, b: 70 },
-                copyright_text_rgb: { r: 0, g: 130, b: 70 },
-                addtocart_rgb: { r: 0, g: 130, b: 70 },
-                addtocart_text_rgb: { r: 0, g: 130, b: 70 },
-                buynow_rgb: { r: 0, g: 130, b: 70 },
-                buynow_text_rgb: { r: 0, g: 130, b: 70 },
-                services_rgb: { r: 0, g: 130, b: 70 },
-                services_text_rgb: { r: 0, g: 130, b: 70 },
-                hover_rgb: { r: 0, g: 130, b: 70 },
-                hover_text_rgb: { r: 0, g: 130, b: 70 }
-            }
-        },
-        async fetch(){
-            this.$store.state.seo.title = this.$settings.store_name;
-            this.$store.state.seo.description = this.$settings.store_description;
-            this.$store.state.seo.keywords = this.$settings.store_keywords || [];
-            if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
-            if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
-            this.rgb = this.$tools.hexToRgb(this.$settings.style.primary.color);
-            this.header_rgb = this.$tools.hexToRgb(this.$settings.style.header.color);
-            this.header_text_rgb = this.$tools.hexToRgb(this.$settings.style.header.text_color);
-            this.collection_rgb = this.$tools.hexToRgb(this.$settings.style.collection.color);
-            this.collection_text_rgb = this.$tools.hexToRgb(this.$settings.style.collection.text_color);
-            this.products_price_rgb = this.$tools.hexToRgb(this.$settings.style.products.price_color);
-            this.products_delprice_rgb = this.$tools.hexToRgb(this.$settings.style.products.delprice_color);
-            this.testimonial_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial.color);
-            this.testimonial_text_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial.text_color);
-            this.footer_color_rgb = this.$tools.hexToRgb(this.$settings.style.footer.color);
-            this.footer_text_rgb = this.$tools.hexToRgb(this.$settings.style.footer.text_color);
-            this.payments_color_rgb = this.$tools.hexToRgb(this.$settings.style.footer.payments_color);
-            this.copyright_color_rgb = this.$tools.hexToRgb(this.$settings.style.copyright.color);
-            this.copyright_text_rgb = this.$tools.hexToRgb(this.$settings.style.copyright.text_color);
-            this.addtocart_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart.color);
-            this.addtocart_text_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart.text_color);
-            this.buynow_rgb = this.$tools.hexToRgb(this.$settings.style.buynow.color);
-            this.buynow_text_rgb = this.$tools.hexToRgb(this.$settings.style.buynow.text_color);
-            this.services_rgb = this.$tools.hexToRgb(this.$settings.style.services.color);
-            this.services_text_rgb = this.$tools.hexToRgb(this.$settings.style.services.text_color);
-            this.hover_rgb = this.$tools.hexToRgb(this.$settings.style.hover.color);
-            this.hover_text_rgb = this.$tools.hexToRgb(this.$settings.style.hover.text_color);
-        },
+        }
+    },
+    data() {
+        return {
+            rgb: { r: 0, g: 130, b: 70 },
+            header_rgb: { r: 0, g: 130, b: 70 },
+            header_text_rgb: { r: 0, g: 130, b: 70 },
+            collection_rgb: { r: 0, g: 130, b: 70 },
+            collection_text_rgb: { r: 0, g: 130, b: 70 },
+            products_price_rgb: { r: 0, g: 130, b: 70 },
+            products_delprice_rgb: { r: 0, g: 130, b: 70 },
+            testimonial_rgb: { r: 0, g: 130, b: 70 },
+            testimonial_text_rgb: { r: 0, g: 130, b: 70 },
+            footer_color_rgb: { r: 0, g: 130, b: 70 },
+            footer_text_rgb: { r: 0, g: 130, b: 70 },
+            payments_color_rgb: { r: 0, g: 130, b: 70 },
+            copyright_color_rgb: { r: 0, g: 130, b: 70 },
+            copyright_text_rgb: { r: 0, g: 130, b: 70 },
+            addtocart_rgb: { r: 0, g: 130, b: 70 },
+            addtocart_text_rgb: { r: 0, g: 130, b: 70 },
+            buynow_rgb: { r: 0, g: 130, b: 70 },
+            buynow_text_rgb: { r: 0, g: 130, b: 70 },
+            services_rgb: { r: 0, g: 130, b: 70 },
+            services_text_rgb: { r: 0, g: 130, b: 70 },
+            hover_rgb: { r: 0, g: 130, b: 70 },
+            hover_text_rgb: { r: 0, g: 130, b: 70 }
+        }
+    },
+    async fetch() {
+        this.$store.state.seo.title = this.$settings.store_name;
+        this.$store.state.seo.description = this.$settings.store_description;
+        this.$store.state.seo.keywords = this.$settings.store_keywords || [];
+        if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; }
+        if (this.$settings.favicon) { this.$store.state.seo.favicon = this.$settings.favicon.src; }
+        this.rgb = this.$tools.hexToRgb(this.$settings.style.primary.color);
+        this.header_rgb = this.$tools.hexToRgb(this.$settings.style.header.color);
+        this.header_text_rgb = this.$tools.hexToRgb(this.$settings.style.header.text_color);
+        this.collection_rgb = this.$tools.hexToRgb(this.$settings.style.collection.color);
+        this.collection_text_rgb = this.$tools.hexToRgb(this.$settings.style.collection.text_color);
+        this.products_price_rgb = this.$tools.hexToRgb(this.$settings.style.products.price_color);
+        this.products_delprice_rgb = this.$tools.hexToRgb(this.$settings.style.products.delprice_color);
+        this.testimonial_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial.color);
+        this.testimonial_text_rgb = this.$tools.hexToRgb(this.$settings.style.testimonial.text_color);
+        this.footer_color_rgb = this.$tools.hexToRgb(this.$settings.style.footer.color);
+        this.footer_text_rgb = this.$tools.hexToRgb(this.$settings.style.footer.text_color);
+        this.payments_color_rgb = this.$tools.hexToRgb(this.$settings.style.footer.payments_color);
+        this.copyright_color_rgb = this.$tools.hexToRgb(this.$settings.style.copyright.color);
+        this.copyright_text_rgb = this.$tools.hexToRgb(this.$settings.style.copyright.text_color);
+        this.addtocart_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart.color);
+        this.addtocart_text_rgb = this.$tools.hexToRgb(this.$settings.style.addtocart.text_color);
+        this.buynow_rgb = this.$tools.hexToRgb(this.$settings.style.buynow.color);
+        this.buynow_text_rgb = this.$tools.hexToRgb(this.$settings.style.buynow.text_color);
+        this.services_rgb = this.$tools.hexToRgb(this.$settings.style.services.color);
+        this.services_text_rgb = this.$tools.hexToRgb(this.$settings.style.services.text_color);
+        this.hover_rgb = this.$tools.hexToRgb(this.$settings.style.hover.color);
+        this.hover_text_rgb = this.$tools.hexToRgb(this.$settings.style.hover.text_color);
+    },
 
-    }
+}
 </script>

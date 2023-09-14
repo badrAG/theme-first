@@ -98,60 +98,61 @@
         <!-- Slide left  -->
     </div>
 </template>
+
 <script>
-    export default {
-        data() {
-            return {
-                subItems: null,
-                show: false,
-                activeId: null,
-                q: this.$route.query.search,
-                menu: this.$settings.sections.header.menu,
-                section: this.$settings.sections.header,
-                otherMenu: [
-                    {
-                        _id: "lang",
-                        text: this.$store.state.language.code,
-                        active: this.$settings.sections.header.icons.language,
-                        childrens: this.$settings.store_languages.map(l=> {
-                            return {
-                                _id: l.code,
-                                text: l.name,
-                                url: `?lang=${l.code}`
-                            }
-                        })
-                    },
-                    {
-                        _id: "currency",
-                        text: this.$store.state.currency.code,
-                        active: this.$settings.sections.header.icons.currency,
-                        childrens: this.$settings.store_currencies.map(c=> {
-                            return {
-                                _id: c.code,
-                                text: c.name,
-                                url: `?cur=${c.code}`
-                            }
-                        })
-                    }
-                ].filter(item=> item.active)
-            }
-        },
-        watch: {
-            "$route.params": {
-                handler(params) {
-                    this.$store.state.showHeaderMenu = false
+export default {
+    data() {
+        return {
+            subItems: null,
+            show: false,
+            activeId: null,
+            q: this.$route.query.search,
+            menu: this.$settings.sections.header.menu,
+            section: this.$settings.sections.header,
+            otherMenu: [
+                {
+                    _id: "lang",
+                    text: this.$store.state.language.code,
+                    active: this.$settings.sections.header.icons.language,
+                    childrens: this.$settings.store_languages.map(l => {
+                        return {
+                            _id: l.code,
+                            text: l.name,
+                            url: `?lang=${l.code}`
+                        }
+                    })
                 },
-                deep: true
-            },
-            "$store.state.showHeaderMenu"(val){
-                if(val){
-                    this.show = val;
-                }else{
-                    setTimeout(() => {
-                        this.show = val;
-                    },500);
+                {
+                    _id: "currency",
+                    text: this.$store.state.currency.code,
+                    active: this.$settings.sections.header.icons.currency,
+                    childrens: this.$settings.store_currencies.map(c => {
+                        return {
+                            _id: c.code,
+                            text: c.name,
+                            url: `?cur=${c.code}`
+                        }
+                    })
                 }
-            }
+            ].filter(item => item.active)
+        }
+    },
+    watch: {
+        "$route.params": {
+            handler(params) {
+                this.$store.state.showHeaderMenu = false
+            },
+            deep: true
         },
-    }
+        "$store.state.showHeaderMenu"(val) {
+            if (val) {
+                this.show = val;
+            } else {
+                setTimeout(() => {
+                    this.show = val;
+                }, 500);
+            }
+        }
+    },
+}
 </script>

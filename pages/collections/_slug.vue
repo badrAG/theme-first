@@ -30,42 +30,42 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                items: [],
-                item: null,
-                loading: true,
-            }
-        },
-        async fetch(){
-            this.items = [];
-            this.loading = true;
-            try{
-                const { data } = await this.$storeino.collections.get({ slug: this.$route.params.slug});
-                this.item = data;
-                const { data : { results } } = await this.$storeino.collections.search({ parent: data._id });
-                this.items = results;
-            }catch(err){
-                this.$sentry.captureException(err);
-            }
-            this.loading = false;
-        },
-        mounted() {
+export default {
+    data() {
+        return {
+            items: [],
+            item: null,
+            loading: true,
+        }
+    },
+    async fetch() {
+        this.items = [];
+        this.loading = true;
+        try {
+            const { data } = await this.$storeino.collections.get({ slug: this.$route.params.slug });
+            this.item = data;
+            const { data: { results } } = await this.$storeino.collections.search({ parent: data._id });
+            this.items = results;
+        } catch (err) {
+            this.$sentry.captureException(err);
+        }
+        this.loading = false;
+    },
+    mounted() {
         this.$storeino.fbpx('PageView');
         this.$tools.call('PAGE_VIEW');
-        }
     }
+}
 </script>
 
 <style scoped>
-    @media (min-width: 768px) {
-        [dir="rtl"] .image-rounded {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+@media (min-width: 768px) {
+    [dir="rtl"] .image-rounded {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
 
-            border-top-right-radius: 0.75rem;
-            border-bottom-right-radius: 0.75rem;
-        }
+        border-top-right-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
     }
+}
 </style>
