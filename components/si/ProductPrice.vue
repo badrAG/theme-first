@@ -94,7 +94,7 @@ export default {
         type: String,
         price: Object,
         originalPrice: { type: Object, default: null },
-        variants: { type: Array, default: [] },
+        variants: { type: Array, default:function () { return []; } },
         page: { type: String, required: false }
     },
     data() {

@@ -58,7 +58,7 @@ export default {
     };
   },
   async fetch() {
-    let filter = { status: 'PUBLISH' };
+    const filter = { status: 'PUBLISH' };
     if (this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c => c._id);
     if (this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
     await this.getProducts(filter);

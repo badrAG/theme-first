@@ -31,7 +31,7 @@
 export default {
   props: {
     title: { type: String, default: '' },
-    list: { type: Array, default: [] },
+    list: { type: Array, default: function () { return []; } },
     size: { type: Number, default: 100 },
     component: { type: String, default: null },
     itemClass: { type: String, default: "w-full sm:w-1/2 md:w-1/3 lg:w-1/4" },
@@ -55,8 +55,8 @@ export default {
   },
   methods: {
     move(n) {
-      var get = 'pop', set = 'unshift', width = document.querySelector('.carousel-item') ? document.querySelector('.carousel-item').offsetWidth : 360;
-      if (n == 1) { get = 'shift', set = 'push', width = `-${width}` };
+      let get = 'pop', set = 'unshift', width = document.querySelector('.carousel-item') ? document.querySelector('.carousel-item').offsetWidth : 360;
+      if (n == 1) { get = 'shift', set = 'push', width = `-${width}` }
       document.querySelector('.carousel').style.transform = `translateX(${width}px)`;
       document.querySelector('.carousel').style.transition = `500ms`;
       setTimeout(() => {
@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      var element = document.querySelector('.carousel-container')
+      const element = document.querySelector('.carousel-container')
       if (element) {
         this.parentWidth = element.clientWidth;
         window.onresize = (ev) => {

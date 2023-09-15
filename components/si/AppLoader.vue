@@ -13,7 +13,7 @@ export default {
   },
   async mounted() {
     if (this.$store.state.apps) {
-      let apps = this.$store.state.apps.filter(app => app.placement.split('|').indexOf(this.placement) > -1);
+      const apps = this.$store.state.apps.filter(app => app.placement.split('|').indexOf(this.placement) > -1);
       if (apps.length > 0) {
         this.loading = true;
         const element = document.querySelector(`#${this.placement}`);

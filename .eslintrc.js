@@ -4,5 +4,10 @@ module.exports = {
     node: true
   },
   root: true,
-  extends: ["@nuxt/eslint-config"]
+  extends: [
+    'eslint:recommended',
+    'plugin:nuxt/recommended',
+    "@nuxt/eslint-config"
+  ],
+  rules: {}
 }

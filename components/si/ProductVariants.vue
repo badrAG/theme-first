@@ -155,14 +155,14 @@ export default {
     },
     methods: {
         getImageStyle() {
-            for (let option of this.options) {
+            for (const option of this.options) {
                 if (option.style && option.style == 'IMAGE') {
-                    for (let val of option.values) {
-                        for (let variant of this.variants) {
+                    for (const val of option.values) {
+                        for (const variant of this.variants) {
                             if ((variant.option1 && val._id == variant.option1.value)
                                 || (variant.option2 && val._id == variant.option2.value) ||
                                 (variant.option3 && val._id == variant.option3.value)) {
-                                for (let img of this.images) {
+                                for (const img of this.images) {
                                     if (variant.imageId == img._id) {
                                         if (!val.images) val.images = [];
                                         val.images.push(img);
@@ -230,18 +230,18 @@ export default {
             this.$emit('selected', this.selected);
         },
         changeVarColor() {
-            let value = this.listStyleColorValue.value;
-            let index = this.listStyleColorValue.index;
+            const value = this.listStyleColorValue.value;
+            const index = this.listStyleColorValue.index;
             this.setVariant(index, value);
         },
         changeVarSize() {
-            let value = this.listStyleSizeValue.value;
-            let index = this.listStyleSizeValue.index;
+            const value = this.listStyleSizeValue.value;
+            const index = this.listStyleSizeValue.index;
             this.setVariant(index, value);
         },
         changeVarOther() {
-            let value = this.listStyleOtherOption.value;
-            let index = this.listStyleOtherOption.index;
+            const value = this.listStyleOtherOption.value;
+            const index = this.listStyleOtherOption.index;
             this.setVariant(index, value);
         },
     },
