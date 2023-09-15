@@ -31,10 +31,13 @@
     "eslint": "^8.49.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.17.0",
+    "html-webpack-plugin": "^4.5.2",
+    "mini-css-extract-plugin": "^1.6.2",
     "nuxt-compress": "^5.0.0",
     "nuxt-purgecss": "^1.0.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss": "^8.4.29",
-    "terser-webpack-plugin": "^4.2.3"
+    "terser-webpack-plugin": "^4.2.3",
+    "webpack-fix-style-only-entries": "^0.6.1"
   }
 }

@@ -23,9 +23,9 @@ const createStore = () => {
         domain: 'www.storeino.com',
         apps: [],
         // Dev Token
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NTAwOTdhMDgzYjllZjFiZjkxNTZkZmEifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk0NTk5MTQxLCJleHAiOjE3MjYxMzUxNDF9.eWK83SU_Gk3aMhX2p1JjGZSTPyyNrYPaOpzjBgIYlow',
+        // token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NTAwOTdhMDgzYjllZjFiZjkxNTZkZmEifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk0NTk5MTQxLCJleHAiOjE3MjYxMzUxNDF9.eWK83SU_Gk3aMhX2p1JjGZSTPyyNrYPaOpzjBgIYlow',
         // Prod Token
-        // token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MjYxMmZhN2I4ODZkYTAwYTRkNWZmMmYifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjkyMTczODM0LCJleHAiOjE3MjM3MDk4MzR9.Hy27CGIsqpU5Hn3sp-X47P38x090kBxAurTwmVfN55w',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MjYxMmZhN2I4ODZkYTAwYTRkNWZmMmYifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk0Nzg3NTY0LCJleHAiOjE3MjYzMjM1NjR9.BaWISVP1QJxEdCNmuCwVDxutzwE0yqQnpjBoUyWjzbI',
         primary: {
           rgb: { r: 0, g: 0, b: 0 },
           color: '#000000'

@@ -1,7 +1,11 @@
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import TerserPlugin  from 'terser-webpack-plugin';
-import purgeCss  from '@fullhuman/postcss-purgecss';
-import cssNano  from 'cssnano';
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const purgeCss  = require('@fullhuman/postcss-purgecss');
+const TerserPlugin  = require('terser-webpack-plugin');
+const cssNano  = require('cssnano')
+
 
 export default {
   head: {
@@ -58,7 +62,8 @@ export default {
       'pages/**/*.vue',
       'plugins/**/*.js',
       'server/**/*.js',
-      'store/**/*.js'
+      'store/**/*.js',
+      'nuxt.config.js'
     ],
     styleExtensions: ['.css'],
     whitelist: ['body', 'html', 'nuxt-progress'],
@@ -150,6 +155,7 @@ export default {
               './plugins/**/*.js',
               './server/**/*.js',
               './store/**/*.js',
+              './nuxt.config.js'
             ],
             safelist: ['html', 'body'],
             defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
@@ -171,6 +177,15 @@ export default {
         }
       },
       minimizer: [
+        // new HtmlWebpackPlugin({
+        //   filename: 'index.html', 
+        //   template: './layouts/default.vue',
+        //   inject: true
+        // }),
+        new MiniCssExtractPlugin({
+          filename: "./assets/css/main.css"
+        }),
+        new FixStyleOnlyEntriesPlugin(),
         new OptimizeCssAssetsPlugin({
           assetNameRegExp: /\.css$/g,
           cssProcessorPluginOptions: {
