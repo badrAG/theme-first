@@ -153,7 +153,7 @@ export default {
             hover_text_rgb: { r: 0, g: 130, b: 70 }
         }
     },
-    mounted() {
+    fetch() {
         this.$store.state.seo.title = this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.store_description;
         this.$store.state.seo.keywords = this.$settings.store_keywords || [];
