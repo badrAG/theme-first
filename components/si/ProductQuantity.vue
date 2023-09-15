@@ -41,7 +41,7 @@ export default {
         }
     },
     watch: {
-        value(val, old) {
+        value(val) {
             if (val > this.quantity.instock) this.value = this.quantity.instock;
             if (val < this.quantity.min) this.value = this.quantity.default;
             if (isNaN(val)) this.value = this.quantity.default;

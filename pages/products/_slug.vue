@@ -350,7 +350,7 @@ export default {
         }
 
         // Dispatch Event
-        window.addEventListener("APP_LOADER", e => {
+        window.addEventListener("APP_LOADER", () => {
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                 detail: {
                     product_id: this.item._id,

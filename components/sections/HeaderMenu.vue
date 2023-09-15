@@ -139,7 +139,7 @@ export default {
     },
     watch: {
         "$route.params": {
-            handler(params) {
+            handler() {
                 this.$store.state.showHeaderMenu = false
             },
             deep: true
