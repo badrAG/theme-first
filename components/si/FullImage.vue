@@ -14,7 +14,9 @@
 export default {
     mounted() {
         document.addEventListener('keydown', (e) => {
-            if (e.key == 'Escape' && this.$store.state.fullImage != null) this.$store.state.fullImage = null;
+            if (e.key == 'Escape' && this.$store.state.fullImage != null) {
+                this.$store.state.fullImage = null;
+            } 
         })
     }
 }

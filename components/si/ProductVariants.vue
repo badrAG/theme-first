@@ -154,6 +154,24 @@ export default {
         await this.getImageStyle();
     },
     methods: {
+        stylesOptions() {
+            if (this.options && this.options.length > 0) {
+                for (let i = 0; i < this.options.length; i++) {
+                    if (this.options[i].style == 'LIST' && this.options[i].key == 'color') {
+                        this.listStyleColorValue.index = i + 1;
+                        this.listStyleColorValue.value = this.options[i].values[0]._id;
+                    }
+                    if (this.options[i].style == 'LIST' && this.options[i].key == 'size') {
+                        this.listStyleSizeValue.index = i + 1;
+                        this.listStyleSizeValue.value = this.options[i].values[0]._id;
+                    }
+                    if (this.options[i].style == 'LIST' && this.options[i].key !== 'size' && this.options[i].key !== 'color') {
+                        this.listStyleOtherOption.index = i + 1;
+                        this.listStyleOtherOption.value = this.options[i].values[0]._id;
+                    }
+                }
+            }
+        },
         getImageStyle() {
             for (const option of this.options) {
                 if (option.style && option.style == 'IMAGE') {
@@ -174,24 +192,6 @@ export default {
                 }
             }
             this.loadImages = true;
-        },
-        stylesOptions() {
-            if (this.options && this.options.length > 0) {
-                for (let i = 0; i < this.options.length; i++) {
-                    if (this.options[i].style == 'LIST' && this.options[i].key == 'color') {
-                        this.listStyleColorValue.index = i + 1;
-                        this.listStyleColorValue.value = this.options[i].values[0]._id;
-                    }
-                    if (this.options[i].style == 'LIST' && this.options[i].key == 'size') {
-                        this.listStyleSizeValue.index = i + 1;
-                        this.listStyleSizeValue.value = this.options[i].values[0]._id;
-                    }
-                    if (this.options[i].style == 'LIST' && this.options[i].key !== 'size' && this.options[i].key !== 'color') {
-                        this.listStyleOtherOption.index = i + 1;
-                        this.listStyleOtherOption.value = this.options[i].values[0]._id;
-                    }
-                }
-            }
         },
         selectOneVarColor(id, length, value, index) {
             for (let i = 0; i < length; i++) {

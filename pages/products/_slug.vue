@@ -336,6 +336,7 @@ export default {
                     currency: this.$store.state.currency.code
                 });
             }
+            
         } catch (err) {
             this.$sentry.captureException(err);
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
@@ -595,7 +596,7 @@ export default {
             this.visibleSlide = index
             this.image = this.$tools.copy(this.item.images[index]);
         }
-    },
+    }
 }
 </script>
 

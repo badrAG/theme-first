@@ -82,7 +82,16 @@ export default {
         item: Object,
         page: { type: String, required: false }
     },
-    async fetch() {
+    data() {
+        return {
+            added: false,
+            variant: this.item.type == 'variant' ? this.item.variants[0] : null,
+            quantity: this.item.quantity,
+            price: { salePrice: 0, comparePrice: 0 },
+            discount: this.upsell ? this.upsell.discount : null
+        }
+    },
+    mounted() {
         if (this.discount) {
             if (this.item.type == 'simple') {
                 this.item.originalPrice = this.$tools.copy(this.item.price);
@@ -105,15 +114,6 @@ export default {
                     }
                 });
             }
-        }
-    },
-    data() {
-        return {
-            added: false,
-            variant: this.item.type == 'variant' ? this.item.variants[0] : null,
-            quantity: this.item.quantity,
-            price: { salePrice: 0, comparePrice: 0 },
-            discount: this.upsell ? this.upsell.discount : null
         }
     },
     methods: {

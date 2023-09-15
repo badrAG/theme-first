@@ -1,5 +1,5 @@
 <template>
-    <nuxt-img @click="$emit('click')" :id="id" :src="newSrc" :alt="alt" loading="lazy"/>
+    <nuxt-img @click="$emit('click')" width="200" height="200" :id="id" :src="newSrc" :alt="alt"  preload loading="lazy" />
 </template>
 
 <script>
@@ -17,8 +17,11 @@ export default {
             empty: this.default || this.$store.state.defaults.image
         }
     },
+    mounted() {
+        this.init();
+    },
     watch: {
-        src(val) {
+        src() {
             this.init();
         }
     },
@@ -39,9 +42,6 @@ export default {
                 })
             }
         }
-    },
-    mounted() {
-        this.init();
-    },
+    }
 }
 </script>

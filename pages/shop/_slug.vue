@@ -234,23 +234,6 @@ export default {
             ]
         }
     },
-    mounted() {
-        this.$storeino.fbpx('PageView');
-        this.$tools.call('PAGE_VIEW');
-    },
-    watch: {
-        params: {
-            handler(val) {
-                if (JSON.stringify(val) !== JSON.stringify(this.lastParams)) {
-                    this.getItems();
-                }
-            },
-            deep: true
-        },
-        "$route.query.search"(val) {
-            this.$set(this.params, 'search', val);
-        }
-    },
     async fetch() {
         this.$store.state.seo.title = this.$settings.sections.shop.title + ' - ' + this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.sections.shop.description || this.$settings.store_description;
@@ -276,6 +259,19 @@ export default {
         await this.getItems();
         await this.getCollections();
         await this.getBrands();
+    },
+    watch: {
+        params: {
+            handler(val) {
+                if (JSON.stringify(val) !== JSON.stringify(this.lastParams)) {
+                    this.getItems();
+                }
+            },
+            deep: true
+        },
+        "$route.query.search"(val) {
+            this.$set(this.params, 'search', val);
+        }
     },
     mounted() {
         // All Pixels
@@ -366,8 +362,8 @@ export default {
                 this.$sentry.captureException(err);
             }
             this.loading.products = false;
-        },
-    },
+        }
+    }
 }
 </script>
 

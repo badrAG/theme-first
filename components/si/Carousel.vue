@@ -42,11 +42,22 @@ export default {
       loading: true,
       items: this.list,
       width: this.defaultWidth,
-      parentWidth: 1000,
+      parentWidth: 1000
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      const element = document.querySelector('.carousel-container')
+      if (element) {
+        this.parentWidth = element.clientWidth;
+        window.onresize = () => {
+          this.parentWidth = element.clientWidth;
+        }
+      }
+    })
+  },
   watch: {
-    parentWidth(val, oldVal) {
+    parentWidth(val) {
       if (val < 640) this.width = 50;
       if (val >= 640 && val < 768) this.width = 33.33;
       if (val >= 768 && val < 1024) this.width = 25;
@@ -66,18 +77,6 @@ export default {
         this.items[set](el);
       }, 500);
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      const element = document.querySelector('.carousel-container')
-      if (element) {
-        this.parentWidth = element.clientWidth;
-        window.onresize = (ev) => {
-          this.parentWidth = element.clientWidth;
-        }
-      }
-    })
-  },
-};
+  }
+}
 </script>
-  

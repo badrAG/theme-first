@@ -62,7 +62,7 @@ export default {
         item: { type: Object, required: true },
         quantity: { type: Number, default: 1 }
     },
-    async fetch() {
+    mounted() {
         this.quantitySelected(this.item.quantity.value);
     },
     methods: {

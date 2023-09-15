@@ -200,8 +200,8 @@ export default {
                 this.$sentry.captureException(err);
             }
             this.loading.pages = false;
-        },
-    },
+        }
+    }
 }
 </script>
 

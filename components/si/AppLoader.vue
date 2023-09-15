@@ -11,7 +11,7 @@ export default {
       loading: false,
     };
   },
-  async mounted() {
+  mounted() {
     if (this.$store.state.apps) {
       const apps = this.$store.state.apps.filter(app => app.placement.split('|').indexOf(this.placement) > -1);
       if (apps.length > 0) {

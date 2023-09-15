@@ -153,12 +153,16 @@ export default {
             hover_text_rgb: { r: 0, g: 130, b: 70 }
         }
     },
-    async fetch() {
+    mounted() {
         this.$store.state.seo.title = this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.store_description;
         this.$store.state.seo.keywords = this.$settings.store_keywords || [];
-        if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; }
-        if (this.$settings.favicon) { this.$store.state.seo.favicon = this.$settings.favicon.src; }
+        if (this.$settings.store_og_image) { 
+            this.$store.state.seo.image = this.$settings.store_og_image.src; 
+        }
+        if (this.$settings.favicon) { 
+            this.$store.state.seo.favicon = this.$settings.favicon.src; 
+        }
         this.rgb = this.$tools.hexToRgb(this.$settings.style.primary.color);
         this.header_rgb = this.$tools.hexToRgb(this.$settings.style.header.color);
         this.header_text_rgb = this.$tools.hexToRgb(this.$settings.style.header.text_color);
@@ -181,7 +185,6 @@ export default {
         this.services_text_rgb = this.$tools.hexToRgb(this.$settings.style.services.text_color);
         this.hover_rgb = this.$tools.hexToRgb(this.$settings.style.hover.color);
         this.hover_text_rgb = this.$tools.hexToRgb(this.$settings.style.hover.text_color);
-    },
-
+    }
 }
 </script>

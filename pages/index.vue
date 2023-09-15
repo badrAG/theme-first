@@ -21,11 +21,10 @@
 
 <script>
 export default {
-  async fetch() {
+  mounted() {
+    // Seo
     this.$store.state.seo.title = this.$settings.store_name;
     this.$store.state.seo.description = this.$settings.store_description;
-  },
-  mounted() {
     // All Pixels
     this.$tools.call('PAGE_VIEW');
     // Facebook Pixel
