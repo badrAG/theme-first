@@ -277,6 +277,12 @@ export default {
         await this.getCollections();
         await this.getBrands();
     },
+    mounted() {
+        // All Pixels
+        this.$tools.call('PAGE_VIEW');
+        // Facebook Pixel
+        this.$storeino.fbpx('PageView');
+    },
     methods: {
         setParams(e, key, value) {
             if (key.indexOf('price') >= 0 || key.indexOf('page') >= 0) {

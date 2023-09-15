@@ -143,8 +143,10 @@ export default {
         this.$store.state.seo.description = this.$settings.sections.blog.description || this.$settings.store_description;
     },
     mounted() {
-        this.$storeino.fbpx('PageView');
+        // All Pixels
         this.$tools.call('PAGE_VIEW');
+        // Facebook Pixel
+        this.$storeino.fbpx('PageView');
     },
     methods: {
         setParams(e, key, value) {

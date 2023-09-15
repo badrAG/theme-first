@@ -125,9 +125,12 @@ export default {
         }
     },
     mounted() {
-        this.$storeino.fbpx('PageView');
+        // All Pixels
         this.$tools.call('PAGE_VIEW');
-    }, methods: {
+        // Facebook Pixel
+        this.$storeino.fbpx('PageView');
+    },
+    methods: {
         getdate(createdDatte) {
             const date = new Date(createdDatte);
             const options = { year: 'numeric', month: 'short', day: 'numeric' };

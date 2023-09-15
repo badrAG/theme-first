@@ -96,8 +96,10 @@ export default {
         }
     },
     mounted() {
-        this.$storeino.fbpx('PageView');
+        // All Pixels
         this.$tools.call('PAGE_VIEW');
+        // Facebook Pixel
+        this.$storeino.fbpx('PageView');
     },
     watch: {
         async "$store.state.cart.length"() {

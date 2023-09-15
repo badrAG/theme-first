@@ -32,11 +32,14 @@ export default {
     if (this.$route.query && this.$route.query.orderId) this.src = this.src + '?orderId=' + this.$route.query.orderId
   },
   mounted() {
+    // Account Submit
     if (this.routes.includes(this.$route.params.route) && document.querySelector("#account")) {
       document.querySelector("#account").submit();
     }
-    this.$storeino.fbpx('PageView');
+    // All Pixels
     this.$tools.call('PAGE_VIEW');
+    // Facebook Pixel
+    this.$storeino.fbpx('PageView');
   },
   methods: {
     load() {

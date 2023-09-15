@@ -34,11 +34,17 @@ export default {
     };
   },
   mounted() {
-    // facebook events
-    this.$storeino.fbpx('PageView');
-    this.$storeino.fbpx('Purchase');
-    // snapchat events
+    // All Events Page View
     this.$tools.call('PAGE_VIEW');
+    
+    // Fb PageView
+    this.$storeino.fbpx('PageView');
+
+    // Fb Purchase
+    this.$storeino.fbpx('Purchase');
+
+
+    // All Events Purchase
     if (this.$route.query.pixel) {
       const pixelData = JSON.parse(this.$route.query.pixel);
       window.snapPurchase({
@@ -49,6 +55,7 @@ export default {
         item_ids: pixelData.content_ids,
       });
     }
+
     // take OrderId from url
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);

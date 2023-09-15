@@ -43,6 +43,12 @@
             this.$store.state.seo.description = this.$settings.sections.wishlist.description || this.$settings.store_description;
             await this.initWishlist();
         },
+        mounted() {
+            // All Pixels
+            this.$tools.call('PAGE_VIEW');
+            // Facebook Pixel
+            this.$storeino.fbpx('PageView');
+        },
         watch: {
             async "$store.state.wishlist"(){
                 await this.initWishlist();

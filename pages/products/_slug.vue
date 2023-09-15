@@ -294,8 +294,10 @@ export default {
         }
     },
     async fetch() {
+        // Get Product Slug From Route
         const { slug } = this.$route.params;
         try {
+            // Get Product Data
             this.loading = true;
             const { data } = await this.$storeino.products.get({ slug })
             this.item = data;
@@ -319,8 +321,13 @@ export default {
                 button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
             }
 
+            // Pixels
             if (!process.server) {
+                // All Events
+                this.$tools.call('PAGE_VIEW', this.item);
+                // Fb PageView
                 this.$storeino.fbpx('PageView');
+                // Fb ViewContent
                 this.$storeino.fbpx('ViewContent', {
                     content_name: this.item.name ? this.item.name : '',
                     content_ids: [this.item._id],
@@ -328,18 +335,20 @@ export default {
                     value: this.item.price.salePrice,
                     currency: this.$store.state.currency.code
                 });
-                this.$tools.call('PAGE_VIEW', this.item);
             }
-
         } catch (err) {
             this.$sentry.captureException(err);
             this.$nuxt.error({ statusCode: 404, message: 'product_not_found' })
         }
     },
     mounted() {
+        // All Pixels
         if (this.item) {
+            // PageView Events
             this.$tools.call('PAGE_VIEW', this.item);
         }
+
+        // Dispatch Event
         window.addEventListener("APP_LOADER", e => {
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
                 detail: {
@@ -351,8 +360,12 @@ export default {
                 }
             }));
         });
+
+        // Facebook Pixel
         if (this.item) {
+            // Fb PageView
             this.$storeino.fbpx('PageView');
+            // Fb ViewContent
             this.$storeino.fbpx('ViewContent', {
                 content_name: this.item.name ? this.item.name : '',
                 content_ids: [this.item._id],
@@ -361,11 +374,11 @@ export default {
                 currency: this.$store.state.currency.code
             })
         }
+
+        // Create Iframe
         if (this.item) {
             const iframes = document.querySelectorAll('iframe')
             for (const ifram of iframes) {
-                const width = ifram.getAttribute('width')
-                const height = ifram.getAttribute('height')
                 const parent = ifram.parentNode
                 if (!parent.classList.contains('video-wrapper')) {
                     const div = document.createElement("div");
@@ -379,10 +392,12 @@ export default {
                 }
             }
         }
+
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
     },
     computed: {
+        // Return Images Length
         slidesLen() {
             return this.item.images.length
         }
@@ -488,18 +503,15 @@ export default {
             return langs[key] && langs[key][this.$store.state.language.code] || '';
         },
         addToCart() {
-            // Call add to cart event
+            // add to cart event
             this.$tools.call('ADD_TO_CART', {
                 _id: this.item._id,
                 quantity: this.quantity.value,
                 price: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
                 variant: this.variant ? { _id: this.variant._id } : null
             });
-            if (this.$settings.sections.products.add_to_cart_to_checkout) {
-                setTimeout(() => {
-                    window.location.href = '/checkout2';
-                }, 500);
-            }
+
+            // Fbx Add to cart 
             this.$storeino.fbpx('AddToCart', {
                 content_name: this.item.name,
                 content_ids: [this.item._id],
@@ -507,6 +519,15 @@ export default {
                 value: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
                 currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
             })
+
+            // Add to cart to checkout
+            if (this.$settings.sections.products.add_to_cart_to_checkout) {
+                setTimeout(() => {
+                    window.location.href = '/checkout2';
+                }, 500);
+            }
+
+            // Tost
             this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
         },
         addToWishlist() {
@@ -524,6 +545,8 @@ export default {
                 return;
             }
             this.addToCart();
+
+            // Redirect To Checkout
             setTimeout(() => {
                 window.location.href = '/checkout2';
             }, 500);
@@ -571,10 +594,6 @@ export default {
         setImage(index) {
             this.visibleSlide = index
             this.image = this.$tools.copy(this.item.images[index]);
-        },
-        setTab(tab) {
-            this.tab = tab;
-            if (tab == 'reviews' && this.reviews.results.length == 0) this.getReviews();
         }
     },
 }
