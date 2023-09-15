@@ -97,6 +97,7 @@ export default {
   sentry: {
     dsn: 'https://223d984c7563639c19a86ba3e0947172@logs.storeino.com/9',
     config: {
+      environment: process.env.SENTRY_ENVIRONMENT,
       debug: true
     },
     clientConfig: {
