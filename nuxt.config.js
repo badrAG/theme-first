@@ -1,7 +1,6 @@
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const purgeCss  = require('@fullhuman/postcss-purgecss');
 const TerserPlugin  = require('terser-webpack-plugin');
 const cssNano  = require('cssnano')
@@ -177,11 +176,6 @@ export default {
         }
       },
       minimizer: [
-        // new HtmlWebpackPlugin({
-        //   filename: 'index.html', 
-        //   template: './layouts/default.vue',
-        //   inject: true
-        // }),
         new MiniCssExtractPlugin({
           filename: "./assets/css/main.css"
         }),
