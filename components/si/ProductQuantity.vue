@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center">
         <div class="flex justify-between border rounded-lg box-shadow hover:border-gray-400" :class="page=='product'? 'w-full' : ''">
             <div class="flex">                 
-                <label class="relative h-full border-black" :class="page=='product'? 'py-3' : 'py-1.5 md:py-2.5'" >
+                <label class="relative h-full border-black" :class="page=='product'? 'py-3' : 'py-2 md:py-3'" >
                     <span class="px-3 py-2 text-base font-normal text-center md:py-4 md:px-5 ">{{ value }}</span>
                     <input :min="quantity.min" :max="quantity.max" class="absolute inset-0 w-full h-full px-2 text-base font-normal text-center bg-opacity-0 rounded-lg outline-none" v-model="value" type="number">
                 </label>
