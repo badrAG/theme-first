@@ -23,7 +23,7 @@ const createStore = () => {
         domain: 'www.storeino.com',
         apps: [],
         // Dev Token
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NTAwOTdhMDgzYjllZjFiZjkxNTZkZmEifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk0NTk5MTQxLCJleHAiOjE3MjYxMzUxNDF9.eWK83SU_Gk3aMhX2p1JjGZSTPyyNrYPaOpzjBgIYlow',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NDc1YjM1MGU3NTI3MTIyYzc5M2JjOTkifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk1MDI5MzM5LCJleHAiOjE3MjY1NjUzMzl9.YWXKEnHkOOks1d5sRCFeByjkmDq8QlBDh7hHIxymX_M',
         // Prod Token
         // token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MjYxMmZhN2I4ODZkYTAwYTRkNWZmMmYifSwic291cmNlIjoiVEhFTUVTIiwiaWF0IjoxNjk0Nzg3NTY0LCJleHAiOjE3MjYzMjM1NjR9.BaWISVP1QJxEdCNmuCwVDxutzwE0yqQnpjBoUyWjzbI',
         primary: {
