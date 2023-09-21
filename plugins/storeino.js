@@ -57,58 +57,97 @@ export default async function ({ $http, store, app, route }, inject) {
             // Facebook Purchase Without Currency
             if (ev == "Purchase" && !route.query.pixel && !data.currency) {
                 return 0;
-            }
-            // Facebook Purchase Event
+            } 
+            // Check Purchase & Query Pixel
             else if (ev == "Purchase" && route.query.pixel) {
+                // Convert Route Pixel To Json
                 let pixelData = JSON.parse(route.query.pixel);
+                //Filter Content 
                 pixelData.contents.forEach((element) => {
+                    // Get Quantity From Content
                     element.quantity = Math.round(element.quantity);
+                    // Delete Unused Element
                     delete element._id;
                     delete element.variant;
                     delete element.name;
                 });
+                // Fill Data With Content
                 data = {
                     content_ids: pixelData.content_ids,
                     content_type: "product",
                     contents: pixelData.contents,
                     value: pixelData.total,
                     currency: (store.state.currency && store.state.currency.code) ? store.state.currency.code : "USD"
-                };
-                if (pixelData.fbParams) params = pixelData.fbParams;
+                }
+                // Set Fb Params
+                if (pixelData.fbParams) {
+                    params = pixelData.fbParams;
+                } 
             }
-            // Multiple Facebook Pixel
-            if (!store.state.isPreview && store.state.settings && store.state.settings['facebook_multiple_pixel'] && store.state.settings['facebook_multiple_pixel'].length > 0) {
-                let query = { name: "fbpx", type: ev, ref: window.location.href };
-                if (params) { for (const key in params) { query[key] = params[key]; } }
-                if (localStorage.getItem('__external_id')) query['user_external_id'] = localStorage.getItem('__external_id');
-                if (localStorage.getItem('__fbc')) query['user_fbc'] = localStorage.getItem('__fbc');
-                if (data.currency) {
-                    let valueCur = 1;
-                    if (store.state.settings['facebook_currency'] && store.state.settings.facebook_currency[data.currency] && store.state.settings.facebook_currency[data.currency] != 0) {
-                        valueCur = store.state.settings.facebook_currency[data.currency];
+            // Create Fb Query
+            let query = { 
+                name: "fbpx", 
+                type: ev,
+                ref: window.location.href 
+            }
+            // Get Params
+            if (params) { 
+                for (const key in params) { 
+                    query[key] = params[key]; 
+                } 
+            }
+            // Get External Id
+            if (localStorage.getItem('__external_id')) {
+                query['user_external_id'] = localStorage.getItem('__external_id');
+            } 
+            // Get __fbc
+            if (localStorage.getItem('__fbc')) {
+                query['user_fbc'] = localStorage.getItem('__fbc');
+            } 
+            // Add Currency Value 
+            if (data.currency && data.value && data.contents) {
+                let valueCur = 1;
+                if (store.state.settings['facebook_currency'] && 
+                    store.state.settings.facebook_currency[data.currency] && 
+                    store.state.settings.facebook_currency[data.currency] != 0) {
+                    valueCur = store.state.settings.facebook_currency[data.currency];
+                }
+                data.currency = 'USD';
+                data.contents.forEach( (content)=> {
+                    content.price = Number(content.price) / valueCur;
+                })
+                data.value = Number(data.value) / valueCur;
+            }
+            // Check Multi Pixel
+            if (ev == "Purchase") {
+                store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+                    if (pixel.active && !pixel.token) {
+                        if (pixel.type && pixel.type == "Lead") {
+                            fbq("trackSingle", pixel.id, 'Lead', data);
+                        } 
+                        else {
+                            fbq("trackSingle", pixel.id, 'Purchase', data);
+                        } 
                     }
-                    data.currency = 'USD';
-                    data.value = Number(data.value) / valueCur;
+                })
+            // One Pixel
+            } else {
+                store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
+                    if (pixel.active && !pixel.token) {
+                        fbq("trackSingle", pixel.id, ev, data);
+                    }
+                })
+            }
+            // Check Existent
+            let exits = false;
+            store.state.settings['facebook_multiple_pixel'].forEach(p => { 
+                if (p.active && p.token) {
+                    exits = true;
                 }
-                if (ev == "Purchase") {
-                    store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-                        if (pixel.active && !pixel.token) {
-                            if (pixel.type && pixel.type == "Lead") fbq("trackSingle", pixel.id, 'Lead', data);
-                            else fbq("trackSingle", pixel.id, 'Purchase', data);
-                        }
-                    });
-                } else {
-                    store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-                        if (pixel.active && !pixel.token) {
-                            fbq("trackSingle", pixel.id, ev, data);
-                        }
-                    });
-                }
-                let exits = false;
-                store.state.settings['facebook_multiple_pixel'].forEach(p => { if (p.active && p.token) exits = true; });
-                if (exits) {
-                    await $http.post(`/events/create`, data, { params: query });
-                }
+            })
+            // Create Event
+            if (exits) {
+                await $http.post(`/events/create`, data, { params: query });
             }
         }
     }
