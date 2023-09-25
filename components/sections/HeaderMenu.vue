@@ -93,39 +93,39 @@
                     </div>
                     <!-- courency and language dropdown  -->
                     <!-- About section  -->
-                    <div class="py-2">
+                    <div class="px-4 py-2">
                         <!-- Store title -->
                         <div class="flex items-center justify-between" @click="showContent">
-                            <h4 class="text-xl font-bold md:text-3xl">{{ footer.copyright.store_name }}</h4>
-                            <svg class="w-6 h-6 transform" :class="[isContentVisible ? 'rotate-180 transition-all delay-150 ease-linear' : '']"  xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                            <h4 class="text-base font-bold md:text-3xl">{{ footer.copyright.store_name }}</h4>
+                            <svg class="w-5 h-5 transform" :class="[isContentVisible ? 'rotate-180 transition-all delay-150 ease-linear' : '']"  xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                 <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <!-- Store title -->
                         <transition name="slide">
-                            <div class="px-4 mb-4 md:block md:mb-0" :class="isContentVisible? 'block':'hidden'">
+                            <div class="pt-4" :class="isContentVisible? 'block':'hidden'">
                                 <!-- Footer About -->
-                                <div class="mb-2 text-base font-normal text-md-responsive" v-show="footer.about.length > 0">{{ footer.about }}</div>
+                                <div class="mb-2 text-base font-normal" v-show="footer.about.length > 0">{{ footer.about }}</div>
                                 <!-- Footer About -->
                                 <!-- Contacts  -->
                                 <div class="Contacts">
                                     <p class="flex items-center mb-3" v-show="footer.location.length > 0">
-                                    <svg class="w-5 h-5 icon translate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" width="20px" height="20px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                                    <svg class="w-4 h-4 icon translate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" width="20px" height="20px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                                         <path fill="currentColor" d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289l16,24  C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289C54.289,34.008,56,29.219,56,24  C56,10.746,45.254,0,32,0z M32,32c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.418,32,32,32z"/>
                                     </svg>
-                                    <span class="mx-3 text-base font-normal text-md-responsive hover:underline">{{ footer.location }}</span>
+                                    <span class="mx-3 text-base font-normal hover:underline">{{ footer.location }}</span>
                                     </p>
                                     <p class="flex items-center mb-3" v-show="footer.gmail.length > 0">
-                                    <svg class="w-5 h-5 icon translate" xmlns="http://www.w3.org/2000/svg" fill="curr" width="20px" height="20px" viewBox="0 0 512 512">
+                                    <svg class="w-4 h-4 icon translate" xmlns="http://www.w3.org/2000/svg" fill="curr" width="20px" height="20px" viewBox="0 0 512 512">
                                         <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" fill="currentColor"/>
                                     </svg>
-                                    <a class="mx-3 text-base font-normal text-md-responsive hover:underline" :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
+                                    <a class="mx-3 text-base font-normal hover:underline" :href="'mail:'+footer.gmail">{{ footer.gmail }}</a>
                                     </p>
                                     <p class="flex items-center" v-show="footer.number.length > 0">
-                                    <svg class="w-6 h-6 icon translate"  xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                                    <svg class="w-5 h-5 icon translate"  xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                                         <path d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z" fill="currentColor"/>
                                     </svg>
-                                    <a class="mx-3 text-base font-normal text-md-responsive hover:underline" :href="'tel:'+footer.number">{{ footer.number }}</a>
+                                    <a class="mx-3 text-base font-normal hover:underline" :href="'tel:'+footer.number">{{ footer.number }}</a>
                                     </p>
                                 </div>
                                 <!-- Contacts  -->
