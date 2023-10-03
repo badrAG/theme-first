@@ -70,6 +70,12 @@
                     <!--  product price -->
                 </div>
             </div>
+            <!-- Add To Cart -->
+            <button v-if="discount" class="flex items-center justify-center h-8 px-5 mt-2 rounded-full addtocart-bg addtocart-text-bg lg:h-9 hover:opacity-90" @click="addToCart()">
+                <span class="text-xs font-semibold" v-if="added">{{ $settings.sections.products.added_text }}</span>
+                <span class="text-xs font-semibold" v-else>{{ $settings.sections.products.add_to_cart.text }}</span>
+            </button>
+            <!-- Add To Cart -->
         </div>
         <!-- else pages -->
     </div>
@@ -117,6 +123,44 @@ export default {
         }
     },
     methods: {
+        addToCart() {
+            if(this.discount) {
+                // All Pixels
+                const item = {
+                    _id: this.item._id,
+                    quantity: this.quantity.value ? this.quantity.value : this.item.quantity.default,
+                    price: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                    variant: this.variant ? { _id: this.variant._id } : null,
+                    upsell: this.upsell
+                };
+                this.$tools.call('ADD_TO_CART', item);
+                
+                // Facebook Pixel
+                this.$storeino.fbpx('AddToCart',{
+                    content_name: this.item.name,
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.variant?this.variant.price.salePrice : this.item.price.salePrice,
+                    currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+                })
+    
+                // Toast
+                this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
+                this.added = true;
+    
+                // Add To Cart To Checkout
+                if(this.$settings.sections.products.add_to_cart_to_checkout){
+                    setTimeout(() => {
+                            window.location.href = '/checkout2';
+                    }, 500);
+                }
+                
+                // added disable
+                setTimeout(() => {
+                    this.added = false;
+                }, 2000);
+            }
+        },
         addToWishlist() {
             this.$tools.call('ADD_TO_WISHLIST', this.item);
             this.$tools.toast(this.$settings.sections.alerts.added_to_wishlist);

@@ -48,14 +48,16 @@
         <div v-else>
             <div class="prices" v-if="price">
                 <!-- sale price -->
-                <span class="truncate" v-if="type=='simple'">
-                    <!-- meta tag -->
-                    <meta itemprop="price" :content="price.salePrice" />
-                    <!-- meta tag -->
-                    <span class="font-bold products-price-text-bg">{{ `${price.salePrice}${$store.state.currency.symbol}`   }}</span>
-                    <span class="mx-0.5"></span>
-                    <span v-if="price.comparePrice > 0">
-                        <del class="font-normal products-delprice-text-bg">{{ `${price.comparePrice}${$store.state.currency.symbol}` }}</del>
+                <span class="price" v-if="type=='simple'">
+                    <span class="truncate">
+                        <!-- meta tag -->
+                        <meta itemprop="price" :content="price.salePrice" />
+                        <!-- meta tag -->
+                        <span class="font-bold products-price-text-bg">{{ `${price.salePrice}${$store.state.currency.symbol}`   }}</span>
+                        <span class="mx-0.5"></span>
+                        <span v-if="price.comparePrice > 0">
+                            <del class="font-normal products-delprice-text-bg">{{ `${price.comparePrice}${$store.state.currency.symbol}` }}</del>
+                        </span>
                     </span>
                 </span>
                 <!-- sale price -->
