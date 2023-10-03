@@ -192,7 +192,7 @@
             <!--  -->
             <div v-if="!loading && item">
                 <!-- upsells  -->
-                <div class="mt-10" v-if="$settings.sections.product.upsell.active && item.upsell.length > 0">
+                <div class="mt-10" v-if="$settings.sections.product.upsell.active">
                     <div class="upsells">
                         <sections-upsell :item="item.upsell"/>
                     </div>
