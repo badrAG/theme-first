@@ -303,8 +303,12 @@ export default {
             this.item = data;
             this.loading = false;
             this.quantity = this.item.quantity;
+
             // Set default image if exists
-            if (this.item.images.length > 0) this.setImage(0);
+            if (this.item.images.length > 0) {
+                this.setImage(0);
+            } 
+
             // Set default variant if exists
             if (this.item.type == 'variable' && this.item.variants.length > 0) this.variantSelected(this.item.variants[0]);
             if (this.item.type == 'simple') {
@@ -313,8 +317,10 @@ export default {
                     this.outofstock = true;
                 }
             }
+
             // Set default quantity
             this.quantitySelected(this.quantity.default);
+
             // Generate share urls
             const url = `https://${this.$store.state.domain}/posts/${slug}`;
             for (const button of this.socialMedia) {
@@ -660,7 +666,6 @@ export default {
     .slider {
         flex: 1 0 0%;
     }
-
     .galery {
         flex: 0 0 auto;
     }

@@ -142,12 +142,16 @@ export default function ({ app, store, router, $tools }, inject) {
                 item.parents = [...new Set([...exists.parents, ...item.parents])];
                 exists.quantity = item.quantity;
             } else {
+                if(item.parents.length > 0 && !store.state.cart.find(i => i._id === item.parents[0])) {
+                    const parentProduct = $tools.reformCartItem({ _id: item.parents[0], quantity: 1 });
+                    store.state.cart.push(parentProduct);
+                }
                 store.state.cart.push(item);
             }
 
             // Set Cart
             $tools.setCart(store.state.cart);
-
+            
             // Call Add To Cart
             $tools.call('ADDED_TO_CART');
         });
