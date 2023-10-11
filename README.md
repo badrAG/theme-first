@@ -1,4 +1,4 @@
-# palest-theme
+# bazar-theme
 
 ## Build Setup
 
