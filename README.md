@@ -1,5 +1,5 @@
 # bazar-theme
-## 
+
 ## Build Setup
 
 ```bash
