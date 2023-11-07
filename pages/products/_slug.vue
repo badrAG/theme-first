@@ -77,7 +77,7 @@
                         </div>
                         <!-- product-quantity -->
                         <!-- add to cart -->
-                        <div class="w-3/5 md:w-3/12">
+                        <div class="w-3/5 md:w-3/12" v-show="!outofstock">
                             <button class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
@@ -91,6 +91,14 @@
                             </div>
                         </div>
                         <!-- add to cart -->
+                        <!-- Out Of Stock -->
+                        <div class="w-3/5 md:w-3/12" v-show="outofstock">
+                            <button class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90">
+                                <span>{{ $settings.sections.product.out_of_stock ? $settings.sections.product.out_of_stock.text : 'Out Of Stock' }}</span>
+                            </button>
+                        </div>
+                        <!-- Out Of Stock -->
+                        
                     </div>
                 </div>
                 <!-- sticky add to cart -->
