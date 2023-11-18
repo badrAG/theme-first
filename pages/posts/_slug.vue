@@ -38,7 +38,7 @@
                         </div>
                         <!-- post date -->
                         <!-- short description -->
-                        <p class="px-4 mt-4 text-base font-normal leading-7 text-gr">{{ item.excerpt }}</p>
+                        <p class="px-4 mt-4 text-base font-normal leading-7 text-bl">{{ item.excerpt }}</p>
                         <!-- short description -->
                         <!-- description -->
                         <div class="px-4">
