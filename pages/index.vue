@@ -13,7 +13,7 @@
     <sections-bottom-collections class="home-bottom-collections" v-if="$settings.sections.bottom_collections.active"></sections-bottom-collections>
     <!-- Home Blogs -->
     <div v-if="$settings.sections.blogs">
-      <sections-posts v-if="$settings.sections.blogs.active"></sections-posts>
+      <sections-blogs v-if="$settings.sections.blogs.active"></sections-blogs>
     </div>
     <!-- Home Blogs -->
     <sections-services class="home-services" v-if="$settings.sections.services.active"></sections-services>

@@ -1018,6 +1018,12 @@
                       "type": "tc_input",
                       "translatable": true,
                       "value": "Show more"
+                    },
+                    {
+                      "name": "show_categories",
+                      "path": "sections.blogs.show_categories",
+                      "type": "tc_checkbox",
+                      "value": true
                     }
                   ]
                 }
@@ -2751,8 +2757,8 @@
               "value": "Dernières du blog"
             },
             {
-                "name": "sections.blogs.show_more_text",
-                "value": "Montre plus"
+              "name": "sections.blogs.show_more_text",
+              "value": "Montre plus"
             },
             {
               "name": "sections.services.title",
@@ -3192,7 +3198,8 @@
           "active": true,
           "title": "Latest from blog",
           "items": [],
-          "show_more_text": "Show more"
+          "show_more_text": "Show more",
+          "show_categories": true
         },
         "services": {
           "active": true,

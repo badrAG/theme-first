@@ -31,26 +31,27 @@
                     "type": "tc_input",
                     "translatable": true,
                     "value": "Show more"
+                },
+                {
+                  "name": "show_categories",
+                  "path": "sections.blogs.show_categories",
+                  "type": "tc_checkbox",
+                  "value": true
                 }
             ]
         }
     ]
   },
 
-
-
-
-  
   {
     "blogs": {
         "active": true,
         "title": "Latest from blog",
         "items": [],
-        "show_more_text": "Show more"
+        "show_more_text": "Show more",
+        "show_categories": true
     }
   },
-
-
 
   {
     "name": "sections.blogs.title",
@@ -61,9 +62,6 @@
     "value": "أظهر المزيد"
   },
 
-
-
-
   {
     "name": "sections.blogs.title",
     "value": "Dernières du blog"
@@ -73,10 +71,3 @@
       "value": "Montre plus"
   }
 ]
-    
-    
-    
-    
-    
-    
-    

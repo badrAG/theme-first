@@ -6,14 +6,14 @@
                     <si-image width="400" height="400" class="absolute inset-0 object-cover w-full h-full rounded-t-xl" :src="item.image ? item.image.url : null" :alt="item.title"/>
                 </nuxt-link>
             </div>
-            <div class="h-full px-4">
-                <div class="flex py-3">
-                    <div v-for="(category, i) in item.categories"  :key="i" >
-                        <span class="mr-2 font-normal capitalize categoty text-md">{{ category.name}} </span>
+            <div class="h-full px-4 pt-3">
+                <div class="flex pb-3" v-if="$settings.sections.blogs.show_categories">
+                    <div v-for="(category, i) in item.categories"  :key="i">
+                        <span class="mr-2 font-normal capitalize categoty text-md">{{ category.name}}</span>
                     </div>
                 </div>
                 <nuxt-link :to="`/posts/${item.slug}`" :title="item.title" :aria-label="item.title">
-                    <h3 class="pb-3 text-base font-bold lint leading-5 hover:underline">{{ item.title }}</h3>
+                    <h3 class="pb-3 text-base font-bold leading-5 lint hover:underline">{{ item.title }}</h3>
                 </nuxt-link>
                 <nuxt-link :to="`/posts/${item.slug}`" :title="item.title" :aria-label="item.title">
                     <p class="pb-3 text-sm font-normal text-gr text-sl">{{ item.excerpt.length > 150? item.excerpt.slice(0, 150) + '...' : item.excerpt }}</p>
@@ -27,8 +27,7 @@
 export default {
     props: {
         item: Object
-    },
-
+    }
 }
 </script>
 
