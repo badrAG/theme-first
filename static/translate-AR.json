@@ -98,10 +98,10 @@
     "section_5_tags": "Tags de  الجزء5",
     "section_5_show_more_text": "نص زر عرض المزيد في الجزء5",
     "section_5_show_more_url": "رابط زر عرض المزيد في الجزء5",
-    "posts_section": "جزء المدونة",
-    "posts_list": "لائحة التدوينات",
-    "show_more_text": "نص عرض المزيد",
-    "services_section": "جزء الخدمات",
+    "blogs_section": "قسم المدونة",
+    "blogs_title": "عنوان المدونة",
+    "blogs_list": "قائمة المدونة",
+    "show_more_text": "عرض المزيد""services_section": "جزء الخدمات",
     "show_section": "تفعيل الجزء",
     "section_title": "عنوان الجزء",
     "services_delivery": "خدمات التوصيل",
@@ -300,6 +300,6 @@
     "error_page": "صفحة الخطأ",
     "404_texts": "404 النصوص",
     "show_quantity": "عرض الكمية",
-    "sticky_add_to_cart":"إضافة إلى عربة التسوق مثبت",
+    "sticky_add_to_cart": "إضافة إلى عربة التسوق مثبت",
     "show_sticky_add_to_cart": "إظهار إضافة إلى عربة التسوق مثبت"
 }

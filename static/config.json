@@ -987,6 +987,43 @@
               ]
             },
             {
+              "name": "blogs_section",
+              "icon": "select_all",
+              "blocks": [
+                {
+                  "name": "blogs_section",
+                  "values": [
+                    {
+                      "name": "show_section",
+                      "path": "sections.blogs.active",
+                      "type": "tc_checkbox",
+                      "value": true
+                    },
+                    {
+                      "name": "blogs_title",
+                      "path": "sections.blogs.title",
+                      "type": "tc_input",
+                      "translatable": true,
+                      "value": "Latest from blog"
+                    },
+                    {
+                      "name": "blogs_list",
+                      "path": "sections.blogs.items",
+                      "type": "tc_post",
+                      "value": []
+                    },
+                    {
+                      "name": "show_more_text",
+                      "path": "sections.blogs.show_more_text",
+                      "type": "tc_input",
+                      "translatable": true,
+                      "value": "Show more"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "name": "services_section",
               "icon": "select_all",
               "blocks": [
@@ -2273,6 +2310,14 @@
               "value": "أظهر المزيد"
             },
             {
+              "name": "sections.blogs.title",
+              "value": "الأحدث من المدونة"
+            },
+            {
+              "name": "sections.blogs.show_more_text",
+              "value": "أظهر المزيد"
+            },
+            {
               "name": "sections.services.title",
               "value": "خدماتنا"
             },
@@ -2700,6 +2745,14 @@
             {
               "name": "sections.products_5.show_more_text",
               "value": "Montre plus"
+            },
+            {
+              "name": "sections.blogs.title",
+              "value": "Dernières du blog"
+            },
+            {
+                "name": "sections.blogs.show_more_text",
+                "value": "Montre plus"
             },
             {
               "name": "sections.services.title",
@@ -3135,6 +3188,12 @@
           "show_more_text": "Show more",
           "show_more_url": "/shop"
         },
+        "blogs": {
+          "active": true,
+          "title": "Latest from blog",
+          "items": [],
+          "show_more_text": "Show more"
+        },
         "services": {
           "active": true,
           "title": "Our services",
@@ -3192,7 +3251,7 @@
           },
           "out_of_stock": {
             "text": "Out of stock"
-          }, 
+          },
           "related": {
             "active": true,
             "title": "Related products"

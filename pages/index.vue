@@ -11,6 +11,11 @@
     </template>
     <sections-collections-products class="home-home-collections-products" v-if="$settings.sections.collections_products.active" ></sections-collections-products>
     <sections-bottom-collections class="home-bottom-collections" v-if="$settings.sections.bottom_collections.active"></sections-bottom-collections>
+    <!-- Home Blogs -->
+    <div v-if="$settings.sections.blogs">
+      <sections-posts v-if="$settings.sections.blogs.active"></sections-posts>
+    </div>
+    <!-- Home Blogs -->
     <sections-services class="home-services" v-if="$settings.sections.services.active"></sections-services>
     <div class="container">
       <si-app-loader placement="BEFORE_HOME_FOOTER"/>

@@ -98,9 +98,10 @@
     "section_5_tags": "Tags de la Section 5",
     "section_5_show_more_text": "Texte du bouton afficher plus de la section 5",
     "section_5_show_more_url": "Lien du bouton afficher plus de la section 5",
-    "posts_section": "Section du blog",
-    "posts_list": "Liste des articles",
-    "show_more_text": "Texte afficher plus",
+    "blogs_section": "Section Blog",
+    "blogs_title": "Titre de la Blog",
+    "blogs_list": "Liste de Blogs",
+    "show_more_text": "Voir plus",
     "services_section": "Section des services",
     "show_section": "Afficher la section",
     "section_title": "Titre de la section",
@@ -300,6 +301,6 @@
     "error_page": "Page d'erreur",
     "404_texts": "Textes 404",
     "show_quantity": "Afficher La Quantité",
-    "sticky_add_to_cart":"Gluant Ajouter au Panier",
+    "sticky_add_to_cart": "Gluant Ajouter au Panier",
     "show_sticky_add_to_cart": "Afficher le collant Ajouter au panier"
 }
