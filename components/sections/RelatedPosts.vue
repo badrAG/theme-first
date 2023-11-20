@@ -36,6 +36,7 @@ export default {
     try {
       const ids = this.item.categories.map(c => c._id);
       const { data } = await this.$storeino.pages.search({
+        "type": "POST",
         "_id-ne": this.item._id,
         "categories._id-in": ids
       })
