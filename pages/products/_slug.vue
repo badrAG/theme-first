@@ -59,25 +59,25 @@
                 <div class="fixed inset-0 top-auto z-30 p-4 bg-white border-t bg-primary-border" v-if="showStickyAddToCart">
                     <div class="container flex items-center gap-4 md:gap-6">
                         <!--  Product Name -->
-                        <div class="items-center hidden gap-4 md:flex md:gap-6 md:w-5/12">
+                        <div class="items-center hidden gap-4 md:flex md:gap-6 flex-2">
                             <si-image class="object-cover rounded-sm cursor-pointer w-14 h-14" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
-                            <h4 class="text-xl font-medium truncate guard-cairo-font">{{ item.name }}</h4>
+                            <h4 class="text-xl font-medium truncate guard-cairo-font">{{ item.name.length > 40 ? item.name.slice(0, 40) + '...' : item.name }}</h4>
                         </div>
                         <!--  Product Name -->
                         <!-- Price -->
-                        <div class="hidden md:block md:w-1/12 lg:w-2/12">
-                            <si-product-price class="text-base" :type="'simple'" :price="price" :variants="[]"></si-product-price>
+                        <div class="hidden md:block flex-1">
+                            <div class="flex items-center justify-center">
+                                <si-product-price class="text-base" :type="'simple'" :price="price" :variants="[]"></si-product-price>
+                            </div>
                         </div>
                         <!-- Price -->
                         <!-- product-quantity -->
-                        <div class="w-2/5 md:w-3/12 lg:w-2/12">
-                            <div v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true">
-                                <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
-                            </div>
+                        <div class="flex-1 product-quantity" v-if="$settings.sections.product.quantity.active != null ? $settings.sections.product.quantity.active : true">
+                            <si-product-quantity @selected="quantitySelected" :quantity="quantity" page="product"></si-product-quantity>
                         </div>
                         <!-- product-quantity -->
                         <!-- add to cart -->
-                        <div class="w-3/5 md:w-3/12" v-show="!outofstock">
+                        <div class="flex-1" v-show="!outofstock">
                             <button class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90" v-if="$settings.sections.product.add_to_cart.active" @click="addToCart">
                                 <span>{{ $settings.sections.product.add_to_cart.text }}</span>
                             </button>
@@ -92,13 +92,12 @@
                         </div>
                         <!-- add to cart -->
                         <!-- Out Of Stock -->
-                        <div class="w-3/5 md:w-3/12" v-show="outofstock">
+                        <div class="flex-1" v-show="outofstock">
                             <button class="flex items-center justify-center w-full h-12 px-5 text-base font-bold rounded-full addtocart-bg addtocart-text-bg click-effect scale hover:opacity-90">
                                 <span>{{ $settings.sections.product.out_of_stock ? $settings.sections.product.out_of_stock.text : 'Out Of Stock' }}</span>
                             </button>
                         </div>
                         <!-- Out Of Stock -->
-                        
                     </div>
                 </div>
                 <!-- sticky add to cart -->
@@ -615,6 +614,9 @@ export default {
 </script>
 
 <style scoped>
+.flex-2 {
+    flex: 2;
+}
 .text-info {
     line-height: 36px;
     display: block;
