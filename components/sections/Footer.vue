@@ -119,7 +119,7 @@
           </div>
           <!-- menu3 -->
           <!-- payment_methods  -->
-          <div class="w-full payment_methods md:w-auto md:flex-1">
+          <div class="w-full payment_methods md:w-auto md:flex-1" v-if="methods.filter(m=>footer.methods[m.name]).length > 0">
             <div @click="showPaymentMethods" class="flex items-center justify-between px-3 py-2 mx-1 mb-4 transition-all ease-in-out delay-150 rounded-full cursor-pointer hover-bg-footer md:cursor-auto">
               <h4 class="text-base font-bold">{{ footer.methods.title }}</h4>
               <div class="md:hidden">

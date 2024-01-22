@@ -61,7 +61,7 @@
                         <!--  Product Name -->
                         <div class="items-center hidden gap-4 md:flex md:gap-6 flex-2">
                             <si-image class="object-cover rounded-sm cursor-pointer w-14 h-14" v-show="visibleSlide === index" v-for="(image, index) in item.images" :key="index" :index="index" @click="$store.state.fullImage=image ? image.src : null" :src="image ? image.src : null " :alt="item.name" />
-                            <h4 class="text-xl font-medium truncate guard-cairo-font">{{ item.name.length > 40 ? item.name.slice(0, 40) + '...' : item.name }}</h4>
+                            <h4 class="text-xl tle-pr font-medium truncate guard-cairo-font">{{ item.name.length > 40 ? item.name.slice(0, 40) + '...' : item.name }}</h4>
                         </div>
                         <!--  Product Name -->
                         <!-- Price -->
