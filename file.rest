@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2NDc1YjM1MGU3NTI3MTIyYzc5M2JjOTkiLCJuYW1lIjoiZml4cHJvIiwic3ViZG9tYWluIjoiZml4cHJvLnN0b3JlaW5vLndvcmxkIn0sInVzZXIiOnsiX2lkIjoiNjI1NDNiNDM1YWY3OGYwMDQ0YjU3YzdlIiwiZmlyc3RuYW1lIjoiYWJkZWxhbGkiLCJsYXN0bmFtZSI6InJhZmlrIiwiZW1haWwiOiJhYmRlbGFsaS5yYWZpazExQGdtYWlsLmNvbSJ9LCJjb21wYW55Ijp7InN0YXR1cyI6IlVOQ09NUExFVEVEIiwiX2lkIjoiNjI1NDNiNDM1YWY3OGYwMDQ0YjU3YzdjIiwibmFtZSI6InNvdTlpbm8ifSwidG9rZW5JZCI6Ijg0Njc3N0hKVlpOUjQ2ODc2N09YQlpLUSIsImlhdCI6MTcwMDA2OTU0OCwiZXhwIjoxNzAwOTMzNTQ4fQ.xJFEz7-IKJ-a-gjmN4dxjPXO2s_Xm1VWGiLyQmiTs_8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyNTQzYjQzNWFmNzhmMDA0NGI1N2M3ZSIsImZpcnN0bmFtZSI6ImFiZGVsYWxpIiwibGFzdG5hbWUiOiJyYWZpayIsInBvc2l0aW9uIjoiQURNSU4iLCJlbWFpbCI6ImFiZGVsYWxpLnJhZmlrMTFAZ21haWwuY29tIiwiYWRkcmVzcyI6bnVsbH0sImNvbXBhbnkiOnsiX2lkIjoiNjI1NDNiNDM1YWY3OGYwMDQ0YjU3YzdjIiwibmFtZSI6InNvdTlpbm8iLCJzdGF0dXMiOiJVTkNPTVBMRVRFRCJ9LCJzdG9yZSI6eyJfaWQiOiI2NDc1YjM1MGU3NTI3MTIyYzc5M2JjOTkiLCJuYW1lIjoiZml4cHJvIiwic3ViZG9tYWluIjoiZml4cHJvLnN0b3JlaW5vLndvcmxkIn0sInRlYW0iOnsiX2lkIjoiNjUwYWJjYzE5OWM0NTZlODFhMTFiNjExIiwibmFtZSI6IlN0b3JlaW5vIiwiZW1haWwiOiJhYmRlbGFsaS5yYWZpazExQGdtYWlsLmNvbSJ9LCJ0b2tlbklkIjoiNjU1NDU0WkRaSU9MNTY0MDUwVVhSRlJIIiwiaWF0IjoxNzA2OTc0OTkwLCJleHAiOjE3MDc4Mzg5OTB9.p9PRPGjx5pJKEWZpFikJRbMJ2x-UR_xUd2txGfC9GaI
 
 ###
 GET https://admin.storeino.world/stores/api/themes/search?name=bazar
@@ -769,6 +769,12 @@ X-Auth-Token: {{token}}
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_1.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_1_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_1.tags",
@@ -816,6 +822,12 @@ X-Auth-Token: {{token}}
                       "name": "section_2_collections",
                       "path": "sections.products_2.collections",
                       "type": "tc_collection",
+                      "value": []
+                    },
+                    {
+                      "name": "products_list",
+                      "path": "sections.products_2.items",
+                      "type": "tc_product",
                       "value": []
                     },
                     {
@@ -869,6 +881,12 @@ X-Auth-Token: {{token}}
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_3.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_3_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_3.tags",
@@ -919,6 +937,12 @@ X-Auth-Token: {{token}}
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_4.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_4_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_4.tags",
@@ -966,6 +990,12 @@ X-Auth-Token: {{token}}
                       "name": "section_5_collections",
                       "path": "sections.products_5.collections",
                       "type": "tc_collection",
+                      "value": []
+                    },
+                    {
+                      "name": "products_list",
+                      "path": "sections.products_5.items",
+                      "type": "tc_product",
                       "value": []
                     },
                     {
@@ -3164,6 +3194,7 @@ X-Auth-Token: {{token}}
           "active": true,
           "title": "Featured products",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Explore More",
           "show_more_url": "/shop"
@@ -3172,6 +3203,7 @@ X-Auth-Token: {{token}}
           "active": true,
           "title": "Best Seller",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Show more",
           "show_more_url": "/shop"
@@ -3180,6 +3212,7 @@ X-Auth-Token: {{token}}
           "active": false,
           "title": "Toys",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "More products",
           "show_more_url": "/shop"
@@ -3188,6 +3221,7 @@ X-Auth-Token: {{token}}
           "active": false,
           "title": "Phones and Computers",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Latest products",
           "show_more_url": "/shop"
@@ -3196,6 +3230,7 @@ X-Auth-Token: {{token}}
           "active": false,
           "title": "Organic products",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Show more",
           "show_more_url": "/shop"
