@@ -57,23 +57,27 @@ export default {
       loading: true
     };
   },
-  async fetch() {
+  async fetch(){
     const filter = { status: 'PUBLISH' };
-    if (this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c => c._id);
-    if (this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
+    if(this.collections.length > 0) filter['collections._id-in'] = this.collections.map(c=>c._id);
+    if(this.tags.length > 0) filter['tags._id-in'] = this.tags.split(',');
     await this.getProducts(filter);
   },
   methods: {
-    async getProducts(filter) {
+    async getProducts(filter){
       this.loading = true;
-      try {
-        const { data } = await this.$storeino.products.search(filter)
-        this.items = data.results
-      } catch (err) {
-        this.$sentry.captureException(err);
-      }
-      this.loading = false;
-    },
+        try{
+          if(this.section.items != null && this.section.items.length > 0){
+            this.items = this.section.items;
+          }else{
+            const { data } = await this.$storeino.products.search(filter)
+            this.items = data.results
+          }
+        }catch(err){
+          this.$sentry.captureException(err)
+        }
+        this.loading = false;
+    }
   },
 };
 </script>
