@@ -139,6 +139,8 @@ export default {
     },
     data() {
         return {
+            show_store_maintenance: true,
+            show_store_maintenance_unlocked: false,
             rgb: { r: 0, g: 130, b: 70 },
             header_rgb: { r: 0, g: 130, b: 70 },
             header_text_rgb: { r: 0, g: 130, b: 70 },
