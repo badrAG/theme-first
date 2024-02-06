@@ -6,7 +6,7 @@
             <sections-maintenance @openStore="openStore" />
         </div>
         <!--  -->
-        <div v-else class="home_page">
+        <div v-else class="nuxt_page">
             <component :is="'style'">
                 :root{  
                     --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; 
@@ -139,8 +139,6 @@ export default {
     },
     data() {
         return {
-            show_store_maintenance: true,
-            show_store_maintenance_unlocked: false,
             rgb: { r: 0, g: 130, b: 70 },
             header_rgb: { r: 0, g: 130, b: 70 },
             header_text_rgb: { r: 0, g: 130, b: 70 },
@@ -162,7 +160,9 @@ export default {
             services_rgb: { r: 0, g: 130, b: 70 },
             services_text_rgb: { r: 0, g: 130, b: 70 },
             hover_rgb: { r: 0, g: 130, b: 70 },
-            hover_text_rgb: { r: 0, g: 130, b: 70 }
+            hover_text_rgb: { r: 0, g: 130, b: 70 },
+            show_store_maintenance: true,
+            show_store_maintenance_unlocked: false
         }
     },
     fetch() {
