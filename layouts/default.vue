@@ -140,7 +140,13 @@ export default {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: this.$settings.store_favicon ? this.$settings.store_favicon.src : this.$store.state.defaults.icon },
                 { rel: "dns-prefetch", href: 'https://storeno.b-cdn.net/stores/' },
-                ...this.$settings.analitycs_shere,
+            ],
+            script: [
+                {
+                  src: 'https://umami.storeino.world/script.js',
+                  'data-website-id': this.$settings.analitycs_shere[0]['data-website-id'],
+                  rel: "defer"
+                }
             ],
             htmlAttrs: {
                 lang: this.$store.state.language.code,
