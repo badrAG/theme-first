@@ -215,7 +215,7 @@
                     <!-- Description -->
                     <div class="flex justify-center px-4">
                         <div v-if="desc">
-                            <div class="text-sm font-normal description text-info" id="description" v-html="item.html"></div>
+                            <div class="text-sm font-normal description lg-description text-info" id="description" v-html="item.html"></div>
                             <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                         </div>
                     </div>
@@ -614,9 +614,14 @@ export default {
 </script>
 
 <style scoped>
+.lg-description table td, th {
+  border: 1px solid #dddddd;
+}
+
 .flex-2 {
     flex: 2;
 }
+
 .text-info {
     line-height: 36px;
     display: block;

@@ -763,6 +763,12 @@
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_1.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_1_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_1.tags",
@@ -810,6 +816,12 @@
                       "name": "section_2_collections",
                       "path": "sections.products_2.collections",
                       "type": "tc_collection",
+                      "value": []
+                    },
+                    {
+                      "name": "products_list",
+                      "path": "sections.products_2.items",
+                      "type": "tc_product",
                       "value": []
                     },
                     {
@@ -863,6 +875,12 @@
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_3.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_3_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_3.tags",
@@ -913,6 +931,12 @@
                       "value": []
                     },
                     {
+                      "name": "products_list",
+                      "path": "sections.products_4.items",
+                      "type": "tc_product",
+                      "value": []
+                    },
+                    {
                       "name": "section_4_tags",
                       "note": "Eg: clothes,beauty,tech",
                       "path": "sections.products_4.tags",
@@ -960,6 +984,12 @@
                       "name": "section_5_collections",
                       "path": "sections.products_5.collections",
                       "type": "tc_collection",
+                      "value": []
+                    },
+                    {
+                      "name": "products_list",
+                      "path": "sections.products_5.items",
+                      "type": "tc_product",
                       "value": []
                     },
                     {
@@ -3158,6 +3188,7 @@
           "active": true,
           "title": "Featured products",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Explore More",
           "show_more_url": "/shop"
@@ -3166,6 +3197,7 @@
           "active": true,
           "title": "Best Seller",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Show more",
           "show_more_url": "/shop"
@@ -3174,6 +3206,7 @@
           "active": false,
           "title": "Toys",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "More products",
           "show_more_url": "/shop"
@@ -3182,6 +3215,7 @@
           "active": false,
           "title": "Phones and Computers",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Latest products",
           "show_more_url": "/shop"
@@ -3190,6 +3224,7 @@
           "active": false,
           "title": "Organic products",
           "collections": [],
+          "items": [],
           "tags": "",
           "show_more_text": "Show more",
           "show_more_url": "/shop"
