@@ -144,7 +144,7 @@ export default {
             script: [
                 {
                   src: 'https://umami.storeino.world/script.js',
-                  'data-website-id': this.$settings.analitycs_shere[0]['data-website-id'],
+                  'data-website-id': this.$settings.analitycs_shere && this.$settings.analitycs_shere[0]['data-website-id'],
                   rel: "defer"
                 }
             ],
