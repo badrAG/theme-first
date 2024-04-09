@@ -151,7 +151,11 @@ export default function ({ app, store, router, $tools }, inject) {
 
             // Set Cart
             $tools.setCart(store.state.cart);
-            
+            if (store.state.settings.analitycs_shere &&
+                store.state.settings.analitycs_shere[0] &&
+                store.state.settings.analitycs_shere[0]['data-website-id'] && window.umami) {
+                window.umami.track('ADD_TO_CART',{ name: item.name, id: item._id })
+            }
             // Call Add To Cart
             $tools.call('ADDED_TO_CART');
         });
@@ -227,6 +231,11 @@ export default function ({ app, store, router, $tools }, inject) {
                     price: item.price,
                     currency: store.state.currency.code || "USD"
                 });
+            }
+            if (store.state.settings.analitycs_shere &&
+                store.state.settings.analitycs_shere[0] &&
+                store.state.settings.analitycs_shere[0]['data-website-id'] && window.umami) {
+                window.umami.track('ADD_TO_WISHLIST',{ name: item.name, id: item._id })
             }
         });
 
