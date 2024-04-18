@@ -1,5 +1,8 @@
 <template>
     <div class="container my-6">
+        <!-- Pop-Up Placment -->
+        <si-app-loader placement="WISHLIST_PAGE" />
+        <!-- Pop-Up Placment -->
         <div v-if="loading.wishlist" class="flex items-center justify-center my-5">
             <si-loader></si-loader>
         </div>

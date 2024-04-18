@@ -1,5 +1,8 @@
 <template>
     <div class="container my-6 ">
+        <!-- Pop-Up Placment -->
+        <si-app-loader placement="BLOG_PAGE" />
+        <!-- Pop-Up Placment -->
         <div class="relative flex">
         <!-- slider left  -->
             <transition name="slide-left" v-if="$settings.sections.blog.sidebar.active">

@@ -1,5 +1,8 @@
 <template>
     <div class="bg-white country-blocker-app">
+        <!-- Pop-Up Placment -->
+        <si-app-loader placement="PRODUCT_PAGE" />
+        <!-- Pop-Up Placment -->
         <div class="container mb-6 md:mt-6">
             <!-- Loader -->
             <div v-if="loading" class="flex items-center justify-center mt-6 md:mt-0">
