@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- Pop-Up Placment -->
+        <si-app-loader placement="SHOP_PAGE" />
+        <!-- Pop-Up Placment -->
         <si-app-loader placement="BEFORE_SHOP_SIDEBAR"/>
         <div class="container">
             <div class="relative flex my-6">
