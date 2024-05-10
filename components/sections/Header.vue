@@ -2,9 +2,9 @@
     <div>
         <si-app-loader placement="BEFORE_HEADER"/>
         <div class="border-b-2 header-bg header-text-color" :class="menu ? 'res-p' : 'py-2'">
-            <header class="container flex items-center justify-between w-full ">
+            <header class="container flex items-center justify-between w-full" :class="!$settings.sections.header.icons.search ? 'lg:relative' : ''">
                 <!-- left content -->
-                <div class="mx-4">
+                <div class="mx-4" :class="!$settings.sections.header.icons.search ? 'lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2' : ''">
                     <!-- logo -->
                     <div class="logo">
                         <router-link to="/">
