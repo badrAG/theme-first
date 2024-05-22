@@ -122,6 +122,8 @@ export default async function ({ $http, store, app, route }, inject) {
                 })
                 data.value = Number(data.value) / valueCur;
             }
+            console.log('____',query);
+            console.log('____2',data);
             // Check Multi Pixel
             if (ev == "Purchase") {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
