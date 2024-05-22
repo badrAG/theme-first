@@ -99,15 +99,12 @@ export default async function ({ $http, store, app, route }, inject) {
             // Get External Id
             if (localStorage.getItem('__external_id')) {
                 query['user_external_id'] = localStorage.getItem('__external_id');
-                query['external_id'] = localStorage.getItem('__external_id');
-                data['external_id'] = localStorage.getItem('__external_id');
             } 
             // Get __fbc
             if (localStorage.getItem('__fbc')) {
                 query['user_fbc'] = localStorage.getItem('__fbc');
-                query['fbc'] = localStorage.getItem('__fbc');
-                data['fbc'] = localStorage.getItem('__fbc');
             } 
+            data['event_id'] = `${Math.round((new Date()).getTime() / 1000)} - ${query['user_external_id']}`
             // Add Currency Value 
             if (data.currency && data.value && data.contents) {
                 let valueCur = 1;
@@ -122,8 +119,6 @@ export default async function ({ $http, store, app, route }, inject) {
                 })
                 data.value = Number(data.value) / valueCur;
             }
-            console.log('____',query);
-            console.log('____2',data);
             // Check Multi Pixel
             if (ev == "Purchase") {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
