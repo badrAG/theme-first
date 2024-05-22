@@ -99,10 +99,14 @@ export default async function ({ $http, store, app, route }, inject) {
             // Get External Id
             if (localStorage.getItem('__external_id')) {
                 query['user_external_id'] = localStorage.getItem('__external_id');
+                query['external_id'] = localStorage.getItem('__external_id');
+                data['external_id'] = localStorage.getItem('__external_id');
             } 
             // Get __fbc
             if (localStorage.getItem('__fbc')) {
                 query['user_fbc'] = localStorage.getItem('__fbc');
+                query['fbc'] = localStorage.getItem('__fbc');
+                data['fbc'] = localStorage.getItem('__fbc');
             } 
             // Add Currency Value 
             if (data.currency && data.value && data.contents) {
@@ -121,7 +125,7 @@ export default async function ({ $http, store, app, route }, inject) {
             // Check Multi Pixel
             if (ev == "Purchase") {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-                    if (pixel.active && !pixel.token) {
+                    if (pixel.active) {
                         if (pixel.type && pixel.type == "Lead") {
                             fbq("trackSingle", pixel.id, 'Lead', data);
                         } 
@@ -133,7 +137,7 @@ export default async function ({ $http, store, app, route }, inject) {
             // One Pixel
             } else {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
-                    if (pixel.active && !pixel.token) {
+                    if (pixel.active) {
                         fbq("trackSingle", pixel.id, ev, data);
                     }
                 })
