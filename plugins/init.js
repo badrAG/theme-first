@@ -108,6 +108,20 @@ export default async function ({ $axios, $http, route, $tools, $storeino, store,
       customUpdate: async function (module, params, data, headers = {}) {
         let response = await $http.post(`/${module}/me`, data, { params, headers });
         return response.data;
+      },
+      invoke: async function (method,path,params = {},body = {}){
+        let result;
+        try {
+            if (method === 'get' || method === 'delete') {
+                result = await $http[method](`/${path}`, params);
+            } else {
+                result = await $http[method](`/${path}`, body, params);
+            }
+        } catch (error) {
+            result = error.response ? error.response : { status: 500, data: error.message };
+        }
+
+        return result.data;
       }
     };
 
