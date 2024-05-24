@@ -103,11 +103,11 @@ export default async function ({ $http, store, app, route }, inject) {
             }
             // Get External Id
             if (localStorage.getItem('__external_id')) {
-                query['external_id'] = localStorage.getItem('__external_id');
+                query['user_external_id'] = localStorage.getItem('__external_id');
             } 
             // Get __fbc
             if (localStorage.getItem('__fbc')) {
-                query['fbc'] = localStorage.getItem('__fbc');
+                query['user_fbc'] = localStorage.getItem('__fbc');
             } 
             query['eventID'] = 'st-' + generateEventID()
             // Add Currency Value 
