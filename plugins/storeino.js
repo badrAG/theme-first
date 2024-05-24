@@ -109,7 +109,7 @@ export default async function ({ $http, store, app, route }, inject) {
             if (localStorage.getItem('__fbc')) {
                 query['fbc'] = localStorage.getItem('__fbc');
             } 
-            data['event_id'] = generateEventID()
+            data['eventID'] = 'st-' + generateEventID()
             // Add Currency Value 
             if (data.currency && data.value && data.contents) {
                 let valueCur = 1;
