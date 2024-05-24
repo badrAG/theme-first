@@ -109,7 +109,7 @@ export default async function ({ $http, store, app, route }, inject) {
             if (localStorage.getItem('__fbc')) {
                 query['fbc'] = localStorage.getItem('__fbc');
             } 
-            data['eventID'] = 'st-' + generateEventID()
+            query['eventID'] = 'st-' + generateEventID()
             // Add Currency Value 
             if (data.currency && data.value && data.contents) {
                 let valueCur = 1;
@@ -141,7 +141,7 @@ export default async function ({ $http, store, app, route }, inject) {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
                     if (pixel.active) {
                         console.log(data);
-                        fbq("trackSingle", pixel.id, ev, data);
+                        fbq("trackSingle", pixel.id, ev, data, query);
                     }
                 })
             }
