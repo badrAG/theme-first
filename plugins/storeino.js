@@ -129,10 +129,10 @@ export default async function ({ $http, store, app, route }, inject) {
                 store.state.settings['facebook_multiple_pixel'].forEach(pixel => {
                     if (pixel.active) {
                         if (pixel.type && pixel.type == "Lead") {
-                            fbq("trackSingle", pixel.id, 'Lead', data);
+                            fbq("trackSingle", pixel.id, 'Lead', data, query);
                         } 
                         else {
-                            fbq("trackSingle", pixel.id, 'Purchase', data);
+                            fbq("trackSingle", pixel.id, 'Purchase', data, query);
                         } 
                     }
                 })
