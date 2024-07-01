@@ -28,7 +28,7 @@ export default {
     methods: {
         init() {
             if (this.src && this.src.indexOf('base64') > -1) {
-                this.newSrc = this.src
+                this.newSrc = this.src.trim()
             } else {
                 this.id = '_' + (Math.random() * 10000).toFixed(0);
                 this.$nextTick(() => {
@@ -38,7 +38,7 @@ export default {
                     if (element.clientHeight > element.clientWidth) property = 'Height';
                     if (this.property) property = this.property.charAt(0).toUpperCase() + this.property.slice(1).toLowerCase();
                     const value = element ? parseInt(element[`client${property}`] * 1.25) : '';
-                    this.newSrc = this.src ? `${this.src}?${property.toLowerCase()}=${value}` : this.empty;
+                    this.newSrc = this.src ? `${this.src.trim()}?${property.toLowerCase()}=${value}` : this.empty;
                 })
             }
         }
