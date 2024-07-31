@@ -251,7 +251,7 @@ input:focus+.b2>.icon {
 
 .cart-color {
     background-color: var(--header-text-col);
-    text-color: var(--header-color-bg);
+    color: var(--header-color-bg);
 }
 
 .res-p {
