@@ -83,7 +83,7 @@
                         <div v-if="$settings.sections.header.icons.cart" class="p-3 transition-all ease-in-out delay-150 rounded-full cart hover-bg">
                             <router-link  to="/cart" title="Cart" id="cart-icon" class="relative flex flex-col justify-center">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 svg-color"><path d="M9 22a2 2 0 100-4 2 2 0 000 4zm7 0a2 2 0 100-4 2 2 0 000 4zm5-17H5.665l-.687-3.21A1 1 0 004 1H1a1 1 0 000 2h2.191l2.831 13.21a.962.962 0 00.064.159c.017.053.038.105.063.155a.979.979 0 00.133.153.926.926 0 00.088.1c.058.041.12.077.185.105.034.022.07.042.107.06A.993.993 0 007 17h11a1 1 0 00.958-.713l3-10A1.001 1.001 0 0021 5zm-2.244 5H16V7h3.656l-.9 3zM7.819 15l-.6-3H9v3H7.819zM11 12h3v3h-3v-3zm0-2V7h3v3h-3zM9 7v3H6.82l-.6-3H9zm8.256 8H16v-3h2.156l-.9 3z"></path></svg>
-                                <small class="border-2 border-white -top-3 -right-2.5 rounded-full absolute w-5 h-5 bg-orange text-white flex justify-center items-center text-md font-normal">{{ $store.state.cart.length }}</small>
+                                <small class="cart-color border-2 border-white -top-3 -right-2 rounded-full absolute w-5 h-5 flex justify-center items-center text-md font-normal">{{ $store.state.cart.length }}</small>
                             </router-link>
                         </div>
                     </div>
@@ -247,6 +247,11 @@ input:focus+.b2>.icon {
 
 .svg-color {
     fill: var(--header-text-col);
+}
+
+.cart-color {
+    background-color: var(--header-text-col);
+    text-color: var(--header-color-bg);
 }
 
 .res-p {
