@@ -94,8 +94,6 @@ body {
 
 .p_container * {
   max-width: 100%;
-  line-height: normal;
-  margin-top:4px;
 }
 
 .box-shadow {
