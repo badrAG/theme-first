@@ -219,12 +219,12 @@
                     </div>
                     <!-- Description -->
                     <div class="flex justify-center px-4">
+                        <h2 v-if="desc && item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                         <div class="p_container" v-if="desc">
                             <div class="p_container">
                                 <div class="text-sm font-normal description lg-description" id="description" v-html="item.html"></div>
                             </div>
                         </div>
-                        <h2 v-if="desc && item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                     <!-- Description -->
                     <!-- reviews -->
