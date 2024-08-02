@@ -395,31 +395,7 @@ export default {
         }
 
         // Create Iframe
-        if (this.item) {
-            const iframes = document.querySelectorAll('iframe');
-            for(const ifram of iframes) {
-                const width = ifram.getAttribute('width')
-                const height = ifram.getAttribute('height')
-                const parent = ifram.parentNode
-                if (!parent.classList.contains('video-wrapper')) {
-                    const div = document.createElement("div");
-                    ifram.after(div)
-                    div.classList.add('video-wrapper')
-                    div.style.width=width+'px'
-                    div.style.height=height+'px'
-                    div.style.maxWidth='100%'
-                    div.style.maxHeight='100%'
-                    div.style.display='inline-block'
-                    ifram.style.width=null;
-                    ifram.style.height=null;
-                    try {
-                        div.appendChild(ifram)
-                    } catch (err) {
-                        this.$sentry.captureException(err);
-                    }
-                }
-            }
-        }
+        this.appendIframToDiv();
 
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
@@ -464,6 +440,33 @@ export default {
                     { hid: "twitter:url", property: "twitter:url", content: this.$store.state.seo.url },
                 ]
             };
+        },
+        appendIframToDiv(){
+            if(this.item.html){
+                const iframes=document.querySelectorAll('iframe')
+                for(const ifram of iframes){
+                const width = ifram.getAttribute('width')
+                const height = ifram.getAttribute('height')
+                const parent = ifram.parentNode
+                if (!parent.classList.contains('video-wrapper')) {
+                    const div = document.createElement("div");
+                        ifram.after(div)
+                        div.classList.add('video-wrapper')
+                        div.style.width=width+'px'
+                        div.style.height=height+'px'
+                        div.style.maxWidth='100%'
+                        div.style.maxHeight='100%'
+                        div.style.display='inline-block'
+                        ifram.style.width=null;
+                        ifram.style.height=null;
+                        try {
+                            div.appendChild(ifram)
+                        } catch (err) {
+                            this.$sentry.captureException(err);
+                        }
+                    }
+                }
+            }
         },
         ShowDescription() {
             this.desc = true; this.rev = false
