@@ -219,10 +219,12 @@
                     </div>
                     <!-- Description -->
                     <div class="flex justify-center px-4">
-                        <div v-if="desc">
-                            <div class="text-sm font-normal description lg-description text-info" id="description" v-html="item.html"></div>
-                            <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
+                        <div class="p_container" v-if="desc">
+                            <div class="p_container">
+                                <div class="text-sm font-normal description lg-description" id="description" v-html="item.html"></div>
+                            </div>
                         </div>
+                        <h2 v-if="desc && item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                     </div>
                     <!-- Description -->
                     <!-- reviews -->
@@ -395,7 +397,7 @@ export default {
         }
 
         // Create Iframe
-        this.appendIframToDiv();
+        this.appendIframeToDiv();
 
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
@@ -441,32 +443,36 @@ export default {
                 ]
             };
         },
-        appendIframToDiv(){
-            if(this.item.html){
-                const iframes=document.querySelectorAll('iframe')
-                for(const ifram of iframes){
-                const width = ifram.getAttribute('width')
-                const height = ifram.getAttribute('height')
-                const parent = ifram.parentNode
-                if (!parent.classList.contains('video-wrapper')) {
-                    const div = document.createElement("div");
-                        ifram.after(div)
-                        div.classList.add('video-wrapper')
-                        div.style.width=width+'px'
-                        div.style.height=height+'px'
-                        div.style.maxWidth='100%'
-                        div.style.maxHeight='100%'
-                        div.style.display='inline-block'
-                        ifram.style.width=null;
-                        ifram.style.height=null;
-                        try {
-                            div.appendChild(ifram)
-                        } catch (err) {
-                            this.$sentry.captureException(err);
-                        }
+        appendIframeToDiv() {
+            if (this.item && this.item.html) {
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    const width = iframe.getAttribute('width');
+                    const height = iframe.getAttribute('height');
+                    const parent = iframe.parentNode;
+    
+                    if (!parent.classList.contains('video-wrapper')) {
+                        const wrapper = document.createElement('div');
+                        wrapper.classList.add('video-wrapper');
+                        wrapper.style.cssText = `
+                            width: ${width}px;
+                            height: ${height}px;
+                            max-width: 100%;
+                            max-height: 100%;
+                            display: inline-block;
+                        `;
+    
+                        iframe.removeAttribute('width');
+                        iframe.removeAttribute('height');
+    
+                        iframe.style.width= null;
+                        iframe.style.height= null;
+    
+                        parent.replaceChild(wrapper, iframe);
+                        wrapper.appendChild(iframe);
                     }
-                }
+                });
             }
+
         },
         ShowDescription() {
             this.desc = true; this.rev = false
@@ -630,9 +636,30 @@ export default {
 }
 </script>
 
+<style>
+.video-wrapper  {
+    position: relative;
+    height: 0;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
 <style scoped>
+.p_container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
 .lg-description table td, th {
-  border: 1px solid #dddddd;
+    border: 1px solid #dddddd;
 }
 
 .flex-2 {
@@ -651,10 +678,6 @@ export default {
     white-space: break-spaces;
 }
 
-.description * {
-    max-width: 100% !important;
-}
-
 .description pre {
     white-space: normal !important;
 }
@@ -665,19 +688,6 @@ export default {
 
 [dir="rtl"] .dots {
     flex-direction: row-reverse;
-}
-
-.video-wrapper  {
-    position: relative;
-    height: 0;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 .scroll::-webkit-scrollbar {
