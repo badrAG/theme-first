@@ -8,7 +8,7 @@
             <div class="relative flex my-6">
                 <!-- Slider left -->
                 <transition name="slide-left">
-                    <div :class="showSideBar ? 'show':'hide'" class="fixed top-0 bottom-0 left-0 z-50 hidden h-full overflow-y-auto bg-white filters w-80">
+                    <div v-if="$settings.sections.shop.sidebar.active" :class="showSideBar ? 'show':'hide'" class="fixed top-0 bottom-0 left-0 z-50 hidden h-full overflow-y-auto bg-white filters w-80">
                         <!-- show slider left -->
                         <div class="fixed inset-0 block bg-black bg-opacity-50" @click="showSideBar=false"></div>
                         <!-- show slider left  -->
@@ -105,17 +105,18 @@
                 <div class="w-full">  
                     <div class="bg-white">
                         <!-- icons -->
-                        <div class="mb-4">
-                            <div class="flex items-center px-4" :class="$settings.sections.blog.sidebar.active? 'justify-between': 'justify-end'">
-                                <div v-if="$settings.sections.blog.sidebar.active" class="cursor-pointer rounded-full border-2 transition ease-linear delay-150 box-shadow scale px-3 py-2 bg-primary-border" @click="showSideBar = true">
-                                   <div class="flex">
-                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate">
-                                           <path d="M324.4 64C339.6 64 352 76.37 352 91.63C352 98.32 349.6 104.8 345.2 109.8L240 230V423.6C240 437.1 229.1 448 215.6 448C210.3 448 205.2 446.3 200.9 443.1L124.7 385.6C116.7 379.5 112 370.1 112 360V230L6.836 109.8C2.429 104.8 0 98.32 0 91.63C0 76.37 12.37 64 27.63 64H324.4zM144 224V360L208 408.3V223.1C208 220.1 209.4 216.4 211.1 213.5L314.7 95.1H37.26L140 213.5C142.6 216.4 143.1 220.1 143.1 223.1L144 224zM496 400C504.8 400 512 407.2 512 416C512 424.8 504.8 432 496 432H336C327.2 432 320 424.8 320 416C320 407.2 327.2 400 336 400H496zM320 256C320 247.2 327.2 240 336 240H496C504.8 240 512 247.2 512 256C512 264.8 504.8 272 496 272H336C327.2 272 320 264.8 320 256zM496 80C504.8 80 512 87.16 512 96C512 104.8 504.8 112 496 112H400C391.2 112 384 104.8 384 96C384 87.16 391.2 80 400 80H496z"></path>
-                                       </svg>
-                                       <span class="mx-1"></span>
-                                       <span class="font-bold text-md">{{ $settings.sections.shop.filter_text }}</span>
-                                   </div>
+                        <div class="mb-4" v-if="$settings.sections.shop.sidebar.active">
+                            <div class="flex items-center px-4 justify-between">
+                                <div class="cursor-pointer rounded-full border-2 transition ease-linear delay-150 box-shadow scale px-3 py-2 bg-primary-border" @click="showSideBar = true">
+                                    <div class="flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate">
+                                            <path d="M324.4 64C339.6 64 352 76.37 352 91.63C352 98.32 349.6 104.8 345.2 109.8L240 230V423.6C240 437.1 229.1 448 215.6 448C210.3 448 205.2 446.3 200.9 443.1L124.7 385.6C116.7 379.5 112 370.1 112 360V230L6.836 109.8C2.429 104.8 0 98.32 0 91.63C0 76.37 12.37 64 27.63 64H324.4zM144 224V360L208 408.3V223.1C208 220.1 209.4 216.4 211.1 213.5L314.7 95.1H37.26L140 213.5C142.6 216.4 143.1 220.1 143.1 223.1L144 224zM496 400C504.8 400 512 407.2 512 416C512 424.8 504.8 432 496 432H336C327.2 432 320 424.8 320 416C320 407.2 327.2 400 336 400H496zM320 256C320 247.2 327.2 240 336 240H496C504.8 240 512 247.2 512 256C512 264.8 504.8 272 496 272H336C327.2 272 320 264.8 320 256zM496 80C504.8 80 512 87.16 512 96C512 104.8 504.8 112 496 112H400C391.2 112 384 104.8 384 96C384 87.16 391.2 80 400 80H496z"></path>
+                                        </svg>
+                                        <span class="mx-1"></span>
+                                        <span class="font-bold text-md">{{ $settings.sections.shop.filter_text }}</span>
+                                    </div>
                                 </div>
+                                <!--  -->
                                 <select class="text-md font-bold sort-select bg-white w-40 px-3 py-2 rounded-full transition ease-linear delay-150 box-shadow scale outline-none border-2 bg-primary-border" v-model="params.sort">
                                     <option v-for="(sort,i) in sorts" :key="i" :value="sort.field">{{ sort.name }}</option>
                                 </select>
