@@ -315,7 +315,7 @@
                   "values": [
                     {
                       "name": "header_logo",
-                      "note": "Recommended Dimensions (200 x 48) Pixel",
+                      "note": "Header Logo (250x100 pixels)",
                       "path": "sections.header.logo",
                       "type": "tc_image",
                       "value": null
@@ -1106,7 +1106,7 @@
                     },
                     {
                       "name": "delivery_image",
-                      "note": "Recommended Dimensions (512 x 512) Pixel",
+                      "note": "Icon Image (512x512 pixels)",
                       "path": "sections.services.items.delivery.image",
                       "type": "tc_image",
                       "value": null
@@ -1138,7 +1138,7 @@
                     },
                     {
                       "name": "satisfaction_image",
-                      "note": "Recommended Dimensions (512 x 512) Pixel",
+                      "note": "Icon Image (512x512 pixels)",
                       "path": "sections.services.items.satisfaction.image",
                       "type": "tc_image",
                       "value": null
@@ -1170,7 +1170,7 @@
                     },
                     {
                       "name": "quality_image",
-                      "note": "Recommended Dimensions (512 x 512) Pixel",
+                      "note": "Icon Image (512x512 pixels)",
                       "path": "sections.services.items.quality.image",
                       "type": "tc_image",
                       "value": null
@@ -1202,7 +1202,7 @@
                     },
                     {
                       "name": "support_image",
-                      "note": "Recommended Dimensions (512 x 512) Pixel",
+                      "note": "Icon Image (512x512 pixels)",
                       "path": "sections.services.items.support.image",
                       "type": "tc_image",
                       "value": null
