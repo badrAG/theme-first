@@ -361,6 +361,10 @@ export default {
         }
     },
     mounted() {
+        this.eventDispatched = {
+        CURRENT_PRODUCT: false,
+        APP_LOADER: false,
+    };  
         // All Pixels
         if (this.item) {
             // PageView Events
@@ -379,7 +383,7 @@ export default {
                 }
             }));
         });
-
+        window.addEventListener("APP_LOADER", this.handleAppLoader.bind(this));
         // Facebook Pixel
         if (this.item) {
             // Fb PageView
@@ -481,6 +485,29 @@ export default {
                 this.showStickyAddToCart = false;
             }
         },
+        handleAppLoader() {
+        if (!this.eventDispatched.APP_LOADER) {
+                this.dispatchCurrentProductEvent();
+                this.eventDispatched.APP_LOADER = true;
+            }
+        },
+        dispatchCurrentProductEvent() {
+    if (!this.eventDispatched.CURRENT_PRODUCT) {
+        const productData = {
+            product_id: this.item._id,
+            product_quantity: this.quantity.value,
+            product_variant: this.variant ? this.variant._id : undefined,
+            product_currency: this.$store.state.currency.code,
+            product_price: this.price,
+        };
+
+        window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+            detail: productData,
+        }));
+
+        this.eventDispatched.CURRENT_PRODUCT = true;
+    }
+},  
         next() {
             if (this.visibleSlide >= this.slidesLen - 1) {
                 this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
@@ -580,15 +607,7 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if (!process.server) {
-                window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-                    detail: {
-                        product_id: this.item._id,
-                        product_quantity: this.quantity.value,
-                        product_variant: this.variant ? this.variant._id : undefined,
-                        product_currency: this.$store.state.currency.code,
-                        product_price: this.price
-                    }
-                }));
+                this.dispatchCurrentProductEvent();
             }
         },
         variantSelected(variant) {
