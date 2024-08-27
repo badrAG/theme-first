@@ -191,7 +191,7 @@
                             <div class="flex justify-center md:justify-start">
                                 <div v-for="item in socialMedia.filter(s=>$settings.sections.product.share_buttons[s.name])" :key="item.name" class="flex items-center justify-center m-2">
                                     <a class="flex h-full " :href="item.url" target="_blank" rel="noopener noreferrer">
-                                        <svg class="mx-2 hover:opacity-80" :class="item.name == 'twitter' ? 'w-5 h-5 lg:w-7 lg:h-7' : 'w-6 h-6 lg:w-8 lg:h-8'" aria-label="social media icons" fill-rule="evenodd" width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path :d="item.image" fill="currentColor"></path></svg>
+                                        <svg class="w-6 h-6 mx-2 lg:w-8 lg:h-8 hover:opacity-80" aria-label="social media icons" fill-rule="evenodd" width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path :d="item.image" fill="currentColor"></path></svg>
                                     </a>
                                 </div>
                             </div>
@@ -219,11 +219,9 @@
                     </div>
                     <!-- Description -->
                     <div class="flex justify-center px-4">
-                        <div v-if="desc" class="p_container">
-                            <div class="p_container">
-                                <div class="text-sm font-normal leading-7 description lg-description" id="description" v-html="item.html"></div>
-                                <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
-                            </div>
+                        <div v-if="desc">
+                            <div class="text-sm font-normal description lg-description text-info" id="description" v-html="item.html"></div>
+                            <h2 v-if="item.html.length == 0" class="text-base font-normal">{{ $settings.sections.product.description.title_empty }}</h2>
                         </div>
                     </div>
                     <!-- Description -->
@@ -297,7 +295,7 @@ export default {
                 {
                     name: "twitter",
                     url: "https://twitter.com/intent/tweet?url={url}&text={title}",
-                    image: 'M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z'
+                    image: 'M19.83 8.00001C19.83 8.17001 19.83 8.35001 19.83 8.52001C19.8393 10.0302 19.5487 11.5272 18.9751 12.9242C18.4014 14.3212 17.5562 15.5904 16.4883 16.6583C15.4204 17.7262 14.1512 18.5714 12.7542 19.1451C11.3572 19.7187 9.86017 20.0093 8.34999 20C6.15213 20.0064 3.9992 19.3779 2.14999 18.19C2.47999 18.19 2.78999 18.19 3.14999 18.19C4.96345 18.19 6.72433 17.5808 8.14999 16.46C7.30493 16.4524 6.48397 16.1774 5.80489 15.6744C5.12581 15.1714 4.62349 14.4662 4.36999 13.66C4.62464 13.7006 4.88213 13.7207 5.13999 13.72C5.49714 13.7174 5.85281 13.6738 6.19999 13.59C5.2965 13.4056 4.48448 12.9147 3.90135 12.2003C3.31822 11.486 2.99981 10.5921 2.99999 9.67001C3.55908 9.97841 4.18206 10.153 4.81999 10.18C4.25711 9.80767 3.79593 9.30089 3.47815 8.7055C3.16038 8.11011 2.99604 7.44489 2.99999 6.77001C3.00124 6.06749 3.18749 5.37769 3.53999 4.77001C4.55172 6.01766 5.81423 7.03889 7.24575 7.76757C8.67727 8.49625 10.2459 8.91613 11.85 9.00001C11.7865 8.69737 11.753 8.38922 11.75 8.08001C11.7239 7.25689 11.9526 6.44578 12.4047 5.75746C12.8569 5.06913 13.5104 4.53714 14.2762 4.23411C15.0419 3.93109 15.8826 3.87181 16.6833 4.06437C17.484 4.25693 18.2057 4.69195 18.75 5.31001C19.655 5.12822 20.5214 4.78981 21.31 4.31001C21.0088 5.24317 20.3754 6.0332 19.53 6.53001C20.3337 6.44316 21.1194 6.23408 21.86 5.91001C21.3116 6.71097 20.6361 7.41694 19.86 8.00001H19.83Z'
                 },
                 {
                     name: "linkedin",
@@ -363,10 +361,6 @@ export default {
         }
     },
     mounted() {
-        this.eventDispatched = {
-        CURRENT_PRODUCT: false,
-        APP_LOADER: false,
-    };  
         // All Pixels
         if (this.item) {
             // PageView Events
@@ -374,18 +368,18 @@ export default {
         }
 
         // Dispatch Event
-        // window.addEventListener("APP_LOADER", () => {
-        //     window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-        //         detail: {
-        //             product_id: this.item._id,
-        //             product_quantity: this.quantity.value,
-        //             product_variant: this.variant ? this.variant._id : undefined,
-        //             product_currency: this.$store.state.currency.code,
-        //             product_price: this.price
-        //         }
-        //     }));
-        // });
-        window.addEventListener("APP_LOADER", this.handleAppLoader.bind(this));
+        window.addEventListener("APP_LOADER", () => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.item._id,
+                    product_quantity: this.quantity.value,
+                    product_variant: this.variant ? this.variant._id : undefined,
+                    product_currency: this.$store.state.currency.code,
+                    product_price: this.price
+                }
+            }));
+        });
+
         // Facebook Pixel
         if (this.item) {
             // Fb PageView
@@ -401,7 +395,22 @@ export default {
         }
 
         // Create Iframe
-        this.appendIframeToDiv();
+        if (this.item) {
+            const iframes = document.querySelectorAll('iframe')
+            for (const ifram of iframes) {
+                const parent = ifram.parentNode
+                if (!parent.classList.contains('video-wrapper')) {
+                    const div = document.createElement("div");
+                    ifram.after(div)
+                    div.classList.add('video-wrapper');
+                    ifram.style.width = null;
+                    ifram.style.height = null;
+                    ifram.setAttribute('width', '');
+                    ifram.setAttribute('height', '');
+                    div.appendChild(ifram)
+                }
+            }
+        }
 
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
@@ -447,37 +456,6 @@ export default {
                 ]
             };
         },
-        appendIframeToDiv() {
-            if (this.item && this.item.html) {
-                document.querySelectorAll('iframe').forEach(iframe => {
-                    const width = iframe.getAttribute('width');
-                    const height = iframe.getAttribute('height');
-                    const parent = iframe.parentNode;
-    
-                    if (!parent.classList.contains('video-wrapper')) {
-                        const wrapper = document.createElement('div');
-                        wrapper.classList.add('video-wrapper');
-                        wrapper.style.cssText = `
-                            width: ${width}px;
-                            height: ${height}px;
-                            max-width: 100%;
-                            max-height: 100%;
-                            display: inline-block;
-                        `;
-    
-                        iframe.removeAttribute('width');
-                        iframe.removeAttribute('height');
-    
-                        iframe.style.width= null;
-                        iframe.style.height= null;
-    
-                        parent.replaceChild(wrapper, iframe);
-                        wrapper.appendChild(iframe);
-                    }
-                });
-            }
-
-        },
         ShowDescription() {
             this.desc = true; this.rev = false
         },
@@ -503,29 +481,6 @@ export default {
                 this.showStickyAddToCart = false;
             }
         },
-        handleAppLoader() {
-        if (!this.eventDispatched.APP_LOADER) {
-                this.dispatchCurrentProductEvent();
-                this.eventDispatched.APP_LOADER = true;
-            }
-        },
-        dispatchCurrentProductEvent() {
-    if (!this.eventDispatched.CURRENT_PRODUCT) {
-        const productData = {
-            product_id: this.item._id,
-            product_quantity: this.quantity.value,
-            product_variant: this.variant ? this.variant._id : undefined,
-            product_currency: this.$store.state.currency.code,
-            product_price: this.price,
-        };
-
-        window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-            detail: productData,
-        }));
-
-        this.eventDispatched.CURRENT_PRODUCT = true;
-    }
-},  
         next() {
             if (this.visibleSlide >= this.slidesLen - 1) {
                 this.image = this.$tools.copy(this.item.images[this.visibleSlide = 0]);
@@ -625,7 +580,15 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if (!process.server) {
-                this.dispatchCurrentProductEvent();
+                window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                    detail: {
+                        product_id: this.item._id,
+                        product_quantity: this.quantity.value,
+                        product_variant: this.variant ? this.variant._id : undefined,
+                        product_currency: this.$store.state.currency.code,
+                        product_price: this.price
+                    }
+                }));
             }
         },
         variantSelected(variant) {
@@ -655,30 +618,9 @@ export default {
 }
 </script>
 
-<style>
-.video-wrapper  {
-    position: relative;
-    height: 0;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-</style>
-
 <style scoped>
-.p_container {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-}
-
 .lg-description table td, th {
-    border: 1px solid #dddddd;
+  border: 1px solid #dddddd;
 }
 
 .flex-2 {
@@ -697,6 +639,10 @@ export default {
     white-space: break-spaces;
 }
 
+.description * {
+    max-width: 100% !important;
+}
+
 .description pre {
     white-space: normal !important;
 }
@@ -707,6 +653,24 @@ export default {
 
 [dir="rtl"] .dots {
     flex-direction: row-reverse;
+}
+
+.video-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .scroll::-webkit-scrollbar {
