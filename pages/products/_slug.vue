@@ -365,10 +365,10 @@ export default {
         if (this.item) {
             // PageView Events
             this.$tools.call('PAGE_VIEW', this.item);
+            // Dispatch Event
+            this.sendDataToCustomApp();
         }
 
-        // Dispatch Event
-        window.addEventListener("APP_LOADER", this.handleAppLoader.bind(this));
 
         // Facebook Pixel
         if (this.item) {
@@ -404,12 +404,6 @@ export default {
 
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
-    },
-    beforeDestroy() {
-        // Remove event listeners to prevent duplication
-        console.log('destroy events');
-        
-        window.removeEventListener("APP_LOADER", this.handleAppLoader);
     },
     computed: {
         // Return Images Length
@@ -458,21 +452,20 @@ export default {
         ShowReviews() {
             this.desc = false; this.rev = true
         },
-        handleAppLoader() {
-            this.dispatchCurrentProductEvent();
-        },
-        dispatchCurrentProductEvent() {
-        const productData = {
+        sendDataToCustomApp() {
+        const targetElement = document.getElementById('app_expresscheckout_expresscheckout_REPLACE_BUYNOW'); // Replace with your element ID
+        const targetWindow = targetElement?.contentWindow || window; // Get the window object of the target element
+
+        const data = {
             product_id: this.item._id,
             product_quantity: this.quantity.value,
             product_variant: this.variant ? this.variant._id : undefined,
             product_currency: this.$store.state.currency.code,
-            product_price: this.price,
+            product_price: this.price
         };
-
-        window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-            detail: productData,
-        }));
+        
+        // Send the message to the custom app via postMessage
+        targetWindow.postMessage(data, '*'); // Specify target origin instead of '*' for better security
     },
         foundApp(placement) {
             if (this.$store.state.apps.find(a => a.name === "PIN REVIEW")) {
@@ -592,7 +585,7 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if (!process.server) {
-                this.dispatchCurrentProductEvent();
+                this.sendDataToCustomApp();
             }
         },
         variantSelected(variant) {
