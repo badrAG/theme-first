@@ -365,10 +365,20 @@ export default {
         if (this.item) {
             // PageView Events
             this.$tools.call('PAGE_VIEW', this.item);
-            // Dispatch Event
-            this.sendDataToCustomApp();
         }
 
+        // Dispatch Event
+        window.addEventListener("APP_LOADER", () => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.item._id,
+                    product_quantity: this.quantity.value,
+                    product_variant: this.variant ? this.variant._id : undefined,
+                    product_currency: this.$store.state.currency.code,
+                    product_price: this.price
+                }
+            }));
+        });
 
         // Facebook Pixel
         if (this.item) {
@@ -452,21 +462,6 @@ export default {
         ShowReviews() {
             this.desc = false; this.rev = true
         },
-        sendDataToCustomApp() {
-        const targetElement = document.getElementById('app_expresscheckout_expresscheckout_REPLACE_BUYNOW'); // Replace with your element ID
-        const targetWindow = targetElement?.contentWindow || window; // Get the window object of the target element
-
-        const data = {
-            product_id: this.item._id,
-            product_quantity: this.quantity.value,
-            product_variant: this.variant ? this.variant._id : undefined,
-            product_currency: this.$store.state.currency.code,
-            product_price: this.price
-        };
-        
-        // Send the message to the custom app via postMessage
-        targetWindow.postMessage(data, '*'); // Specify target origin instead of '*' for better security
-    },
         foundApp(placement) {
             if (this.$store.state.apps.find(a => a.name === "PIN REVIEW")) {
                 const foundApp = this.$store.state.apps.find((app) => {
@@ -585,7 +580,15 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if (!process.server) {
-                this.sendDataToCustomApp();
+                window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                    detail: {
+                        product_id: this.item._id,
+                        product_quantity: this.quantity.value,
+                        product_variant: this.variant ? this.variant._id : undefined,
+                        product_currency: this.$store.state.currency.code,
+                        product_price: this.price
+                    }
+                }));
             }
         },
         variantSelected(variant) {
