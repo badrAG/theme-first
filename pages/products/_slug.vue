@@ -368,17 +368,7 @@ export default {
         }
 
         // Dispatch Event
-        window.addEventListener("APP_LOADER", () => {
-            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-                detail: {
-                    product_id: this.item._id,
-                    product_quantity: this.quantity.value,
-                    product_variant: this.variant ? this.variant._id : undefined,
-                    product_currency: this.$store.state.currency.code,
-                    product_price: this.price
-                }
-            }));
-        });
+        window.addEventListener("APP_LOADER", this.handleAppLoader.bind(this));
 
         // Facebook Pixel
         if (this.item) {
@@ -414,6 +404,12 @@ export default {
 
         //show showStickyAddToCart
         window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeDestroy() {
+        // Remove event listeners to prevent duplication
+        console.log('destroy events');
+        
+        window.removeEventListener("APP_LOADER", this.handleAppLoader);
     },
     computed: {
         // Return Images Length
@@ -462,6 +458,22 @@ export default {
         ShowReviews() {
             this.desc = false; this.rev = true
         },
+        handleAppLoader() {
+            this.dispatchCurrentProductEvent();
+        },
+        dispatchCurrentProductEvent() {
+        const productData = {
+            product_id: this.item._id,
+            product_quantity: this.quantity.value,
+            product_variant: this.variant ? this.variant._id : undefined,
+            product_currency: this.$store.state.currency.code,
+            product_price: this.price,
+        };
+
+        window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+            detail: productData,
+        }));
+    },
         foundApp(placement) {
             if (this.$store.state.apps.find(a => a.name === "PIN REVIEW")) {
                 const foundApp = this.$store.state.apps.find((app) => {
@@ -580,15 +592,7 @@ export default {
                 this.price.comparePrice = this.item.price.comparePrice * quantity;
             }
             if (!process.server) {
-                window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-                    detail: {
-                        product_id: this.item._id,
-                        product_quantity: this.quantity.value,
-                        product_variant: this.variant ? this.variant._id : undefined,
-                        product_currency: this.$store.state.currency.code,
-                        product_price: this.price
-                    }
-                }));
+                this.dispatchCurrentProductEvent();
             }
         },
         variantSelected(variant) {
