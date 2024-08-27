@@ -2,8 +2,8 @@
   <div class="container">
     <div class="flex flex-col items-center gap-5 py-24 text-center md:gap-6 lg:gap-7">
         <!-- title -->
-        <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary">
-            <span>{{ $settings.sections.thanks.title }}</span>
+        <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary thanks_title" v-if="thanks.title.length > 0">
+            <span>{{ thanks.title }}</span>
         </h1>
         <!-- title -->
         <!-- orderCode -->
@@ -15,11 +15,11 @@
         </div>  
         <!-- orderCode -->
         <!-- text thank you -->
-        <p class="text-2xl font-semibold text-gray-700 md:text-3xl lg:text-4xl">{{ $settings.sections.thanks.description }}</p>
+        <p class="text-2xl font-semibold text-gray-700 md:text-3xl lg:text-4xl thanks_description" v-if="thanks.description.length > 0">{{ thanks.description }}</p>
         <!-- text thank you -->
         <!-- button -->
-        <nuxt-link to="/shop" class="inline-flex px-4 py-3 text-sm font-medium tracking-wider rounded-full shadow-sm md:px-6 md:py-3 bg-primary text-gray-50 hover:shadow-lg"> 
-          {{ $settings.sections.thanks.buttons.back_to_shop_text }}
+        <nuxt-link to="/shop" class="inline-flex px-4 py-3 text-sm font-medium tracking-wider rounded-full shadow-sm md:px-6 md:py-3 bg-primary text-gray-50 hover:shadow-lg thanks_button" v-if="thanks.buttons.back_to_shop_text.length > 0"> 
+          {{ thanks.buttons.back_to_shop_text }}
         </nuxt-link>
         <!-- button -->
     </div>
@@ -30,7 +30,8 @@
 export default {
   data() {
     return {
-      orderCode: null
+      orderCode: null,
+      thanks: this.$settings.sections.thanks
     };
   },
   mounted() {
