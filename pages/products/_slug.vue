@@ -374,17 +374,17 @@ export default {
         }
 
         // Dispatch Event
-        window.addEventListener("APP_LOADER", () => {
-            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-                detail: {
-                    product_id: this.item._id,
-                    product_quantity: this.quantity.value,
-                    product_variant: this.variant ? this.variant._id : undefined,
-                    product_currency: this.$store.state.currency.code,
-                    product_price: this.price
-                }
-            }));
-        });
+        // window.addEventListener("APP_LOADER", () => {
+        //     window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+        //         detail: {
+        //             product_id: this.item._id,
+        //             product_quantity: this.quantity.value,
+        //             product_variant: this.variant ? this.variant._id : undefined,
+        //             product_currency: this.$store.state.currency.code,
+        //             product_price: this.price
+        //         }
+        //     }));
+        // });
         window.addEventListener("APP_LOADER", this.handleAppLoader.bind(this));
         // Facebook Pixel
         if (this.item) {
