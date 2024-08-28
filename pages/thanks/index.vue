@@ -43,6 +43,7 @@ export default {
 
     // Fb Purchase
     this.$storeino.fbpx('Purchase');
+    
     if (this.$store.state.settings.analitycs_shere &&
         this.$store.state.settings.analitycs_shere[0] &&
         this.$store.state.settings.analitycs_shere[0]['data-website-id'] && window.umami) {
